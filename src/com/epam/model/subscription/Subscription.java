@@ -12,5 +12,5 @@ public class Subscription {
     private SubscriptionType type;
     private Date startDate;
     private Date endDate;
-    private double Price;
+    private double cost;
 }
