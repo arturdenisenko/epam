@@ -11,18 +11,18 @@ public class Main {
     public static void main(String[] args) throws ClassNotFoundException {
         String userName = "";
         String password = "";
-        String connectionUrl = "";
+        String connectionUrl = "c";
         try (InputStream is = Main.class.getResourceAsStream(PROPS)) {
             Properties props = new Properties();
             props.load(is);
             userName = props.getProperty("db.user");
             password = props.getProperty("db.password");
             connectionUrl = props.getProperty("db.url");
-            Class.forName("org.postgresql.Driver");
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        Class.forName("org.postgresql.Driver");
 
         try (Connection connection = DriverManager.getConnection(connectionUrl, userName, password)) {
             System.out.println("We're connected");
