@@ -7,6 +7,9 @@
         <element id="directory" name="classes">
           <element id="module-output" name="LABWebAppEPAM45" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="postgresql-42.2.8" />
+        </element>
       </element>
     </root>
   </artifact>

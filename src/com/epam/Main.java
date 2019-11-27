@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.Properties;
 
 public class Main {
-    private static final String PROPS = "/periodicals.properties";
+    private static final String PROPS = "C:\\Users\\XXX\\IdeaProjects\\epam\\config\\periodicals.properties";
 
     public static void main(String[] args) throws ClassNotFoundException {
         String userName = "";
