@@ -1,0 +1,24 @@
+.mainContainer {
+    margin: 0px auto;
+    min-width: 950px;
+    max-width: 950px;
+    text-align: center;
+}
+
+.login {
+    text-align: right;
+}
+
+html, body {
+    height: 100%;
+    font: 11px Arial;
+    color: #3c4650;
+    background: #FFFFFF;
+}
+
+/*
+.viewTable{
+    border: solid aquamarine 1px;
+    border-bottom: aqua;
+}
+*/

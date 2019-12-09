@@ -4,29 +4,19 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
-    <display-name>Система периодических изданий</display-name>
+    <display-name>Каталог периодических изданий РБ</display-name>
 
     <servlet>
-        <servlet-name>UserListController</servlet-name>
-        <servlet-class>com.epam.controller.UserListController</servlet-class>
+        <servlet-name>periodicals</servlet-name>
+        <servlet-class>com.epam.view.PeriodicalsListView</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>UserListController</servlet-name>
-        <url-pattern>/user/list.html</url-pattern>
+        <servlet-name>periodicals</servlet-name>
+        <url-pattern>/periodicals</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>UserListView</servlet-name>
-        <servlet-class>com.epam.view.UserListView</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>UserListView</servlet-name>
-        <url-pattern>/WEB-INF/user/list.html</url-pattern>
-    </servlet-mapping>
-
-    <welcome-file-list>
-        <welcome-file>index.html</welcome-file>
-    </welcome-file-list>
+    <!--  <welcome-file-list>
+          <welcome-file>/index.jsp</welcome-file>
+      </welcome-file-list>-->
 </web-app>
