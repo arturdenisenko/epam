@@ -1,6 +1,9 @@
 package com.epam.model.periodical;
 
-public class PeriodicalCategory {
+import java.io.Serializable;
+import java.util.Objects;
+
+public class PeriodicalCategory implements Serializable {
     private int id;
     private String name;
 
@@ -23,5 +26,27 @@ public class PeriodicalCategory {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PeriodicalCategory that = (PeriodicalCategory) o;
+        return id == that.id &&
+                Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name);
+    }
+
+    @Override
+    public String toString() {
+        return "PeriodicalCategory{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

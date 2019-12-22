@@ -8,7 +8,6 @@
         </descriptors>
         <webroots>
           <root url="file://$MODULE_DIR$/web" relative="/" />
-          <root url="file://$MODULE_DIR$" relative="/.." />
         </webroots>
         <sourceRoots>
           <root url="file://$MODULE_DIR$/src" />
@@ -64,5 +63,7 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="log4j-1.2.17" level="project" />
+    <orderEntry type="library" name="javax.servlet-api-3.0.1" level="project" />
   </component>
 </module>

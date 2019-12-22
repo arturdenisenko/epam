@@ -1,29 +1,39 @@
 package com.epam.model.user;
 
-import java.util.UUID;
+import java.io.Serializable;
+import java.util.Objects;
 
-public class User {
-    private final String uuid;
-    private String fullName;
+public class User implements Serializable {
+    private Long id;
+    private String firstName;
+    private String lastName;
     private String email;
-    private String address;
     private String password;
     private UserType userType;
+    private String address;
 
-    public User() {
-        this(UUID.randomUUID().toString());
+    public Long getId() {
+        return id;
     }
 
-    public String getUuid() {
-        return uuid;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -32,14 +42,6 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public String getPassword() {
@@ -58,7 +60,43 @@ public class User {
         this.userType = userType;
     }
 
-    public User(String uuid) {
-        this.uuid = uuid;
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id) &&
+                Objects.equals(firstName, user.firstName) &&
+                Objects.equals(lastName, user.lastName) &&
+                Objects.equals(email, user.email) &&
+                Objects.equals(password, user.password) &&
+                userType == user.userType &&
+                Objects.equals(address, user.address);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, email, password, userType, address);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", userType=" + userType +
+                ", address='" + address + '\'' +
+                '}';
     }
 }

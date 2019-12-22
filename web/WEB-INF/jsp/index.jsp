@@ -1,13 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<link rel="stylesheet" type="text/css" href="css/style.css"/>
-<link rel="icon" href="${pageContext.request.contextPath}/periodicals.ico" type="image/x-icon"/>
-<link rel="shortcut icon" href="${pageContext.request.contextPath}/periodicals.ico">
-
-<head>
-    <title>Каталог печатных изданий РБ</title>
-</head>
-<body>
+<jsp:include page="fragments/header.jsp"/>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <div class="mainContainer">
     <p class="login"><a href="user/login.html">Вход</a></p>
     <hr>
@@ -33,5 +25,4 @@
     <br>
     Спорт
 </div>
-</body>
-</html>
+<jsp:include page="fragments/footer.jsp">

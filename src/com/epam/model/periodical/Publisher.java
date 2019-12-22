@@ -1,11 +1,17 @@
 package com.epam.model.periodical;
 
-public class Publisher {
+import java.io.Serializable;
+
+public class Publisher implements Serializable {
     private int id;
     private String name;
 
     public Publisher(int id, String name) {
         this.id = id;
+        this.name = name;
+    }
+
+    public Publisher(String name) {
         this.name = name;
     }
 
@@ -23,5 +29,13 @@ public class Publisher {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Publisher{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

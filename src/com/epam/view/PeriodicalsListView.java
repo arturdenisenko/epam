@@ -25,12 +25,12 @@ public class PeriodicalsListView extends HttpServlet {
         PeriodicalCategory periodicalCategory = new PeriodicalCategory(1, "Политика");
         PeriodicalCategory periodicalCategory_2 = new PeriodicalCategory(1, "Юмор");
         PeriodicalCategory periodicalCategory_3 = new PeriodicalCategory(1, "Кулинария");
-        Periodical periodical_1 = new Periodical(1, "Витьбичи", "Витебская газета", publisher_1, periodicalCategory, 12, 6, 10.20);
-        Periodical periodical_2 = new Periodical(2, "Ералаш", "Юмористический журнал", publisher_2, periodicalCategory_2, 12, 6, 10.20);
-        Periodical periodical_3 = new Periodical(3, "Готовим вкусно", "Учимся готовить вкусно", publisher_3, periodicalCategory_3, 12, 6, 10.20);
-        periodicals.add(periodical_1);
-        periodicals.add(periodical_2);
-        periodicals.add(periodical_3);
+        //Periodical periodical_1 = new Periodical(1, "Витьбичи", "Витебская газета", publisher_1, periodicalCategory, 12, 6, 10.20);
+        //Periodical periodical_2 = new Periodical(2, "Ералаш", "Юмористический журнал", publisher_2, periodicalCategory_2, 12, 6, 10.20);
+        //Periodical periodical_3 = new Periodical(3, "Готовим вкусно", "Учимся готовить вкусно", publisher_3, periodicalCategory_3, 12, 6, 10.20);
+        //periodicals.add(periodical_1);
+        //periodicals.add(periodical_2);
+        //periodicals.add(periodical_3);
     }
 
     @Override
@@ -50,29 +50,26 @@ public class PeriodicalsListView extends HttpServlet {
        /* if (!requestIsValid(req)) {
             doGet(req, resp);
         }*/
-//TODO Проверить что не так с категорией
+//TODO Проверить что не так с категорией, check реквест написать
         final int id = (int) (Math.random() * 12);
         final String name = req.getParameter("name");
         final String about = req.getParameter("about");
         final String publisher = req.getParameter("publisher");
-        final String periodicalCategory = req.getParameter("periodicalCategory");
+        final String periodicalCategory = req.getParameter("category");
         final int periodicityInSixMonth = Integer.parseInt(req.getParameter("periodicityInSixMonth"));
         final int minSubscriptionPeriod = Integer.parseInt(req.getParameter("minSubscriptionPeriod"));
         final double costPerMonth = Double.parseDouble(req.getParameter("costPerMonth"));
         Publisher publisher_1 = new Publisher(56, publisher);
         PeriodicalCategory periodicalCategory_1 = new PeriodicalCategory(66, periodicalCategory);
 
-        final Periodical periodical = new Periodical(id, name, about, publisher_1, periodicalCategory_1, periodicityInSixMonth, minSubscriptionPeriod, costPerMonth);
-
-
-        periodicals.add(periodical);
+        //final Periodical periodical = new Periodical(id, name, about, publisher_1, periodicalCategory_1, periodicityInSixMonth, minSubscriptionPeriod, costPerMonth);
+        //periodicals.add(periodical);
 
         doGet(req, resp);
 
     }
 
     private boolean requestIsValid(final HttpServletRequest req) {
-
         return true;
     }
 }
