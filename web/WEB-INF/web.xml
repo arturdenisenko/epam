@@ -6,13 +6,23 @@
 
     <display-name>Каталог периодических изданий РБ</display-name>
 
+
     <servlet>
         <servlet-name>periodicals</servlet-name>
         <servlet-class>com.epam.view.PeriodicalsListView</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
     <servlet-mapping>
         <servlet-name>periodicals</servlet-name>
         <url-pattern>/periodicals</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
 
     <error-page>

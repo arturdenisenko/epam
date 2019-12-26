@@ -7,11 +7,11 @@ import java.util.List;
 public interface AbstractDao<K, T> {
     //TODO Дописать общий интерфейс сюда
     // public void insert(<T> publisher);
-    void insert(T entity) throws DAOException;
+    void create(T entity) throws DAOException;
 
-    void select(K id) throws DAOException;
+    void read(K id) throws DAOException;
 
-    List<T> selectAll() throws DAOException;
+    List<T> readAll() throws DAOException;
 
     void delete(K id) throws DAOException;
 

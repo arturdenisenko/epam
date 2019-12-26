@@ -7,7 +7,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import static com.epam.util.JDBCUtils.printSQLException;
 
 public class UserDao {
     //TODO userDAO
@@ -30,7 +29,7 @@ public class UserDao {
             preparedStatement.setString(1, user.getFirstName());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            printSQLException(e);
+
         }
     }
 

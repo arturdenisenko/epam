@@ -1,6 +1,7 @@
 package com.epam.view;
 
 import com.epam.dao.PublisherDao;
+import com.epam.dao.impl.PublisherDaoImpl;
 import com.epam.model.periodical.Publisher;
 
 import javax.servlet.RequestDispatcher;
@@ -18,7 +19,7 @@ public class PublisherServlet extends HttpServlet {
     private PublisherDao publisherDao;
 
     public void init() {
-        publisherDao = new PublisherDao();
+        publisherDao = new PublisherDaoImpl();
     }
 
     @Override

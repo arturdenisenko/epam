@@ -1,73 +1,89 @@
 package com.epam.dao;
 
+import com.epam.dao.impl.PublisherDaoImpl;
+import com.epam.exception.ExistException;
 import com.epam.model.periodical.Publisher;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.sql.SQLException;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 public class PublisherDaoTest {
-    public static Publisher publisher = new Publisher(45, "Артур");
-    public static Publisher publisher_1 = new Publisher(46, "publisher_2");
-    public static Publisher publisher_2 = new Publisher(47, "publisher_3");
-    public static Publisher publisher_3 = new Publisher(48, "publisher_4");
-    PublisherDao publisherDao = new PublisherDao();
-    List<Publisher> publishers = new CopyOnWriteArrayList<>();
+
+    public static final Publisher PUBLISHER = new Publisher(45, "ООО ИКАР");
+    public static final Publisher PUBLISHER_1 = new Publisher(46, "ОДО ЭЛЕГАНТ");
+    public static final Publisher PUBLISHER_2 = new Publisher(47, "ОАО НОВАЯ РУСЬ");
+    public static final Publisher PUBLISHER_3 = new Publisher(48, "publisher_4");
+    private static final Logger LOGGER = LoggerFactory.getLogger(PublisherDaoTest.class);
+    private static final PublisherDao PUBLISHER_DAO = new PublisherDaoImpl();
+    private static List<Publisher> PUBLISHER_LIST_FROM_DATABASE = PUBLISHER_DAO.selectAll();
 
     @Before
-    public void setUp() throws Exception {
-        publishers.clear();
-        publisherDao.clear();
-        publishers.add(publisher);
-        publishers.add(publisher_1);
-        publishers.add(publisher_2);
-        publisherDao.insert(publisher);
-        publisherDao.insert(publisher_1);
-        publisherDao.insert(publisher_2);
+    public void setUp() {
+        LOGGER.info("SETUP PUBLISHERS TEST");
+        PUBLISHER_DAO.clear();
+        PUBLISHER_DAO.insert(PUBLISHER);
+        PUBLISHER_DAO.insert(PUBLISHER_1);
+        PUBLISHER_DAO.insert(PUBLISHER_2);
+        PUBLISHER_LIST_FROM_DATABASE = PUBLISHER_DAO.selectAll();
     }
 
     @Test
-    public void insertPublisher() throws SQLException {
-        publisherDao.insert(publisher_3);
-        Publisher publisherTest = publisherDao.select(publisher_3.getId());
-        Assert.assertEquals(publisher_3.getName(), publisherTest.getName());
+    public void insert() {
+        LOGGER.info("INSERT PUBLISHER TESTING");
+        PUBLISHER_DAO.insert(PUBLISHER_3);
+        Assert.assertEquals(4, PUBLISHER_DAO.selectAll().size());
 
     }
 
     @Test
-    public void selectPublisher() {
-        Publisher publisherTest = publisherDao.select(publisher.getId());
-        Assert.assertEquals(publisher.getId(), publisherTest.getId());
+    public void select() {
+        LOGGER.info("SELECT FROM DATABASE PUBLISHER TESTING");
+        Publisher publisherTest = PUBLISHER_DAO.select(PUBLISHER_LIST_FROM_DATABASE.get(0).getId());
+        Assert.assertEquals(publisherTest.getName(), PUBLISHER.getName());
     }
 
     @Test
-    public void selectAllPublishers() {
-        List<Publisher> publishers2 = publisherDao.selectAll();
-        Assert.assertEquals(publishers2.get(0).getName(), publishers.get(0).getName());
-        Assert.assertEquals(publishers2.get(1).getName(), publishers.get(1).getName());
-        Assert.assertEquals(publishers2.get(2).getName(), publishers.get(2).getName());
+    public void selectAll() {
+        LOGGER.info("SELECT ALL FROM DATABASE PUBLISHER TESTING");
+        List<Publisher> publishers2 = PUBLISHER_DAO.selectAll();
+        Assert.assertEquals(publishers2.get(0).getName(), PUBLISHER.getName());
+        Assert.assertEquals(publishers2.get(1).getName(), PUBLISHER_1.getName());
+        Assert.assertEquals(publishers2.get(2).getName(), PUBLISHER_2.getName());
     }
 
     @Test
-    public void deletePublisher() throws SQLException {
-        publisherDao.delete(publisher.getId());
-        Assert.assertEquals(2, publisherDao.selectAll().size());
+    public void delete() {
+        LOGGER.info("DELETE PUBLISHER TESTING");
+        Assert.assertTrue(PUBLISHER_DAO.delete(PUBLISHER_LIST_FROM_DATABASE.get(0).getId()));
+        Assert.assertEquals(2, PUBLISHER_DAO.selectAll().size());
     }
 
     @Test
-    public void updatePublisher() throws SQLException {
-        publisher.setName("JJJ");
-        publisherDao.update(publisher);
-        Publisher testPublisher = publisherDao.select(publisher.getId());
-        Assert.assertEquals("JJJ", testPublisher.getName());
+    public void update() {
+        LOGGER.info("UPDATE PUBLISHER TESTING");
+        Publisher publisherForUpdate = PUBLISHER_LIST_FROM_DATABASE.get(0);
+        publisherForUpdate.setName("TESTING UPDATE NAME");
+        PUBLISHER_DAO.update(publisherForUpdate);
+        Assert.assertEquals(publisherForUpdate.getName(), PUBLISHER_DAO.select(publisherForUpdate.getId()).getName());
+    }
+
+    @Test(expected = ExistException.class)
+    public void insertExisting() {
+        LOGGER.info("INSERT EXISTING PUBLISHER TESTING");
+        LOGGER.info(PUBLISHER_LIST_FROM_DATABASE.get(0).toString());
+        LOGGER.info(PUBLISHER_LIST_FROM_DATABASE.toString());
+        PUBLISHER_DAO.insert(PUBLISHER_LIST_FROM_DATABASE.get(0));
+        LOGGER.info(PUBLISHER_DAO.selectAll().toString());
     }
 
     @Test
-    public void clear() throws SQLException {
-        publisherDao.clear();
-        Assert.assertEquals(0, publisherDao.selectAll().size());
+    public void clear() {
+        LOGGER.info("CLEAR ALL PUBLISHERS TESTING");
+        PUBLISHER_DAO.clear();
+        Assert.assertEquals(0, PUBLISHER_DAO.selectAll().size());
     }
 }
