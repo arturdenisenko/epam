@@ -11,7 +11,7 @@
         </layout>
     </appender>
 
-    <category name="com.epam">
+    <category name="com.epam.dao">
         <!--all, trace, debug, info, warn, error, fatal-->
         <priority value="info"/>
         <appender-ref ref="fileAppender"/>

@@ -1,7 +1,6 @@
 package com.epam.dao.impl;
 
 import com.epam.dao.PeriodicalCategoryDao;
-import com.epam.exception.ExistEntityException;
 import com.epam.exception.NotExistEntityException;
 import com.epam.model.periodical.PeriodicalCategory;
 import com.epam.util.ExceptionUtil;
@@ -22,13 +21,13 @@ public class PeriodicalCategoryDaoImpl implements PeriodicalCategoryDao {
 
     private static final String INSERT_PERIODICAL_CATEGORY_SQL = "INSERT INTO periodical_category" + "  (id, name) VALUES " + " (DEFAULT, ?);";
     private static final String SELECT_PERIODICAL_CATEGORY_BY_ID = "SELECT id,name FROM periodical_category WHERE id =?;";
-    private static final String SELECT_ALL_PERIODICAL_CATEGORY = "SELECT * FROM periodical_category;";
+    private static final String SELECT_ALL_PERIODICAL_CATEGORY = "SELECT * FROM periodical_category ORDER BY id;";
     private static final String DELETE_PERIODICAL_CATEGORY_SQL = "DELETE FROM periodical_category where id = ?;";
     private static final String UPDATE_PERIODICAL_CATEGORY_SQL = "UPDATE periodical_category SET name = ? where id = ?;";
     private static final String CLEAR_TABLE_PERIODICAL_CATEGORY_SQL = "DELETE FROM periodical_category";
 
-
-    public PeriodicalCategoryDaoImpl() {
+    public static PeriodicalCategoryDaoImpl getInstance() {
+        return PeriodicalCategoryDaoImpl.PeriodicalCategoryDaoImplHolder.HOLDER_INSTANCE;
     }
 
     @Override
@@ -37,14 +36,14 @@ public class PeriodicalCategoryDaoImpl implements PeriodicalCategoryDao {
         try (Connection connection = JDBCUtils.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_PERIODICAL_CATEGORY_SQL)) {
             preparedStatement.setString(1, periodicalCategory.getName());
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            try {
-                throw ExceptionUtil.convertException(e);
-            } catch (ExistEntityException ex) {
-                LOGGER.error(ex.getMessage(), ex);
+            int affectedRows = preparedStatement.executeUpdate();
+            if (affectedRows == 0) {
+                LOGGER.info("PERIODICAL CATEGORY CREATION FAILED");
+            } else {
+                LOGGER.info("PERIODICAL CATEGORY CREATION SUCCESSFUL");
             }
-            LOGGER.error(e.getMessage(), e);
+        } catch (SQLException e) {
+            throw ExceptionUtil.convertException(e);
         }
     }
 
@@ -58,8 +57,7 @@ public class PeriodicalCategoryDaoImpl implements PeriodicalCategoryDao {
             ResultSet rs = preparedStatement.executeQuery();
             if (!rs.next()) {
                 throw new NotExistEntityException(id);
-            }
-            while (rs.next()) {
+            } else {
                 String name = rs.getString("name");
                 periodicalCategory = new PeriodicalCategory(id, name);
             }
@@ -67,6 +65,10 @@ public class PeriodicalCategoryDaoImpl implements PeriodicalCategoryDao {
             LOGGER.error(e.getMessage(), e);
         }
         return periodicalCategory;
+    }
+
+    private static class PeriodicalCategoryDaoImplHolder {
+        private static final PeriodicalCategoryDaoImpl HOLDER_INSTANCE = new PeriodicalCategoryDaoImpl();
     }
 
     @Override

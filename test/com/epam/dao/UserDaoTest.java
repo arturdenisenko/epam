@@ -11,17 +11,18 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class UserDaoTest {
-
-    public static final User USER = new User(1, "Serghei", "Ivanov", "ivanov_s@gmail.com", "ivanov", UserType.MANAGER, "Gagarina street", 200);
-    public static final User USER1 = new User(2, "Ivan", "Kabanov", "kabanov_a@gmail.com", "kabanov", UserType.USER, "Lenina street", 200);
-    public static final User USER2 = new User(3, "Петров", "Дмитрий", "petrov_d@gmail.com", "petrov", UserType.ADMIN, "Gagarina street", 200);
-    public static final User USER3 = new User(4, "Test", "Test", "test@gmail.com", "test", UserType.USER, "Gagarina street", 200);
-
     private static final Logger LOGGER = LoggerFactory.getLogger(UserDaoTest.class);
-    private static final UserDao USER_DAO = new UserDaoImpl();
+
+    public static final User USER = new User(1, "Serghei", "Ivanov", "ivanov_s@gmail.com", "ivanov", UserType.MANAGER, "Gagarina street", new BigDecimal(200));
+    public static final User USER1 = new User(2, "Ivan", "Kabanov", "kabanov_a@gmail.com", "kabanov", UserType.USER, "Lenina street", new BigDecimal(200));
+    public static final User USER2 = new User(3, "Петров", "Дмитрий", "petrov_d@gmail.com", "petrov", UserType.ADMIN, "Gagarina street", new BigDecimal(200));
+    public static final User USER3 = new User(4, "Test", "Test", "test@gmail.com", "test", UserType.USER, "Gagarina street", new BigDecimal(200));
+
+    private static final UserDao USER_DAO = UserDaoImpl.getInstance();
     private static List<User> USERS_LIST_FROM_DATABASE = USER_DAO.selectAll();
 
     @Before
@@ -73,22 +74,6 @@ public class UserDaoTest {
         Assert.assertEquals(userForUpdateTest, USER_DAO.select(userForUpdateTest.getId()));
     }
 
-    @Test(expected = ExistEntityException.class)
-    public void insertExisting() {
-        LOGGER.info("INSERT EXISTING USER TESTING");
-        USER_DAO.insert(USERS_LIST_FROM_DATABASE.get(0));
-    }
-
-    @Test(expected = NotExistEntityException.class)
-    public void deleteNotExist() {
-        USER_DAO.delete(525235);
-    }
-
-    @Test(expected = NotExistEntityException.class)
-    public void selectNotExist() {
-        USER_DAO.select(525235);
-    }
-
     @Test
     public void clear() {
         LOGGER.info("CLEAR ALL USERS TESTING");
@@ -117,5 +102,24 @@ public class UserDaoTest {
         List<User> users = USER_DAO.selectByUsersType(UserType.ADMIN);
         Assert.assertEquals(1, users.size());
     }
+
+    @Test(expected = NotExistEntityException.class)
+    public void selectNotExist() {
+        LOGGER.info("SELECT NOT EXISTING USER TESTING");
+        USER_DAO.select(525235);
+    }
+
+    @Test(expected = ExistEntityException.class)
+    public void insertExisting() {
+        LOGGER.info("INSERT EXISTING USER TESTING");
+        USER_DAO.insert(USERS_LIST_FROM_DATABASE.get(0));
+    }
+
+    @Test(expected = NotExistEntityException.class)
+    public void deleteNotExist() {
+        LOGGER.info("DELETE NOT EXISTING USER TESTING");
+        USER_DAO.delete(525235);
+    }
+
 
 }

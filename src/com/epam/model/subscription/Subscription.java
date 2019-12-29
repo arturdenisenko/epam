@@ -4,6 +4,7 @@ import com.epam.model.periodical.Periodical;
 import com.epam.model.user.User;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;
 
@@ -14,7 +15,7 @@ public class Subscription implements Serializable {
     private SubscriptionType type;
     private Date startDate;
     private Date endDate;
-    private double cost;
+    private BigDecimal cost;
 
     public Subscription() {
     }
@@ -67,31 +68,31 @@ public class Subscription implements Serializable {
         this.endDate = endDate;
     }
 
-    public double getCost() {
+    public BigDecimal getCost() {
         return cost;
     }
 
-    public void setCost(double cost) {
+    public void setCost(BigDecimal cost) {
         this.cost = cost;
     }
 
     @Override
     public boolean equals(Object o) {
+
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Subscription that = (Subscription) o;
-        return id == that.id &&
-                Double.compare(that.cost, cost) == 0 &&
-                Objects.equals(user, that.user) &&
+        return Objects.equals(user, that.user) &&
                 Objects.equals(periodical, that.periodical) &&
                 Objects.equals(type, that.type) &&
                 Objects.equals(startDate, that.startDate) &&
-                Objects.equals(endDate, that.endDate);
+                Objects.equals(endDate, that.endDate) &&
+                Objects.equals(cost, that.cost);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, user, periodical, type, startDate, endDate, cost);
+        return Objects.hash(user, periodical, type, startDate, endDate, cost);
     }
 
     @Override

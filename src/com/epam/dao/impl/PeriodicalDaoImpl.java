@@ -1,0 +1,191 @@
+package com.epam.dao.impl;
+
+import com.epam.dao.PeriodicalCategoryDao;
+import com.epam.dao.PeriodicalDao;
+import com.epam.dao.PublisherDao;
+import com.epam.exception.NotExistEntityException;
+import com.epam.model.periodical.Periodical;
+import com.epam.model.subscription.SubscriptionType;
+import com.epam.util.ExceptionUtil;
+import com.epam.util.JDBCUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+
+public class PeriodicalDaoImpl implements PeriodicalDao {
+
+    private final static Logger LOGGER = LoggerFactory.getLogger(PeriodicalDaoImpl.class);
+
+    private static final String INSERT_PERIODICAL_SQL =
+            "INSERT INTO periodicals (id, name, about, publisher_fk, periodical_category, " +
+                    "periodicity_in_six_month, min_subscription_period, cost_per_month) VALUES " + " " +
+                    "(DEFAULT, ?,?,?,?,?,?,?);";
+    private static final String SELECT_PERIODICAL_BY_ID = "SELECT * FROM periodicals WHERE id =?;";
+    private static final String SELECT_ALL_PERIODICALS = "SELECT * FROM periodicals;";
+    private static final String DELETE_PERIODICAL_SQL = "DELETE FROM periodicals where id = ?;";
+    private static final String UPDATE_PERIODICAL_SQL = "UPDATE periodicals SET name = ?, about = ?,publisher_fk= ?" +
+            ", periodical_category = ?, periodicity_in_six_month = ?, min_subscription_period=?, cost_per_month=? " +
+            "where id = ?;";
+    private static final String CLEAR_TABLE_PERIODICAL_SQL = "DELETE FROM periodicals";
+
+    PeriodicalCategoryDao periodicalCategoryDao = PeriodicalCategoryDaoImpl.getInstance();
+    PublisherDao publisherDao = PublisherDaoImpl.getInstance();
+
+    public PeriodicalDaoImpl() {
+    }
+
+    public static PeriodicalDaoImpl getInstance() {
+        return PeriodicalDaoImpl.PeriodicalDaoImplHolder.HOLDER_INSTANCE;
+    }
+
+    @Override
+    public void insert(Periodical periodical) {
+        LOGGER.info("CREATE NEW PERIODICAL {}", periodical.toString());
+        try (Connection connection = JDBCUtils.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_PERIODICAL_SQL)) {
+            preparedStatement.setString(1, periodical.getName());
+            preparedStatement.setString(2, periodical.getAbout());
+            preparedStatement.setInt(3, periodical.getPublisher().getId());
+            preparedStatement.setInt(4, periodical.getPeriodicalCategory().getId());
+            preparedStatement.setInt(5, periodical.getPeriodicityInSixMonth());
+            preparedStatement.setInt(6, periodical.getMinSubscriptionPeriod());
+            preparedStatement.setFloat(7, periodical.getCostPerMonth());
+
+            int affectedRows = preparedStatement.executeUpdate();
+            if (affectedRows == 0) {
+                LOGGER.warn("PERIODICAL CREATION FAILED");
+            } else {
+                LOGGER.info("PERIODICAL CREATION SUCCESSFUL");
+            }
+        } catch (SQLException e) {
+            throw ExceptionUtil.convertException(e);
+        }
+    }
+
+    @Override
+    public Periodical select(int id) {
+        LOGGER.info("SELECT PERIODICAL WITH ID = {}", id);
+        Periodical periodical = null;
+        try (Connection connection = JDBCUtils.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_PERIODICAL_BY_ID)) {
+            preparedStatement.setInt(1, id);
+            ResultSet rs = preparedStatement.executeQuery();
+            if (!rs.next()) {
+                throw new NotExistEntityException(id);
+            } else {
+                periodical = new Periodical();
+                periodical.setId(id);
+                periodical.setName(rs.getString("name"));
+                periodical.setAbout(rs.getString("about"));
+                periodical.setPublisher(publisherDao.select(rs.getInt("publisher_fk")));
+                periodical.setPeriodicalCategory(periodicalCategoryDao.select(rs.getInt("periodical_category")));
+                periodical.setPeriodicityInSixMonth(rs.getInt("periodicity_in_six_month"));
+                periodical.setMinSubscriptionPeriod(rs.getInt("min_subscription_period"));
+                periodical.setCostPerMonth(rs.getBigDecimal("cost_per_month").floatValue());
+            }
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+        return periodical;
+    }
+
+    //TODO Дописать 2 эти метода через фильтр
+    @Override
+    public List<Periodical> selectByName(String name) {
+        return null;
+    }
+
+    @Override
+    public List<Periodical> selectByPeriodicalCategory(SubscriptionType subscriptionType) {
+        return null;
+    }
+
+    @Override
+    public List<Periodical> selectAll() {
+        LOGGER.info("SELECT ALL PERIODICALS");
+        List<Periodical> periodicals = new CopyOnWriteArrayList<>();
+        try (Connection connection = JDBCUtils.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_PERIODICALS)) {
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                Periodical periodical = new Periodical();
+                periodical.setId(rs.getInt("id"));
+                periodical.setName(rs.getString("name"));
+                periodical.setAbout(rs.getString("about"));
+                periodical.setPublisher(publisherDao.select(rs.getInt("publisher_fk")));
+                periodical.setPeriodicalCategory(periodicalCategoryDao.select(rs.getInt("periodical_category")));
+                periodical.setPeriodicityInSixMonth(rs.getInt("periodicity_in_six_month"));
+                periodical.setMinSubscriptionPeriod(rs.getInt("min_subscription_period"));
+                periodical.setCostPerMonth(rs.getBigDecimal("cost_per_month").floatValue());
+                periodicals.add(periodical);
+            }
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+        return periodicals;
+    }
+
+    @Override
+    public boolean delete(int id) {
+        LOGGER.info("DELETE PERIODICAL WITH ID = {} ", id);
+        boolean rowDeleted = false;
+        try (Connection connection = JDBCUtils.getConnection();
+             PreparedStatement statement = connection.prepareStatement(DELETE_PERIODICAL_SQL)) {
+            statement.setInt(1, id);
+            rowDeleted = statement.executeUpdate() > 0;
+            if (!rowDeleted) {
+                LOGGER.warn("PERIODICAL WITH ID {} ISN'T DELETED", id);
+                throw new NotExistEntityException(id);
+            }
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean update(Periodical periodical) {
+        LOGGER.info("UPDATE PERIODICAL {}", periodical.toString());
+        boolean rowUpdated = false;
+        try (Connection connection = JDBCUtils.getConnection();
+             PreparedStatement statement = connection.prepareStatement(UPDATE_PERIODICAL_SQL)) {
+            statement.setString(1, periodical.getName());
+            statement.setString(2, periodical.getAbout());
+            statement.setInt(3, periodical.getPublisher().getId());
+            statement.setInt(4, periodical.getPeriodicalCategory().getId());
+            statement.setInt(5, periodical.getPeriodicityInSixMonth());
+            statement.setInt(6, periodical.getMinSubscriptionPeriod());
+            statement.setFloat(7, periodical.getCostPerMonth());
+            statement.setInt(8, periodical.getId());
+            rowUpdated = statement.executeUpdate() > 0;
+            if (!rowUpdated) {
+                throw new NotExistEntityException(periodical.getId());
+            }
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+        return rowUpdated;
+    }
+
+    //FOR TESTS ONLY
+    @Override
+    public void clear() {
+        LOGGER.info("DELETE ALL PERIODICALS");
+        try (Connection connection = JDBCUtils.getConnection();
+             PreparedStatement statement = connection.prepareStatement(CLEAR_TABLE_PERIODICAL_SQL)) {
+            statement.execute();
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+    }
+
+    private static class PeriodicalDaoImplHolder {
+        private static final PeriodicalDaoImpl HOLDER_INSTANCE = new PeriodicalDaoImpl();
+    }
+}

@@ -4,22 +4,24 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class Periodical implements Serializable {
+
     private int id;
     private String name;
     private String about;
     private Publisher publisher;//издатель
-    private double price;// Цена
     private PeriodicalCategory periodicalCategory;//cat of periodical
     private int periodicityInSixMonth;//периодчность в полугодие
     private int minSubscriptionPeriod;//минимальный переиод подписки
-    private double costPerMonth;//стоимость за месяц
+    private Float costPerMonth;//стоимость за месяц
 
-    public Periodical(int id, String name, String about, Publisher publisher, Float price, PeriodicalCategory periodicalCategory, int periodicityInSixMonth, int minSubscriptionPeriod, double costPerMonth) {
+    public Periodical() {
+    }
+
+    public Periodical(int id, String name, String about, Publisher publisher, PeriodicalCategory periodicalCategory, int periodicityInSixMonth, int minSubscriptionPeriod, Float costPerMonth) {
         this.id = id;
         this.name = name;
         this.about = about;
         this.publisher = publisher;
-        this.price = price;
         this.periodicalCategory = periodicalCategory;
         this.periodicityInSixMonth = periodicityInSixMonth;
         this.minSubscriptionPeriod = minSubscriptionPeriod;
@@ -58,14 +60,6 @@ public class Periodical implements Serializable {
         this.publisher = publisher;
     }
 
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
     public PeriodicalCategory getPeriodicalCategory() {
         return periodicalCategory;
     }
@@ -90,11 +84,11 @@ public class Periodical implements Serializable {
         this.minSubscriptionPeriod = minSubscriptionPeriod;
     }
 
-    public double getCostPerMonth() {
+    public Float getCostPerMonth() {
         return costPerMonth;
     }
 
-    public void setCostPerMonth(double costPerMonth) {
+    public void setCostPerMonth(Float costPerMonth) {
         this.costPerMonth = costPerMonth;
     }
 
@@ -103,20 +97,18 @@ public class Periodical implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Periodical that = (Periodical) o;
-        return id == that.id &&
-                periodicityInSixMonth == that.periodicityInSixMonth &&
+        return periodicityInSixMonth == that.periodicityInSixMonth &&
                 minSubscriptionPeriod == that.minSubscriptionPeriod &&
-                Double.compare(that.costPerMonth, costPerMonth) == 0 &&
                 Objects.equals(name, that.name) &&
                 Objects.equals(about, that.about) &&
                 Objects.equals(publisher, that.publisher) &&
-                Objects.equals(price, that.price) &&
-                Objects.equals(periodicalCategory, that.periodicalCategory);
+                Objects.equals(periodicalCategory, that.periodicalCategory) &&
+                Objects.equals(costPerMonth, that.costPerMonth);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, about, publisher, price, periodicalCategory, periodicityInSixMonth, minSubscriptionPeriod, costPerMonth);
+        return Objects.hash(name, about, publisher, periodicalCategory, periodicityInSixMonth, minSubscriptionPeriod, costPerMonth);
     }
 
     @Override
@@ -126,7 +118,6 @@ public class Periodical implements Serializable {
                 ", name='" + name + '\'' +
                 ", about='" + about + '\'' +
                 ", publisher=" + publisher +
-                ", price=" + price +
                 ", periodicalCategory=" + periodicalCategory +
                 ", periodicityInSixMonth=" + periodicityInSixMonth +
                 ", minSubscriptionPeriod=" + minSubscriptionPeriod +

@@ -22,9 +22,6 @@ public interface UserDao {
     boolean delete(int id);
 
     boolean update(User user);
-
     //for test only
     void clear();
-
-
 }

@@ -12,6 +12,7 @@ import com.epam.util.JDBCUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,7 +22,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class UserDaoImpl implements UserDao {
 
-    //TODO REFACT THIS DAO!!!
+    //TODO REFACT THIS DAO!!!, ADD PWD CRYPT
 
     private final static Logger LOGGER = LoggerFactory.getLogger(UserDaoImpl.class);
 
@@ -34,7 +35,8 @@ public class UserDaoImpl implements UserDao {
     private static final String UPDATE_USER_SQL = "UPDATE users SET first_name = ?, last_name = ?, email = ?, password = ?, address = ?, user_type = ?, balance = ? where id = ?;";
     private static final String CLEAR_TABLE_USERS_SQL = "DELETE FROM users";
 
-    public UserDaoImpl() {
+    public static UserDaoImpl getInstance() {
+        return UserDAOImplHolder.HOLDER_INSTANCE;
     }
 
     @Override
@@ -48,7 +50,7 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setString(4, user.getPassword());
             preparedStatement.setString(5, user.getAddress());
             preparedStatement.setString(6, String.valueOf(user.getUserType()));
-            preparedStatement.setDouble(7, user.getBalance());
+            preparedStatement.setBigDecimal(7, user.getBalance());
             int affectedRows = preparedStatement.executeUpdate();
             if (affectedRows == 0) {
                 LOGGER.info("USER CREATION FAILED");
@@ -70,29 +72,20 @@ public class UserDaoImpl implements UserDao {
             ResultSet rs = preparedStatement.executeQuery();
             if (!rs.next()) {
                 throw new NotExistEntityException(id);
-            }
-            while (rs.next()) {
+            } else {
                 String firstName = rs.getString("first_name");
                 String lastName = rs.getString("last_name");
                 String password = rs.getString("password");
                 String email = rs.getString("email");
                 String address = rs.getString("address");
                 String userType = rs.getString("user_type");
-                double balance = rs.getDouble("balance");
+                BigDecimal balance = rs.getBigDecimal("balance");
                 user = new User(id, firstName, lastName, email, password, UserType.valueOf(userType), address, balance);
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
         }
         return user;
-    }
-
-
-    @Override
-    public List<User> selectByName(String name) {
-        LOGGER.info("SELECT USER BY NAME {}", name);
-        Filter filter = new UserByFirstNameLastNameFilter();
-        return filter.meetCriteria(selectAll(), name);
     }
 
     @Override
@@ -110,7 +103,7 @@ public class UserDaoImpl implements UserDao {
                 String password = rs.getString("password");
                 String address = rs.getString("address");
                 String userType = rs.getString("user_type");
-                double balance = rs.getDouble("balance");
+                BigDecimal balance = rs.getBigDecimal("balance");
                 user = new User(id, firstName, lastName, email, password, UserType.valueOf(userType), address, balance);
             }
         } catch (SQLException e) {
@@ -119,11 +112,12 @@ public class UserDaoImpl implements UserDao {
         return user;
     }
 
+
     @Override
-    public List<User> selectByUsersType(UserType userType) {
-        LOGGER.info("SELECT Users by USER_TYPE {}", userType.toString());
-        Filter filter = new UserByUserTypeFilter();
-        return filter.meetCriteria(this.selectAll(), userType);
+    public List<User> selectByName(String name) {
+        LOGGER.info("SELECT USER BY NAME {}", name);
+        Filter filter = new UserByFirstNameLastNameFilter();
+        return filter.meetCriteria(selectAll(), name);
     }
 
     @Override
@@ -141,13 +135,44 @@ public class UserDaoImpl implements UserDao {
                 String email = rs.getString("email");
                 String address = rs.getString("address");
                 String userType = rs.getString("user_type");
-                double balance = rs.getDouble("balance");
+                BigDecimal balance = rs.getBigDecimal("balance");
                 users.add(new User(id, firstName, lastName, email, password, UserType.valueOf(userType), address, balance));
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
         }
         return users;
+    }
+
+    @Override
+    public List<User> selectByUsersType(UserType userType) {
+        LOGGER.info("SELECT Users by USER_TYPE {}", userType.toString());
+        Filter filter = new UserByUserTypeFilter();
+        return filter.meetCriteria(this.selectAll(), userType);
+    }
+
+    @Override
+    public boolean update(User user) {
+        LOGGER.info("UPDATE USER {}", user.toString());
+        boolean rowUpdated = false;
+        try (Connection connection = JDBCUtils.getConnection();
+             PreparedStatement statement = connection.prepareStatement(UPDATE_USER_SQL)) {
+            statement.setString(1, user.getFirstName());
+            statement.setString(2, user.getLastName());
+            statement.setString(3, user.getEmail());
+            statement.setString(4, user.getPassword());
+            statement.setString(5, user.getAddress());
+            statement.setString(6, user.getUserType().toString());
+            statement.setBigDecimal(7, user.getBalance());
+            statement.setInt(8, user.getId());
+            rowUpdated = statement.executeUpdate() > 0;
+            if (!rowUpdated) {
+                throw new NotExistEntityException(user.getId());
+            }
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+        return rowUpdated;
     }
 
     @Override
@@ -168,28 +193,8 @@ public class UserDaoImpl implements UserDao {
         return false;
     }
 
-    @Override
-    public boolean update(User user) {
-        LOGGER.info("UPDATE USER {}", user.toString());
-        boolean rowUpdated = false;
-        try (Connection connection = JDBCUtils.getConnection();
-             PreparedStatement statement = connection.prepareStatement(UPDATE_USER_SQL)) {
-            statement.setString(1, user.getFirstName());
-            statement.setString(2, user.getLastName());
-            statement.setString(3, user.getEmail());
-            statement.setString(4, user.getPassword());
-            statement.setString(5, user.getAddress());
-            statement.setString(6, user.getUserType().toString());
-            statement.setDouble(7, user.getBalance());
-            statement.setInt(8, user.getId());
-            rowUpdated = statement.executeUpdate() > 0;
-            if (!rowUpdated) {
-                throw new NotExistEntityException(user.getId());
-            }
-        } catch (SQLException e) {
-            LOGGER.error(e.getMessage(), e);
-        }
-        return rowUpdated;
+    private static class UserDAOImplHolder {
+        private static final UserDaoImpl HOLDER_INSTANCE = new UserDaoImpl();
     }
 
     @Override

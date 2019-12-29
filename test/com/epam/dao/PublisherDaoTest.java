@@ -14,12 +14,14 @@ import java.util.List;
 
 public class PublisherDaoTest {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(PublisherDaoTest.class);
+
     public static final Publisher PUBLISHER = new Publisher(45, "ООО ИКАР");
     public static final Publisher PUBLISHER_1 = new Publisher(46, "ОДО ЭЛЕГАНТ");
     public static final Publisher PUBLISHER_2 = new Publisher(47, "ОАО НОВАЯ РУСЬ");
     public static final Publisher PUBLISHER_3 = new Publisher(48, "publisher_4");
-    private static final Logger LOGGER = LoggerFactory.getLogger(PublisherDaoTest.class);
-    private static final PublisherDao PUBLISHER_DAO = new PublisherDaoImpl();
+
+    private static final PublisherDao PUBLISHER_DAO = PublisherDaoImpl.getInstance();
     private static List<Publisher> PUBLISHER_LIST_FROM_DATABASE = PUBLISHER_DAO.selectAll();
 
     @Before

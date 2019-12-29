@@ -33,13 +33,12 @@ public class PeriodicalCategory implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PeriodicalCategory that = (PeriodicalCategory) o;
-        return id == that.id &&
-                Objects.equals(name, that.name);
+        return Objects.equals(name, that.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(name);
     }
 
     @Override

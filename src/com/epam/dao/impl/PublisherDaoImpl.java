@@ -1,7 +1,6 @@
 package com.epam.dao.impl;
 
 import com.epam.dao.PublisherDao;
-import com.epam.exception.ExistEntityException;
 import com.epam.exception.NotExistEntityException;
 import com.epam.model.periodical.Publisher;
 import com.epam.util.ExceptionUtil;
@@ -19,8 +18,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class PublisherDaoImpl implements PublisherDao {
 
-    //TODO WHATS WRONG WITH SELECT?
-
     private final static Logger LOGGER = LoggerFactory.getLogger(PublisherDaoImpl.class);
 
     private static final String INSERT_PUBLISHER_SQL = "INSERT INTO publishers (id, name) VALUES " + " (DEFAULT, ?);";
@@ -30,7 +27,8 @@ public class PublisherDaoImpl implements PublisherDao {
     private static final String UPDATE_PUBLISHER_SQL = "UPDATE publishers SET name = ? where id = ?;";
     private static final String CLEAR_TABLE_PUBLISHER_SQL = "DELETE FROM publishers";
 
-    public PublisherDaoImpl() {
+    public static PublisherDaoImpl getInstance() {
+        return PublisherDaoImpl.PublisherDaoImplHolder.HOLDER_INSTANCE;
     }
 
     @Override
@@ -39,14 +37,15 @@ public class PublisherDaoImpl implements PublisherDao {
         try (Connection connection = JDBCUtils.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_PUBLISHER_SQL)) {
             preparedStatement.setString(1, publisher.getName());
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            try {
-                throw ExceptionUtil.convertException(e);
-            } catch (ExistEntityException ex) {
-                LOGGER.error(ex.getMessage(), ex);
+            int affectedRows = preparedStatement.executeUpdate();
+            if (affectedRows == 0) {
+                LOGGER.info("PUBLISHER CREATION FAILED");
+            } else {
+                LOGGER.info("PUBLISHER CREATION SUCCESSFUL");
             }
-            LOGGER.error(e.getMessage(), e);
+
+        } catch (SQLException e) {
+            throw ExceptionUtil.convertException(e);
         }
     }
 
@@ -61,15 +60,19 @@ public class PublisherDaoImpl implements PublisherDao {
             if (!rs.next()) {
                 LOGGER.warn("THE PUBLISHER WITH ID {} ISN'T EXISTS", id);
                 throw new NotExistEntityException(id);
-            }
-            while (rs.next()) {
+            } else {
                 String name = rs.getString("name");
                 publisher = new Publisher(id, name);
+
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
         }
         return publisher;
+    }
+
+    private static class PublisherDaoImplHolder {
+        private static final PublisherDaoImpl HOLDER_INSTANCE = new PublisherDaoImpl();
     }
 
     @Override
