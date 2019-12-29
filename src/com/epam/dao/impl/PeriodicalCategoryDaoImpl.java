@@ -1,7 +1,10 @@
 package com.epam.dao.impl;
 
 import com.epam.dao.PeriodicalCategoryDao;
+import com.epam.exception.ExistEntityException;
+import com.epam.exception.NotExistEntityException;
 import com.epam.model.periodical.PeriodicalCategory;
+import com.epam.util.ExceptionUtil;
 import com.epam.util.JDBCUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,6 +39,11 @@ public class PeriodicalCategoryDaoImpl implements PeriodicalCategoryDao {
             preparedStatement.setString(1, periodicalCategory.getName());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
+            try {
+                throw ExceptionUtil.convertException(e);
+            } catch (ExistEntityException ex) {
+                LOGGER.error(ex.getMessage(), ex);
+            }
             LOGGER.error(e.getMessage(), e);
         }
     }
@@ -48,6 +56,9 @@ public class PeriodicalCategoryDaoImpl implements PeriodicalCategoryDao {
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_PERIODICAL_CATEGORY_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
+            if (!rs.next()) {
+                throw new NotExistEntityException(id);
+            }
             while (rs.next()) {
                 String name = rs.getString("name");
                 periodicalCategory = new PeriodicalCategory(id, name);
@@ -84,6 +95,10 @@ public class PeriodicalCategoryDaoImpl implements PeriodicalCategoryDao {
              PreparedStatement statement = connection.prepareStatement(DELETE_PERIODICAL_CATEGORY_SQL)) {
             statement.setInt(1, id);
             rowDeleted = statement.executeUpdate() > 0;
+            if (!rowDeleted) {
+                LOGGER.warn("PERIODICAL WITH ID {} ISN'T DELETED", id);
+                throw new NotExistEntityException(id);
+            }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
         }

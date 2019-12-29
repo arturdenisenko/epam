@@ -11,7 +11,7 @@ public interface UserDao {
 
     User select(int id);
 
-    User selectByName(String name);
+    List<User> selectByName(String name);
 
     User selectByEmail(String email);
 

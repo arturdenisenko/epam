@@ -1,6 +1,7 @@
 package com.epam.model.periodical;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Publisher implements Serializable {
     private int id;
@@ -29,6 +30,19 @@ public class Publisher implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Publisher publisher = (Publisher) o;
+        return Objects.equals(name, publisher.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 
     @Override

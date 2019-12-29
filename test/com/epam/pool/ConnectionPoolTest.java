@@ -20,7 +20,7 @@ public class ConnectionPoolTest {
 
             PreparedStatement pr = conn.prepareStatement("insert into "
 
-                    + "publisher(id, name) values(?,?)");
+                    + "publishers(id, name) values(?,?)");
 
             pr.setInt(1, publisher.getId());
 

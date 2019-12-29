@@ -3,6 +3,7 @@ package com.epam.dao.impl;
 import com.epam.dao.UserDao;
 import com.epam.exception.NotExistEntityException;
 import com.epam.filters.Filter;
+import com.epam.filters.UserByFirstNameLastNameFilter;
 import com.epam.filters.UserByUserTypeFilter;
 import com.epam.model.user.User;
 import com.epam.model.user.UserType;
@@ -25,14 +26,12 @@ public class UserDaoImpl implements UserDao {
     private final static Logger LOGGER = LoggerFactory.getLogger(UserDaoImpl.class);
 
     private static final String INSERT_USER_SQL = "INSERT INTO users" + "  " +
-            "(id, first_name, last_name, email, password, address, user_type) VALUES " + " (DEFAULT, ?,?,?,?,?,?);";
+            "(id, first_name, last_name, email, password, address, user_type, balance) VALUES " + " (DEFAULT, ?,?,?,?,?,?,?);";
     private static final String SELECT_USER_BY_ID = "SELECT * FROM users WHERE id =?;";
-    private static final String SELECT_USER_BY_NAME = "SELECT * FROM users WHERE first_name or last_name =?;";
     private static final String SELECT_USER_BY_EMAIL = "SELECT * FROM users WHERE email =?;";
-    private static final String SELECT__ALL_USERS_BY_USER_TYPE = "SELECT * FROM users WHERE user_type =?;";
     private static final String SELECT_ALL_USERS = "SELECT * FROM users ORDER BY id;";
     private static final String DELETE_USER_SQL = "DELETE FROM users where id = ?;";
-    private static final String UPDATE_USER_SQL = "UPDATE users SET name = ? where id = ?;";
+    private static final String UPDATE_USER_SQL = "UPDATE users SET first_name = ?, last_name = ?, email = ?, password = ?, address = ?, user_type = ?, balance = ? where id = ?;";
     private static final String CLEAR_TABLE_USERS_SQL = "DELETE FROM users";
 
     public UserDaoImpl() {
@@ -49,6 +48,7 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setString(4, user.getPassword());
             preparedStatement.setString(5, user.getAddress());
             preparedStatement.setString(6, String.valueOf(user.getUserType()));
+            preparedStatement.setDouble(7, user.getBalance());
             int affectedRows = preparedStatement.executeUpdate();
             if (affectedRows == 0) {
                 LOGGER.info("USER CREATION FAILED");
@@ -68,6 +68,9 @@ public class UserDaoImpl implements UserDao {
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
+            if (!rs.next()) {
+                throw new NotExistEntityException(id);
+            }
             while (rs.next()) {
                 String firstName = rs.getString("first_name");
                 String lastName = rs.getString("last_name");
@@ -75,7 +78,8 @@ public class UserDaoImpl implements UserDao {
                 String email = rs.getString("email");
                 String address = rs.getString("address");
                 String userType = rs.getString("user_type");
-                user = new User(id, firstName, lastName, email, password, UserType.valueOf(userType), address);
+                double balance = rs.getDouble("balance");
+                user = new User(id, firstName, lastName, email, password, UserType.valueOf(userType), address, balance);
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
@@ -85,10 +89,10 @@ public class UserDaoImpl implements UserDao {
 
 
     @Override
-    public User selectByName(String name) {
+    public List<User> selectByName(String name) {
         LOGGER.info("SELECT USER BY NAME {}", name);
-
-        return null;
+        Filter filter = new UserByFirstNameLastNameFilter();
+        return filter.meetCriteria(selectAll(), name);
     }
 
     @Override
@@ -106,7 +110,8 @@ public class UserDaoImpl implements UserDao {
                 String password = rs.getString("password");
                 String address = rs.getString("address");
                 String userType = rs.getString("user_type");
-                user = new User(id, firstName, lastName, email, password, UserType.valueOf(userType), address);
+                double balance = rs.getDouble("balance");
+                user = new User(id, firstName, lastName, email, password, UserType.valueOf(userType), address, balance);
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
@@ -136,7 +141,8 @@ public class UserDaoImpl implements UserDao {
                 String email = rs.getString("email");
                 String address = rs.getString("address");
                 String userType = rs.getString("user_type");
-                users.add(new User(id, firstName, lastName, email, password, UserType.valueOf(userType), address));
+                double balance = rs.getDouble("balance");
+                users.add(new User(id, firstName, lastName, email, password, UserType.valueOf(userType), address, balance));
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
@@ -153,6 +159,7 @@ public class UserDaoImpl implements UserDao {
             statement.setInt(1, id);
             rowDeleted = statement.executeUpdate() > 0;
             if (!rowDeleted) {
+                LOGGER.warn("USER WITH ID {} ISN'T DELETED", id);
                 throw new NotExistEntityException(id);
             }
         } catch (SQLException e) {
@@ -163,7 +170,26 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public boolean update(User user) {
-        return false;
+        LOGGER.info("UPDATE USER {}", user.toString());
+        boolean rowUpdated = false;
+        try (Connection connection = JDBCUtils.getConnection();
+             PreparedStatement statement = connection.prepareStatement(UPDATE_USER_SQL)) {
+            statement.setString(1, user.getFirstName());
+            statement.setString(2, user.getLastName());
+            statement.setString(3, user.getEmail());
+            statement.setString(4, user.getPassword());
+            statement.setString(5, user.getAddress());
+            statement.setString(6, user.getUserType().toString());
+            statement.setDouble(7, user.getBalance());
+            statement.setInt(8, user.getId());
+            rowUpdated = statement.executeUpdate() > 0;
+            if (!rowUpdated) {
+                throw new NotExistEntityException(user.getId());
+            }
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+        return rowUpdated;
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.epam.dao.impl;
 
 import com.epam.dao.PublisherDao;
 import com.epam.exception.ExistEntityException;
+import com.epam.exception.NotExistEntityException;
 import com.epam.model.periodical.Publisher;
 import com.epam.util.ExceptionUtil;
 import com.epam.util.JDBCUtils;
@@ -18,14 +19,16 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class PublisherDaoImpl implements PublisherDao {
 
+    //TODO WHATS WRONG WITH SELECT?
+
     private final static Logger LOGGER = LoggerFactory.getLogger(PublisherDaoImpl.class);
 
-    private static final String INSERT_PUBLISHER_SQL = "INSERT INTO publisher" + "  (id, name) VALUES " + " (DEFAULT, ?);";
-    private static final String SELECT_PUBLISHER_BY_ID = "SELECT id,name FROM publisher WHERE id =?;";
-    private static final String SELECT_ALL_PUBLISHERS = "SELECT * FROM publisher;";
-    private static final String DELETE_PUBLISHERS_SQL = "DELETE FROM publisher where id = ?;";
-    private static final String UPDATE_PUBLISHER_SQL = "UPDATE publisher SET name = ? where id = ?;";
-    private static final String CLEAR_TABLE_PUBLISHER_SQL = "DELETE FROM publisher";
+    private static final String INSERT_PUBLISHER_SQL = "INSERT INTO publishers (id, name) VALUES " + " (DEFAULT, ?);";
+    private static final String SELECT_PUBLISHER_BY_ID = "SELECT id,name FROM publishers WHERE id =?;";
+    private static final String SELECT_ALL_PUBLISHERS = "SELECT * FROM publishers;";
+    private static final String DELETE_PUBLISHERS_SQL = "DELETE FROM publishers where id = ?;";
+    private static final String UPDATE_PUBLISHER_SQL = "UPDATE publishers SET name = ? where id = ?;";
+    private static final String CLEAR_TABLE_PUBLISHER_SQL = "DELETE FROM publishers";
 
     public PublisherDaoImpl() {
     }
@@ -55,6 +58,10 @@ public class PublisherDaoImpl implements PublisherDao {
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_PUBLISHER_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
+            if (!rs.next()) {
+                LOGGER.warn("THE PUBLISHER WITH ID {} ISN'T EXISTS", id);
+                throw new NotExistEntityException(id);
+            }
             while (rs.next()) {
                 String name = rs.getString("name");
                 publisher = new Publisher(id, name);
@@ -91,6 +98,9 @@ public class PublisherDaoImpl implements PublisherDao {
              PreparedStatement statement = connection.prepareStatement(DELETE_PUBLISHERS_SQL)) {
             statement.setInt(1, id);
             rowDeleted = statement.executeUpdate() > 0;
+            if (!rowDeleted) {
+                throw new NotExistEntityException(id);
+            }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
         }
@@ -103,8 +113,8 @@ public class PublisherDaoImpl implements PublisherDao {
         boolean rowUpdated = false;
         try (Connection connection = JDBCUtils.getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_PUBLISHER_SQL)) {
-            statement.setInt(2, publisher.getId());
             statement.setString(1, publisher.getName());
+            statement.setInt(2, publisher.getId());
             rowUpdated = statement.executeUpdate() > 0;
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);

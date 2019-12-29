@@ -11,12 +11,13 @@ public class User implements Serializable {
     private String password;
     private UserType userType;
     private String address;
+    private double balance;
 
     public User() {
 
     }
 
-    public User(int id, String firstName, String lastName, String email, String password, UserType userType, String address) {
+    public User(int id, String firstName, String lastName, String email, String password, UserType userType, String address, double balance) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -24,6 +25,7 @@ public class User implements Serializable {
         this.password = password;
         this.userType = userType;
         this.address = address;
+        this.balance = balance;
     }
 
     public int getId() {
@@ -82,6 +84,14 @@ public class User implements Serializable {
         this.address = address;
     }
 
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -110,6 +120,7 @@ public class User implements Serializable {
                 ", password='" + password + '\'' +
                 ", userType=" + userType +
                 ", address='" + address + '\'' +
+                ", balance=" + balance +
                 '}';
     }
 }

@@ -2,6 +2,7 @@ package com.epam.dao;
 
 import com.epam.dao.impl.PublisherDaoImpl;
 import com.epam.exception.ExistEntityException;
+import com.epam.exception.NotExistEntityException;
 import com.epam.model.periodical.Publisher;
 import org.junit.Assert;
 import org.junit.Before;
@@ -36,14 +37,13 @@ public class PublisherDaoTest {
         LOGGER.info("INSERT PUBLISHER TESTING");
         PUBLISHER_DAO.insert(PUBLISHER_3);
         Assert.assertEquals(4, PUBLISHER_DAO.selectAll().size());
-
     }
 
     @Test
     public void select() {
         LOGGER.info("SELECT FROM DATABASE PUBLISHER TESTING");
         Publisher publisherTest = PUBLISHER_DAO.select(PUBLISHER_LIST_FROM_DATABASE.get(0).getId());
-        Assert.assertEquals(publisherTest.getName(), PUBLISHER.getName());
+        Assert.assertEquals(publisherTest, PUBLISHER);
     }
 
     @Test
@@ -75,6 +75,18 @@ public class PublisherDaoTest {
     public void insertExisting() {
         LOGGER.info("INSERT EXISTING PUBLISHER TESTING");
         PUBLISHER_DAO.insert(PUBLISHER_LIST_FROM_DATABASE.get(0));
+    }
+
+    @Test(expected = NotExistEntityException.class)
+    public void deleteNotExist() {
+        LOGGER.info("DELETE NOT EXIST PUBLISHER TESTING");
+        PUBLISHER_DAO.delete(525235);
+    }
+
+    @Test(expected = NotExistEntityException.class)
+    public void selectNotExist() {
+        LOGGER.info("SELECT NOT EXIST PUBLISHER TESTING");
+        PUBLISHER_DAO.select(525235);
     }
 
     @Test

@@ -15,10 +15,10 @@ import java.util.List;
 
 public class UserDaoTest {
 
-    public static final User USER = new User(1, "Serghei", "Ivanov", "ivanov_s@gmail.com", "ivanov", UserType.USER, "Gagarina street");
-    public static final User USER1 = new User(2, "Alexandr", "Kabanov", "kabanov_a@gmail.com", "kabanov", UserType.USER, "Lenina street");
-    public static final User USER2 = new User(3, "Петров", "Дмитрий", "petrov_d@gmail.com", "petrov", UserType.ADMIN, "Gagarina street");
-    public static final User USER3 = new User(4, "Test", "Test", "test@gmail.com", "test", UserType.USER, "Gagarina street");
+    public static final User USER = new User(1, "Serghei", "Ivanov", "ivanov_s@gmail.com", "ivanov", UserType.MANAGER, "Gagarina street", 200);
+    public static final User USER1 = new User(2, "Ivan", "Kabanov", "kabanov_a@gmail.com", "kabanov", UserType.USER, "Lenina street", 200);
+    public static final User USER2 = new User(3, "Петров", "Дмитрий", "petrov_d@gmail.com", "petrov", UserType.ADMIN, "Gagarina street", 200);
+    public static final User USER3 = new User(4, "Test", "Test", "test@gmail.com", "test", UserType.USER, "Gagarina street", 200);
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserDaoTest.class);
     private static final UserDao USER_DAO = new UserDaoImpl();
@@ -50,7 +50,6 @@ public class UserDaoTest {
 
     @Test
     public void selectAll() {
-        //TODO Дописать нормальный EQUALS в юзере.
         LOGGER.info("SELECT ALL FROM TABLE USERS TESTING");
         List<User> users = USER_DAO.selectAll();
         Assert.assertEquals(users.get(0), USER);
@@ -67,12 +66,11 @@ public class UserDaoTest {
 
     @Test
     public void update() {
-        //TODO SOMETHING WRONG
         LOGGER.info("UPDATE USER TESTING");
         User userForUpdateTest = USERS_LIST_FROM_DATABASE.get(0);
         userForUpdateTest.setFirstName("TESTING UPDATE FIRST NAME");
         USER_DAO.update(userForUpdateTest);
-        Assert.assertNotEquals(userForUpdateTest, USER_DAO.select(userForUpdateTest.getId()));
+        Assert.assertEquals(userForUpdateTest, USER_DAO.select(userForUpdateTest.getId()));
     }
 
     @Test(expected = ExistEntityException.class)
@@ -86,6 +84,11 @@ public class UserDaoTest {
         USER_DAO.delete(525235);
     }
 
+    @Test(expected = NotExistEntityException.class)
+    public void selectNotExist() {
+        USER_DAO.select(525235);
+    }
+
     @Test
     public void clear() {
         LOGGER.info("CLEAR ALL USERS TESTING");
@@ -96,15 +99,21 @@ public class UserDaoTest {
 
     @Test
     public void selectByName() {
+        LOGGER.info("SEARCH BY LAST OR FIRST NAME TESTING");
+        List<User> usersContains = USER_DAO.selectByName("Ivan");
+        Assert.assertEquals(2, usersContains.size());
     }
 
     @Test
     public void selectByEmail() {
-
+        LOGGER.info("SELECT FROM DATABASE BY EMAIL USER TESTING");
+        User userForSelectTest = USER_DAO.selectByEmail(USER.getEmail());
+        Assert.assertEquals(userForSelectTest, USER);
     }
 
     @Test
     public void selectByUserType() {
+        LOGGER.info("SELECT FROM DATABASE BY USER TYPE USER TESTING");
         List<User> users = USER_DAO.selectByUsersType(UserType.ADMIN);
         Assert.assertEquals(1, users.size());
     }
