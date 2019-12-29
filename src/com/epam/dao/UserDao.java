@@ -1,37 +1,30 @@
 package com.epam.dao;
 
 import com.epam.model.user.User;
-import com.epam.util.JDBCUtils;
+import com.epam.model.user.UserType;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.util.List;
 
+public interface UserDao {
 
-public class UserDao {
-    //TODO userDAO
-    private static final String INSERT_USER_SQL = "INSERT INTO user" + "  (id, name, password, email, address, user_type_fk) VALUES " + " (DEFAULT, ?,?,?,?,?);";
-    private static final String SELECT_USER_BY_ID = "SELECT * FROM user WHERE id =?;";
-    private static final String SELECT_ALL_USERS = "SELECT * FROM publisher;";
-    private static final String DELETE_USER_SQL = "DELETE FROM publisher where id = ?;";
-    private static final String UPDATE_USER_SQL = "UPDATE publisher SET name = ? where id = ?;";
+    void insert(User user);
 
-    public UserDao() {
-    }
+    User select(int id);
 
+    User selectByName(String name);
 
-    public void insert(User user) {
-        try (Connection connection = JDBCUtils.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USER_SQL)) {
-            preparedStatement.setString(1, user.getFirstName());
-            preparedStatement.setString(1, user.getFirstName());
-            preparedStatement.setString(1, user.getFirstName());
-            preparedStatement.setString(1, user.getFirstName());
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
+    User selectByEmail(String email);
 
-        }
-    }
+    List<User> selectByUsersType(UserType userType);
+
+    List<User> selectAll();
+
+    boolean delete(int id);
+
+    boolean update(User user);
+
+    //for test only
+    void clear();
 
 
 }

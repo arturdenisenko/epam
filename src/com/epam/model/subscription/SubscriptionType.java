@@ -1,12 +1,13 @@
 package com.epam.model.subscription;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class SubscriptionType {
+public class SubscriptionType implements Serializable {
     private int id;
     private String name;
     private int durationByMonth;
-    private Float priceMultiplier;
+    private double priceMultiplier;
 
     public int getId() {
         return id;
@@ -32,11 +33,11 @@ public class SubscriptionType {
         this.durationByMonth = durationByMonth;
     }
 
-    public Float getPriceMultiplier() {
+    public double getPriceMultiplier() {
         return priceMultiplier;
     }
 
-    public void setPriceMultiplier(Float priceMultiplier) {
+    public void setPriceMultiplier(double priceMultiplier) {
         this.priceMultiplier = priceMultiplier;
     }
 
@@ -47,8 +48,8 @@ public class SubscriptionType {
         SubscriptionType that = (SubscriptionType) o;
         return id == that.id &&
                 durationByMonth == that.durationByMonth &&
-                Objects.equals(name, that.name) &&
-                Objects.equals(priceMultiplier, that.priceMultiplier);
+                Double.compare(that.priceMultiplier, priceMultiplier) == 0 &&
+                Objects.equals(name, that.name);
     }
 
     @Override

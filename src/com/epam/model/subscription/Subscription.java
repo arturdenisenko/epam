@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.Objects;
 
 public class Subscription implements Serializable {
-    private Long id;
+    private int id;
     private User user;
     private Periodical periodical;
     private SubscriptionType type;
@@ -19,11 +19,11 @@ public class Subscription implements Serializable {
     public Subscription() {
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -80,8 +80,8 @@ public class Subscription implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Subscription that = (Subscription) o;
-        return Double.compare(that.cost, cost) == 0 &&
-                Objects.equals(id, that.id) &&
+        return id == that.id &&
+                Double.compare(that.cost, cost) == 0 &&
                 Objects.equals(user, that.user) &&
                 Objects.equals(periodical, that.periodical) &&
                 Objects.equals(type, that.type) &&

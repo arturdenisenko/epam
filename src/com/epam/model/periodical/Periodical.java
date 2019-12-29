@@ -8,7 +8,7 @@ public class Periodical implements Serializable {
     private String name;
     private String about;
     private Publisher publisher;//издатель
-    private Float price;// Цена
+    private double price;// Цена
     private PeriodicalCategory periodicalCategory;//cat of periodical
     private int periodicityInSixMonth;//периодчность в полугодие
     private int minSubscriptionPeriod;//минимальный переиод подписки
@@ -58,11 +58,11 @@ public class Periodical implements Serializable {
         this.publisher = publisher;
     }
 
-    public Float getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(Float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

@@ -1,7 +1,7 @@
 package com.epam.dao;
 
 import com.epam.dao.impl.PublisherDaoImpl;
-import com.epam.exception.ExistException;
+import com.epam.exception.ExistEntityException;
 import com.epam.model.periodical.Publisher;
 import org.junit.Assert;
 import org.junit.Before;
@@ -71,13 +71,10 @@ public class PublisherDaoTest {
         Assert.assertEquals(publisherForUpdate.getName(), PUBLISHER_DAO.select(publisherForUpdate.getId()).getName());
     }
 
-    @Test(expected = ExistException.class)
+    @Test(expected = ExistEntityException.class)
     public void insertExisting() {
         LOGGER.info("INSERT EXISTING PUBLISHER TESTING");
-        LOGGER.info(PUBLISHER_LIST_FROM_DATABASE.get(0).toString());
-        LOGGER.info(PUBLISHER_LIST_FROM_DATABASE.toString());
         PUBLISHER_DAO.insert(PUBLISHER_LIST_FROM_DATABASE.get(0));
-        LOGGER.info(PUBLISHER_DAO.selectAll().toString());
     }
 
     @Test

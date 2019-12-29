@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class User implements Serializable {
-    private Long id;
+    private int id;
     private String firstName;
     private String lastName;
     private String email;
@@ -12,11 +12,25 @@ public class User implements Serializable {
     private UserType userType;
     private String address;
 
-    public Long getId() {
+    public User() {
+
+    }
+
+    public User(int id, String firstName, String lastName, String email, String password, UserType userType, String address) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.userType = userType;
+        this.address = address;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -73,8 +87,7 @@ public class User implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(id, user.id) &&
-                Objects.equals(firstName, user.firstName) &&
+        return Objects.equals(firstName, user.firstName) &&
                 Objects.equals(lastName, user.lastName) &&
                 Objects.equals(email, user.email) &&
                 Objects.equals(password, user.password) &&
@@ -84,7 +97,7 @@ public class User implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, email, password, userType, address);
+        return Objects.hash(firstName, lastName, email, password, userType, address);
     }
 
     @Override

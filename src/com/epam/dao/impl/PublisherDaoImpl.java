@@ -1,8 +1,9 @@
 package com.epam.dao.impl;
 
 import com.epam.dao.PublisherDao;
-import com.epam.exception.ExistException;
+import com.epam.exception.ExistEntityException;
 import com.epam.model.periodical.Publisher;
+import com.epam.util.ExceptionUtil;
 import com.epam.util.JDBCUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +25,7 @@ public class PublisherDaoImpl implements PublisherDao {
     private static final String SELECT_ALL_PUBLISHERS = "SELECT * FROM publisher;";
     private static final String DELETE_PUBLISHERS_SQL = "DELETE FROM publisher where id = ?;";
     private static final String UPDATE_PUBLISHER_SQL = "UPDATE publisher SET name = ? where id = ?;";
+    private static final String CLEAR_TABLE_PUBLISHER_SQL = "DELETE FROM publisher";
 
     public PublisherDaoImpl() {
     }
@@ -36,12 +38,12 @@ public class PublisherDaoImpl implements PublisherDao {
             preparedStatement.setString(1, publisher.getName());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            LOGGER.error(e.getMessage(), e);
             try {
-                throw new ExistException(publisher.getName());
-            } catch (ExistException ex) {
+                throw ExceptionUtil.convertException(e);
+            } catch (ExistEntityException ex) {
                 LOGGER.error(ex.getMessage(), ex);
             }
+            LOGGER.error(e.getMessage(), e);
         }
     }
 
@@ -115,7 +117,7 @@ public class PublisherDaoImpl implements PublisherDao {
     public void clear() {
         LOGGER.info("DELETE ALL PUBLISHERS");
         try (Connection connection = JDBCUtils.getConnection();
-             PreparedStatement statement = connection.prepareStatement("DELETE FROM publisher")) {
+             PreparedStatement statement = connection.prepareStatement(CLEAR_TABLE_PUBLISHER_SQL)) {
             statement.execute();
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);

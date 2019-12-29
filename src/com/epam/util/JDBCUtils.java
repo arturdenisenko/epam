@@ -1,7 +1,8 @@
 package com.epam.util;
 
 import com.epam.Main;
-import com.epam.exception.DAOException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,6 +12,9 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class JDBCUtils {
+
+    private final static Logger LOGGER = LoggerFactory.getLogger(JDBCUtils.class);
+
     private static final String PROPS = "periodicals.properties";
     protected static String jdbcURL;
     protected static String jdbcUsername;
@@ -30,31 +34,15 @@ public class JDBCUtils {
         }
     }
 
-    public static Connection getConnection() throws DAOException {
+    public static Connection getConnection() {
         init();
         Connection connection = null;
         try {
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
         } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage(), e);
         }
         return connection;
     }
-
-    /*public static void printSQLException(SQLException ex) {
-        for (Throwable e : ex) {
-            if (e instanceof SQLException) {
-                e.printStackTrace(System.err);
-                System.err.println("SQLState: " + ((SQLException) e).getSQLState());
-                System.err.println("Error Code: " + ((SQLException) e).getErrorCode());
-                System.err.println("Message: " + e.getMessage());
-                Throwable t = ex.getCause();
-                while (t != null) {
-                    System.out.println("Cause: " + t);
-                    t = t.getCause();
-                }
-            }
-        }
-    }*/
 }

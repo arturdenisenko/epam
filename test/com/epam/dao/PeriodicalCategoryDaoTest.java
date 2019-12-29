@@ -1,7 +1,7 @@
 package com.epam.dao;
 
 import com.epam.dao.impl.PeriodicalCategoryDaoImpl;
-import com.epam.exception.ExistException;
+import com.epam.exception.ExistEntityException;
 import com.epam.model.periodical.PeriodicalCategory;
 import org.junit.Assert;
 import org.junit.Before;
@@ -71,13 +71,10 @@ public class PeriodicalCategoryDaoTest {
         Assert.assertEquals(periodicalCategoryUpdate.getName(), PERIODICAL_CATEGORY_DAO.select(periodicalCategoryUpdate.getId()).getName());
     }
 
-    @Test(expected = ExistException.class)
+    @Test(expected = ExistEntityException.class)
     public void insertExisting() {
         LOGGER.info("INSERT EXISTING PERIODICAL CATEGORY TESTING");
-        LOGGER.info(periodicalCategories.get(0).toString());
-        LOGGER.info(periodicalCategories.toString());
         PERIODICAL_CATEGORY_DAO.insert(periodicalCategories.get(0));
-        LOGGER.info(PERIODICAL_CATEGORY_DAO.selectAll().toString());
     }
 
     @Test

@@ -22,6 +22,8 @@ public class PeriodicalCategoryDaoImpl implements PeriodicalCategoryDao {
     private static final String SELECT_ALL_PERIODICAL_CATEGORY = "SELECT * FROM periodical_category;";
     private static final String DELETE_PERIODICAL_CATEGORY_SQL = "DELETE FROM periodical_category where id = ?;";
     private static final String UPDATE_PERIODICAL_CATEGORY_SQL = "UPDATE periodical_category SET name = ? where id = ?;";
+    private static final String CLEAR_TABLE_PERIODICAL_CATEGORY_SQL = "DELETE FROM periodical_category";
+
 
     public PeriodicalCategoryDaoImpl() {
     }
@@ -90,12 +92,12 @@ public class PeriodicalCategoryDaoImpl implements PeriodicalCategoryDao {
 
     @Override
     public boolean update(PeriodicalCategory periodicalCategory) {
-        LOGGER.info("UPDATE PERIODICAL CATEGORY WTIH ID {} AND NAME {}", periodicalCategory.getId(), periodicalCategory.getName());
+        LOGGER.info("UPDATE PERIODICAL CATEGORY WITH ID {} AND NAME {}", periodicalCategory.getId(), periodicalCategory.getName());
         boolean rowUpdated = false;
         try (Connection connection = JDBCUtils.getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_PERIODICAL_CATEGORY_SQL)) {
-            statement.setInt(2, periodicalCategory.getId());
             statement.setString(1, periodicalCategory.getName());
+            statement.setInt(2, periodicalCategory.getId());
             rowUpdated = statement.executeUpdate() > 0;
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
@@ -106,9 +108,9 @@ public class PeriodicalCategoryDaoImpl implements PeriodicalCategoryDao {
     //clear all periodical categories, for tests only!
     @Override
     public void clear() {
-        LOGGER.info("DELETE ALL CATEGORIES IN PERIODICAL CATEGORY");
+        LOGGER.info("DELETE ALL CATEGORIES IN PERIODICAL CATEGORY TABLE");
         try (Connection connection = JDBCUtils.getConnection();
-             PreparedStatement statement = connection.prepareStatement("DELETE FROM periodical_category")) {
+             PreparedStatement statement = connection.prepareStatement(CLEAR_TABLE_PERIODICAL_CATEGORY_SQL)) {
             statement.execute();
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
