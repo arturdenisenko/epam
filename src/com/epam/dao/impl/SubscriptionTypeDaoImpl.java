@@ -1,6 +1,7 @@
 package com.epam.dao.impl;
 
 import com.epam.dao.SubscriptionTypeDao;
+import com.epam.exception.NotExistEntityException;
 import com.epam.model.subscription.SubscriptionType;
 import com.epam.util.ExceptionUtil;
 import com.epam.util.JDBCUtils;
@@ -19,11 +20,11 @@ public class SubscriptionTypeDaoImpl implements SubscriptionTypeDao {
     private final static Logger LOGGER = LoggerFactory.getLogger(SubscriptionTypeDaoImpl.class);
 
     private static final String INSERT_SUBSCRIPTION_TYPE_CATEGORY_SQL =
-            "INSERT INTO subscription_type" + "  (id, name, duration_by_month, price_multiplier  ) VALUES " + " (DEFAULT, ?,?,?);";
-    private static final String SELECT_SUBSCRIPTION_TYPE_BY_ID = "SELECT id,name FROM periodical_category WHERE id =?;";
+            "INSERT INTO subscription_type" + "  (id, name, duration_by_month, price_multiplier) VALUES " + " (DEFAULT, ?,?,?);";
+    private static final String SELECT_SUBSCRIPTION_TYPE_BY_ID = "SELECT * FROM subscription_type WHERE id =?;";
     private static final String SELECT_ALL_SUBSCRIPTION_TYPES = "SELECT * FROM subscription_type ORDER BY id;";
-    private static final String DELETE_SUBSCRIPTION_TYPE_SQL = "DELETE FROM periodical_category where id = ?;";
-    private static final String UPDATE_SUBSCRIPTION_TYPE_SQL = "UPDATE periodical_category SET name = ? where id = ?;";
+    private static final String DELETE_SUBSCRIPTION_TYPE_SQL = "DELETE FROM subscription_type WHERE id = ?;";
+    private static final String UPDATE_SUBSCRIPTION_TYPE_SQL = "UPDATE subscription_type SET name = ?, duration_by_month = ?, price_multiplier = ? where id = ?;";
     private static final String CLEAR_TABLE_SUBSCRIPTION_TYPES_SQL = "DELETE FROM subscription_type";
 
     public static SubscriptionTypeDaoImpl getInstance() {
@@ -51,7 +52,24 @@ public class SubscriptionTypeDaoImpl implements SubscriptionTypeDao {
 
     @Override
     public SubscriptionType select(int id) {
-        return null;
+        LOGGER.info("SELECT FROM SUBSCRIPTION TYPE ID {}", id);
+        SubscriptionType subscriptionType = null;
+        try (Connection connection = JDBCUtils.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_SUBSCRIPTION_TYPE_BY_ID)) {
+            preparedStatement.setInt(1, id);
+            ResultSet rs = preparedStatement.executeQuery();
+            if (!rs.next()) {
+                throw new NotExistEntityException(id);
+            } else {
+                String name = rs.getString("name");
+                int durationByMonth = rs.getInt("duration_by_month");
+                Float priceMultiplier = rs.getFloat("price_multiplier");
+                subscriptionType = new SubscriptionType(id, name, durationByMonth, priceMultiplier);
+            }
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+        return subscriptionType;
     }
 
     @Override
@@ -77,13 +95,36 @@ public class SubscriptionTypeDaoImpl implements SubscriptionTypeDao {
     @Override
     public boolean delete(int id) {
         LOGGER.info("DELETE SUBSCRIPTION TYPE WITH ID {}", id);
-        return true;
+        boolean rowDeleted = false;
+        try (Connection connection = JDBCUtils.getConnection();
+             PreparedStatement statement = connection.prepareStatement(DELETE_SUBSCRIPTION_TYPE_SQL)) {
+            statement.setInt(1, id);
+            rowDeleted = statement.executeUpdate() > 0;
+            if (!rowDeleted) {
+                LOGGER.warn("SUBSCRIPTION TYPE WITH ID {} ISN'T DELETED", id);
+                throw new NotExistEntityException(id);
+            }
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+        return rowDeleted;
     }
 
     @Override
     public boolean update(SubscriptionType subscriptionType) {
         LOGGER.info("UPDATE SUBSCRIPTION TYPE WITH ID {} AND NAME {}", subscriptionType.getId(), subscriptionType.getName());
-        return true;
+        boolean rowUpdated = false;
+        try (Connection connection = JDBCUtils.getConnection();
+             PreparedStatement statement = connection.prepareStatement(UPDATE_SUBSCRIPTION_TYPE_SQL)) {
+            statement.setString(1, subscriptionType.getName());
+            statement.setInt(2, subscriptionType.getDurationByMonth());
+            statement.setFloat(3, subscriptionType.getPriceMultiplier());
+            statement.setInt(4, subscriptionType.getId());
+            rowUpdated = statement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+        return rowUpdated;
     }
 
     //clear all periodical categories, for tests only!
@@ -102,7 +143,4 @@ public class SubscriptionTypeDaoImpl implements SubscriptionTypeDao {
         private static final SubscriptionTypeDaoImpl HOLDER_INSTANCE = new SubscriptionTypeDaoImpl();
     }
 
-    private static class PeriodicalCategoryDaoImplHolder {
-        private static final PeriodicalCategoryDaoImpl HOLDER_INSTANCE = new PeriodicalCategoryDaoImpl();
-    }
 }

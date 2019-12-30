@@ -14,6 +14,8 @@ import java.util.List;
 
 public class PeriodicalDaoTest {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(PeriodicalDaoTest.class);
+
     public static final PeriodicalCategory PERIODICAL_CATEGORY = new PeriodicalCategory(548, "Политика");
     public static final PeriodicalCategory PERIODICAL_CATEGORY1 = new PeriodicalCategory(549, "Спорт");
     public static final PeriodicalCategory PERIODICAL_CATEGORY2 = new PeriodicalCategory(550, "Здоровье");
@@ -38,7 +40,7 @@ public class PeriodicalDaoTest {
     public static final Periodical PERIODICAL3 =
             new Periodical(4, "Тестовый журнал", "Журнал для теста",
                     PUBLISHER_3, PERIODICAL_CATEGORY3, 1, 1, 16.22F);
-    private static final Logger LOGGER = LoggerFactory.getLogger(PeriodicalDaoTest.class);
+
     private static final PeriodicalDao PERIODICAL_DAO = PeriodicalDaoImpl.getInstance();
     private static List<Periodical> periodicalListFromDatabase = PERIODICAL_DAO.selectAll();
 

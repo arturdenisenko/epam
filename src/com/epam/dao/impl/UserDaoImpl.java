@@ -22,7 +22,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class UserDaoImpl implements UserDao {
 
-    //TODO REFACT THIS DAO!!!, ADD PWD CRYPT
+    //TODO REFACT THIS DAO!!!, AND ADD PWD CRYPT
 
     private final static Logger LOGGER = LoggerFactory.getLogger(UserDaoImpl.class);
 
