@@ -4,8 +4,9 @@ import com.epam.dao.PeriodicalCategoryDao;
 import com.epam.dao.PeriodicalDao;
 import com.epam.dao.PublisherDao;
 import com.epam.exception.NotExistEntityException;
+import com.epam.filters.Filter;
+import com.epam.filters.PeriodicalSelectByNameFilter;
 import com.epam.model.periodical.Periodical;
-import com.epam.model.subscription.SubscriptionType;
 import com.epam.util.ExceptionUtil;
 import com.epam.util.JDBCUtils;
 import org.slf4j.Logger;
@@ -95,16 +96,13 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
         return periodical;
     }
 
-    //TODO Дописать 2 эти метода через фильтр
     @Override
     public List<Periodical> selectByName(String name) {
-        return null;
+        LOGGER.info("SELECT PERIODICAL BY NAME {}", name);
+        Filter filter = new PeriodicalSelectByNameFilter();
+        return filter.meetCriteria(selectAll(), name);
     }
 
-    @Override
-    public List<Periodical> selectByPeriodicalCategory(SubscriptionType subscriptionType) {
-        return null;
-    }
 
     @Override
     public List<Periodical> selectAll() {

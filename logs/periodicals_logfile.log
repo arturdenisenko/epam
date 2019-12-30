@@ -5491,3 +5491,619 @@ org.postgresql.util.PSQLException: ОШИБКА: UPDATE или DELETE в таб�
 2019-12-30 01:52:19 INFO  PeriodicalCategoryDaoImpl - SELECT FROM PERIODICAL CATEGORY ID 549
 2019-12-30 01:52:19 INFO  PublisherDaoImpl - SELECT PUBLISHER WITH ID 1575
 2019-12-30 01:52:20 INFO  PeriodicalCategoryDaoImpl - SELECT FROM PERIODICAL CATEGORY ID 550
+2019-12-30 01:56:45 INFO  PeriodicalDaoImpl - SELECT ALL PERIODICALS
+2019-12-30 01:56:45 INFO  PublisherDaoImpl - SELECT PUBLISHER WITH ID 1573
+2019-12-30 01:56:45 INFO  PeriodicalCategoryDaoImpl - SELECT FROM PERIODICAL CATEGORY ID 548
+2019-12-30 01:56:45 INFO  PublisherDaoImpl - SELECT PUBLISHER WITH ID 1574
+2019-12-30 01:56:45 INFO  PeriodicalCategoryDaoImpl - SELECT FROM PERIODICAL CATEGORY ID 549
+2019-12-30 01:56:45 INFO  PublisherDaoImpl - SELECT PUBLISHER WITH ID 1575
+2019-12-30 01:56:45 INFO  PeriodicalCategoryDaoImpl - SELECT FROM PERIODICAL CATEGORY ID 550
+2019-12-30 01:56:46 INFO  PeriodicalDaoTest - SETUP PERIODICALS TEST
+2019-12-30 01:56:46 INFO  PeriodicalDaoImpl - DELETE ALL PERIODICALS
+2019-12-30 01:56:46 INFO  PeriodicalDaoImpl - CREATE NEW PERIODICAL Periodical{id=1, name='Народная газета', about='Иллюстрированный еженедельник о современной жизни. Подробная информация об образовании, здоровье, зарплатах, пенсиях, кредитах, строительстве жилья и т.д. ', publisher=Publisher{id=1573, name='ООО ИКАР'}, periodicalCategory=PeriodicalCategory{id=548, name='Политика'}, periodicityInSixMonth=26, minSubscriptionPeriod=1, costPerMonth=7.9}
+2019-12-30 01:56:46 INFO  PeriodicalDaoImpl - PERIODICAL CREATION SUCCESSFUL
+2019-12-30 01:56:46 INFO  PeriodicalDaoImpl - CREATE NEW PERIODICAL Periodical{id=2, name='Сельская газета', about='Общеполитическая газета для молодежи. Выход- четверг. События в стране и мире, образование и трудоустройство, здоровье и красота, досуг, спорт, театр, кино, звезды ТВ и шоу-бизнеса. ', publisher=Publisher{id=1574, name='ОДО ЭЛЕГАНТ'}, periodicalCategory=PeriodicalCategory{id=549, name='Спорт'}, periodicityInSixMonth=26, minSubscriptionPeriod=1, costPerMonth=4.51}
+2019-12-30 01:56:46 INFO  PeriodicalDaoImpl - PERIODICAL CREATION SUCCESSFUL
+2019-12-30 01:56:46 INFO  PeriodicalDaoImpl - CREATE NEW PERIODICAL Periodical{id=3, name='Журнал планета', about='Каждый месяц мы рассказываем об актуальных общественно- политических событиях, знакомим с традициями и культурой стран мира. На страницах журнала вы узнаете  больше о тайнах нашей планеты. С нами вы всегда будете в курсе всего нового и интересного.
+', publisher=Publisher{id=1575, name='ОАО НОВАЯ РУСЬ'}, periodicalCategory=PeriodicalCategory{id=550, name='Здоровье'}, periodicityInSixMonth=1, minSubscriptionPeriod=3, costPerMonth=4.21}
+2019-12-30 01:56:46 INFO  PeriodicalDaoImpl - PERIODICAL CREATION SUCCESSFUL
+2019-12-30 01:56:46 INFO  PeriodicalDaoImpl - SELECT ALL PERIODICALS
+2019-12-30 01:56:46 INFO  PublisherDaoImpl - SELECT PUBLISHER WITH ID 1573
+2019-12-30 01:56:46 INFO  PeriodicalCategoryDaoImpl - SELECT FROM PERIODICAL CATEGORY ID 548
+2019-12-30 01:56:46 INFO  PublisherDaoImpl - SELECT PUBLISHER WITH ID 1574
+2019-12-30 01:56:46 INFO  PeriodicalCategoryDaoImpl - SELECT FROM PERIODICAL CATEGORY ID 549
+2019-12-30 01:56:46 INFO  PublisherDaoImpl - SELECT PUBLISHER WITH ID 1575
+2019-12-30 01:56:46 INFO  PeriodicalCategoryDaoImpl - SELECT FROM PERIODICAL CATEGORY ID 550
+2019-12-30 01:56:46 INFO  PeriodicalDaoTest - SELECT ALL FROM TABLE PERIODICALS TESTING
+2019-12-30 01:56:46 INFO  PeriodicalDaoImpl - SELECT ALL PERIODICALS
+2019-12-30 01:56:47 INFO  PublisherDaoImpl - SELECT PUBLISHER WITH ID 1573
+2019-12-30 01:56:47 INFO  PeriodicalCategoryDaoImpl - SELECT FROM PERIODICAL CATEGORY ID 548
+2019-12-30 01:56:47 INFO  PublisherDaoImpl - SELECT PUBLISHER WITH ID 1574
+2019-12-30 01:56:47 INFO  PeriodicalCategoryDaoImpl - SELECT FROM PERIODICAL CATEGORY ID 549
+2019-12-30 01:56:47 INFO  PublisherDaoImpl - SELECT PUBLISHER WITH ID 1575
+2019-12-30 01:56:47 INFO  PeriodicalCategoryDaoImpl - SELECT FROM PERIODICAL CATEGORY ID 550
+2019-12-30 01:56:47 INFO  PeriodicalDaoTest - SETUP PERIODICALS TEST
+2019-12-30 01:56:47 INFO  PeriodicalDaoImpl - DELETE ALL PERIODICALS
+2019-12-30 01:56:47 INFO  PeriodicalDaoImpl - CREATE NEW PERIODICAL Periodical{id=1, name='Народная газета', about='Иллюстрированный еженедельник о современной жизни. Подробная информация об образовании, здоровье, зарплатах, пенсиях, кредитах, строительстве жилья и т.д. ', publisher=Publisher{id=1573, name='ООО ИКАР'}, periodicalCategory=PeriodicalCategory{id=548, name='Политика'}, periodicityInSixMonth=26, minSubscriptionPeriod=1, costPerMonth=7.9}
+2019-12-30 01:56:47 INFO  PeriodicalDaoImpl - PERIODICAL CREATION SUCCESSFUL
+2019-12-30 01:56:47 INFO  PeriodicalDaoImpl - CREATE NEW PERIODICAL Periodical{id=2, name='Сельская газета', about='Общеполитическая газета для молодежи. Выход- четверг. События в стране и мире, образование и трудоустройство, здоровье и красота, досуг, спорт, театр, кино, звезды ТВ и шоу-бизнеса. ', publisher=Publisher{id=1574, name='ОДО ЭЛЕГАНТ'}, periodicalCategory=PeriodicalCategory{id=549, name='Спорт'}, periodicityInSixMonth=26, minSubscriptionPeriod=1, costPerMonth=4.51}
+2019-12-30 01:56:47 INFO  PeriodicalDaoImpl - PERIODICAL CREATION SUCCESSFUL
+2019-12-30 01:56:47 INFO  PeriodicalDaoImpl - CREATE NEW PERIODICAL Periodical{id=3, name='Журнал планета', about='Каждый месяц мы рассказываем об актуальных общественно- политических событиях, знакомим с традициями и культурой стран мира. На страницах журнала вы узнаете  больше о тайнах нашей планеты. С нами вы всегда будете в курсе всего нового и интересного.
+', publisher=Publisher{id=1575, name='ОАО НОВАЯ РУСЬ'}, periodicalCategory=PeriodicalCategory{id=550, name='Здоровье'}, periodicityInSixMonth=1, minSubscriptionPeriod=3, costPerMonth=4.21}
+2019-12-30 01:56:47 INFO  PeriodicalDaoImpl - PERIODICAL CREATION SUCCESSFUL
+2019-12-30 01:56:47 INFO  PeriodicalDaoImpl - SELECT ALL PERIODICALS
+2019-12-30 01:56:48 INFO  PublisherDaoImpl - SELECT PUBLISHER WITH ID 1573
+2019-12-30 01:56:48 INFO  PeriodicalCategoryDaoImpl - SELECT FROM PERIODICAL CATEGORY ID 548
+2019-12-30 01:56:48 INFO  PublisherDaoImpl - SELECT PUBLISHER WITH ID 1574
+2019-12-30 01:56:48 INFO  PeriodicalCategoryDaoImpl - SELECT FROM PERIODICAL CATEGORY ID 549
+2019-12-30 01:56:48 INFO  PublisherDaoImpl - SELECT PUBLISHER WITH ID 1575
+2019-12-30 01:56:48 INFO  PeriodicalCategoryDaoImpl - SELECT FROM PERIODICAL CATEGORY ID 550
+2019-12-30 01:56:48 INFO  PeriodicalDaoTest - DELETE PERIODICAL TESTING
+2019-12-30 01:56:48 INFO  PeriodicalDaoImpl - DELETE PERIODICAL WITH ID = 301 
+2019-12-30 01:56:48 INFO  PeriodicalDaoImpl - SELECT ALL PERIODICALS
+2019-12-30 01:56:48 INFO  PublisherDaoImpl - SELECT PUBLISHER WITH ID 1574
+2019-12-30 01:56:48 INFO  PeriodicalCategoryDaoImpl - SELECT FROM PERIODICAL CATEGORY ID 549
+2019-12-30 01:56:49 INFO  PublisherDaoImpl - SELECT PUBLISHER WITH ID 1575
+2019-12-30 01:56:49 INFO  PeriodicalCategoryDaoImpl - SELECT FROM PERIODICAL CATEGORY ID 550
+2019-12-30 01:56:49 INFO  PeriodicalDaoTest - SETUP PERIODICALS TEST
+2019-12-30 01:56:49 INFO  PeriodicalDaoImpl - DELETE ALL PERIODICALS
+2019-12-30 01:56:49 INFO  PeriodicalDaoImpl - CREATE NEW PERIODICAL Periodical{id=1, name='Народная газета', about='Иллюстрированный еженедельник о современной жизни. Подробная информация об образовании, здоровье, зарплатах, пенсиях, кредитах, строительстве жилья и т.д. ', publisher=Publisher{id=1573, name='ООО ИКАР'}, periodicalCategory=PeriodicalCategory{id=548, name='Политика'}, periodicityInSixMonth=26, minSubscriptionPeriod=1, costPerMonth=7.9}
+2019-12-30 01:56:49 INFO  PeriodicalDaoImpl - PERIODICAL CREATION SUCCESSFUL
+2019-12-30 01:56:49 INFO  PeriodicalDaoImpl - CREATE NEW PERIODICAL Periodical{id=2, name='Сельская газета', about='Общеполитическая газета для молодежи. Выход- четверг. События в стране и мире, образование и трудоустройство, здоровье и красота, досуг, спорт, театр, кино, звезды ТВ и шоу-бизнеса. ', publisher=Publisher{id=1574, name='ОДО ЭЛЕГАНТ'}, periodicalCategory=PeriodicalCategory{id=549, name='Спорт'}, periodicityInSixMonth=26, minSubscriptionPeriod=1, costPerMonth=4.51}
+2019-12-30 01:56:49 INFO  PeriodicalDaoImpl - PERIODICAL CREATION SUCCESSFUL
+2019-12-30 01:56:49 INFO  PeriodicalDaoImpl - CREATE NEW PERIODICAL Periodical{id=3, name='Журнал планета', about='Каждый месяц мы рассказываем об актуальных общественно- политических событиях, знакомим с традициями и культурой стран мира. На страницах журнала вы узнаете  больше о тайнах нашей планеты. С нами вы всегда будете в курсе всего нового и интересного.
+', publisher=Publisher{id=1575, name='ОАО НОВАЯ РУСЬ'}, periodicalCategory=PeriodicalCategory{id=550, name='Здоровье'}, periodicityInSixMonth=1, minSubscriptionPeriod=3, costPerMonth=4.21}
+2019-12-30 01:56:49 INFO  PeriodicalDaoImpl - PERIODICAL CREATION SUCCESSFUL
+2019-12-30 01:56:49 INFO  PeriodicalDaoImpl - SELECT ALL PERIODICALS
+2019-12-30 01:56:49 INFO  PublisherDaoImpl - SELECT PUBLISHER WITH ID 1573
+2019-12-30 01:56:49 INFO  PeriodicalCategoryDaoImpl - SELECT FROM PERIODICAL CATEGORY ID 548
+2019-12-30 01:56:49 INFO  PublisherDaoImpl - SELECT PUBLISHER WITH ID 1574
+2019-12-30 01:56:49 INFO  PeriodicalCategoryDaoImpl - SELECT FROM PERIODICAL CATEGORY ID 549
+2019-12-30 01:56:50 INFO  PublisherDaoImpl - SELECT PUBLISHER WITH ID 1575
+2019-12-30 01:56:50 INFO  PeriodicalCategoryDaoImpl - SELECT FROM PERIODICAL CATEGORY ID 550
+2019-12-30 01:56:50 INFO  PeriodicalDaoTest - INSERT PERIODICAL TESTING
+2019-12-30 01:56:50 INFO  PeriodicalDaoImpl - CREATE NEW PERIODICAL Periodical{id=4, name='Тестовый журнал', about='Журнал для теста', publisher=Publisher{id=1576, name='publisher_4'}, periodicalCategory=PeriodicalCategory{id=551, name='Вне политики'}, periodicityInSixMonth=1, minSubscriptionPeriod=1, costPerMonth=16.22}
+2019-12-30 01:56:50 INFO  PeriodicalDaoImpl - PERIODICAL CREATION SUCCESSFUL
+2019-12-30 01:56:50 INFO  PeriodicalDaoImpl - SELECT ALL PERIODICALS
+2019-12-30 01:56:50 INFO  PublisherDaoImpl - SELECT PUBLISHER WITH ID 1573
+2019-12-30 01:56:50 INFO  PeriodicalCategoryDaoImpl - SELECT FROM PERIODICAL CATEGORY ID 548
+2019-12-30 01:56:50 INFO  PublisherDaoImpl - SELECT PUBLISHER WITH ID 1574
+2019-12-30 01:56:50 INFO  PeriodicalCategoryDaoImpl - SELECT FROM PERIODICAL CATEGORY ID 549
+2019-12-30 01:56:50 INFO  PublisherDaoImpl - SELECT PUBLISHER WITH ID 1575
+2019-12-30 01:56:50 INFO  PeriodicalCategoryDaoImpl - SELECT FROM PERIODICAL CATEGORY ID 550
+2019-12-30 01:56:50 INFO  PublisherDaoImpl - SELECT PUBLISHER WITH ID 1576
+2019-12-30 01:56:51 INFO  PeriodicalCategoryDaoImpl - SELECT FROM PERIODICAL CATEGORY ID 551
+2019-12-30 01:56:51 INFO  PeriodicalDaoTest - SETUP PERIODICALS TEST
+2019-12-30 01:56:51 INFO  PeriodicalDaoImpl - DELETE ALL PERIODICALS
+2019-12-30 01:56:51 INFO  PeriodicalDaoImpl - CREATE NEW PERIODICAL Periodical{id=1, name='Народная газета', about='Иллюстрированный еженедельник о современной жизни. Подробная информация об образовании, здоровье, зарплатах, пенсиях, кредитах, строительстве жилья и т.д. ', publisher=Publisher{id=1573, name='ООО ИКАР'}, periodicalCategory=PeriodicalCategory{id=548, name='Политика'}, periodicityInSixMonth=26, minSubscriptionPeriod=1, costPerMonth=7.9}
+2019-12-30 01:56:51 INFO  PeriodicalDaoImpl - PERIODICAL CREATION SUCCESSFUL
+2019-12-30 01:56:51 INFO  PeriodicalDaoImpl - CREATE NEW PERIODICAL Periodical{id=2, name='Сельская газета', about='Общеполитическая газета для молодежи. Выход- четверг. События в стране и мире, образование и трудоустройство, здоровье и красота, досуг, спорт, театр, кино, звезды ТВ и шоу-бизнеса. ', publisher=Publisher{id=1574, name='ОДО ЭЛЕГАНТ'}, periodicalCategory=PeriodicalCategory{id=549, name='Спорт'}, periodicityInSixMonth=26, minSubscriptionPeriod=1, costPerMonth=4.51}
+2019-12-30 01:56:51 INFO  PeriodicalDaoImpl - PERIODICAL CREATION SUCCESSFUL
+2019-12-30 01:56:51 INFO  PeriodicalDaoImpl - CREATE NEW PERIODICAL Periodical{id=3, name='Журнал планета', about='Каждый месяц мы рассказываем об актуальных общественно- политических событиях, знакомим с традициями и культурой стран мира. На страницах журнала вы узнаете  больше о тайнах нашей планеты. С нами вы всегда будете в курсе всего нового и интересного.
+', publisher=Publisher{id=1575, name='ОАО НОВАЯ РУСЬ'}, periodicalCategory=PeriodicalCategory{id=550, name='Здоровье'}, periodicityInSixMonth=1, minSubscriptionPeriod=3, costPerMonth=4.21}
+2019-12-30 01:56:51 INFO  PeriodicalDaoImpl - PERIODICAL CREATION SUCCESSFUL
+2019-12-30 01:56:51 INFO  PeriodicalDaoImpl - SELECT ALL PERIODICALS
+2019-12-30 01:56:51 INFO  PublisherDaoImpl - SELECT PUBLISHER WITH ID 1573
+2019-12-30 01:56:51 INFO  PeriodicalCategoryDaoImpl - SELECT FROM PERIODICAL CATEGORY ID 548
+2019-12-30 01:56:51 INFO  PublisherDaoImpl - SELECT PUBLISHER WITH ID 1574
+2019-12-30 01:56:51 INFO  PeriodicalCategoryDaoImpl - SELECT FROM PERIODICAL CATEGORY ID 549
+2019-12-30 01:56:51 INFO  PublisherDaoImpl - SELECT PUBLISHER WITH ID 1575
+2019-12-30 01:56:52 INFO  PeriodicalCategoryDaoImpl - SELECT FROM PERIODICAL CATEGORY ID 550
+2019-12-30 01:56:52 INFO  PeriodicalDaoTest - SETUP PERIODICALS TEST
+2019-12-30 01:56:52 INFO  PeriodicalDaoImpl - DELETE ALL PERIODICALS
+2019-12-30 01:56:52 INFO  PeriodicalDaoImpl - CREATE NEW PERIODICAL Periodical{id=1, name='Народная газета', about='Иллюстрированный еженедельник о современной жизни. Подробная информация об образовании, здоровье, зарплатах, пенсиях, кредитах, строительстве жилья и т.д. ', publisher=Publisher{id=1573, name='ООО ИКАР'}, periodicalCategory=PeriodicalCategory{id=548, name='Политика'}, periodicityInSixMonth=26, minSubscriptionPeriod=1, costPerMonth=7.9}
+2019-12-30 01:56:52 INFO  PeriodicalDaoImpl - PERIODICAL CREATION SUCCESSFUL
+2019-12-30 01:56:52 INFO  PeriodicalDaoImpl - CREATE NEW PERIODICAL Periodical{id=2, name='Сельская газета', about='Общеполитическая газета для молодежи. Выход- четверг. События в стране и мире, образование и трудоустройство, здоровье и красота, досуг, спорт, театр, кино, звезды ТВ и шоу-бизнеса. ', publisher=Publisher{id=1574, name='ОДО ЭЛЕГАНТ'}, periodicalCategory=PeriodicalCategory{id=549, name='Спорт'}, periodicityInSixMonth=26, minSubscriptionPeriod=1, costPerMonth=4.51}
+2019-12-30 01:56:52 INFO  PeriodicalDaoImpl - PERIODICAL CREATION SUCCESSFUL
+2019-12-30 01:56:52 INFO  PeriodicalDaoImpl - CREATE NEW PERIODICAL Periodical{id=3, name='Журнал планета', about='Каждый месяц мы рассказываем об актуальных общественно- политических событиях, знакомим с традициями и культурой стран мира. На страницах журнала вы узнаете  больше о тайнах нашей планеты. С нами вы всегда будете в курсе всего нового и интересного.
+', publisher=Publisher{id=1575, name='ОАО НОВАЯ РУСЬ'}, periodicalCategory=PeriodicalCategory{id=550, name='Здоровье'}, periodicityInSixMonth=1, minSubscriptionPeriod=3, costPerMonth=4.21}
+2019-12-30 01:56:52 INFO  PeriodicalDaoImpl - PERIODICAL CREATION SUCCESSFUL
+2019-12-30 01:56:52 INFO  PeriodicalDaoImpl - SELECT ALL PERIODICALS
+2019-12-30 01:56:52 INFO  PublisherDaoImpl - SELECT PUBLISHER WITH ID 1573
+2019-12-30 01:56:52 INFO  PeriodicalCategoryDaoImpl - SELECT FROM PERIODICAL CATEGORY ID 548
+2019-12-30 01:56:52 INFO  PublisherDaoImpl - SELECT PUBLISHER WITH ID 1574
+2019-12-30 01:56:52 INFO  PeriodicalCategoryDaoImpl - SELECT FROM PERIODICAL CATEGORY ID 549
+2019-12-30 01:56:52 INFO  PublisherDaoImpl - SELECT PUBLISHER WITH ID 1575
+2019-12-30 01:56:53 INFO  PeriodicalCategoryDaoImpl - SELECT FROM PERIODICAL CATEGORY ID 550
+2019-12-30 01:56:53 INFO  PeriodicalDaoTest - SELECT PERIODICAL DATABASE USER TESTING
+2019-12-30 01:56:53 INFO  PeriodicalDaoImpl - SELECT PERIODICAL WITH ID = 311
+2019-12-30 01:56:53 INFO  PublisherDaoImpl - SELECT PUBLISHER WITH ID 1573
+2019-12-30 01:56:53 INFO  PeriodicalCategoryDaoImpl - SELECT FROM PERIODICAL CATEGORY ID 548
+2019-12-30 01:56:53 INFO  PeriodicalDaoTest - SETUP PERIODICALS TEST
+2019-12-30 01:56:53 INFO  PeriodicalDaoImpl - DELETE ALL PERIODICALS
+2019-12-30 01:56:53 INFO  PeriodicalDaoImpl - CREATE NEW PERIODICAL Periodical{id=1, name='Народная газета', about='Иллюстрированный еженедельник о современной жизни. Подробная информация об образовании, здоровье, зарплатах, пенсиях, кредитах, строительстве жилья и т.д. ', publisher=Publisher{id=1573, name='ООО ИКАР'}, periodicalCategory=PeriodicalCategory{id=548, name='Политика'}, periodicityInSixMonth=26, minSubscriptionPeriod=1, costPerMonth=7.9}
+2019-12-30 01:56:53 INFO  PeriodicalDaoImpl - PERIODICAL CREATION SUCCESSFUL
+2019-12-30 01:56:53 INFO  PeriodicalDaoImpl - CREATE NEW PERIODICAL Periodical{id=2, name='Сельская газета', about='Общеполитическая газета для молодежи. Выход- четверг. События в стране и мире, образование и трудоустройство, здоровье и красота, досуг, спорт, театр, кино, звезды ТВ и шоу-бизнеса. ', publisher=Publisher{id=1574, name='ОДО ЭЛЕГАНТ'}, periodicalCategory=PeriodicalCategory{id=549, name='Спорт'}, periodicityInSixMonth=26, minSubscriptionPeriod=1, costPerMonth=4.51}
+2019-12-30 01:56:53 INFO  PeriodicalDaoImpl - PERIODICAL CREATION SUCCESSFUL
+2019-12-30 01:56:53 INFO  PeriodicalDaoImpl - CREATE NEW PERIODICAL Periodical{id=3, name='Журнал планета', about='Каждый месяц мы рассказываем об актуальных общественно- политических событиях, знакомим с традициями и культурой стран мира. На страницах журнала вы узнаете  больше о тайнах нашей планеты. С нами вы всегда будете в курсе всего нового и интересного.
+', publisher=Publisher{id=1575, name='ОАО НОВАЯ РУСЬ'}, periodicalCategory=PeriodicalCategory{id=550, name='Здоровье'}, periodicityInSixMonth=1, minSubscriptionPeriod=3, costPerMonth=4.21}
+2019-12-30 01:56:53 INFO  PeriodicalDaoImpl - PERIODICAL CREATION SUCCESSFUL
+2019-12-30 01:56:53 INFO  PeriodicalDaoImpl - SELECT ALL PERIODICALS
+2019-12-30 01:56:53 INFO  PublisherDaoImpl - SELECT PUBLISHER WITH ID 1573
+2019-12-30 01:56:53 INFO  PeriodicalCategoryDaoImpl - SELECT FROM PERIODICAL CATEGORY ID 548
+2019-12-30 01:56:54 INFO  PublisherDaoImpl - SELECT PUBLISHER WITH ID 1574
+2019-12-30 01:56:54 INFO  PeriodicalCategoryDaoImpl - SELECT FROM PERIODICAL CATEGORY ID 549
+2019-12-30 01:56:54 INFO  PublisherDaoImpl - SELECT PUBLISHER WITH ID 1575
+2019-12-30 01:56:54 INFO  PeriodicalCategoryDaoImpl - SELECT FROM PERIODICAL CATEGORY ID 550
+2019-12-30 01:56:54 INFO  PeriodicalDaoTest - UPDATE PERIODICAL TESTING
+2019-12-30 01:56:54 INFO  PeriodicalDaoImpl - UPDATE PERIODICAL Periodical{id=314, name='TESTING UPDATE NAME', about='Иллюстрированный еженедельник о современной жизни. Подробная информация об образовании, здоровье, зарплатах, пенсиях, кредитах, строительстве жилья и т.д. ', publisher=Publisher{id=1573, name='ООО ИКАР'}, periodicalCategory=PeriodicalCategory{id=548, name='Политика'}, periodicityInSixMonth=26, minSubscriptionPeriod=1, costPerMonth=7.9}
+2019-12-30 01:56:54 INFO  PeriodicalDaoImpl - SELECT PERIODICAL WITH ID = 314
+2019-12-30 01:56:54 INFO  PublisherDaoImpl - SELECT PUBLISHER WITH ID 1573
+2019-12-30 01:56:54 INFO  PeriodicalCategoryDaoImpl - SELECT FROM PERIODICAL CATEGORY ID 548
+2019-12-30 01:56:54 INFO  PeriodicalDaoTest - SETUP PERIODICALS TEST
+2019-12-30 01:56:54 INFO  PeriodicalDaoImpl - DELETE ALL PERIODICALS
+2019-12-30 01:56:54 INFO  PeriodicalDaoImpl - CREATE NEW PERIODICAL Periodical{id=1, name='Народная газета', about='Иллюстрированный еженедельник о современной жизни. Подробная информация об образовании, здоровье, зарплатах, пенсиях, кредитах, строительстве жилья и т.д. ', publisher=Publisher{id=1573, name='ООО ИКАР'}, periodicalCategory=PeriodicalCategory{id=548, name='Политика'}, periodicityInSixMonth=26, minSubscriptionPeriod=1, costPerMonth=7.9}
+2019-12-30 01:56:55 INFO  PeriodicalDaoImpl - PERIODICAL CREATION SUCCESSFUL
+2019-12-30 01:56:55 INFO  PeriodicalDaoImpl - CREATE NEW PERIODICAL Periodical{id=2, name='Сельская газета', about='Общеполитическая газета для молодежи. Выход- четверг. События в стране и мире, образование и трудоустройство, здоровье и красота, досуг, спорт, театр, кино, звезды ТВ и шоу-бизнеса. ', publisher=Publisher{id=1574, name='ОДО ЭЛЕГАНТ'}, periodicalCategory=PeriodicalCategory{id=549, name='Спорт'}, periodicityInSixMonth=26, minSubscriptionPeriod=1, costPerMonth=4.51}
+2019-12-30 01:56:55 INFO  PeriodicalDaoImpl - PERIODICAL CREATION SUCCESSFUL
+2019-12-30 01:56:55 INFO  PeriodicalDaoImpl - CREATE NEW PERIODICAL Periodical{id=3, name='Журнал планета', about='Каждый месяц мы рассказываем об актуальных общественно- политических событиях, знакомим с традициями и культурой стран мира. На страницах журнала вы узнаете  больше о тайнах нашей планеты. С нами вы всегда будете в курсе всего нового и интересного.
+', publisher=Publisher{id=1575, name='ОАО НОВАЯ РУСЬ'}, periodicalCategory=PeriodicalCategory{id=550, name='Здоровье'}, periodicityInSixMonth=1, minSubscriptionPeriod=3, costPerMonth=4.21}
+2019-12-30 01:56:55 INFO  PeriodicalDaoImpl - PERIODICAL CREATION SUCCESSFUL
+2019-12-30 01:56:55 INFO  PeriodicalDaoImpl - SELECT ALL PERIODICALS
+2019-12-30 01:56:55 INFO  PublisherDaoImpl - SELECT PUBLISHER WITH ID 1573
+2019-12-30 01:56:55 INFO  PeriodicalCategoryDaoImpl - SELECT FROM PERIODICAL CATEGORY ID 548
+2019-12-30 01:56:55 INFO  PublisherDaoImpl - SELECT PUBLISHER WITH ID 1574
+2019-12-30 01:56:55 INFO  PeriodicalCategoryDaoImpl - SELECT FROM PERIODICAL CATEGORY ID 549
+2019-12-30 01:56:55 INFO  PublisherDaoImpl - SELECT PUBLISHER WITH ID 1575
+2019-12-30 01:56:55 INFO  PeriodicalCategoryDaoImpl - SELECT FROM PERIODICAL CATEGORY ID 550
+2019-12-30 01:56:55 INFO  PeriodicalDaoTest - CLEAR ALL PERIODICAL TESTING
+2019-12-30 01:56:55 INFO  PeriodicalDaoImpl - DELETE ALL PERIODICALS
+2019-12-30 01:56:55 INFO  PeriodicalDaoImpl - SELECT ALL PERIODICALS
+2019-12-30 01:56:56 INFO  PeriodicalDaoTest - SETUP PERIODICALS TEST
+2019-12-30 01:56:56 INFO  PeriodicalDaoImpl - DELETE ALL PERIODICALS
+2019-12-30 01:56:56 INFO  PeriodicalDaoImpl - CREATE NEW PERIODICAL Periodical{id=1, name='Народная газета', about='Иллюстрированный еженедельник о современной жизни. Подробная информация об образовании, здоровье, зарплатах, пенсиях, кредитах, строительстве жилья и т.д. ', publisher=Publisher{id=1573, name='ООО ИКАР'}, periodicalCategory=PeriodicalCategory{id=548, name='Политика'}, periodicityInSixMonth=26, minSubscriptionPeriod=1, costPerMonth=7.9}
+2019-12-30 01:56:56 INFO  PeriodicalDaoImpl - PERIODICAL CREATION SUCCESSFUL
+2019-12-30 01:56:56 INFO  PeriodicalDaoImpl - CREATE NEW PERIODICAL Periodical{id=2, name='Сельская газета', about='Общеполитическая газета для молодежи. Выход- четверг. События в стране и мире, образование и трудоустройство, здоровье и красота, досуг, спорт, театр, кино, звезды ТВ и шоу-бизнеса. ', publisher=Publisher{id=1574, name='ОДО ЭЛЕГАНТ'}, periodicalCategory=PeriodicalCategory{id=549, name='Спорт'}, periodicityInSixMonth=26, minSubscriptionPeriod=1, costPerMonth=4.51}
+2019-12-30 01:56:56 INFO  PeriodicalDaoImpl - PERIODICAL CREATION SUCCESSFUL
+2019-12-30 01:56:56 INFO  PeriodicalDaoImpl - CREATE NEW PERIODICAL Periodical{id=3, name='Журнал планета', about='Каждый месяц мы рассказываем об актуальных общественно- политических событиях, знакомим с традициями и культурой стран мира. На страницах журнала вы узнаете  больше о тайнах нашей планеты. С нами вы всегда будете в курсе всего нового и интересного.
+', publisher=Publisher{id=1575, name='ОАО НОВАЯ РУСЬ'}, periodicalCategory=PeriodicalCategory{id=550, name='Здоровье'}, periodicityInSixMonth=1, minSubscriptionPeriod=3, costPerMonth=4.21}
+2019-12-30 01:56:56 INFO  PeriodicalDaoImpl - PERIODICAL CREATION SUCCESSFUL
+2019-12-30 01:56:56 INFO  PeriodicalDaoImpl - SELECT ALL PERIODICALS
+2019-12-30 01:56:56 INFO  PublisherDaoImpl - SELECT PUBLISHER WITH ID 1573
+2019-12-30 01:56:56 INFO  PeriodicalCategoryDaoImpl - SELECT FROM PERIODICAL CATEGORY ID 548
+2019-12-30 01:56:56 INFO  PublisherDaoImpl - SELECT PUBLISHER WITH ID 1574
+2019-12-30 01:56:56 INFO  PeriodicalCategoryDaoImpl - SELECT FROM PERIODICAL CATEGORY ID 549
+2019-12-30 01:56:56 INFO  PublisherDaoImpl - SELECT PUBLISHER WITH ID 1575
+2019-12-30 01:56:56 INFO  PeriodicalCategoryDaoImpl - SELECT FROM PERIODICAL CATEGORY ID 550
+2019-12-30 01:57:36 INFO  PublisherDaoImpl - SELECT ALL PUBLISHERS
+2019-12-30 01:57:36 INFO  PublisherDaoTest - SETUP PUBLISHERS TEST
+2019-12-30 01:57:36 INFO  PublisherDaoImpl - DELETE ALL PUBLISHERS
+2019-12-30 01:57:36 ERROR PublisherDaoImpl - ОШИБКА: UPDATE или DELETE в таблице "publishers" нарушает ограничение внешнего ключа "publisher_name_fk" таблицы "periodicals"
+  Подробности: На ключ (id)=(1573) всё ещё есть ссылки в таблице "periodicals".
+org.postgresql.util.PSQLException: ОШИБКА: UPDATE или DELETE в таблице "publishers" нарушает ограничение внешнего ключа "publisher_name_fk" таблицы "periodicals"
+  Подробности: На ключ (id)=(1573) всё ещё есть ссылки в таблице "periodicals".
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2497)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2233)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:310)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:446)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:370)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:149)
+	at org.postgresql.jdbc.PgPreparedStatement.execute(PgPreparedStatement.java:138)
+	at com.epam.dao.impl.PublisherDaoImpl.clear(PublisherDaoImpl.java:134)
+	at com.epam.dao.PublisherDaoTest.setUp(PublisherDaoTest.java:30)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:24)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:68)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33)
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:230)
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:58)
+2019-12-30 01:57:36 INFO  PublisherDaoImpl - INSERT PUBLISHER ID  45 NAME  ООО ИКАР
+2019-12-30 23:13:46 INFO  SubscriptionTypeDao - SETUP PERIODICALS CATEGORY TEST
+2019-12-30 23:13:46 INFO  SubscriptionTypeDaoImpl - DELETE ALL CATEGORIES IN PERIODICAL CATEGORY TABLE
+2019-12-30 23:13:46 ERROR SubscriptionTypeDaoImpl - ОШИБКА: отношение "subcription_type" не существует
+  Позиция: 13
+org.postgresql.util.PSQLException: ОШИБКА: отношение "subcription_type" не существует
+  Позиция: 13
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2497)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2233)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:310)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:446)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:370)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:149)
+	at org.postgresql.jdbc.PgPreparedStatement.execute(PgPreparedStatement.java:138)
+	at com.epam.dao.impl.SubscriptionTypeDaoImpl.clear(SubscriptionTypeDaoImpl.java:104)
+	at com.epam.dao.SubscriptionTypeDaoTest.setUp(SubscriptionTypeDaoTest.java:30)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:24)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:68)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33)
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:230)
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:58)
+2019-12-30 23:13:46 INFO  SubscriptionTypeDaoImpl - INSERT SUBSCRIPTION TYPE 45 Месячная 1
+2019-12-30 23:13:46 INFO  SubscriptionTypeDao - SETUP PERIODICALS CATEGORY TEST
+2019-12-30 23:13:46 INFO  SubscriptionTypeDaoImpl - DELETE ALL CATEGORIES IN PERIODICAL CATEGORY TABLE
+2019-12-30 23:13:46 ERROR SubscriptionTypeDaoImpl - ОШИБКА: отношение "subcription_type" не существует
+  Позиция: 13
+org.postgresql.util.PSQLException: ОШИБКА: отношение "subcription_type" не существует
+  Позиция: 13
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2497)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2233)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:310)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:446)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:370)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:149)
+	at org.postgresql.jdbc.PgPreparedStatement.execute(PgPreparedStatement.java:138)
+	at com.epam.dao.impl.SubscriptionTypeDaoImpl.clear(SubscriptionTypeDaoImpl.java:104)
+	at com.epam.dao.SubscriptionTypeDaoTest.setUp(SubscriptionTypeDaoTest.java:30)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:24)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:68)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33)
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:230)
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:58)
+2019-12-30 23:13:46 INFO  SubscriptionTypeDaoImpl - INSERT SUBSCRIPTION TYPE 45 Месячная 1
+2019-12-30 23:13:46 INFO  SubscriptionTypeDao - SETUP PERIODICALS CATEGORY TEST
+2019-12-30 23:13:46 INFO  SubscriptionTypeDaoImpl - DELETE ALL CATEGORIES IN PERIODICAL CATEGORY TABLE
+2019-12-30 23:13:46 ERROR SubscriptionTypeDaoImpl - ОШИБКА: отношение "subcription_type" не существует
+  Позиция: 13
+org.postgresql.util.PSQLException: ОШИБКА: отношение "subcription_type" не существует
+  Позиция: 13
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2497)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2233)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:310)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:446)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:370)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:149)
+	at org.postgresql.jdbc.PgPreparedStatement.execute(PgPreparedStatement.java:138)
+	at com.epam.dao.impl.SubscriptionTypeDaoImpl.clear(SubscriptionTypeDaoImpl.java:104)
+	at com.epam.dao.SubscriptionTypeDaoTest.setUp(SubscriptionTypeDaoTest.java:30)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:24)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:68)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33)
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:230)
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:58)
+2019-12-30 23:13:46 INFO  SubscriptionTypeDaoImpl - INSERT SUBSCRIPTION TYPE 45 Месячная 1
+2019-12-30 23:13:46 INFO  SubscriptionTypeDao - SETUP PERIODICALS CATEGORY TEST
+2019-12-30 23:13:46 INFO  SubscriptionTypeDaoImpl - DELETE ALL CATEGORIES IN PERIODICAL CATEGORY TABLE
+2019-12-30 23:13:46 ERROR SubscriptionTypeDaoImpl - ОШИБКА: отношение "subcription_type" не существует
+  Позиция: 13
+org.postgresql.util.PSQLException: ОШИБКА: отношение "subcription_type" не существует
+  Позиция: 13
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2497)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2233)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:310)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:446)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:370)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:149)
+	at org.postgresql.jdbc.PgPreparedStatement.execute(PgPreparedStatement.java:138)
+	at com.epam.dao.impl.SubscriptionTypeDaoImpl.clear(SubscriptionTypeDaoImpl.java:104)
+	at com.epam.dao.SubscriptionTypeDaoTest.setUp(SubscriptionTypeDaoTest.java:30)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:24)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:68)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33)
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:230)
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:58)
+2019-12-30 23:13:46 INFO  SubscriptionTypeDaoImpl - INSERT SUBSCRIPTION TYPE 45 Месячная 1
+2019-12-30 23:13:47 INFO  SubscriptionTypeDao - SETUP PERIODICALS CATEGORY TEST
+2019-12-30 23:13:47 INFO  SubscriptionTypeDaoImpl - DELETE ALL CATEGORIES IN PERIODICAL CATEGORY TABLE
+2019-12-30 23:13:47 ERROR SubscriptionTypeDaoImpl - ОШИБКА: отношение "subcription_type" не существует
+  Позиция: 13
+org.postgresql.util.PSQLException: ОШИБКА: отношение "subcription_type" не существует
+  Позиция: 13
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2497)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2233)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:310)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:446)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:370)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:149)
+	at org.postgresql.jdbc.PgPreparedStatement.execute(PgPreparedStatement.java:138)
+	at com.epam.dao.impl.SubscriptionTypeDaoImpl.clear(SubscriptionTypeDaoImpl.java:104)
+	at com.epam.dao.SubscriptionTypeDaoTest.setUp(SubscriptionTypeDaoTest.java:30)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:24)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:68)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33)
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:230)
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:58)
+2019-12-30 23:13:47 INFO  SubscriptionTypeDaoImpl - INSERT SUBSCRIPTION TYPE 45 Месячная 1
+2019-12-30 23:13:47 INFO  SubscriptionTypeDao - SETUP PERIODICALS CATEGORY TEST
+2019-12-30 23:13:47 INFO  SubscriptionTypeDaoImpl - DELETE ALL CATEGORIES IN PERIODICAL CATEGORY TABLE
+2019-12-30 23:13:47 ERROR SubscriptionTypeDaoImpl - ОШИБКА: отношение "subcription_type" не существует
+  Позиция: 13
+org.postgresql.util.PSQLException: ОШИБКА: отношение "subcription_type" не существует
+  Позиция: 13
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2497)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2233)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:310)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:446)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:370)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:149)
+	at org.postgresql.jdbc.PgPreparedStatement.execute(PgPreparedStatement.java:138)
+	at com.epam.dao.impl.SubscriptionTypeDaoImpl.clear(SubscriptionTypeDaoImpl.java:104)
+	at com.epam.dao.SubscriptionTypeDaoTest.setUp(SubscriptionTypeDaoTest.java:30)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:24)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:68)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33)
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:230)
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:58)
+2019-12-30 23:13:47 INFO  SubscriptionTypeDaoImpl - INSERT SUBSCRIPTION TYPE 45 Месячная 1
+2019-12-30 23:13:55 INFO  SubscriptionTypeDao - SETUP PERIODICALS CATEGORY TEST
+2019-12-30 23:13:55 INFO  SubscriptionTypeDaoImpl - DELETE ALL CATEGORIES IN PERIODICAL CATEGORY TABLE
+2019-12-30 23:13:55 ERROR SubscriptionTypeDaoImpl - ОШИБКА: отношение "subcription_type" не существует
+  Позиция: 13
+org.postgresql.util.PSQLException: ОШИБКА: отношение "subcription_type" не существует
+  Позиция: 13
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2497)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2233)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:310)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:446)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:370)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:149)
+	at org.postgresql.jdbc.PgPreparedStatement.execute(PgPreparedStatement.java:138)
+	at com.epam.dao.impl.SubscriptionTypeDaoImpl.clear(SubscriptionTypeDaoImpl.java:104)
+	at com.epam.dao.SubscriptionTypeDaoTest.setUp(SubscriptionTypeDaoTest.java:30)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:24)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:68)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33)
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:230)
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:58)
+2019-12-30 23:13:55 INFO  SubscriptionTypeDaoImpl - INSERT SUBSCRIPTION TYPE 45 Месячная 1
+2019-12-30 23:14:37 INFO  SubscriptionTypeDao - SETUP PERIODICALS CATEGORY TEST
+2019-12-30 23:14:37 INFO  SubscriptionTypeDaoImpl - DELETE ALL CATEGORIES IN PERIODICAL CATEGORY TABLE
+2019-12-30 23:14:37 ERROR SubscriptionTypeDaoImpl - ОШИБКА: отношение "subcription_type" не существует
+  Позиция: 13
+org.postgresql.util.PSQLException: ОШИБКА: отношение "subcription_type" не существует
+  Позиция: 13
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2497)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2233)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:310)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:446)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:370)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:149)
+	at org.postgresql.jdbc.PgPreparedStatement.execute(PgPreparedStatement.java:138)
+	at com.epam.dao.impl.SubscriptionTypeDaoImpl.clear(SubscriptionTypeDaoImpl.java:104)
+	at com.epam.dao.SubscriptionTypeDaoTest.setUp(SubscriptionTypeDaoTest.java:30)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:24)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:68)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33)
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:230)
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:58)
+2019-12-30 23:14:37 INFO  SubscriptionTypeDaoImpl - INSERT SUBSCRIPTION TYPE 45 Месячная 1
+2019-12-30 23:14:37 INFO  SubscriptionTypeDaoImpl - SUBSCRIPTION TYPE CREATION SUCCESSFUL
+2019-12-30 23:14:37 INFO  SubscriptionTypeDaoImpl - INSERT SUBSCRIPTION TYPE 46 Квартальная 3
+2019-12-30 23:14:37 INFO  SubscriptionTypeDaoImpl - SUBSCRIPTION TYPE CREATION SUCCESSFUL
+2019-12-30 23:14:37 INFO  SubscriptionTypeDaoImpl - INSERT SUBSCRIPTION TYPE 47 Полугодие 6
+2019-12-30 23:14:37 INFO  SubscriptionTypeDaoImpl - SUBSCRIPTION TYPE CREATION SUCCESSFUL
+2019-12-30 23:14:37 INFO  SubscriptionTypeDaoImpl - SELECT ALL FROM SUBSCRIPTION TYPE
+2019-12-30 23:14:37 INFO  SubscriptionTypeDao - INSERT PERIODICAL CATEGORY TESTING
+2019-12-30 23:14:37 INFO  SubscriptionTypeDaoImpl - INSERT SUBSCRIPTION TYPE 48 Годовая 12
+2019-12-30 23:14:37 INFO  SubscriptionTypeDaoImpl - SUBSCRIPTION TYPE CREATION SUCCESSFUL
+2019-12-30 23:14:37 INFO  SubscriptionTypeDaoImpl - SELECT ALL FROM SUBSCRIPTION TYPE
+2019-12-30 23:18:04 INFO  SubscriptionTypeDao - SETUP SUBSCRIPTION TYPE TEST
+2019-12-30 23:18:04 INFO  SubscriptionTypeDaoImpl - DELETE ALL CATEGORIES IN PERIODICAL CATEGORY TABLE
+2019-12-30 23:18:04 ERROR SubscriptionTypeDaoImpl - ОШИБКА: отношение "subcription_type" не существует
+  Позиция: 13
+org.postgresql.util.PSQLException: ОШИБКА: отношение "subcription_type" не существует
+  Позиция: 13
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2497)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2233)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:310)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:446)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:370)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:149)
+	at org.postgresql.jdbc.PgPreparedStatement.execute(PgPreparedStatement.java:138)
+	at com.epam.dao.impl.SubscriptionTypeDaoImpl.clear(SubscriptionTypeDaoImpl.java:104)
+	at com.epam.dao.SubscriptionTypeDaoTest.setUp(SubscriptionTypeDaoTest.java:30)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:24)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:68)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33)
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:230)
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:58)
+2019-12-30 23:18:04 INFO  SubscriptionTypeDaoImpl - INSERT SUBSCRIPTION TYPE 45 Месячная 1
+2019-12-30 23:19:09 INFO  SubscriptionTypeDao - SETUP SUBSCRIPTION TYPE TEST
+2019-12-30 23:19:09 INFO  SubscriptionTypeDaoImpl - DELETE ALL CATEGORIES IN PERIODICAL CATEGORY TABLE
+2019-12-30 23:19:09 ERROR SubscriptionTypeDaoImpl - ОШИБКА: отношение "subcription_type" не существует
+  Позиция: 13
+org.postgresql.util.PSQLException: ОШИБКА: отношение "subcription_type" не существует
+  Позиция: 13
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2497)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2233)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:310)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:446)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:370)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:149)
+	at org.postgresql.jdbc.PgPreparedStatement.execute(PgPreparedStatement.java:138)
+	at com.epam.dao.impl.SubscriptionTypeDaoImpl.clear(SubscriptionTypeDaoImpl.java:104)
+	at com.epam.dao.SubscriptionTypeDaoTest.setUp(SubscriptionTypeDaoTest.java:30)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:24)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:68)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33)
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:230)
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:58)
+2019-12-30 23:19:09 INFO  SubscriptionTypeDaoImpl - INSERT SUBSCRIPTION TYPE 45 Месячная 1
+2019-12-30 23:19:46 INFO  SubscriptionTypeDao - SETUP SUBSCRIPTION TYPE TEST
+2019-12-30 23:19:46 INFO  SubscriptionTypeDaoImpl - DELETE ALL CATEGORIES IN PERIODICAL CATEGORY TABLE
+2019-12-30 23:19:47 INFO  SubscriptionTypeDaoImpl - INSERT SUBSCRIPTION TYPE 45 Месячная 1
+2019-12-30 23:19:47 INFO  SubscriptionTypeDaoImpl - SUBSCRIPTION TYPE CREATION SUCCESSFUL
+2019-12-30 23:19:47 INFO  SubscriptionTypeDaoImpl - INSERT SUBSCRIPTION TYPE 46 Квартальная 3
+2019-12-30 23:19:47 INFO  SubscriptionTypeDaoImpl - SUBSCRIPTION TYPE CREATION SUCCESSFUL
+2019-12-30 23:19:47 INFO  SubscriptionTypeDaoImpl - INSERT SUBSCRIPTION TYPE 47 Полугодие 6
+2019-12-30 23:19:47 INFO  SubscriptionTypeDaoImpl - SUBSCRIPTION TYPE CREATION SUCCESSFUL
+2019-12-30 23:19:47 INFO  SubscriptionTypeDaoImpl - SELECT ALL FROM SUBSCRIPTION TYPE
+2019-12-30 23:19:47 INFO  SubscriptionTypeDao - INSERT SUBSCRIPTION TYPE TESTING
+2019-12-30 23:19:47 INFO  SubscriptionTypeDaoImpl - INSERT SUBSCRIPTION TYPE 48 Годовая 12
+2019-12-30 23:19:47 INFO  SubscriptionTypeDaoImpl - SUBSCRIPTION TYPE CREATION SUCCESSFUL
+2019-12-30 23:19:47 INFO  SubscriptionTypeDaoImpl - SELECT ALL FROM SUBSCRIPTION TYPE

@@ -30,7 +30,7 @@ public class JDBCUtils {
             jdbcURL = props.getProperty("db.url");
 
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage(), e);
         }
     }
 

@@ -13,6 +13,7 @@ public class Periodical implements Serializable {
     private int periodicityInSixMonth;//периодчность в полугодие
     private int minSubscriptionPeriod;//минимальный переиод подписки
     private Float costPerMonth;//стоимость за месяц
+    private boolean active;
 
     public Periodical() {
     }

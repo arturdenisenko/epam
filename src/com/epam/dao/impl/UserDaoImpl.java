@@ -35,6 +35,10 @@ public class UserDaoImpl implements UserDao {
     private static final String UPDATE_USER_SQL = "UPDATE users SET first_name = ?, last_name = ?, email = ?, password = ?, address = ?, user_type = ?, balance = ? where id = ?;";
     private static final String CLEAR_TABLE_USERS_SQL = "DELETE FROM users";
 
+    private static class UserDAOImplHolder {
+        private static final UserDaoImpl HOLDER_INSTANCE = new UserDaoImpl();
+    }
+
     public static UserDaoImpl getInstance() {
         return UserDAOImplHolder.HOLDER_INSTANCE;
     }
@@ -191,10 +195,6 @@ public class UserDaoImpl implements UserDao {
             LOGGER.error(e.getMessage(), e);
         }
         return false;
-    }
-
-    private static class UserDAOImplHolder {
-        private static final UserDaoImpl HOLDER_INSTANCE = new UserDaoImpl();
     }
 
     @Override

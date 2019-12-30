@@ -20,6 +20,7 @@ public class Subscription implements Serializable {
     public Subscription() {
     }
 
+
     public int getId() {
         return id;
     }

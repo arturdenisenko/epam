@@ -1,7 +1,6 @@
 package com.epam.dao;
 
 import com.epam.model.periodical.Periodical;
-import com.epam.model.subscription.SubscriptionType;
 
 import java.util.List;
 
@@ -13,7 +12,6 @@ public interface PeriodicalDao {
 
     List<Periodical> selectByName(String name);
 
-    List<Periodical> selectByPeriodicalCategory(SubscriptionType subscriptionType);
 
     List<Periodical> selectAll();
 

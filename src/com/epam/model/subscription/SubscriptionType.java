@@ -7,7 +7,14 @@ public class SubscriptionType implements Serializable {
     private int id;
     private String name;
     private int durationByMonth;
-    private double priceMultiplier;
+    private Float priceMultiplier;
+
+    public SubscriptionType(int id, String name, int durationByMonth, Float priceMultiplier) {
+        this.id = id;
+        this.name = name;
+        this.durationByMonth = durationByMonth;
+        this.priceMultiplier = priceMultiplier;
+    }
 
     public int getId() {
         return id;
@@ -33,11 +40,11 @@ public class SubscriptionType implements Serializable {
         this.durationByMonth = durationByMonth;
     }
 
-    public double getPriceMultiplier() {
+    public Float getPriceMultiplier() {
         return priceMultiplier;
     }
 
-    public void setPriceMultiplier(double priceMultiplier) {
+    public void setPriceMultiplier(Float priceMultiplier) {
         this.priceMultiplier = priceMultiplier;
     }
 
@@ -46,15 +53,14 @@ public class SubscriptionType implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SubscriptionType that = (SubscriptionType) o;
-        return id == that.id &&
-                durationByMonth == that.durationByMonth &&
+        return durationByMonth == that.durationByMonth &&
                 Double.compare(that.priceMultiplier, priceMultiplier) == 0 &&
                 Objects.equals(name, that.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, durationByMonth, priceMultiplier);
+        return Objects.hash(name, durationByMonth, priceMultiplier);
     }
 
     @Override
