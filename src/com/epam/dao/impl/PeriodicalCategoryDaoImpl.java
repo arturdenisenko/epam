@@ -3,8 +3,8 @@ package com.epam.dao.impl;
 import com.epam.dao.PeriodicalCategoryDao;
 import com.epam.exception.NotExistEntityException;
 import com.epam.model.periodical.PeriodicalCategory;
+import com.epam.pool.ConnectionPool;
 import com.epam.util.ExceptionUtil;
-import com.epam.util.JDBCUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,7 +33,7 @@ public class PeriodicalCategoryDaoImpl implements PeriodicalCategoryDao {
     @Override
     public void insert(PeriodicalCategory periodicalCategory) {
         LOGGER.info("INSERT PERIODICAL CATEGORY {} {}", periodicalCategory.getId(), periodicalCategory.getName());
-        try (Connection connection = JDBCUtils.getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_PERIODICAL_CATEGORY_SQL)) {
             preparedStatement.setString(1, periodicalCategory.getName());
             int affectedRows = preparedStatement.executeUpdate();
@@ -51,7 +51,7 @@ public class PeriodicalCategoryDaoImpl implements PeriodicalCategoryDao {
     public PeriodicalCategory select(int id) {
         LOGGER.info("SELECT FROM PERIODICAL CATEGORY ID {}", id);
         PeriodicalCategory periodicalCategory = null;
-        try (Connection connection = JDBCUtils.getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_PERIODICAL_CATEGORY_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
@@ -75,7 +75,7 @@ public class PeriodicalCategoryDaoImpl implements PeriodicalCategoryDao {
     public List<PeriodicalCategory> selectAll() {
         LOGGER.info("SELECT ALL FROM PERIODICAL CATEGORY");
         List<PeriodicalCategory> periodicalCategories = new CopyOnWriteArrayList<>();
-        try (Connection connection = JDBCUtils.getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_PERIODICAL_CATEGORY)) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
@@ -93,7 +93,7 @@ public class PeriodicalCategoryDaoImpl implements PeriodicalCategoryDao {
     public boolean delete(int id) {
         LOGGER.info("DELETE PERIODICAL CATEGORY WITH ID {}", id);
         boolean rowDeleted = false;
-        try (Connection connection = JDBCUtils.getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_PERIODICAL_CATEGORY_SQL)) {
             statement.setInt(1, id);
             rowDeleted = statement.executeUpdate() > 0;
@@ -111,7 +111,7 @@ public class PeriodicalCategoryDaoImpl implements PeriodicalCategoryDao {
     public boolean update(PeriodicalCategory periodicalCategory) {
         LOGGER.info("UPDATE PERIODICAL CATEGORY WITH ID {} AND NAME {}", periodicalCategory.getId(), periodicalCategory.getName());
         boolean rowUpdated = false;
-        try (Connection connection = JDBCUtils.getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_PERIODICAL_CATEGORY_SQL)) {
             statement.setString(1, periodicalCategory.getName());
             statement.setInt(2, periodicalCategory.getId());
@@ -126,7 +126,7 @@ public class PeriodicalCategoryDaoImpl implements PeriodicalCategoryDao {
     @Override
     public void clear() {
         LOGGER.info("DELETE ALL CATEGORIES IN PERIODICAL CATEGORY TABLE");
-        try (Connection connection = JDBCUtils.getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(CLEAR_TABLE_PERIODICAL_CATEGORY_SQL)) {
             statement.execute();
         } catch (SQLException e) {

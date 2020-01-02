@@ -7,8 +7,8 @@ import com.epam.filters.UserByFirstNameLastNameFilter;
 import com.epam.filters.UserByUserTypeFilter;
 import com.epam.model.user.User;
 import com.epam.model.user.UserType;
+import com.epam.pool.ConnectionPool;
 import com.epam.util.ExceptionUtil;
-import com.epam.util.JDBCUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -46,7 +46,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void insert(User user) {
         LOGGER.info("CREATE NEW USER {}", user.toString());
-        try (Connection connection = JDBCUtils.getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USER_SQL)) {
             preparedStatement.setString(1, user.getFirstName());
             preparedStatement.setString(2, user.getLastName());
@@ -70,7 +70,7 @@ public class UserDaoImpl implements UserDao {
     public User select(int id) {
         LOGGER.info("SELECT USER WITH ID = {}", id);
         User user = null;
-        try (Connection connection = JDBCUtils.getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
@@ -96,7 +96,7 @@ public class UserDaoImpl implements UserDao {
     public User selectByEmail(String email) {
         LOGGER.info("SELECT USER BY EMAIL {}", email);
         User user = null;
-        try (Connection connection = JDBCUtils.getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_EMAIL)) {
             preparedStatement.setString(1, email);
             ResultSet rs = preparedStatement.executeQuery();
@@ -128,7 +128,7 @@ public class UserDaoImpl implements UserDao {
     public List<User> selectAll() {
         LOGGER.info("SELECT ALL USERS");
         List<User> users = new CopyOnWriteArrayList<>();
-        try (Connection connection = JDBCUtils.getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USERS)) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
@@ -159,7 +159,7 @@ public class UserDaoImpl implements UserDao {
     public boolean update(User user) {
         LOGGER.info("UPDATE USER {}", user.toString());
         boolean rowUpdated = false;
-        try (Connection connection = JDBCUtils.getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_USER_SQL)) {
             statement.setString(1, user.getFirstName());
             statement.setString(2, user.getLastName());
@@ -183,7 +183,7 @@ public class UserDaoImpl implements UserDao {
     public boolean delete(int id) {
         LOGGER.info("DELETE USER WITH ID = {} ", id);
         boolean rowDeleted = false;
-        try (Connection connection = JDBCUtils.getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_USER_SQL)) {
             statement.setInt(1, id);
             rowDeleted = statement.executeUpdate() > 0;
@@ -200,7 +200,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void clear() {
         LOGGER.info("DELETE ALL USERS");
-        try (Connection connection = JDBCUtils.getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(CLEAR_TABLE_USERS_SQL)) {
             statement.execute();
         } catch (SQLException e) {

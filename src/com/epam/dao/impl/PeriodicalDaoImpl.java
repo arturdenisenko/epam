@@ -7,8 +7,8 @@ import com.epam.exception.NotExistEntityException;
 import com.epam.filters.Filter;
 import com.epam.filters.PeriodicalSelectByNameFilter;
 import com.epam.model.periodical.Periodical;
+import com.epam.pool.ConnectionPool;
 import com.epam.util.ExceptionUtil;
-import com.epam.util.JDBCUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -48,7 +48,7 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
     @Override
     public void insert(Periodical periodical) {
         LOGGER.info("CREATE NEW PERIODICAL {}", periodical.toString());
-        try (Connection connection = JDBCUtils.getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_PERIODICAL_SQL)) {
             preparedStatement.setString(1, periodical.getName());
             preparedStatement.setString(2, periodical.getAbout());
@@ -73,7 +73,7 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
     public Periodical select(int id) {
         LOGGER.info("SELECT PERIODICAL WITH ID = {}", id);
         Periodical periodical = null;
-        try (Connection connection = JDBCUtils.getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_PERIODICAL_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
@@ -108,7 +108,7 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
     public List<Periodical> selectAll() {
         LOGGER.info("SELECT ALL PERIODICALS");
         List<Periodical> periodicals = new CopyOnWriteArrayList<>();
-        try (Connection connection = JDBCUtils.getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_PERIODICALS)) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
@@ -133,7 +133,7 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
     public boolean delete(int id) {
         LOGGER.info("DELETE PERIODICAL WITH ID = {} ", id);
         boolean rowDeleted = false;
-        try (Connection connection = JDBCUtils.getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_PERIODICAL_SQL)) {
             statement.setInt(1, id);
             rowDeleted = statement.executeUpdate() > 0;
@@ -151,7 +151,7 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
     public boolean update(Periodical periodical) {
         LOGGER.info("UPDATE PERIODICAL {}", periodical.toString());
         boolean rowUpdated = false;
-        try (Connection connection = JDBCUtils.getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_PERIODICAL_SQL)) {
             statement.setString(1, periodical.getName());
             statement.setString(2, periodical.getAbout());
@@ -175,7 +175,7 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
     @Override
     public void clear() {
         LOGGER.info("DELETE ALL PERIODICALS");
-        try (Connection connection = JDBCUtils.getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(CLEAR_TABLE_PERIODICAL_SQL)) {
             statement.execute();
         } catch (SQLException e) {

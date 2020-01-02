@@ -6,6 +6,8 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses(
         {
+                SubscriptionDaoTest.class,
+                SubscriptionTypeDaoTest.class,
                 PeriodicalDao.class,
                 PeriodicalCategoryDaoTest.class,
                 PublisherDaoTest.class,

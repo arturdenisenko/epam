@@ -1,14 +1,26 @@
 package com.epam.pool;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
+import com.epam.Main;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 public class ConnectionPool {
+
+
+    private final static Logger LOGGER = LoggerFactory.getLogger(ConnectionPool.class);
+
     private static ConnectionPool instance = null;
+    private static final String PROPS = "periodicals.properties";
+    protected static String jdbcURL;
+    protected static String jdbcUsername;
+    protected static String jdbcPassword;
 
     private ConnectionPool() {
         //private constructor
@@ -20,18 +32,31 @@ public class ConnectionPool {
         return instance;
     }
 
-    public Connection getConnection() {
-        Context ctx;
-        Connection c = null;
-        try {
-            ctx = new InitialContext();
-            DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/ConnectionPool");
-            c = ds.getConnection();
-        } catch (NamingException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
+    private static void init() {
+        LOGGER.info("Properties initialize");
+        ClassLoader loader = Main.class.getClassLoader();
+        try (InputStream is = loader.getResourceAsStream(PROPS)) {
+            Properties props = new Properties();
+            props.load(is);
+            jdbcUsername = props.getProperty("db.user");
+            jdbcPassword = props.getProperty("db.password");
+            jdbcURL = props.getProperty("db.url");
+
+        } catch (IOException e) {
+            LOGGER.error(e.getMessage(), e);
         }
-        return c;
+    }
+
+    public Connection getConnection() {
+        init();
+        Connection connection = null;
+        LOGGER.info("GET CONNECTION");
+        try {
+            Class.forName("org.postgresql.Driver");
+            connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
+        } catch (SQLException | ClassNotFoundException e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+        return connection;
     }
 }

@@ -9,8 +9,8 @@ import com.epam.filters.Filter;
 import com.epam.filters.SubscriptionSelectByCategoryFilter;
 import com.epam.model.subscription.Subscription;
 import com.epam.model.subscription.SubscriptionType;
+import com.epam.pool.ConnectionPool;
 import com.epam.util.ExceptionUtil;
-import com.epam.util.JDBCUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,7 +44,7 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
     @Override
     public void insert(Subscription subscription) {
         LOGGER.info("INSERT SUBSCRIPTION  {}", subscription.toString());
-        try (Connection connection = JDBCUtils.getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_SUBSCRIPTION_SQL)) {
             preparedStatement.setInt(1, subscription.getUser().getId());
             preparedStatement.setInt(2, subscription.getPeriodical().getId());
@@ -69,7 +69,7 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
     public Subscription select(int id) {
         LOGGER.info("SELECT FROM SUBSCRIPTION TYPE ID {}", id);
         Subscription subscription = new Subscription();
-        try (Connection connection = JDBCUtils.getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_SUBSCRIPTION_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
@@ -89,7 +89,7 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
     public List<Subscription> selectAll() {
         LOGGER.info("SELECT ALL FROM SUBSCRIPTIONS");
         List<Subscription> subscriptions = new CopyOnWriteArrayList<>();
-        try (Connection connection = JDBCUtils.getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_SUBSCRIPTIONS)) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
@@ -106,7 +106,7 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
     public boolean delete(int id) {
         LOGGER.info("DELETE SUBSCRIPTION TYPE WITH ID {}", id);
         boolean rowDeleted = false;
-        try (Connection connection = JDBCUtils.getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_SUBSCRIPTION_SQL)) {
             statement.setInt(1, id);
             rowDeleted = statement.executeUpdate() > 0;
@@ -124,7 +124,7 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
     public boolean update(Subscription subscription) {
         LOGGER.info("UPDATE SUBSCRIPTION {}", subscription.toString());
         boolean rowUpdated = false;
-        try (Connection connection = JDBCUtils.getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_SUBSCRIPTIONS_SQL)) {
             statement.setInt(1, subscription.getUser().getId());
             statement.setInt(2, subscription.getPeriodical().getId());
@@ -143,7 +143,7 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
     @Override
     public void clear() {
         LOGGER.info("DELETE ALL SUBSCRIPTIONS TABLE");
-        try (Connection connection = JDBCUtils.getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(CLEAR_TABLE_SUBSCRIPTION_SQL)) {
             statement.execute();
         } catch (SQLException e) {

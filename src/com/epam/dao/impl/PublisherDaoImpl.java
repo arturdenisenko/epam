@@ -3,8 +3,8 @@ package com.epam.dao.impl;
 import com.epam.dao.PublisherDao;
 import com.epam.exception.NotExistEntityException;
 import com.epam.model.periodical.Publisher;
+import com.epam.pool.ConnectionPool;
 import com.epam.util.ExceptionUtil;
-import com.epam.util.JDBCUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,7 +34,7 @@ public class PublisherDaoImpl implements PublisherDao {
     @Override
     public void insert(Publisher publisher) {
         LOGGER.info("INSERT PUBLISHER ID  {} NAME  {}", publisher.getId(), publisher.getName());
-        try (Connection connection = JDBCUtils.getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_PUBLISHER_SQL)) {
             preparedStatement.setString(1, publisher.getName());
             int affectedRows = preparedStatement.executeUpdate();
@@ -53,7 +53,7 @@ public class PublisherDaoImpl implements PublisherDao {
     public Publisher select(int id) {
         LOGGER.info("SELECT PUBLISHER WITH ID {}", id);
         Publisher publisher = null;
-        try (Connection connection = JDBCUtils.getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_PUBLISHER_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
@@ -79,7 +79,7 @@ public class PublisherDaoImpl implements PublisherDao {
     public List<Publisher> selectAll() {
         LOGGER.info("SELECT ALL PUBLISHERS");
         List<Publisher> publishers = new CopyOnWriteArrayList<>();
-        try (Connection connection = JDBCUtils.getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_PUBLISHERS)) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
@@ -97,7 +97,7 @@ public class PublisherDaoImpl implements PublisherDao {
     public boolean delete(int id) {
         LOGGER.info("DELETE PUBLISHER WITH ID = {} ", id);
         boolean rowDeleted = false;
-        try (Connection connection = JDBCUtils.getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_PUBLISHERS_SQL)) {
             statement.setInt(1, id);
             rowDeleted = statement.executeUpdate() > 0;
@@ -114,7 +114,7 @@ public class PublisherDaoImpl implements PublisherDao {
     public boolean update(Publisher publisher) {
         LOGGER.info("UPDATE PUBLISHER WITH ID  = {} NAME = {} ", publisher.getId(), publisher.getName());
         boolean rowUpdated = false;
-        try (Connection connection = JDBCUtils.getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_PUBLISHER_SQL)) {
             statement.setString(1, publisher.getName());
             statement.setInt(2, publisher.getId());
@@ -129,7 +129,7 @@ public class PublisherDaoImpl implements PublisherDao {
     @Override
     public void clear() {
         LOGGER.info("DELETE ALL PUBLISHERS");
-        try (Connection connection = JDBCUtils.getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(CLEAR_TABLE_PUBLISHER_SQL)) {
             statement.execute();
         } catch (SQLException e) {

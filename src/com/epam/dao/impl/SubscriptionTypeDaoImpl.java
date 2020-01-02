@@ -3,8 +3,8 @@ package com.epam.dao.impl;
 import com.epam.dao.SubscriptionTypeDao;
 import com.epam.exception.NotExistEntityException;
 import com.epam.model.subscription.SubscriptionType;
+import com.epam.pool.ConnectionPool;
 import com.epam.util.ExceptionUtil;
-import com.epam.util.JDBCUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,7 +34,7 @@ public class SubscriptionTypeDaoImpl implements SubscriptionTypeDao {
     @Override
     public void insert(SubscriptionType subscriptionType) {
         LOGGER.info("INSERT SUBSCRIPTION TYPE {} {} {}", subscriptionType.getId(), subscriptionType.getName(), subscriptionType.getDurationByMonth());
-        try (Connection connection = JDBCUtils.getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_SUBSCRIPTION_TYPE_CATEGORY_SQL)) {
             preparedStatement.setString(1, subscriptionType.getName());
             preparedStatement.setInt(2, subscriptionType.getDurationByMonth());
@@ -54,7 +54,7 @@ public class SubscriptionTypeDaoImpl implements SubscriptionTypeDao {
     public SubscriptionType select(int id) {
         LOGGER.info("SELECT FROM SUBSCRIPTION TYPE ID {}", id);
         SubscriptionType subscriptionType = null;
-        try (Connection connection = JDBCUtils.getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_SUBSCRIPTION_TYPE_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
@@ -76,7 +76,7 @@ public class SubscriptionTypeDaoImpl implements SubscriptionTypeDao {
     public List<SubscriptionType> selectAll() {
         LOGGER.info("SELECT ALL FROM SUBSCRIPTION TYPE");
         List<SubscriptionType> subscriptionTypes = new CopyOnWriteArrayList<>();
-        try (Connection connection = JDBCUtils.getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_SUBSCRIPTION_TYPES)) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
@@ -96,7 +96,7 @@ public class SubscriptionTypeDaoImpl implements SubscriptionTypeDao {
     public boolean delete(int id) {
         LOGGER.info("DELETE SUBSCRIPTION TYPE WITH ID {}", id);
         boolean rowDeleted = false;
-        try (Connection connection = JDBCUtils.getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_SUBSCRIPTION_TYPE_SQL)) {
             statement.setInt(1, id);
             rowDeleted = statement.executeUpdate() > 0;
@@ -114,7 +114,7 @@ public class SubscriptionTypeDaoImpl implements SubscriptionTypeDao {
     public boolean update(SubscriptionType subscriptionType) {
         LOGGER.info("UPDATE SUBSCRIPTION TYPE WITH ID {} AND NAME {}", subscriptionType.getId(), subscriptionType.getName());
         boolean rowUpdated = false;
-        try (Connection connection = JDBCUtils.getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_SUBSCRIPTION_TYPE_SQL)) {
             statement.setString(1, subscriptionType.getName());
             statement.setInt(2, subscriptionType.getDurationByMonth());
@@ -131,7 +131,7 @@ public class SubscriptionTypeDaoImpl implements SubscriptionTypeDao {
     @Override
     public void clear() {
         LOGGER.info("DELETE ALL SUBSCRIPTION TYPES  TABLE");
-        try (Connection connection = JDBCUtils.getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(CLEAR_TABLE_SUBSCRIPTION_TYPES_SQL)) {
             statement.execute();
         } catch (SQLException e) {
