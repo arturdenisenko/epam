@@ -127,10 +127,10 @@ public class SubscriptionTypeDaoImpl implements SubscriptionTypeDao {
         return rowUpdated;
     }
 
-    //clear all periodical categories, for tests only!
+    //clear all Subs types, for tests only!
     @Override
     public void clear() {
-        LOGGER.info("DELETE ALL CATEGORIES IN PERIODICAL CATEGORY TABLE");
+        LOGGER.info("DELETE ALL SUBSCRIPTION TYPES  TABLE");
         try (Connection connection = JDBCUtils.getConnection();
              PreparedStatement statement = connection.prepareStatement(CLEAR_TABLE_SUBSCRIPTION_TYPES_SQL)) {
             statement.execute();

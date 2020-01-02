@@ -1,6 +1,5 @@
 package com.epam.dao;
 
-import com.epam.dao.impl.PeriodicalCategoryDaoImpl;
 import com.epam.exception.ExistEntityException;
 import com.epam.exception.NotExistEntityException;
 import com.epam.model.periodical.PeriodicalCategory;
@@ -12,17 +11,11 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
+import static com.epam.TestData.*;
+
 public class PeriodicalCategoryDaoTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PeriodicalCategoryDaoTest.class);
-
-    public static final PeriodicalCategory PERIODICAL_CATEGORY = new PeriodicalCategory(45, "Политика");
-    public static final PeriodicalCategory PERIODICAL_CATEGORY1 = new PeriodicalCategory(46, "Спорт");
-    public static final PeriodicalCategory PERIODICAL_CATEGORY2 = new PeriodicalCategory(47, "Здоровье");
-    public static final PeriodicalCategory PERIODICAL_CATEGORY3 = new PeriodicalCategory(48, "Вне политики");
-
-    private static final PeriodicalCategoryDao PERIODICAL_CATEGORY_DAO = PeriodicalCategoryDaoImpl.getInstance();
-    private static List<PeriodicalCategory> periodicalCategoriesFromDatabase = PERIODICAL_CATEGORY_DAO.selectAll();
 
     @Before
     public void setUp() {

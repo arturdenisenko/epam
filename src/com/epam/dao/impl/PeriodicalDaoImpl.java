@@ -35,8 +35,8 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
             "where id = ?;";
     private static final String CLEAR_TABLE_PERIODICAL_SQL = "DELETE FROM periodicals";
 
-    PeriodicalCategoryDao periodicalCategoryDao = PeriodicalCategoryDaoImpl.getInstance();
-    PublisherDao publisherDao = PublisherDaoImpl.getInstance();
+    private PeriodicalCategoryDao periodicalCategoryDao = PeriodicalCategoryDaoImpl.getInstance();
+    private PublisherDao publisherDao = PublisherDaoImpl.getInstance();
 
     public PeriodicalDaoImpl() {
     }

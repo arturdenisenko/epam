@@ -11,7 +11,7 @@ public class SubscriptionSelectByCategoryFilter implements Filter<Subscription, 
     public List<Subscription> meetCriteria(List<Subscription> subscriptionList, SubscriptionType subscriptionType) {
         List<Subscription> subscriptions = new ArrayList<>();
         for (Subscription subscription : subscriptionList) {
-            if (subscription.getType() == subscriptionType) {
+            if (subscription.getType().equals(subscriptionType)) {
                 subscriptions.add(subscription);
             }
         }

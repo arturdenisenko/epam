@@ -1,6 +1,5 @@
 package com.epam.dao;
 
-import com.epam.dao.impl.SubscriptionTypeDaoImpl;
 import com.epam.model.subscription.SubscriptionType;
 import org.junit.Assert;
 import org.junit.Before;
@@ -8,20 +7,11 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
+import static com.epam.TestData.*;
 
 public class SubscriptionTypeDaoTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SubscriptionTypeDaoTest.class);
-
-    public static final SubscriptionType SUBSCRIPTION_TYPE = new SubscriptionType(45, "Месячная", 1, 1.0F);
-    public static final SubscriptionType SUBSCRIPTION_TYPE1 = new SubscriptionType(46, "Квартальная", 3, 3.0F);
-    public static final SubscriptionType SUBSCRIPTION_TYPE2 = new SubscriptionType(47, "Полугодие", 6, 6.0F);
-    public static final SubscriptionType SUBSCRIPTION_TYPE3 = new SubscriptionType(48, "Годовая", 12, 12.0F);
-
-    private static final SubscriptionTypeDao SUBSCRIPTION_TYPE_DAO = SubscriptionTypeDaoImpl.getInstance();
-    private static List<SubscriptionType> subscriptionTypesFromDatabase;
-
 
     @Before
     public void setUp() throws Exception {
@@ -74,5 +64,8 @@ public class SubscriptionTypeDaoTest {
 
     @Test
     public void clear() {
+        LOGGER.info("CLEAR ALL SUBSCRIPTION TYPE TESTING");
+        SUBSCRIPTION_TYPE_DAO.clear();
+        Assert.assertEquals(0, SUBSCRIPTION_TYPE_DAO.selectAll().size());
     }
 }

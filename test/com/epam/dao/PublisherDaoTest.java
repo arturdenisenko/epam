@@ -1,6 +1,5 @@
 package com.epam.dao;
 
-import com.epam.dao.impl.PublisherDaoImpl;
 import com.epam.exception.ExistEntityException;
 import com.epam.exception.NotExistEntityException;
 import com.epam.model.periodical.Publisher;
@@ -12,17 +11,11 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
+import static com.epam.TestData.*;
+
 public class PublisherDaoTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PublisherDaoTest.class);
-
-    public static final Publisher PUBLISHER = new Publisher(45, "ООО ИКАР");
-    public static final Publisher PUBLISHER_1 = new Publisher(46, "ОДО ЭЛЕГАНТ");
-    public static final Publisher PUBLISHER_2 = new Publisher(47, "ОАО НОВАЯ РУСЬ");
-    public static final Publisher PUBLISHER_3 = new Publisher(48, "publisher_4");
-
-    private static final PublisherDao PUBLISHER_DAO = PublisherDaoImpl.getInstance();
-    private static List<Publisher> PUBLISHER_LIST_FROM_DATABASE = PUBLISHER_DAO.selectAll();
 
     @Before
     public void setUp() {
@@ -31,7 +24,7 @@ public class PublisherDaoTest {
         PUBLISHER_DAO.insert(PUBLISHER);
         PUBLISHER_DAO.insert(PUBLISHER_1);
         PUBLISHER_DAO.insert(PUBLISHER_2);
-        PUBLISHER_LIST_FROM_DATABASE = PUBLISHER_DAO.selectAll();
+        publisherList = PUBLISHER_DAO.selectAll();
     }
 
     @Test
@@ -44,7 +37,7 @@ public class PublisherDaoTest {
     @Test
     public void select() {
         LOGGER.info("SELECT FROM DATABASE PUBLISHER TESTING");
-        Publisher publisherTest = PUBLISHER_DAO.select(PUBLISHER_LIST_FROM_DATABASE.get(0).getId());
+        Publisher publisherTest = PUBLISHER_DAO.select(publisherList.get(0).getId());
         Assert.assertEquals(publisherTest, PUBLISHER);
     }
 
@@ -60,14 +53,14 @@ public class PublisherDaoTest {
     @Test
     public void delete() {
         LOGGER.info("DELETE PUBLISHER TESTING");
-        Assert.assertTrue(PUBLISHER_DAO.delete(PUBLISHER_LIST_FROM_DATABASE.get(0).getId()));
+        Assert.assertTrue(PUBLISHER_DAO.delete(publisherList.get(0).getId()));
         Assert.assertEquals(2, PUBLISHER_DAO.selectAll().size());
     }
 
     @Test
     public void update() {
         LOGGER.info("UPDATE PUBLISHER TESTING");
-        Publisher publisherForUpdate = PUBLISHER_LIST_FROM_DATABASE.get(0);
+        Publisher publisherForUpdate = publisherList.get(0);
         publisherForUpdate.setName("TESTING UPDATE NAME");
         PUBLISHER_DAO.update(publisherForUpdate);
         Assert.assertEquals(publisherForUpdate.getName(), PUBLISHER_DAO.select(publisherForUpdate.getId()).getName());
@@ -76,7 +69,7 @@ public class PublisherDaoTest {
     @Test(expected = ExistEntityException.class)
     public void insertExisting() {
         LOGGER.info("INSERT EXISTING PUBLISHER TESTING");
-        PUBLISHER_DAO.insert(PUBLISHER_LIST_FROM_DATABASE.get(0));
+        PUBLISHER_DAO.insert(publisherList.get(0));
     }
 
     @Test(expected = NotExistEntityException.class)
