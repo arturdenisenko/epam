@@ -75,13 +75,13 @@ public class PublisherDaoTest {
     @Test(expected = NotExistEntityException.class)
     public void deleteNotExist() {
         LOGGER.info("DELETE NOT EXIST PUBLISHER TESTING");
-        PUBLISHER_DAO.delete(525235);
+        PUBLISHER_DAO.delete(525235L);
     }
 
     @Test(expected = NotExistEntityException.class)
     public void selectNotExist() {
         LOGGER.info("SELECT NOT EXIST PUBLISHER TESTING");
-        PUBLISHER_DAO.select(525235);
+        PUBLISHER_DAO.select(525235L);
     }
 
     @Test

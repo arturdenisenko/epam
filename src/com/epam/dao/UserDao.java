@@ -9,7 +9,7 @@ public interface UserDao {
 
     void insert(User user);
 
-    User select(int id);
+    User select(Long id);
 
     List<User> selectByName(String name);
 
@@ -19,7 +19,7 @@ public interface UserDao {
 
     List<User> selectAll();
 
-    boolean delete(int id);
+    boolean delete(Long id);
 
     boolean update(User user);
     //for test only

@@ -4,23 +4,23 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class SubscriptionType implements Serializable {
-    private int id;
+    private Long id;
     private String name;
     private int durationByMonth;
     private Float priceMultiplier;
 
-    public SubscriptionType(int id, String name, int durationByMonth, Float priceMultiplier) {
+    public SubscriptionType(Long id, String name, int durationByMonth, Float priceMultiplier) {
         this.id = id;
         this.name = name;
         this.durationByMonth = durationByMonth;
         this.priceMultiplier = priceMultiplier;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

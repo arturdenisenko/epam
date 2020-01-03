@@ -75,13 +75,13 @@ public class PeriodicalCategoryDaoTest {
     @Test(expected = NotExistEntityException.class)
     public void deleteNotExist() {
         LOGGER.info("DELETE NOT EXIST PERIODICAL CATEGORY TESTING");
-        PERIODICAL_CATEGORY_DAO.delete(525235);
+        PERIODICAL_CATEGORY_DAO.delete(525235L);
     }
 
     @Test(expected = NotExistEntityException.class)
     public void selectNotExist() {
         LOGGER.info("SELECT NOT EXIST PERIODICAL CATEGORY TESTING");
-        PERIODICAL_CATEGORY_DAO.select(525235);
+        PERIODICAL_CATEGORY_DAO.select(525235L);
     }
 
 

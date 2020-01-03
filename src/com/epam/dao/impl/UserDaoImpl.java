@@ -67,12 +67,12 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User select(int id) {
+    public User select(Long id) {
         LOGGER.info("SELECT USER WITH ID = {}", id);
         User user = null;
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_ID)) {
-            preparedStatement.setInt(1, id);
+            preparedStatement.setLong(1, id);
             ResultSet rs = preparedStatement.executeQuery();
             if (!rs.next()) {
                 throw new NotExistEntityException(id);
@@ -101,7 +101,7 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setString(1, email);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("id");
+                Long id = rs.getLong("id");
                 String firstName = rs.getString("first_name");
                 String lastName = rs.getString("last_name");
                 String password = rs.getString("password");
@@ -132,7 +132,7 @@ public class UserDaoImpl implements UserDao {
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USERS)) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("id");
+                Long id = rs.getLong("id");
                 String firstName = rs.getString("first_name");
                 String lastName = rs.getString("last_name");
                 String password = rs.getString("password");
@@ -168,7 +168,7 @@ public class UserDaoImpl implements UserDao {
             statement.setString(5, user.getAddress());
             statement.setString(6, user.getUserType().toString());
             statement.setBigDecimal(7, user.getBalance());
-            statement.setInt(8, user.getId());
+            statement.setLong(8, user.getId());
             rowUpdated = statement.executeUpdate() > 0;
             if (!rowUpdated) {
                 throw new NotExistEntityException(user.getId());
@@ -180,12 +180,12 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public boolean delete(int id) {
+    public boolean delete(Long id) {
         LOGGER.info("DELETE USER WITH ID = {} ", id);
         boolean rowDeleted = false;
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_USER_SQL)) {
-            statement.setInt(1, id);
+            statement.setLong(1, id);
             rowDeleted = statement.executeUpdate() > 0;
             if (!rowDeleted) {
                 LOGGER.warn("USER WITH ID {} ISN'T DELETED", id);

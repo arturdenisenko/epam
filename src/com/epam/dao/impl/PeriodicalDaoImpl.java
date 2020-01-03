@@ -52,8 +52,8 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_PERIODICAL_SQL)) {
             preparedStatement.setString(1, periodical.getName());
             preparedStatement.setString(2, periodical.getAbout());
-            preparedStatement.setInt(3, periodical.getPublisher().getId());
-            preparedStatement.setInt(4, periodical.getPeriodicalCategory().getId());
+            preparedStatement.setLong(3, periodical.getPublisher().getId());
+            preparedStatement.setLong(4, periodical.getPeriodicalCategory().getId());
             preparedStatement.setInt(5, periodical.getPeriodicityInSixMonth());
             preparedStatement.setInt(6, periodical.getMinSubscriptionPeriod());
             preparedStatement.setFloat(7, periodical.getCostPerMonth());
@@ -70,12 +70,12 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
     }
 
     @Override
-    public Periodical select(int id) {
+    public Periodical select(Long id) {
         LOGGER.info("SELECT PERIODICAL WITH ID = {}", id);
         Periodical periodical = null;
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_PERIODICAL_BY_ID)) {
-            preparedStatement.setInt(1, id);
+            preparedStatement.setLong(1, id);
             ResultSet rs = preparedStatement.executeQuery();
             if (!rs.next()) {
                 throw new NotExistEntityException(id);
@@ -84,8 +84,8 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
                 periodical.setId(id);
                 periodical.setName(rs.getString("name"));
                 periodical.setAbout(rs.getString("about"));
-                periodical.setPublisher(publisherDao.select(rs.getInt("publisher_fk")));
-                periodical.setPeriodicalCategory(periodicalCategoryDao.select(rs.getInt("periodical_category")));
+                periodical.setPublisher(publisherDao.select(rs.getLong("publisher_fk")));
+                periodical.setPeriodicalCategory(periodicalCategoryDao.select(rs.getLong("periodical_category")));
                 periodical.setPeriodicityInSixMonth(rs.getInt("periodicity_in_six_month"));
                 periodical.setMinSubscriptionPeriod(rs.getInt("min_subscription_period"));
                 periodical.setCostPerMonth(rs.getBigDecimal("cost_per_month").floatValue());
@@ -113,11 +113,11 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 Periodical periodical = new Periodical();
-                periodical.setId(rs.getInt("id"));
+                periodical.setId(rs.getLong("id"));
                 periodical.setName(rs.getString("name"));
                 periodical.setAbout(rs.getString("about"));
-                periodical.setPublisher(publisherDao.select(rs.getInt("publisher_fk")));
-                periodical.setPeriodicalCategory(periodicalCategoryDao.select(rs.getInt("periodical_category")));
+                periodical.setPublisher(publisherDao.select(rs.getLong("publisher_fk")));
+                periodical.setPeriodicalCategory(periodicalCategoryDao.select(rs.getLong("periodical_category")));
                 periodical.setPeriodicityInSixMonth(rs.getInt("periodicity_in_six_month"));
                 periodical.setMinSubscriptionPeriod(rs.getInt("min_subscription_period"));
                 periodical.setCostPerMonth(rs.getBigDecimal("cost_per_month").floatValue());
@@ -130,12 +130,12 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
     }
 
     @Override
-    public boolean delete(int id) {
+    public boolean delete(Long id) {
         LOGGER.info("DELETE PERIODICAL WITH ID = {} ", id);
         boolean rowDeleted = false;
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_PERIODICAL_SQL)) {
-            statement.setInt(1, id);
+            statement.setLong(1, id);
             rowDeleted = statement.executeUpdate() > 0;
             if (!rowDeleted) {
                 LOGGER.warn("PERIODICAL WITH ID {} ISN'T DELETED", id);
@@ -155,12 +155,12 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
              PreparedStatement statement = connection.prepareStatement(UPDATE_PERIODICAL_SQL)) {
             statement.setString(1, periodical.getName());
             statement.setString(2, periodical.getAbout());
-            statement.setInt(3, periodical.getPublisher().getId());
-            statement.setInt(4, periodical.getPeriodicalCategory().getId());
+            statement.setLong(3, periodical.getPublisher().getId());
+            statement.setLong(4, periodical.getPeriodicalCategory().getId());
             statement.setInt(5, periodical.getPeriodicityInSixMonth());
             statement.setInt(6, periodical.getMinSubscriptionPeriod());
             statement.setFloat(7, periodical.getCostPerMonth());
-            statement.setInt(8, periodical.getId());
+            statement.setLong(8, periodical.getId());
             rowUpdated = statement.executeUpdate() > 0;
             if (!rowUpdated) {
                 throw new NotExistEntityException(periodical.getId());

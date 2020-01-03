@@ -8,11 +8,11 @@ public interface SubscriptionTypeDao {
 
     void insert(SubscriptionType subscriptionType);
 
-    SubscriptionType select(int id);
+    SubscriptionType select(Long id);
 
     List<SubscriptionType> selectAll();
 
-    boolean delete(int id);
+    boolean delete(Long id);
 
     boolean update(SubscriptionType subscriptionType);
 

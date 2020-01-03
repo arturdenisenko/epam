@@ -11,9 +11,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-public class ConnectionPool {
-
-
+public class ConnectionPool implements ConnectionBuilder {
     private final static Logger LOGGER = LoggerFactory.getLogger(ConnectionPool.class);
 
     private static ConnectionPool instance = null;

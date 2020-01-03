@@ -51,12 +51,12 @@ public class SubscriptionTypeDaoImpl implements SubscriptionTypeDao {
     }
 
     @Override
-    public SubscriptionType select(int id) {
+    public SubscriptionType select(Long id) {
         LOGGER.info("SELECT FROM SUBSCRIPTION TYPE ID {}", id);
         SubscriptionType subscriptionType = null;
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_SUBSCRIPTION_TYPE_BY_ID)) {
-            preparedStatement.setInt(1, id);
+            preparedStatement.setLong(1, id);
             ResultSet rs = preparedStatement.executeQuery();
             if (!rs.next()) {
                 throw new NotExistEntityException(id);
@@ -80,7 +80,7 @@ public class SubscriptionTypeDaoImpl implements SubscriptionTypeDao {
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_SUBSCRIPTION_TYPES)) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("id");
+                Long id = rs.getLong("id");
                 String name = rs.getString("name");
                 int durationByMonth = rs.getInt("duration_by_month");
                 Float priceMultiplier = rs.getFloat("price_multiplier");
@@ -93,12 +93,12 @@ public class SubscriptionTypeDaoImpl implements SubscriptionTypeDao {
     }
 
     @Override
-    public boolean delete(int id) {
+    public boolean delete(Long id) {
         LOGGER.info("DELETE SUBSCRIPTION TYPE WITH ID {}", id);
         boolean rowDeleted = false;
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_SUBSCRIPTION_TYPE_SQL)) {
-            statement.setInt(1, id);
+            statement.setLong(1, id);
             rowDeleted = statement.executeUpdate() > 0;
             if (!rowDeleted) {
                 LOGGER.warn("SUBSCRIPTION TYPE WITH ID {} ISN'T DELETED", id);
@@ -119,7 +119,7 @@ public class SubscriptionTypeDaoImpl implements SubscriptionTypeDao {
             statement.setString(1, subscriptionType.getName());
             statement.setInt(2, subscriptionType.getDurationByMonth());
             statement.setFloat(3, subscriptionType.getPriceMultiplier());
-            statement.setInt(4, subscriptionType.getId());
+            statement.setLong(4, subscriptionType.getId());
             rowUpdated = statement.executeUpdate() > 0;
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);

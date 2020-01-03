@@ -1,13 +1,14 @@
-package com.epam.dao;
+package com.epam.service;
 
 import com.epam.model.periodical.Publisher;
 
 import java.util.List;
 
-public interface PublisherDao {
-
+public interface PublisherService {
+    //This method insert Publisher
     void insert(Publisher publisher);
 
+    //This method select Publisher by ID
     Publisher select(Long id);
 
     List<Publisher> selectAll();
@@ -15,9 +16,4 @@ public interface PublisherDao {
     boolean delete(Long id);
 
     boolean update(Publisher publisher);
-
-    //clear all publishers for test only
-    void clear();
-
 }
-

@@ -77,46 +77,46 @@ public class TestData {
         userList = USER_DAO.selectAll();
         subscriptionListFromDatabase = SUBSCRIPTION_DAO.selectAll();
 
-        USER = new User(1201, "Serghei", "Ivanov", "ivanov_s@gmail.com", "ivanov", UserType.MANAGER, "Gagarina street", new BigDecimal(200));
-        USER1 = new User(1202, "Ivan", "Kabanov", "kabanov_a@gmail.com", "kabanov", UserType.USER, "Lenina street", new BigDecimal(200));
-        USER2 = new User(1203, "Петров", "Дмитрий", "petrov_d@gmail.com", "petrov", UserType.ADMIN, "Gagarina street", new BigDecimal(200));
-        USER3 = new User(1204, "Test", "Test", "test@gmail.com", "test", UserType.USER, "Gagarina street", new BigDecimal(200));
+        USER = new User((long) 1201, "Serghei", "Ivanov", "ivanov_s@gmail.com", "ivanov", UserType.MANAGER, "Gagarina street", new BigDecimal(200));
+        USER1 = new User((long) 1202, "Ivan", "Kabanov", "kabanov_a@gmail.com", "kabanov", UserType.USER, "Lenina street", new BigDecimal(200));
+        USER2 = new User((long) 1203, "Петров", "Дмитрий", "petrov_d@gmail.com", "petrov", UserType.ADMIN, "Gagarina street", new BigDecimal(200));
+        USER3 = new User((long) 1204, "Test", "Test", "test@gmail.com", "test", UserType.USER, "Gagarina street", new BigDecimal(200));
 
-        SUBSCRIPTION_TYPE = new SubscriptionType(162, "Месячная", 1, 1.0F);
-        SUBSCRIPTION_TYPE1 = new SubscriptionType(163, "Квартальная", 3, 3.0F);
-        SUBSCRIPTION_TYPE2 = new SubscriptionType(164, "Полугодие", 6, 6.0F);
-        SUBSCRIPTION_TYPE3 = new SubscriptionType(165, "Годовая", 12, 12.0F);
+        SUBSCRIPTION_TYPE = new SubscriptionType((long) 162, "Месячная", 1, 1.0F);
+        SUBSCRIPTION_TYPE1 = new SubscriptionType((long) 163, "Квартальная", 3, 3.0F);
+        SUBSCRIPTION_TYPE2 = new SubscriptionType((long) 164, "Полугодие", 6, 6.0F);
+        SUBSCRIPTION_TYPE3 = new SubscriptionType((long) 165, "Годовая", 12, 12.0F);
 
-        PERIODICAL_CATEGORY = new PeriodicalCategory(548, "Политика");
-        PERIODICAL_CATEGORY1 = new PeriodicalCategory(549, "Спорт");
-        PERIODICAL_CATEGORY2 = new PeriodicalCategory(550, "Здоровье");
-        PERIODICAL_CATEGORY3 = new PeriodicalCategory(551, "Вне политики");
+        PERIODICAL_CATEGORY = new PeriodicalCategory((long) 548, "Политика");
+        PERIODICAL_CATEGORY1 = new PeriodicalCategory((long) 549, "Спорт");
+        PERIODICAL_CATEGORY2 = new PeriodicalCategory((long) 550, "Здоровье");
+        PERIODICAL_CATEGORY3 = new PeriodicalCategory((long) 551, "Вне политики");
 
-        PUBLISHER = new Publisher(1573, "ООО ИКАР");
-        PUBLISHER_1 = new Publisher(1574, "ОДО ЭЛЕГАНТ");
-        PUBLISHER_2 = new Publisher(1575, "ОАО НОВАЯ РУСЬ");
-        PUBLISHER_3 = new Publisher(1576, "publisher_4");
+        PUBLISHER = new Publisher((long) 1573, "ООО ИКАР");
+        PUBLISHER_1 = new Publisher((long) 1574, "ОДО ЭЛЕГАНТ");
+        PUBLISHER_2 = new Publisher((long) 1575, "ОАО НОВАЯ РУСЬ");
+        PUBLISHER_3 = new Publisher((long) 1576, "publisher_4");
 
         PERIODICAL =
-                new Periodical(345, "Народная газета", "Иллюстрированный еженедельник о современной жизни. " +
+                new Periodical((long) 345, "Народная газета", "Иллюстрированный еженедельник о современной жизни. " +
                         "Подробная информация об образовании, здоровье, зарплатах, пенсиях, кредитах, строительстве жилья и т.д. ",
                         PUBLISHER, PERIODICAL_CATEGORY, 26, 1, 7.90F);
         PERIODICAL1 =
-                new Periodical(346, "Сельская газета", "Общеполитическая газета для молодежи. Выход- четверг. События в стране и мире, " +
+                new Periodical((long) 346, "Сельская газета", "Общеполитическая газета для молодежи. Выход- четверг. События в стране и мире, " +
                         "образование и трудоустройство, здоровье и красота, досуг, спорт, театр, кино, звезды ТВ и шоу-бизнеса. ",
                         PUBLISHER_1, PERIODICAL_CATEGORY1, 26, 1, 4.51F);
         PERIODICAL2 =
-                new Periodical(347, "Журнал планета", "Каждый месяц мы рассказываем об актуальных общественно- " +
+                new Periodical((long) 347, "Журнал планета", "Каждый месяц мы рассказываем об актуальных общественно- " +
                         "политических событиях, знакомим с традициями и культурой стран мира. На страницах журнала вы узнаете  " +
                         "больше о тайнах нашей планеты. С нами вы всегда будете в курсе всего нового и интересного.\n",
                         PUBLISHER_2, PERIODICAL_CATEGORY2, 1, 3, (float) 4.21);
         PERIODICAL3 =
-                new Periodical(347, "Тестовый журнал", "Журнал для теста",
+                new Periodical((long) 347, "Тестовый журнал", "Журнал для теста",
                         PUBLISHER_3, PERIODICAL_CATEGORY3, 1, 1, 16.22F);
 
-        SUBSCRIPTION = new Subscription(45, USER, PERIODICAL, SUBSCRIPTION_TYPE, LocalDate.of(2020, 01, 01), LocalDate.of(2020, 03, 01), 30F);
-        SUBSCRIPTION1 = new Subscription(46, USER1, PERIODICAL1, SUBSCRIPTION_TYPE1, LocalDate.of(2020, 01, 01), LocalDate.of(2020, 03, 01), 30F);
-        SUBSCRIPTION2 = new Subscription(47, USER2, PERIODICAL2, SUBSCRIPTION_TYPE2, LocalDate.of(2020, 01, 01), LocalDate.of(2020, 03, 01), 30F);
-        SUBSCRIPTION3 = new Subscription(48, USER3, PERIODICAL3, SUBSCRIPTION_TYPE3, LocalDate.of(2020, 01, 01), LocalDate.of(2020, 03, 01), 30F);
+        SUBSCRIPTION = new Subscription((long) 45, USER, PERIODICAL, SUBSCRIPTION_TYPE, LocalDate.of(2020, 01, 01), LocalDate.of(2020, 03, 01), 30F);
+        SUBSCRIPTION1 = new Subscription((long) 46, USER1, PERIODICAL1, SUBSCRIPTION_TYPE1, LocalDate.of(2020, 01, 01), LocalDate.of(2020, 03, 01), 30F);
+        SUBSCRIPTION2 = new Subscription((long) 47, USER2, PERIODICAL2, SUBSCRIPTION_TYPE2, LocalDate.of(2020, 01, 01), LocalDate.of(2020, 03, 01), 30F);
+        SUBSCRIPTION3 = new Subscription((long) 48, USER3, PERIODICAL3, SUBSCRIPTION_TYPE3, LocalDate.of(2020, 01, 01), LocalDate.of(2020, 03, 01), 30F);
     }
 }

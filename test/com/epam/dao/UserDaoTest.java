@@ -98,7 +98,7 @@ public class UserDaoTest {
     @Test(expected = NotExistEntityException.class)
     public void selectNotExist() {
         LOGGER.info("SELECT NOT EXISTING USER TESTING");
-        USER_DAO.select(525235);
+        USER_DAO.select(525235L);
     }
 
     @Test(expected = ExistEntityException.class)
@@ -110,7 +110,7 @@ public class UserDaoTest {
     @Test(expected = NotExistEntityException.class)
     public void deleteNotExist() {
         LOGGER.info("DELETE NOT EXISTING USER TESTING");
-        USER_DAO.delete(525235);
+        USER_DAO.delete(525235L);
     }
 
 

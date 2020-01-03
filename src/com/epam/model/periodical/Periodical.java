@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class Periodical implements Serializable {
 
-    private int id;
+    private Long id;
     private String name;
     private String about;
     private Publisher publisher;//издатель
@@ -18,7 +18,7 @@ public class Periodical implements Serializable {
     public Periodical() {
     }
 
-    public Periodical(int id, String name, String about, Publisher publisher, PeriodicalCategory periodicalCategory, int periodicityInSixMonth, int minSubscriptionPeriod, Float costPerMonth) {
+    public Periodical(Long id, String name, String about, Publisher publisher, PeriodicalCategory periodicalCategory, int periodicityInSixMonth, int minSubscriptionPeriod, Float costPerMonth) {
         this.id = id;
         this.name = name;
         this.about = about;
@@ -29,11 +29,11 @@ public class Periodical implements Serializable {
         this.costPerMonth = costPerMonth;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

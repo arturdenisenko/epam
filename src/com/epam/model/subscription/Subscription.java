@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class Subscription implements Serializable {
-    private int id;
+    private Long id;
     private User user;
     private Periodical periodical;
     private LocalDate startDate;
@@ -19,7 +19,7 @@ public class Subscription implements Serializable {
     public Subscription() {
     }
 
-    public Subscription(int id, User user, Periodical periodical, SubscriptionType type, LocalDate startDate, LocalDate endDate, Float cost) {
+    public Subscription(Long id, User user, Periodical periodical, SubscriptionType type, LocalDate startDate, LocalDate endDate, Float cost) {
         this.id = id;
         this.user = user;
         this.periodical = periodical;
@@ -29,11 +29,11 @@ public class Subscription implements Serializable {
         this.cost = cost;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -50,12 +50,12 @@ public class PublisherDaoImpl implements PublisherDao {
     }
 
     @Override
-    public Publisher select(int id) {
+    public Publisher select(Long id) {
         LOGGER.info("SELECT PUBLISHER WITH ID {}", id);
         Publisher publisher = null;
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_PUBLISHER_BY_ID)) {
-            preparedStatement.setInt(1, id);
+            preparedStatement.setLong(1, id);
             ResultSet rs = preparedStatement.executeQuery();
             if (!rs.next()) {
                 LOGGER.warn("THE PUBLISHER WITH ID {} ISN'T EXISTS", id);
@@ -83,7 +83,7 @@ public class PublisherDaoImpl implements PublisherDao {
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_PUBLISHERS)) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("id");
+                Long id = rs.getLong("id");
                 String name = rs.getString("name");
                 publishers.add(new Publisher(id, name));
             }
@@ -94,12 +94,12 @@ public class PublisherDaoImpl implements PublisherDao {
     }
 
     @Override
-    public boolean delete(int id) {
+    public boolean delete(Long id) {
         LOGGER.info("DELETE PUBLISHER WITH ID = {} ", id);
         boolean rowDeleted = false;
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_PUBLISHERS_SQL)) {
-            statement.setInt(1, id);
+            statement.setLong(1, id);
             rowDeleted = statement.executeUpdate() > 0;
             if (!rowDeleted) {
                 throw new NotExistEntityException(id);
@@ -117,7 +117,7 @@ public class PublisherDaoImpl implements PublisherDao {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_PUBLISHER_SQL)) {
             statement.setString(1, publisher.getName());
-            statement.setInt(2, publisher.getId());
+            statement.setLong(2, publisher.getId());
             rowUpdated = statement.executeUpdate() > 0;
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);

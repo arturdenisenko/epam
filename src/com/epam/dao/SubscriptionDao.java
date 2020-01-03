@@ -10,13 +10,13 @@ public interface SubscriptionDao {
 
     void insert(Subscription subscription);
 
-    Subscription select(int id);
+    Subscription select(Long id);
 
     List<Subscription> selectAll();
 
     List<Subscription> selectBySubscriptionCategory(SubscriptionType subscriptionType);
 
-    boolean delete(int id);
+    boolean delete(Long id);
 
     boolean update(Subscription subscription);
 

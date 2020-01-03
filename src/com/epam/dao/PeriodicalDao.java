@@ -8,14 +8,14 @@ public interface PeriodicalDao {
 
     void insert(Periodical periodical);
 
-    Periodical select(int id);
+    Periodical select(Long id);
 
     List<Periodical> selectByName(String name);
 
 
     List<Periodical> selectAll();
 
-    boolean delete(int id);
+    boolean delete(Long id);
 
     boolean update(Periodical periodical);
 

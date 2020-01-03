@@ -4,19 +4,19 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class PeriodicalCategory implements Serializable {
-    private int id;
+    private Long id;
     private String name;
 
-    public PeriodicalCategory(int id, String name) {
+    public PeriodicalCategory(Long id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

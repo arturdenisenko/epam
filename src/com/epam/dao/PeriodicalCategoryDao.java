@@ -7,11 +7,11 @@ import java.util.List;
 public interface PeriodicalCategoryDao {
     void insert(PeriodicalCategory periodicalCategory);
 
-    PeriodicalCategory select(int id);
+    PeriodicalCategory select(Long id);
 
     List<PeriodicalCategory> selectAll();
 
-    boolean delete(int id);
+    boolean delete(Long id);
 
     boolean update(PeriodicalCategory periodicalCategory);
 

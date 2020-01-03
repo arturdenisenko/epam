@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context>
-       <Resource name="jdbc/ConnectionPool"
+       <Resource name="jdbc/periodicalsRes"
                  auth="Container"
                  type="javax.sql.DataSource"
                  username="admin"

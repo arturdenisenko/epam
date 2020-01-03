@@ -46,12 +46,7 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
         LOGGER.info("INSERT SUBSCRIPTION  {}", subscription.toString());
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_SUBSCRIPTION_SQL)) {
-            preparedStatement.setInt(1, subscription.getUser().getId());
-            preparedStatement.setInt(2, subscription.getPeriodical().getId());
-            preparedStatement.setDate(3, Date.valueOf(subscription.getStartDate()));
-            preparedStatement.setDate(4, Date.valueOf(subscription.getEndDate()));
-            preparedStatement.setFloat(5, subscription.getCost());
-            preparedStatement.setInt(6, subscription.getType().getId());
+            InsertUpdate(subscription, preparedStatement);
             System.out.println(preparedStatement);
             int affectedRows = preparedStatement.executeUpdate();
             if (affectedRows == 0) {
@@ -65,13 +60,22 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
         }
     }
 
+    private void InsertUpdate(Subscription subscription, PreparedStatement preparedStatement) throws SQLException {
+        preparedStatement.setLong(1, subscription.getUser().getId());
+        preparedStatement.setLong(2, subscription.getPeriodical().getId());
+        preparedStatement.setDate(3, Date.valueOf(subscription.getStartDate()));
+        preparedStatement.setDate(4, Date.valueOf(subscription.getEndDate()));
+        preparedStatement.setFloat(5, subscription.getCost());
+        preparedStatement.setLong(6, subscription.getType().getId());
+    }
+
     @Override
-    public Subscription select(int id) {
+    public Subscription select(Long id) {
         LOGGER.info("SELECT FROM SUBSCRIPTION TYPE ID {}", id);
         Subscription subscription = new Subscription();
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_SUBSCRIPTION_BY_ID)) {
-            preparedStatement.setInt(1, id);
+            preparedStatement.setLong(1, id);
             ResultSet rs = preparedStatement.executeQuery();
             if (!rs.next()) {
                 LOGGER.warn("SUBSCRIPTION WITH ID {} ISN'T EXISTS", id);
@@ -103,12 +107,12 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
     }
 
     @Override
-    public boolean delete(int id) {
+    public boolean delete(Long id) {
         LOGGER.info("DELETE SUBSCRIPTION TYPE WITH ID {}", id);
         boolean rowDeleted = false;
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_SUBSCRIPTION_SQL)) {
-            statement.setInt(1, id);
+            statement.setLong(1, id);
             rowDeleted = statement.executeUpdate() > 0;
             if (!rowDeleted) {
                 LOGGER.warn("SUBSCRIPTION WITH ID {} ISN'T DELETED", id);
@@ -126,13 +130,8 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
         boolean rowUpdated = false;
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_SUBSCRIPTIONS_SQL)) {
-            statement.setInt(1, subscription.getUser().getId());
-            statement.setInt(2, subscription.getPeriodical().getId());
-            statement.setDate(3, Date.valueOf(subscription.getStartDate()));
-            statement.setDate(4, Date.valueOf(subscription.getEndDate()));
-            statement.setFloat(5, subscription.getCost());
-            statement.setInt(6, subscription.getType().getId());
-            statement.setInt(7, subscription.getId());
+            InsertUpdate(subscription, statement);
+            statement.setLong(7, subscription.getId());
             rowUpdated = statement.executeUpdate() > 0;
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
@@ -156,13 +155,13 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
         LOGGER.info("SUBSCRIPTION INITIALIZE");
         Subscription subscription = new Subscription();
         try {
-            subscription.setId(rs.getInt("id"));
-            subscription.setUser(userDao.select(rs.getInt("user_id")));
-            subscription.setPeriodical(periodicalDao.select(rs.getInt("periodical_id")));
+            subscription.setId(rs.getLong("id"));
+            subscription.setUser(userDao.select(rs.getLong("user_id")));
+            subscription.setPeriodical(periodicalDao.select(rs.getLong("periodical_id")));
             subscription.setStartDate(rs.getDate("start_date").toLocalDate());
             subscription.setEndDate(rs.getDate("end_date").toLocalDate());
             subscription.setCost(rs.getFloat("cost"));
-            subscription.setType(subscriptionTypeDao.select(rs.getInt("subscription_type_id")));
+            subscription.setType(subscriptionTypeDao.select(rs.getLong("subscription_type_id")));
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
         }

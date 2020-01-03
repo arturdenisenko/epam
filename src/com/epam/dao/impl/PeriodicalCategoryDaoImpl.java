@@ -48,12 +48,12 @@ public class PeriodicalCategoryDaoImpl implements PeriodicalCategoryDao {
     }
 
     @Override
-    public PeriodicalCategory select(int id) {
+    public PeriodicalCategory select(Long id) {
         LOGGER.info("SELECT FROM PERIODICAL CATEGORY ID {}", id);
         PeriodicalCategory periodicalCategory = null;
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_PERIODICAL_CATEGORY_BY_ID)) {
-            preparedStatement.setInt(1, id);
+            preparedStatement.setLong(1, id);
             ResultSet rs = preparedStatement.executeQuery();
             if (!rs.next()) {
                 throw new NotExistEntityException(id);
@@ -79,7 +79,7 @@ public class PeriodicalCategoryDaoImpl implements PeriodicalCategoryDao {
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_PERIODICAL_CATEGORY)) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("id");
+                Long id = rs.getLong("id");
                 String name = rs.getString("name");
                 periodicalCategories.add(new PeriodicalCategory(id, name));
             }
@@ -90,12 +90,12 @@ public class PeriodicalCategoryDaoImpl implements PeriodicalCategoryDao {
     }
 
     @Override
-    public boolean delete(int id) {
+    public boolean delete(Long id) {
         LOGGER.info("DELETE PERIODICAL CATEGORY WITH ID {}", id);
         boolean rowDeleted = false;
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_PERIODICAL_CATEGORY_SQL)) {
-            statement.setInt(1, id);
+            statement.setLong(1, id);
             rowDeleted = statement.executeUpdate() > 0;
             if (!rowDeleted) {
                 LOGGER.warn("PERIODICAL WITH ID {} ISN'T DELETED", id);
@@ -114,7 +114,7 @@ public class PeriodicalCategoryDaoImpl implements PeriodicalCategoryDao {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_PERIODICAL_CATEGORY_SQL)) {
             statement.setString(1, periodicalCategory.getName());
-            statement.setInt(2, periodicalCategory.getId());
+            statement.setLong(2, periodicalCategory.getId());
             rowUpdated = statement.executeUpdate() > 0;
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
