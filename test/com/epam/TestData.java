@@ -100,19 +100,19 @@ public class TestData {
         PERIODICAL =
                 new Periodical((long) 345, "Народная газета", "Иллюстрированный еженедельник о современной жизни. " +
                         "Подробная информация об образовании, здоровье, зарплатах, пенсиях, кредитах, строительстве жилья и т.д. ",
-                        PUBLISHER, PERIODICAL_CATEGORY, 26, 1, 7.90F);
+                        PUBLISHER, PERIODICAL_CATEGORY, 26, 1, 7.90F, true);
         PERIODICAL1 =
                 new Periodical((long) 346, "Сельская газета", "Общеполитическая газета для молодежи. Выход- четверг. События в стране и мире, " +
                         "образование и трудоустройство, здоровье и красота, досуг, спорт, театр, кино, звезды ТВ и шоу-бизнеса. ",
-                        PUBLISHER_1, PERIODICAL_CATEGORY1, 26, 1, 4.51F);
+                        PUBLISHER_1, PERIODICAL_CATEGORY1, 26, 1, 4.51F, true);
         PERIODICAL2 =
                 new Periodical((long) 347, "Журнал планета", "Каждый месяц мы рассказываем об актуальных общественно- " +
                         "политических событиях, знакомим с традициями и культурой стран мира. На страницах журнала вы узнаете  " +
                         "больше о тайнах нашей планеты. С нами вы всегда будете в курсе всего нового и интересного.\n",
-                        PUBLISHER_2, PERIODICAL_CATEGORY2, 1, 3, (float) 4.21);
+                        PUBLISHER_2, PERIODICAL_CATEGORY2, 1, 3, (float) 4.21, true);
         PERIODICAL3 =
                 new Periodical((long) 347, "Тестовый журнал", "Журнал для теста",
-                        PUBLISHER_3, PERIODICAL_CATEGORY3, 1, 1, 16.22F);
+                        PUBLISHER_3, PERIODICAL_CATEGORY3, 1, 1, 16.22F, true);
 
         SUBSCRIPTION = new Subscription((long) 45, USER, PERIODICAL, SUBSCRIPTION_TYPE, LocalDate.of(2020, 01, 01), LocalDate.of(2020, 03, 01), 30F);
         SUBSCRIPTION1 = new Subscription((long) 46, USER1, PERIODICAL1, SUBSCRIPTION_TYPE1, LocalDate.of(2020, 01, 01), LocalDate.of(2020, 03, 01), 30F);

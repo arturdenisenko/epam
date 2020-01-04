@@ -1,7 +1,15 @@
-<jsp:include page="fragments/header.jsp"/>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
+<html>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css"/>
+<link rel="icon" href="${pageContext.request.contextPath}/periodicals.ico" type="image/x-icon"/>
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/periodicals.ico">
+
+<head>
+    <title>Каталог печатных изданий РБ</title>
+</head>
+<body>
 <div class="mainContainer">
-    <p class="login"><a href="user/login.html">Вход</a></p>
+    <p class="login"><a href="WEB-INF/jsp/login.jsp">Вход</a></p>
     <hr>
     <a href="index.jsp"> <img alt="Belpost logo" src="${pageContext.request.contextPath}/images/belpost-logo.png"/></a>
     <h2>Каталог печатных изданий</h2>
@@ -25,4 +33,5 @@
     <br>
     Спорт
 </div>
-<jsp:include page="fragments/footer.jsp">
+</body>
+</html>

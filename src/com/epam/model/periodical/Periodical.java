@@ -18,7 +18,7 @@ public class Periodical implements Serializable {
     public Periodical() {
     }
 
-    public Periodical(Long id, String name, String about, Publisher publisher, PeriodicalCategory periodicalCategory, int periodicityInSixMonth, int minSubscriptionPeriod, Float costPerMonth) {
+    public Periodical(Long id, String name, String about, Publisher publisher, PeriodicalCategory periodicalCategory, int periodicityInSixMonth, int minSubscriptionPeriod, Float costPerMonth, boolean active) {
         this.id = id;
         this.name = name;
         this.about = about;
@@ -27,6 +27,7 @@ public class Periodical implements Serializable {
         this.periodicityInSixMonth = periodicityInSixMonth;
         this.minSubscriptionPeriod = minSubscriptionPeriod;
         this.costPerMonth = costPerMonth;
+        this.active = active;
     }
 
     public Long getId() {

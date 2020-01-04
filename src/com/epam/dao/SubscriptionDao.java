@@ -6,7 +6,6 @@ import com.epam.model.subscription.SubscriptionType;
 import java.util.List;
 
 public interface SubscriptionDao {
-    //TODO Написать ДАО, и тесты
 
     void insert(Subscription subscription);
 

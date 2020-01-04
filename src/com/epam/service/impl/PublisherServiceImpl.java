@@ -1,6 +1,7 @@
 package com.epam.service.impl;
 
 import com.epam.dao.PublisherDao;
+import com.epam.dao.impl.PublisherDaoImpl;
 import com.epam.model.periodical.Publisher;
 import com.epam.service.PublisherService;
 import org.slf4j.Logger;
@@ -14,8 +15,8 @@ public class PublisherServiceImpl implements PublisherService {
     private PublisherDao publisherDao;
 
     public PublisherServiceImpl(PublisherDao publisherDao) {
-        LOGGER.info("Initializing PublisherServiceImpl");
-        this.publisherDao = publisherDao;
+        LOGGER.info("INITIALIZING PUBLISHER SERVICE IMPL");
+        this.publisherDao = new PublisherDaoImpl();
     }
 
     @Override
@@ -39,20 +40,16 @@ public class PublisherServiceImpl implements PublisherService {
 
     @Override
     public boolean delete(Long id) {
-        LOGGER.info("Deleting publisher by id " + id);
-
+        LOGGER.info("DELETE PUBLISHER WITH ID {} ", id);
         return id != null && publisherDao.delete(id);
     }
 
     @Override
     public boolean update(Publisher publisher) {
-        LOGGER.info("Updating publisher by id " + publisher.getId());
-
+        LOGGER.info("UPDATE PUBLISHER WITH ID {}", publisher.getId());
         if (publisher == null) {
             return false;
         }
-
         return publisherDao.update(publisher);
-
     }
 }

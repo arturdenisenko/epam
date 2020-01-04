@@ -1,10 +1,10 @@
-package com.epam.dao;
+package com.epam.service;
 
 import com.epam.model.periodical.PeriodicalCategory;
 
 import java.util.List;
 
-public interface PeriodicalCategoryDao {
+public interface PeriodicalCategoryService {
 
     void insert(PeriodicalCategory periodicalCategory);
 
@@ -16,6 +16,4 @@ public interface PeriodicalCategoryDao {
 
     boolean update(PeriodicalCategory periodicalCategory);
 
-    //clear all publishers for test only
-    void clear();
 }
