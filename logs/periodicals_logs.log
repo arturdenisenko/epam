@@ -1767,3 +1767,216 @@
 2020-01-04 18:27 [ INFO]       SubscriptionDaoImpl:    94 - SELECT ALL FROM SUBSCRIPTIONS
 2020-01-04 18:27 [ INFO]            ConnectionPool:    34 - Properties initialize
 2020-01-04 18:27 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:34 [ INFO] PeriodicalCategoryDaoImpl:    76 - SELECT ALL FROM PERIODICAL CATEGORY
+2020-01-04 19:34 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:34 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:34 [ INFO]          PublisherDaoImpl:    80 - SELECT ALL PUBLISHERS
+2020-01-04 19:34 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:34 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:34 [ INFO]         PeriodicalDaoImpl:   109 - SELECT ALL PERIODICALS
+2020-01-04 19:34 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:34 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:34 [ INFO]          PublisherDaoImpl:    54 - SELECT PUBLISHER WITH ID 1575
+2020-01-04 19:34 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:34 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:34 [ INFO] PeriodicalCategoryDaoImpl:    52 - SELECT FROM PERIODICAL CATEGORY ID 550
+2020-01-04 19:34 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:34 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:34 [ INFO]          PublisherDaoImpl:    54 - SELECT PUBLISHER WITH ID 1574
+2020-01-04 19:34 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:34 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:34 [ INFO] PeriodicalCategoryDaoImpl:    52 - SELECT FROM PERIODICAL CATEGORY ID 549
+2020-01-04 19:34 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:34 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:34 [ INFO]          PublisherDaoImpl:    54 - SELECT PUBLISHER WITH ID 1573
+2020-01-04 19:34 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:34 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:34 [ INFO] PeriodicalCategoryDaoImpl:    52 - SELECT FROM PERIODICAL CATEGORY ID 548
+2020-01-04 19:34 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:34 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:34 [ INFO]               UserDaoImpl:   129 - SELECT ALL USERS
+2020-01-04 19:34 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:34 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:34 [ INFO]       SubscriptionDaoImpl:    94 - SELECT ALL FROM SUBSCRIPTIONS
+2020-01-04 19:34 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:34 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:34 [ INFO]       SubscriptionDaoImpl:   155 - SUBSCRIPTION INITIALIZE
+2020-01-04 19:34 [ INFO]               UserDaoImpl:    71 - SELECT USER WITH ID = 1202
+2020-01-04 19:34 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:34 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:34 [ INFO]         PeriodicalDaoImpl:    74 - SELECT PERIODICAL WITH ID = 346
+2020-01-04 19:34 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:34 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:34 [ INFO]          PublisherDaoImpl:    54 - SELECT PUBLISHER WITH ID 1574
+2020-01-04 19:34 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:34 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:34 [ INFO] PeriodicalCategoryDaoImpl:    52 - SELECT FROM PERIODICAL CATEGORY ID 549
+2020-01-04 19:34 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:34 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:34 [ INFO]   SubscriptionTypeDaoImpl:    55 - SELECT FROM SUBSCRIPTION TYPE ID 163
+2020-01-04 19:34 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:34 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:34 [ INFO]       SubscriptionDaoImpl:   155 - SUBSCRIPTION INITIALIZE
+2020-01-04 19:34 [ INFO]               UserDaoImpl:    71 - SELECT USER WITH ID = 1203
+2020-01-04 19:34 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:34 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:34 [ INFO]         PeriodicalDaoImpl:    74 - SELECT PERIODICAL WITH ID = 347
+2020-01-04 19:34 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:34 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:34 [ INFO]          PublisherDaoImpl:    54 - SELECT PUBLISHER WITH ID 1575
+2020-01-04 19:34 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:34 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:34 [ INFO] PeriodicalCategoryDaoImpl:    52 - SELECT FROM PERIODICAL CATEGORY ID 550
+2020-01-04 19:34 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:34 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:34 [ INFO]   SubscriptionTypeDaoImpl:    55 - SELECT FROM SUBSCRIPTION TYPE ID 164
+2020-01-04 19:34 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:34 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:34 [ INFO]      PublisherServiceImpl:    18 - INITIALIZING PUBLISHER SERVICE IMPL
+2020-01-04 19:34 [ INFO]      PublisherServiceImpl:    24 - CREATE PUBLISHER Publisher{id=1576, name='publisher_4'}
+2020-01-04 19:34 [ INFO]          PublisherDaoImpl:    54 - SELECT PUBLISHER WITH ID 1576
+2020-01-04 19:34 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:34 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:34 [ WARN]          PublisherDaoImpl:    61 - THE PUBLISHER WITH ID 1576 ISN'T EXISTS
+2020-01-04 19:36 [ INFO] PeriodicalCategoryDaoImpl:    76 - SELECT ALL FROM PERIODICAL CATEGORY
+2020-01-04 19:36 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:36 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:36 [ INFO]          PublisherDaoImpl:    80 - SELECT ALL PUBLISHERS
+2020-01-04 19:36 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:36 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:36 [ INFO]         PeriodicalDaoImpl:   109 - SELECT ALL PERIODICALS
+2020-01-04 19:36 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:36 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:36 [ INFO]          PublisherDaoImpl:    54 - SELECT PUBLISHER WITH ID 1575
+2020-01-04 19:36 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:36 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:36 [ INFO] PeriodicalCategoryDaoImpl:    52 - SELECT FROM PERIODICAL CATEGORY ID 550
+2020-01-04 19:36 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:36 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:36 [ INFO]          PublisherDaoImpl:    54 - SELECT PUBLISHER WITH ID 1574
+2020-01-04 19:36 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:36 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:36 [ INFO] PeriodicalCategoryDaoImpl:    52 - SELECT FROM PERIODICAL CATEGORY ID 549
+2020-01-04 19:36 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:36 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:36 [ INFO]          PublisherDaoImpl:    54 - SELECT PUBLISHER WITH ID 1573
+2020-01-04 19:36 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:36 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:36 [ INFO] PeriodicalCategoryDaoImpl:    52 - SELECT FROM PERIODICAL CATEGORY ID 548
+2020-01-04 19:36 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:36 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:36 [ INFO]               UserDaoImpl:   129 - SELECT ALL USERS
+2020-01-04 19:36 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:36 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:36 [ INFO]       SubscriptionDaoImpl:    94 - SELECT ALL FROM SUBSCRIPTIONS
+2020-01-04 19:36 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:36 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:36 [ INFO]       SubscriptionDaoImpl:   155 - SUBSCRIPTION INITIALIZE
+2020-01-04 19:36 [ INFO]               UserDaoImpl:    71 - SELECT USER WITH ID = 1202
+2020-01-04 19:36 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:36 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:36 [ INFO]         PeriodicalDaoImpl:    74 - SELECT PERIODICAL WITH ID = 346
+2020-01-04 19:36 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:36 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:36 [ INFO]          PublisherDaoImpl:    54 - SELECT PUBLISHER WITH ID 1574
+2020-01-04 19:36 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:36 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:36 [ INFO] PeriodicalCategoryDaoImpl:    52 - SELECT FROM PERIODICAL CATEGORY ID 549
+2020-01-04 19:36 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:36 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:36 [ INFO]   SubscriptionTypeDaoImpl:    55 - SELECT FROM SUBSCRIPTION TYPE ID 163
+2020-01-04 19:36 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:36 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:36 [ INFO]       SubscriptionDaoImpl:   155 - SUBSCRIPTION INITIALIZE
+2020-01-04 19:36 [ INFO]               UserDaoImpl:    71 - SELECT USER WITH ID = 1203
+2020-01-04 19:36 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:36 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:36 [ INFO]         PeriodicalDaoImpl:    74 - SELECT PERIODICAL WITH ID = 347
+2020-01-04 19:36 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:36 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:36 [ INFO]          PublisherDaoImpl:    54 - SELECT PUBLISHER WITH ID 1575
+2020-01-04 19:36 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:36 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:36 [ INFO] PeriodicalCategoryDaoImpl:    52 - SELECT FROM PERIODICAL CATEGORY ID 550
+2020-01-04 19:36 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:36 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:36 [ INFO]   SubscriptionTypeDaoImpl:    55 - SELECT FROM SUBSCRIPTION TYPE ID 164
+2020-01-04 19:36 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:36 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:36 [ INFO]      PublisherServiceImpl:    18 - INITIALIZING PUBLISHER SERVICE IMPL
+2020-01-04 19:36 [ INFO]      PublisherServiceImpl:    24 - CREATE PUBLISHER Publisher{id=1, name='fasdf'}
+2020-01-04 19:36 [ INFO]          PublisherDaoImpl:    54 - SELECT PUBLISHER WITH ID 1
+2020-01-04 19:36 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:36 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:36 [ WARN]          PublisherDaoImpl:    61 - THE PUBLISHER WITH ID 1 ISN'T EXISTS
+2020-01-04 19:38 [ INFO] PeriodicalCategoryDaoImpl:    76 - SELECT ALL FROM PERIODICAL CATEGORY
+2020-01-04 19:38 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:38 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:38 [ INFO]          PublisherDaoImpl:    80 - SELECT ALL PUBLISHERS
+2020-01-04 19:38 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:38 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:38 [ INFO]         PeriodicalDaoImpl:   109 - SELECT ALL PERIODICALS
+2020-01-04 19:38 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:38 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:38 [ INFO]          PublisherDaoImpl:    54 - SELECT PUBLISHER WITH ID 1575
+2020-01-04 19:38 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:38 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:38 [ INFO] PeriodicalCategoryDaoImpl:    52 - SELECT FROM PERIODICAL CATEGORY ID 550
+2020-01-04 19:38 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:38 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:38 [ INFO]          PublisherDaoImpl:    54 - SELECT PUBLISHER WITH ID 1574
+2020-01-04 19:38 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:38 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:38 [ INFO] PeriodicalCategoryDaoImpl:    52 - SELECT FROM PERIODICAL CATEGORY ID 549
+2020-01-04 19:38 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:38 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:38 [ INFO]          PublisherDaoImpl:    54 - SELECT PUBLISHER WITH ID 1573
+2020-01-04 19:38 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:38 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:38 [ INFO] PeriodicalCategoryDaoImpl:    52 - SELECT FROM PERIODICAL CATEGORY ID 548
+2020-01-04 19:38 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:38 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:38 [ INFO]               UserDaoImpl:   129 - SELECT ALL USERS
+2020-01-04 19:38 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:38 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:38 [ INFO]       SubscriptionDaoImpl:    94 - SELECT ALL FROM SUBSCRIPTIONS
+2020-01-04 19:38 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:38 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:38 [ INFO]       SubscriptionDaoImpl:   155 - SUBSCRIPTION INITIALIZE
+2020-01-04 19:38 [ INFO]               UserDaoImpl:    71 - SELECT USER WITH ID = 1202
+2020-01-04 19:38 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:38 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:38 [ INFO]         PeriodicalDaoImpl:    74 - SELECT PERIODICAL WITH ID = 346
+2020-01-04 19:38 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:38 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:38 [ INFO]          PublisherDaoImpl:    54 - SELECT PUBLISHER WITH ID 1574
+2020-01-04 19:38 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:38 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:38 [ INFO] PeriodicalCategoryDaoImpl:    52 - SELECT FROM PERIODICAL CATEGORY ID 549
+2020-01-04 19:38 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:38 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:38 [ INFO]   SubscriptionTypeDaoImpl:    55 - SELECT FROM SUBSCRIPTION TYPE ID 163
+2020-01-04 19:38 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:38 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:38 [ INFO]       SubscriptionDaoImpl:   155 - SUBSCRIPTION INITIALIZE
+2020-01-04 19:38 [ INFO]               UserDaoImpl:    71 - SELECT USER WITH ID = 1203
+2020-01-04 19:38 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:38 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:38 [ INFO]         PeriodicalDaoImpl:    74 - SELECT PERIODICAL WITH ID = 347
+2020-01-04 19:38 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:38 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:38 [ INFO]          PublisherDaoImpl:    54 - SELECT PUBLISHER WITH ID 1575
+2020-01-04 19:38 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:38 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:38 [ INFO] PeriodicalCategoryDaoImpl:    52 - SELECT FROM PERIODICAL CATEGORY ID 550
+2020-01-04 19:38 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:38 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:38 [ INFO]   SubscriptionTypeDaoImpl:    55 - SELECT FROM SUBSCRIPTION TYPE ID 164
+2020-01-04 19:38 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:38 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:38 [ INFO]      PublisherServiceImpl:    18 - INITIALIZING PUBLISHER SERVICE IMPL
+2020-01-04 19:38 [ INFO]      PublisherServiceImpl:    24 - CREATE PUBLISHER Publisher{id=1, name='fasdf'}
+2020-01-04 19:38 [ INFO]          PublisherDaoImpl:    54 - SELECT PUBLISHER WITH ID 1
+2020-01-04 19:38 [ INFO]            ConnectionPool:    34 - Properties initialize
+2020-01-04 19:38 [ INFO]            ConnectionPool:    51 - GET CONNECTION
+2020-01-04 19:38 [ WARN]          PublisherDaoImpl:    61 - THE PUBLISHER WITH ID 1 ISN'T EXISTS

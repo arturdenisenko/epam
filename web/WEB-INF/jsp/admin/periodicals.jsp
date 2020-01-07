@@ -1,4 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--
+  ~ @Denisenko Artur
+  --%>
+
 <link rel="stylesheet" type="text/css" href="css/style.css"/>
 <link rel="icon" href="${pageContext.request.contextPath}/periodicals.ico" type="image/x-icon"/>
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/periodicals.ico">

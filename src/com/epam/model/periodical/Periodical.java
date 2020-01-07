@@ -1,3 +1,7 @@
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.model.periodical;
 
 import java.io.Serializable;
@@ -16,6 +20,14 @@ public class Periodical implements Serializable {
     private boolean active;
 
     public Periodical() {
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     public Periodical(Long id, String name, String about, Publisher publisher, PeriodicalCategory periodicalCategory, int periodicityInSixMonth, int minSubscriptionPeriod, Float costPerMonth, boolean active) {

@@ -1,7 +1,12 @@
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam;
 
 import com.epam.dao.*;
 import com.epam.dao.impl.*;
+import com.epam.exception.DaoException;
 import com.epam.model.periodical.Periodical;
 import com.epam.model.periodical.PeriodicalCategory;
 import com.epam.model.periodical.Publisher;
@@ -72,7 +77,11 @@ public class TestData {
         PERIODICAL_DAO = PeriodicalDaoImpl.getInstance();
 
         periodicalCategoriesFromDatabase = PERIODICAL_CATEGORY_DAO.selectAll();
-        publisherList = PUBLISHER_DAO.selectAll();
+        try {
+            publisherList = PUBLISHER_DAO.selectAll();
+        } catch (DaoException e) {
+            e.printStackTrace();
+        }
         periodicalListFromDatabase = PERIODICAL_DAO.selectAll();
         userList = USER_DAO.selectAll();
         subscriptionListFromDatabase = SUBSCRIPTION_DAO.selectAll();

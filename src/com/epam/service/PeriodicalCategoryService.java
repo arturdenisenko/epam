@@ -1,3 +1,7 @@
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.service;
 
 import com.epam.model.periodical.PeriodicalCategory;
@@ -6,13 +10,13 @@ import java.util.List;
 
 public interface PeriodicalCategoryService {
 
-    void insert(PeriodicalCategory periodicalCategory);
+    void create(PeriodicalCategory periodicalCategory);
 
-    PeriodicalCategory select(Long id);
+    PeriodicalCategory getById(Long id);
 
-    List<PeriodicalCategory> selectAll();
+    List<PeriodicalCategory> getAll();
 
-    boolean delete(Long id);
+    boolean deleteById(Long id);
 
     boolean update(PeriodicalCategory periodicalCategory);
 

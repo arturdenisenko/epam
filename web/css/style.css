@@ -1,3 +1,7 @@
+/*
+ * @Denisenko Artur
+ */
+
 .mainContainer {
     margin: 0px auto;
     min-width: 950px;
@@ -16,9 +20,3 @@ html, body {
     background: #FFFFFF;
 }
 
-/*
-.viewTable{
-    border: solid aquamarine 1px;
-    border-bottom: aqua;
-}
-*/

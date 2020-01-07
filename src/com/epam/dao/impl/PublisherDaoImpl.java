@@ -1,10 +1,14 @@
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.dao.impl;
 
 import com.epam.dao.PublisherDao;
+import com.epam.exception.DaoException;
 import com.epam.exception.NotExistEntityException;
 import com.epam.model.periodical.Publisher;
 import com.epam.pool.ConnectionPool;
-import com.epam.util.ExceptionUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,7 +36,7 @@ public class PublisherDaoImpl implements PublisherDao {
     }
 
     @Override
-    public void insert(Publisher publisher) {
+    public void insert(Publisher publisher) throws DaoException {
         LOGGER.info("INSERT PUBLISHER ID  {} NAME  {}", publisher.getId(), publisher.getName());
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_PUBLISHER_SQL)) {
@@ -45,12 +49,12 @@ public class PublisherDaoImpl implements PublisherDao {
             }
 
         } catch (SQLException e) {
-            throw ExceptionUtil.convertException(e);
+            throw new DaoException("PUBLISHER CREATION FAILED" + e.getMessage(), e);
         }
     }
 
     @Override
-    public Publisher select(Long id) {
+    public Publisher select(Long id) throws DaoException {
         LOGGER.info("SELECT PUBLISHER WITH ID {}", id);
         Publisher publisher = null;
         try (Connection connection = ConnectionPool.getInstance().getConnection();
@@ -67,6 +71,7 @@ public class PublisherDaoImpl implements PublisherDao {
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
+            throw new DaoException("Publisher with id is not exist" + e, e);
         }
         return publisher;
     }
@@ -76,7 +81,7 @@ public class PublisherDaoImpl implements PublisherDao {
     }
 
     @Override
-    public List<Publisher> selectAll() {
+    public List<Publisher> selectAll() throws DaoException {
         LOGGER.info("SELECT ALL PUBLISHERS");
         List<Publisher> publishers = new CopyOnWriteArrayList<>();
         try (Connection connection = ConnectionPool.getInstance().getConnection();
@@ -89,29 +94,31 @@ public class PublisherDaoImpl implements PublisherDao {
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
+            throw new DaoException("SELECT ALL PUBLISHER IS FAILED" + e, e);
         }
         return publishers;
     }
 
     @Override
-    public boolean delete(Long id) {
+    public boolean delete(Long id) throws DaoException {
         LOGGER.info("DELETE PUBLISHER WITH ID = {} ", id);
         boolean rowDeleted = false;
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_PUBLISHERS_SQL)) {
             statement.setLong(1, id);
             rowDeleted = statement.executeUpdate() > 0;
-            if (!rowDeleted) {
+            /*if (!rowDeleted) {
                 throw new NotExistEntityException(id);
-            }
+            }*/
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
+            throw new DaoException("PUBLISHER DELETE IS FAILED", e);
         }
         return rowDeleted;
     }
 
     @Override
-    public boolean update(Publisher publisher) {
+    public boolean update(Publisher publisher) throws DaoException {
         LOGGER.info("UPDATE PUBLISHER WITH ID  = {} NAME = {} ", publisher.getId(), publisher.getName());
         boolean rowUpdated = false;
         try (Connection connection = ConnectionPool.getInstance().getConnection();
@@ -121,19 +128,21 @@ public class PublisherDaoImpl implements PublisherDao {
             rowUpdated = statement.executeUpdate() > 0;
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
+            throw new DaoException("PUBLISHER UPDATE IS FAILED" + e, e);
         }
         return rowUpdated;
     }
 
     //clear all publishers for test only
     @Override
-    public void clear() {
+    public void clear() throws DaoException {
         LOGGER.info("DELETE ALL PUBLISHERS");
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(CLEAR_TABLE_PUBLISHER_SQL)) {
             statement.execute();
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
+            throw new DaoException("The table can't be clear" + e, e);
         }
     }
 }

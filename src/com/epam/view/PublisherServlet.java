@@ -1,6 +1,11 @@
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.view;
 
 import com.epam.dao.impl.PublisherDaoImpl;
+import com.epam.exception.ServiceException;
 import com.epam.model.periodical.Publisher;
 import com.epam.service.PublisherService;
 import com.epam.service.impl.PublisherServiceImpl;
@@ -16,14 +21,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "PublisherServlet", urlPatterns = "/admin/publishers/")
+@WebServlet(name = "PublisherServlet", urlPatterns = "/admin/publishers")
 public class PublisherServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private static final Logger LOGGER = LoggerFactory.getLogger(PublisherServlet.class);
-    private PublisherService publisherDao;
+    private PublisherService publisherService;
 
     public void init() {
-        publisherDao = new PublisherServiceImpl(new PublisherDaoImpl());
+        publisherService = new PublisherServiceImpl(new PublisherDaoImpl());
     }
 
     @Override
@@ -61,8 +66,12 @@ public class PublisherServlet extends HttpServlet {
     private void publishersList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         LOGGER.info("publisherList view");
         List<Publisher> publishersList;
-        publishersList = publisherDao.selectAll();
-        request.setAttribute("publishersList", publishersList);
+        try {
+            publishersList = publisherService.selectAll();
+            request.setAttribute("publishersList", publishersList);
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        }
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/publishers.jsp");
         requestDispatcher.forward(request, response);
     }
@@ -76,11 +85,14 @@ public class PublisherServlet extends HttpServlet {
 
     // insert new Publisher
     private void insertNewPublisher(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        //int id = Integer.parseInt(req.getParameter("id"));
         req.setCharacterEncoding("UTF-8");
         LOGGER.info("insert new");
         String name = req.getParameter("name");
-        publisherDao.insert(new Publisher(name));
+        try {
+            publisherService.insert(new Publisher(name));
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        }
         resp.sendRedirect("publishersList");
     }
 
@@ -88,16 +100,24 @@ public class PublisherServlet extends HttpServlet {
     private void deletePublisher(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         LOGGER.info("delete publisher");
         Long id = Long.valueOf((req.getParameter("id")));
-        publisherDao.delete(id);
+        try {
+            publisherService.delete(id);
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        }
         resp.sendRedirect("publishersList");
-
     }
 
     //publisher edit form
     private void showEditForm(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         LOGGER.info("show edit form");
         Long id = Long.valueOf((req.getParameter("id")));
-        Publisher exitingPublisher = publisherDao.select(id);
+        Publisher exitingPublisher = null;
+        try {
+            exitingPublisher = publisherService.select(id);
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        }
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/publisher-form.jsp");
         req.setAttribute("publisher", exitingPublisher);
         requestDispatcher.forward(req, resp);
@@ -109,7 +129,11 @@ public class PublisherServlet extends HttpServlet {
         LOGGER.info("update publisher");
         Long id = Long.valueOf(req.getParameter("id"));
         String name = req.getParameter("name");
-        publisherDao.update(new Publisher(id, name));
+        try {
+            publisherService.update(new Publisher(id, name));
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        }
         resp.sendRedirect("publishersList");
     }
 

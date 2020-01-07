@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ @Denisenko Artur
+  -->
+
 <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
@@ -14,29 +18,21 @@
     </resource-ref>
 
     <servlet>
-        <servlet-name>periodicals</servlet-name>
-        <servlet-class>com.epam.view.PeriodicalsListView</servlet-class>
+        <servlet-name>StartPageServlet</servlet-name>
+        <servlet-class>com.epam.view.StartPageServlet</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>Faces Servlet</servlet-name>
-        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
+
     <servlet-mapping>
-        <servlet-name>periodicals</servlet-name>
-        <url-pattern>/periodicals</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>*.xhtml</url-pattern>
+        <servlet-name>StartPageServlet</servlet-name>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 
     <error-page>
         <exception-type>java.lang.Exception</exception-type>
         <location>/Error.jsp</location>
     </error-page>
-
     <welcome-file-list>
-        <welcome-file>/WEB-INF/jsp/index.jsp</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
+
 </web-app>

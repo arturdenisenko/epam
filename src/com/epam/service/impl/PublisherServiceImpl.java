@@ -1,7 +1,12 @@
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.service.impl;
 
 import com.epam.dao.PublisherDao;
-import com.epam.dao.impl.PublisherDaoImpl;
+import com.epam.exception.DaoException;
+import com.epam.exception.ServiceException;
 import com.epam.model.periodical.Publisher;
 import com.epam.service.PublisherService;
 import org.slf4j.Logger;
@@ -16,40 +21,58 @@ public class PublisherServiceImpl implements PublisherService {
 
     public PublisherServiceImpl(PublisherDao publisherDao) {
         LOGGER.info("INITIALIZING PUBLISHER SERVICE IMPL");
-        this.publisherDao = new PublisherDaoImpl();
+        this.publisherDao = publisherDao;
     }
 
     @Override
-    public void insert(Publisher publisher) {
+    public void insert(Publisher publisher) throws ServiceException {
         LOGGER.info("CREATE PUBLISHER {}", publisher.toString());
-        if (publisherDao.select(publisher.getId()) == null) {
+        try {
             publisherDao.insert(publisher);
+        } catch (DaoException e) {
+            LOGGER.warn("CREATE PUBLISHER FAILED {}" + e.getMessage(), e);
+            throw new ServiceException(e);
+        }
+
+    }
+
+    @Override
+    public Publisher select(Long id) throws ServiceException {
+        try {
+            return publisherDao.select(id);
+        } catch (DaoException e) {
+            LOGGER.error("SELECT PUBLISHER FAILED {}" + e, e.getMessage());
+            throw new ServiceException(e);
         }
     }
 
     @Override
-    public Publisher select(Long id) {
-        return publisherDao.select(id);
-    }
-
-    @Override
-    public List<Publisher> selectAll() {
+    public List<Publisher> selectAll() throws ServiceException {
         LOGGER.info("GETTING ALL PUBLISHERS");
-        return publisherDao.selectAll();
-    }
-
-    @Override
-    public boolean delete(Long id) {
-        LOGGER.info("DELETE PUBLISHER WITH ID {} ", id);
-        return id != null && publisherDao.delete(id);
-    }
-
-    @Override
-    public boolean update(Publisher publisher) {
-        LOGGER.info("UPDATE PUBLISHER WITH ID {}", publisher.getId());
-        if (publisher == null) {
-            return false;
+        try {
+            return publisherDao.selectAll();
+        } catch (DaoException e) {
+            throw new ServiceException(e);
         }
-        return publisherDao.update(publisher);
+    }
+
+    @Override
+    public boolean delete(Long id) throws ServiceException {
+        LOGGER.info("DELETE PUBLISHER WITH ID {} ", id);
+        try {
+            return id != null && publisherDao.delete(id);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public boolean update(Publisher publisher) throws ServiceException {
+        LOGGER.info("UPDATE PUBLISHER WITH ID {}", publisher.getId());
+        try {
+            return publisherDao.update(publisher);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
     }
 }

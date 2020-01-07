@@ -1,3 +1,7 @@
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.dao;
 
 import com.epam.model.periodical.Periodical;
@@ -69,13 +73,5 @@ public class PeriodicalDaoTest {
         LOGGER.info("CLEAR ALL PERIODICAL TESTING");
         PERIODICAL_DAO.clear();
         Assert.assertEquals(0, PERIODICAL_DAO.selectAll().size());
-    }
-
-    @Test
-    public void selectByName() {
-    }
-
-    @Test
-    public void selectByPeriodicalCategory() {
     }
 }

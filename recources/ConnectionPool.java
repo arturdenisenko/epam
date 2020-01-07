@@ -1,4 +1,8 @@
-package com.epam.pool;
+/*
+ * @Denisenko Artur
+ */
+
+ррpackage com.epam.pool;
 
 import org.apache.log4j.Logger;
 

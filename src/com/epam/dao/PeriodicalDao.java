@@ -1,3 +1,7 @@
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.dao;
 
 import com.epam.model.periodical.Periodical;
@@ -10,15 +14,11 @@ public interface PeriodicalDao {
 
     Periodical select(Long id);
 
-    List<Periodical> selectByName(String name);
-
-
     List<Periodical> selectAll();
 
     boolean delete(Long id);
 
     boolean update(Periodical periodical);
-
     //for test only
     void clear();
 }

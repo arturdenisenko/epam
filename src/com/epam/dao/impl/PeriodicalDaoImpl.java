@@ -1,11 +1,13 @@
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.dao.impl;
 
 import com.epam.dao.PeriodicalCategoryDao;
 import com.epam.dao.PeriodicalDao;
 import com.epam.dao.PublisherDao;
 import com.epam.exception.NotExistEntityException;
-import com.epam.filters.Filter;
-import com.epam.filters.PeriodicalSelectByNameFilter;
 import com.epam.model.periodical.Periodical;
 import com.epam.pool.ConnectionPool;
 import com.epam.util.ExceptionUtil;
@@ -25,13 +27,13 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
 
     private static final String INSERT_PERIODICAL_SQL =
             "INSERT INTO periodicals (id, name, about, publisher_fk, periodical_category, " +
-                    "periodicity_in_six_month, min_subscription_period, cost_per_month) VALUES " + " " +
-                    "(DEFAULT, ?,?,?,?,?,?,?);";
+                    "periodicity_in_six_month, min_subscription_period, cost_per_month,active) VALUES " + " " +
+                    "(DEFAULT, ?,?,?,?,?,?,?,?);";
     private static final String SELECT_PERIODICAL_BY_ID = "SELECT * FROM periodicals WHERE id =?;";
     private static final String SELECT_ALL_PERIODICALS = "SELECT * FROM periodicals;";
     private static final String DELETE_PERIODICAL_SQL = "DELETE FROM periodicals where id = ?;";
     private static final String UPDATE_PERIODICAL_SQL = "UPDATE periodicals SET name = ?, about = ?,publisher_fk= ?" +
-            ", periodical_category = ?, periodicity_in_six_month = ?, min_subscription_period=?, cost_per_month=? " +
+            ", periodical_category = ?, periodicity_in_six_month = ?, min_subscription_period=?, cost_per_month=?, active =? " +
             "where id = ?;";
     private static final String CLEAR_TABLE_PERIODICAL_SQL = "DELETE FROM periodicals";
 
@@ -50,13 +52,7 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
         LOGGER.info("CREATE NEW PERIODICAL {}", periodical.toString());
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_PERIODICAL_SQL)) {
-            preparedStatement.setString(1, periodical.getName());
-            preparedStatement.setString(2, periodical.getAbout());
-            preparedStatement.setLong(3, periodical.getPublisher().getId());
-            preparedStatement.setLong(4, periodical.getPeriodicalCategory().getId());
-            preparedStatement.setInt(5, periodical.getPeriodicityInSixMonth());
-            preparedStatement.setInt(6, periodical.getMinSubscriptionPeriod());
-            preparedStatement.setFloat(7, periodical.getCostPerMonth());
+            PeriodicalCreate(periodical, preparedStatement);
 
             int affectedRows = preparedStatement.executeUpdate();
             if (affectedRows == 0) {
@@ -67,6 +63,17 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
         } catch (SQLException e) {
             throw ExceptionUtil.convertException(e);
         }
+    }
+
+    private void PeriodicalCreate(Periodical periodical, PreparedStatement preparedStatement) throws SQLException {
+        preparedStatement.setString(1, periodical.getName());
+        preparedStatement.setString(2, periodical.getAbout());
+        preparedStatement.setLong(3, periodical.getPublisher().getId());
+        preparedStatement.setLong(4, periodical.getPeriodicalCategory().getId());
+        preparedStatement.setInt(5, periodical.getPeriodicityInSixMonth());
+        preparedStatement.setInt(6, periodical.getMinSubscriptionPeriod());
+        preparedStatement.setFloat(7, periodical.getCostPerMonth());
+        preparedStatement.setBoolean(8, periodical.isActive());
     }
 
     @Override
@@ -82,13 +89,7 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
             } else {
                 periodical = new Periodical();
                 periodical.setId(id);
-                periodical.setName(rs.getString("name"));
-                periodical.setAbout(rs.getString("about"));
-                periodical.setPublisher(publisherDao.select(rs.getLong("publisher_fk")));
-                periodical.setPeriodicalCategory(periodicalCategoryDao.select(rs.getLong("periodical_category")));
-                periodical.setPeriodicityInSixMonth(rs.getInt("periodicity_in_six_month"));
-                periodical.setMinSubscriptionPeriod(rs.getInt("min_subscription_period"));
-                periodical.setCostPerMonth(rs.getBigDecimal("cost_per_month").floatValue());
+                PeriodicalInit(periodical, rs);
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
@@ -96,13 +97,16 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
         return periodical;
     }
 
-    @Override
-    public List<Periodical> selectByName(String name) {
-        LOGGER.info("SELECT PERIODICAL BY NAME {}", name);
-        Filter filter = new PeriodicalSelectByNameFilter();
-        return filter.meetCriteria(selectAll(), name);
+    private void PeriodicalInit(Periodical periodical, ResultSet rs) throws SQLException {
+        periodical.setName(rs.getString("name"));
+        periodical.setAbout(rs.getString("about"));
+        periodical.setPublisher(publisherDao.select(rs.getLong("publisher_fk")));
+        periodical.setPeriodicalCategory(periodicalCategoryDao.select(rs.getLong("periodical_category")));
+        periodical.setPeriodicityInSixMonth(rs.getInt("periodicity_in_six_month"));
+        periodical.setMinSubscriptionPeriod(rs.getInt("min_subscription_period"));
+        periodical.setCostPerMonth(rs.getBigDecimal("cost_per_month").floatValue());
+        periodical.setActive(rs.getBoolean("active"));
     }
-
 
     @Override
     public List<Periodical> selectAll() {
@@ -114,13 +118,7 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
             while (rs.next()) {
                 Periodical periodical = new Periodical();
                 periodical.setId(rs.getLong("id"));
-                periodical.setName(rs.getString("name"));
-                periodical.setAbout(rs.getString("about"));
-                periodical.setPublisher(publisherDao.select(rs.getLong("publisher_fk")));
-                periodical.setPeriodicalCategory(periodicalCategoryDao.select(rs.getLong("periodical_category")));
-                periodical.setPeriodicityInSixMonth(rs.getInt("periodicity_in_six_month"));
-                periodical.setMinSubscriptionPeriod(rs.getInt("min_subscription_period"));
-                periodical.setCostPerMonth(rs.getBigDecimal("cost_per_month").floatValue());
+                PeriodicalInit(periodical, rs);
                 periodicals.add(periodical);
             }
         } catch (SQLException e) {
@@ -153,13 +151,7 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
         boolean rowUpdated = false;
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_PERIODICAL_SQL)) {
-            statement.setString(1, periodical.getName());
-            statement.setString(2, periodical.getAbout());
-            statement.setLong(3, periodical.getPublisher().getId());
-            statement.setLong(4, periodical.getPeriodicalCategory().getId());
-            statement.setInt(5, periodical.getPeriodicityInSixMonth());
-            statement.setInt(6, periodical.getMinSubscriptionPeriod());
-            statement.setFloat(7, periodical.getCostPerMonth());
+            PeriodicalCreate(periodical, statement);
             statement.setLong(8, periodical.getId());
             rowUpdated = statement.executeUpdate() > 0;
             if (!rowUpdated) {
