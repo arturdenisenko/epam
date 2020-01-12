@@ -1,3 +1,7 @@
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.filters;
 
 import com.epam.model.user.User;
@@ -5,7 +9,7 @@ import com.epam.model.user.User;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserByFirstNameLastNameFilter implements Filter<User, String> {
+public class UserByFirstNameLastNameFilter implements ModelFilter<User, String> {
     @Override
     public List<User> meetCriteria(List<User> allUsersFromDatabase, String name) {
         List<User> users = new ArrayList<>();

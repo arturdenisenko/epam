@@ -1,3 +1,7 @@
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.dao;
 
 import com.epam.model.user.User;
@@ -7,7 +11,7 @@ import java.util.List;
 
 public interface UserDao {
 
-    void insert(User user);
+    User insert(User user);
 
     User select(Long id);
 

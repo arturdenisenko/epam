@@ -1,8 +1,12 @@
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.dao.impl;
 
 import com.epam.dao.UserDao;
 import com.epam.exception.NotExistEntityException;
-import com.epam.filters.Filter;
+import com.epam.filters.ModelFilter;
 import com.epam.filters.UserByFirstNameLastNameFilter;
 import com.epam.filters.UserByUserTypeFilter;
 import com.epam.model.user.User;
@@ -44,7 +48,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void insert(User user) {
+    public User insert(User user) {
         LOGGER.info("CREATE NEW USER {}", user.toString());
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USER_SQL)) {
@@ -58,12 +62,14 @@ public class UserDaoImpl implements UserDao {
             int affectedRows = preparedStatement.executeUpdate();
             if (affectedRows == 0) {
                 LOGGER.info("USER CREATION FAILED");
+                return null;
             } else {
                 LOGGER.info("USER CREATION SUCCESSFUL");
             }
         } catch (SQLException e) {
             throw ExceptionUtil.convertException(e);
         }
+        return user;
     }
 
     @Override
@@ -120,7 +126,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public List<User> selectByName(String name) {
         LOGGER.info("SELECT USER BY NAME {}", name);
-        Filter filter = new UserByFirstNameLastNameFilter();
+        ModelFilter filter = new UserByFirstNameLastNameFilter();
         return filter.meetCriteria(selectAll(), name);
     }
 
@@ -151,7 +157,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public List<User> selectByUsersType(UserType userType) {
         LOGGER.info("SELECT Users by USER_TYPE {}", userType.toString());
-        Filter filter = new UserByUserTypeFilter();
+        ModelFilter filter = new UserByUserTypeFilter();
         return filter.meetCriteria(this.selectAll(), userType);
     }
 

@@ -1,3 +1,7 @@
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.pool;
 
 import com.epam.Main;
@@ -31,7 +35,7 @@ public class ConnectionPool implements ConnectionBuilder {
     }
 
     private static void init() {
-        LOGGER.info("Properties initialize");
+        LOGGER.info("Connection properties initialize");
         ClassLoader loader = Main.class.getClassLoader();
         try (InputStream is = loader.getResourceAsStream(PROPS)) {
             Properties props = new Properties();

@@ -1,3 +1,7 @@
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.dao.impl;
 
 import com.epam.dao.PeriodicalDao;
@@ -5,7 +9,7 @@ import com.epam.dao.SubscriptionDao;
 import com.epam.dao.SubscriptionTypeDao;
 import com.epam.dao.UserDao;
 import com.epam.exception.NotExistEntityException;
-import com.epam.filters.Filter;
+import com.epam.filters.ModelFilter;
 import com.epam.filters.SubscriptionSelectByCategoryFilter;
 import com.epam.model.subscription.Subscription;
 import com.epam.model.subscription.SubscriptionType;
@@ -171,7 +175,7 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
     @Override
     public List<Subscription> selectBySubscriptionCategory(SubscriptionType subscriptionType) {
         LOGGER.info("SELECT Subscription by SubscriptionType {}", subscriptionType.toString());
-        Filter filter = new SubscriptionSelectByCategoryFilter();
+        ModelFilter filter = new SubscriptionSelectByCategoryFilter();
         return filter.meetCriteria(this.selectAll(), subscriptionType);
     }
 

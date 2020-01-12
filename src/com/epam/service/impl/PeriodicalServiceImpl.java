@@ -3,10 +3,14 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.service.impl;
 
 import com.epam.dao.PeriodicalDao;
-import com.epam.filters.Filter;
+import com.epam.filters.ModelFilter;
 import com.epam.filters.PeriodicalSelectByNameFilter;
 import com.epam.model.periodical.Periodical;
 import com.epam.service.PeriodicalService;
@@ -40,7 +44,7 @@ public class PeriodicalServiceImpl implements PeriodicalService {
     @Override
     public List<Periodical> getAllByName(String name) {
         LOGGER.info("SELECT PERIODICALS BY NAME {}", name);
-        Filter filter = new PeriodicalSelectByNameFilter();
+        ModelFilter filter = new PeriodicalSelectByNameFilter();
         return filter.meetCriteria(getAll(), name);
     }
 

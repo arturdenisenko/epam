@@ -1,7 +1,0 @@
-<%--
-  ~ @Denisenko Artur
-  --%>
-
-<%--
-  ~ @Denisenko Artur
-  --%>

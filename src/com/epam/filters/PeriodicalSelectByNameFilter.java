@@ -1,3 +1,7 @@
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.filters;
 
 import com.epam.model.periodical.Periodical;
@@ -5,7 +9,7 @@ import com.epam.model.periodical.Periodical;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PeriodicalSelectByNameFilter implements Filter<Periodical, String> {
+public class PeriodicalSelectByNameFilter implements ModelFilter<Periodical, String> {
     @Override
     public List<Periodical> meetCriteria(List<Periodical> periodicals, String name) {
         List<Periodical> periodicalList = new ArrayList<>();
