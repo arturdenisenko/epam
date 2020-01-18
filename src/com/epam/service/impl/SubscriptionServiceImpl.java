@@ -6,6 +6,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.service.impl;
 
 import com.epam.dao.SubscriptionDao;
@@ -21,7 +25,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class SubscriptionServiceImpl implements SubscriptionService {
-
+   //TODO THIS LOGIC
     private final static Logger LOGGER = LoggerFactory.getLogger(SubscriptionServiceImpl.class);
 
     private SubscriptionDao subscriptionDao;
@@ -34,7 +38,13 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 
     @Override
     public boolean checkSubscribe(User user, Periodical periodical) {
-        return false;
+        LOGGER.info("Checking if user is subscribed to magazine");
+
+        if (user == null || periodical == null) {
+            return false;
+        }
+
+        return subscriptionDao.checkIfUserSubscribed(user.getId(), periodical.getId());
     }
 
     @Override

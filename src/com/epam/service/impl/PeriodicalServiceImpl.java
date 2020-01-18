@@ -7,6 +7,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.service.impl;
 
 import com.epam.dao.PeriodicalDao;
@@ -21,12 +25,14 @@ import java.util.List;
 
 public class PeriodicalServiceImpl implements PeriodicalService {
     //TODO Обработать исключения
-    private final static Logger LOGGER = LoggerFactory.getLogger(PublisherServiceImpl.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(PeriodicalServiceImpl.class);
     private PeriodicalDao periodicalDao;
+
 
     public PeriodicalServiceImpl(PeriodicalDao periodicalDao) {
         LOGGER.info("INITIALIZING PERIODICAL SERVICE IMPL");
         this.periodicalDao = periodicalDao;
+
     }
 
     @Override

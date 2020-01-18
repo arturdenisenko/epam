@@ -2,6 +2,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.dao.impl;
 
 import com.epam.dao.PeriodicalDao;
@@ -36,6 +40,10 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
             "UPDATE subscriptions SET user_id = ?, periodical_id = ?,start_date = ?,end_date = ?, cost = ?, " +
                     "subscription_type_id =? where id = ?;";
     private static final String CLEAR_TABLE_SUBSCRIPTION_SQL = "DELETE FROM subscriptions";
+    private static final String CHECK_IF_USER_SUBSCRIBED_QUERY =
+            "SELECT * FROM subscriptions WHERE user_id = ? AND periodical_id = ? AND CURRENT_DATE BETWEEN start_date " +
+                    "AND end_date;";
+
 
     private UserDao userDao = UserDaoImpl.getInstance();
     private PeriodicalDao periodicalDao = PeriodicalDaoImpl.getInstance();
@@ -153,6 +161,29 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
             LOGGER.error(e.getMessage(), e);
         }
 
+    }
+
+    @Override
+    public boolean checkIfUserSubscribed(Long userId, Long magazineId) {
+        LOGGER.info("Checking user " + userId + " is subscribed to periodical " + magazineId);
+        boolean result = false;
+
+        try (Connection connection = ConnectionPool.getInstance().getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(CHECK_IF_USER_SUBSCRIBED_QUERY);
+            statement.setLong(1, userId);
+            statement.setLong(2, magazineId);
+
+            ResultSet res = statement.executeQuery();
+
+            if (res.next()) {
+                result = true;
+            }
+
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage());
+        }
+
+        return result;
     }
 
     private Subscription subscriptionInitialize(ResultSet rs) {

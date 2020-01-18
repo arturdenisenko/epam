@@ -2,6 +2,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.model.periodical;
 
 import java.io.Serializable;
@@ -10,14 +14,15 @@ import java.util.Objects;
 public class Periodical implements Serializable {
 
     private Long id;
-    private String name;
-    private String about;
+    private String name;//имя
+    private String about;//описание
     private Publisher publisher;//издатель
-    private PeriodicalCategory periodicalCategory;//cat of periodical
+    private PeriodicalCategory periodicalCategory;//категория издания
     private int periodicityInSixMonth;//периодчность в полугодие
     private int minSubscriptionPeriod;//минимальный переиод подписки
     private Float costPerMonth;//стоимость за месяц
-    private boolean active;
+    private boolean active;//доступно к подписке
+    private String imageLink; //ссылка на изображение
 
     public Periodical() {
     }
@@ -30,7 +35,7 @@ public class Periodical implements Serializable {
         this.active = active;
     }
 
-    public Periodical(Long id, String name, String about, Publisher publisher, PeriodicalCategory periodicalCategory, int periodicityInSixMonth, int minSubscriptionPeriod, Float costPerMonth, boolean active) {
+    public Periodical(Long id, String name, String about, Publisher publisher, PeriodicalCategory periodicalCategory, int periodicityInSixMonth, int minSubscriptionPeriod, Float costPerMonth, boolean active, String imageLink) {
         this.id = id;
         this.name = name;
         this.about = about;
@@ -40,6 +45,15 @@ public class Periodical implements Serializable {
         this.minSubscriptionPeriod = minSubscriptionPeriod;
         this.costPerMonth = costPerMonth;
         this.active = active;
+        this.imageLink = imageLink;
+    }
+
+    public String getImageLink() {
+        return imageLink;
+    }
+
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
     }
 
     public Long getId() {

@@ -2,6 +2,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.dao.impl;
 
 import com.epam.dao.PeriodicalCategoryDao;
@@ -27,13 +31,13 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
 
     private static final String INSERT_PERIODICAL_SQL =
             "INSERT INTO periodicals (id, name, about, publisher_fk, periodical_category, " +
-                    "periodicity_in_six_month, min_subscription_period, cost_per_month,active) VALUES " + " " +
-                    "(DEFAULT, ?,?,?,?,?,?,?,?);";
+                    "periodicity_in_six_month, min_subscription_period, cost_per_month, active, imagelink) VALUES " + " " +
+                    "(DEFAULT, ?,?,?,?,?,?,?,?,?);";
     private static final String SELECT_PERIODICAL_BY_ID = "SELECT * FROM periodicals WHERE id =?;";
     private static final String SELECT_ALL_PERIODICALS = "SELECT * FROM periodicals;";
     private static final String DELETE_PERIODICAL_SQL = "DELETE FROM periodicals where id = ?;";
     private static final String UPDATE_PERIODICAL_SQL = "UPDATE periodicals SET name = ?, about = ?,publisher_fk= ?" +
-            ", periodical_category = ?, periodicity_in_six_month = ?, min_subscription_period=?, cost_per_month=?, active =? " +
+            ", periodical_category = ?, periodicity_in_six_month = ?, min_subscription_period=?, cost_per_month=?, active =?, imagelink =? " +
             "where id = ?;";
     private static final String CLEAR_TABLE_PERIODICAL_SQL = "DELETE FROM periodicals";
 
@@ -74,6 +78,7 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
         preparedStatement.setInt(6, periodical.getMinSubscriptionPeriod());
         preparedStatement.setFloat(7, periodical.getCostPerMonth());
         preparedStatement.setBoolean(8, periodical.isActive());
+        preparedStatement.setString(9, periodical.getImageLink());
     }
 
     @Override
@@ -106,6 +111,7 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
         periodical.setMinSubscriptionPeriod(rs.getInt("min_subscription_period"));
         periodical.setCostPerMonth(rs.getBigDecimal("cost_per_month").floatValue());
         periodical.setActive(rs.getBoolean("active"));
+        periodical.setImageLink(rs.getString("imageLink"));
     }
 
     @Override

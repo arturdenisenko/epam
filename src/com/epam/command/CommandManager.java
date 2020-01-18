@@ -6,6 +6,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command;
 
 import com.epam.util.GetPropertiesUtil;
@@ -35,10 +39,10 @@ public class CommandManager {
         getCommands.put("/logout", new LogoutCommand());
         getCommands.put("/register", new GetRegisterPageCommand());
         getCommands.put("/periodical", new GetPeriodicalPageCommand());
-        //getCommands.put("/category", new GetCategoryPageCommand());
-        //getCommands.put("/subscribe", new GetSubscribePageCommand());
-        //getCommands.put("/account", new GetAccountPageCommand());
-        //getCommands.put("/search", new GetSearchPageCommand());
+        getCommands.put("/category", new GetCategoryPageCommand());
+        getCommands.put("/subscribe", new GetSubscribePageCommand());
+        getCommands.put("/account", new GetAccountPageCommand());
+        getCommands.put("/search", new GetSearchPageCommand());
 
         //admin categories
         //getCommands.put("/admin/categories", new CategoriesAdminPageCommand());

@@ -3,11 +3,6 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="navbar" %>
 <%@ taglib uri="/WEB-INF/price.tld" prefix="p" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-<%--
-  ~ @Denisenko Artur
-  --%>
-
 <%--
   ~ @Denisenko Artur
   --%>
@@ -31,7 +26,7 @@
     <fmt:setBundle basename="localization" var="bundle"/>
     <%----%>
 
-    <title>Periodicals</title>
+    <title>Newsstand - ${category.name}</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -59,41 +54,56 @@
 
             <div class="row">
 
-                <c:forEach items="${periodicals}" var="periodical">
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <a href="${pageContext.request.contextPath}/periodical?id=${periodical.id}"
-                               class="thumbnail">
-                                <img src="img/${periodical.imageLink}" class="img-fluid" alt="">
+                <c:if test="${page.currentSize == 0}">
+                    <h1><fmt:message key="nothing" bundle="${bundle}"/></h1>
+                </c:if>
 
-                            </a>
-                            <div class="caption">
-                                <h4 class="pull-right"><p:price price="${periodical.costPerMonth}"/></h4>
-                                <h4>
-                                    <a href="${pageContext.request.contextPath}/periodical?id=${periodical.id}">${periodical.name}</a>
-                                </h4>
-                            </div>
+                <c:forEach items="${page.items}" var="periodical">
+                <div class="col-sm-4 col-lg-4 col-md-4">
+                    <div class="thumbnail">
+                        <c:if test="${periodical.imageId != ""}">
+                        <img src="${pageContext.request.contextPath}/images/${periodical.imageLink}"/>
+
+
+                        </c:if>
+                        <c:if test="${magazine.imageId == 0}">
+                            <img src="https://placeholdit.imgix.net/~text?txtsize=28&txt=300%C3%97400&w=300&h=400"/>
+                        </c:if>
+
+                        <div class="caption">
+                            <h4 class="pull-right"><p:price price="${magazine.price}"/></h4>
+                            <h4>
+                                <a href="${pageContext.request.contextPath}/magazine?id=${magazine.id}">${magazine.title}</a>
+                            </h4>
                         </div>
                     </div>
+                </div>
                 </c:forEach>
+            </div>
 
+            <div class="row">
+                <ul class="pager">
+                    <c:if test="${!page.first}">
+                        <li>
+                            <a href="${pageContext.request.contextPath}/category?catId=${category.id}&p=${page.number-1}&s=${page.size}">
+                                <span aria-hidden="true">&larr;</span>
+                            </a>
+                        </li>
+                    </c:if>
+
+                    <c:if test="${!page.last}">
+                        <li>
+                            <a href="${pageContext.request.contextPath}/category?catId=${category.id}&p=${page.number+1}&s=${page.size}">
+                                <span aria-hidden="true">&rarr;</span>
+                            </a>
+                        </li>
+                    </c:if>
+                </ul>
             </div>
 
         </div>
 
     </div>
-
-    <hr>
-
-    <!-- Footer -->
-    <footer>
-        <div class="row">
-            <div class="col-lg-12">
-                <a href="${pageContext.request.contextPath}/?locale=en">EN</a>
-                <a href="${pageContext.request.contextPath}/?locale=ru">RU</a>
-            </div>
-        </div>
-    </footer>
 
 </div>
 <!-- /.container -->
