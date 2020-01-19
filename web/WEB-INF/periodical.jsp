@@ -2,15 +2,14 @@
   ~ @Denisenko Artur
   --%>
 
-pe
+<%--
+  ~ @Denisenko Artur
+  --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="navbar" %>
 <%@ taglib uri="/WEB-INF/price.tld" prefix="p" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--
-  ~ @Denisenko Artur
-  --%>
 
 <html>
 <head>
@@ -137,8 +136,14 @@ pe
 
         <div class="col-md-3">
             <div class="box_list wow fadeIn">
-                <img src="images/${periodical.imageLink}"
-                     alt="${periodical.name}">
+                <c:if test="${periodical.imageLink == ''}">
+                    <img src="https://www.dropbox.com/s/6m2zk0gphhxfits/noImagePeriodical.png?dl=0"/>
+
+                </c:if>
+                <c:if test="${periodical.imageLink != ''}">
+                    <img src="images/${periodical.imageLink}" alt="${periodical.name}">
+
+                </c:if>
                 <div class="wrapper">
                 </div>
 

@@ -65,12 +65,15 @@
                 <c:forEach items="${page.items}" var="periodical">
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
-                            <c:if test="${periodical.imageLink != null}">
-                                <img src="img/${periodical.imageLink}" class="img-fluid" alt="">
-                            </c:if>
-                            <c:if test="${periodical.imageLink == null}">
-                                <img src="https://placeholdit.imgix.net/~text?txtsize=28&txt=300%C3%97400&w=300&h=400"/>
-                            </c:if>
+                            <c:choose>
+                                <c:when test="${periodical.imageLink == ''}">
+                                    <img src="https://www.dropbox.com/s/6m2zk0gphhxfits/noImagePeriodical.png?dl=0"/>
+                                </c:when>
+                                <c:otherwise>
+                                    <img src="images/${periodical.imageLink}" class="img-fluid"
+                                         alt="${periodical.name}">
+                                </c:otherwise>
+                            </c:choose>
                             <div class="caption">
                                 <h4 class="pull-right"><p:price price="${periodical.costPerMonth}"/></h4>
                                 <h4>
