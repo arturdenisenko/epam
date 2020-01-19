@@ -15,6 +15,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.service.impl;
 
 import com.epam.dao.PeriodicalDao;
@@ -74,5 +78,15 @@ public class PeriodicalServiceImpl implements PeriodicalService {
     public boolean update(Periodical periodical) {
         LOGGER.info("UPDATE  PERIODICAL WITH ID {}", periodical.toString());
         return periodicalDao.update(periodical);
+    }
+
+    @Override
+    public List<Periodical> getLatestAdded(Integer limit) {
+        LOGGER.info("FINDING {} LAST PERIODICALS", limit);
+
+        if (limit == null) {
+            return null;
+        }
+        return periodicalDao.selectLastPeriodicals((limit));
     }
 }

@@ -6,6 +6,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.service;
 
 import com.epam.model.periodical.Periodical;
@@ -20,11 +24,12 @@ public interface PeriodicalService {
 
     List<Periodical> getAllByName(String name);
 
-
     List<Periodical> getAll();
 
     boolean removeById(Long id);
 
     boolean update(Periodical periodical);
+
+    List<Periodical> getLatestAdded(Integer limit);
 
 }

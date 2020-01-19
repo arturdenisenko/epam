@@ -6,6 +6,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command;
 
 import com.epam.dao.impl.PeriodicalCategoryDaoImpl;
@@ -41,10 +45,10 @@ public class GetMainPageCommand implements ServletCommand {
     }
 
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        LOGGER.info("Executing command");
+        LOGGER.info("EXECUTE MAIN PAGE COMMAND");
 
         request.setAttribute("categories", periodicalCategoryService.getAll());
-        request.setAttribute("periodicals", periodicalService.getAll());
+        request.setAttribute("latestMagazines", periodicalService.getLatestAdded(6));
 
         if (request.getParameter("locale") != null) {
             String locale = request.getParameter("locale");
