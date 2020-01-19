@@ -2,6 +2,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.service;
 
 import com.epam.model.periodical.Periodical;
@@ -17,16 +21,15 @@ public interface SubscriptionService {
 
     void create(Subscription subscription);
 
-    Subscription getByid(Long id);
+    Subscription getSubscriptionById(Long id);
 
-    List<Subscription> selectAll();
+    List<Subscription> getAll();
 
     List<Subscription> getUserSubscriptions(Long userId);
 
-    List<Subscription> selectBySubscriptionCategory(SubscriptionType subscriptionType);
+    List<Subscription> getBySubscriptionCategory(SubscriptionType subscriptionType);
 
     boolean delete(Long id);
 
     boolean update(Subscription subscription);
-
 }

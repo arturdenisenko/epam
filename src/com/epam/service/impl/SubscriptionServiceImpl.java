@@ -10,6 +10,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.service.impl;
 
 import com.epam.dao.SubscriptionDao;
@@ -31,14 +35,13 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     private SubscriptionDao subscriptionDao;
 
     public SubscriptionServiceImpl(SubscriptionDao subscriptionDao) {
-        LOGGER.info("Initializing SubscriptionServiceImpl");
-
+        LOGGER.info("SUBSCRIPTION SERVICE IMPL INIT");
         this.subscriptionDao = subscriptionDao;
     }
 
     @Override
     public boolean checkSubscribe(User user, Periodical periodical) {
-        LOGGER.info("Checking if user is subscribed to magazine");
+        LOGGER.info("Checking if user is subscribed to periodical");
 
         if (user == null || periodical == null) {
             return false;
@@ -55,22 +58,33 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     }
 
     @Override
-    public Subscription getByid(Long id) {
-        return null;
+    public Subscription getSubscriptionById(Long id) {
+        LOGGER.info("Finding subscription by id " + id);
+
+        if (id == null) {
+            return null;
+        }
+
+        return subscriptionDao.select(id);
     }
 
     @Override
-    public List<Subscription> selectAll() {
-        return null;
+    public List<Subscription> getAll() {
+        LOGGER.info("GET ALL SUBSCRIPTIONS");
+        return subscriptionDao.selectAll();
     }
 
     @Override
     public List<Subscription> getUserSubscriptions(Long userId) {
-        return null;
+        LOGGER.info("Finding subscription by id " + userId);
+        if (userId == null) {
+            return null;
+        }
+        return subscriptionDao.getUserSubscriptions(userId);
     }
 
     @Override
-    public List<Subscription> selectBySubscriptionCategory(SubscriptionType subscriptionType) {
+    public List<Subscription> getBySubscriptionCategory(SubscriptionType subscriptionType) {
         return null;
     }
 

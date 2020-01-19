@@ -11,6 +11,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.service.impl;
 
 import com.epam.dao.PeriodicalDao;
@@ -36,7 +40,7 @@ public class PeriodicalServiceImpl implements PeriodicalService {
     }
 
     @Override
-    public void create(Periodical periodical) {
+    public void createPeriodical(Periodical periodical) {
         LOGGER.info("CREATE PERIODICAL {}", periodical.toString());
         periodicalDao.insert(periodical);
     }
@@ -44,7 +48,7 @@ public class PeriodicalServiceImpl implements PeriodicalService {
     @Override
     public Periodical getById(Long id) {
         LOGGER.info("GET PERIODICAL WITH ID  {}", id);
-        return periodicalDao.select(id);
+        return periodicalDao.selectPeriodicalById(id);
     }
 
     @Override
@@ -63,7 +67,7 @@ public class PeriodicalServiceImpl implements PeriodicalService {
     @Override
     public boolean removeById(Long id) {
         LOGGER.info("REMOVE PERIODICAL WITH ID {}", id);
-        return periodicalDao.delete(id);
+        return periodicalDao.deletePeriodicalById(id);
     }
 
     @Override

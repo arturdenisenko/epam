@@ -1,3 +1,7 @@
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.dao;
 
 import com.epam.model.periodical.PeriodicalCategory;
@@ -6,7 +10,7 @@ import java.util.List;
 
 public interface PeriodicalCategoryDao {
 
-    void insert(PeriodicalCategory periodicalCategory);
+    PeriodicalCategory insert(PeriodicalCategory periodicalCategory);
 
     PeriodicalCategory select(Long id);
 

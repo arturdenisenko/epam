@@ -1,3 +1,7 @@
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.model.periodical;
 
 import java.io.Serializable;
@@ -6,6 +10,9 @@ import java.util.Objects;
 public class PeriodicalCategory implements Serializable {
     private Long id;
     private String name;
+
+    public PeriodicalCategory() {
+    }
 
     public PeriodicalCategory(Long id, String name) {
         this.id = id;

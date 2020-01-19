@@ -10,6 +10,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command;
 
 import com.epam.dao.impl.PeriodicalCategoryDaoImpl;
@@ -80,7 +84,7 @@ public class GetPeriodicalPageCommand implements ServletCommand {
 
                     resultPage = magazinePage;
                 } else {
-                    LOGGER.info("Magazine with id " + id + " doesn't exist");
+                    LOGGER.info("Periodical with id " + id + " doesn't exist");
                 }
             } catch (NumberFormatException ex) {
                 LOGGER.info("Couldn't parse " + request.getParameter("id") + " to long");

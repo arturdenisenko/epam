@@ -2,6 +2,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.service;
 
 import com.epam.model.periodical.PeriodicalCategory;
@@ -10,7 +14,7 @@ import java.util.List;
 
 public interface PeriodicalCategoryService {
 
-    void create(PeriodicalCategory periodicalCategory);
+    PeriodicalCategory createPeriodicalCategory(PeriodicalCategory periodicalCategory);
 
     PeriodicalCategory getById(Long id);
 

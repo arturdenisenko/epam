@@ -7,6 +7,10 @@
   ~ @Denisenko Artur
   --%>
 
+<%--
+  ~ @Denisenko Artur
+  --%>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -78,7 +82,7 @@
                     <div class="col-md-8">
                         <select id="publisher" name="publisher" class="form-control">
                             <c:forEach items="${publishers}" var="publisher">
-                                <option value="${publisher.id}">${publisher.title}</option>
+                                <option value="${publisher.id}">${publisher.name}</option>
                             </c:forEach>
                         </select>
                     </div>

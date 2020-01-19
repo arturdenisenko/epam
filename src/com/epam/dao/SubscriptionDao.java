@@ -2,6 +2,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.dao;
 
 import com.epam.model.subscription.Subscription;
@@ -26,5 +30,7 @@ public interface SubscriptionDao {
     //clear all subscription_type for test only
     void clear();
 
-    boolean checkIfUserSubscribed(Long id, Long id1);
+    boolean checkIfUserSubscribed(Long userId, Long periodicalId);
+
+    List<Subscription> getUserSubscriptions(Long userId);
 }

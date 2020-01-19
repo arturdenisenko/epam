@@ -2,6 +2,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.service.impl;
 
 import com.epam.dao.PeriodicalCategoryDao;
@@ -23,9 +27,9 @@ public class PeriodicalCategoryServiceImpl implements PeriodicalCategoryService 
     }
 
     @Override
-    public void create(PeriodicalCategory periodicalCategory) {
+    public PeriodicalCategory createPeriodicalCategory(PeriodicalCategory periodicalCategory) {
         LOGGER.info("CREATE PERIODICAL CATEGORY  {}", periodicalCategory.toString());
-        periodicalCategoryDao.insert(periodicalCategory);
+        return periodicalCategoryDao.insert(periodicalCategory);
     }
 
     @Override

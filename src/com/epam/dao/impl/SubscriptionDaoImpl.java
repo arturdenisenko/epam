@@ -6,6 +6,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.dao.impl;
 
 import com.epam.dao.PeriodicalDao;
@@ -34,6 +38,7 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
             "INSERT INTO subscriptions (id, user_id, periodical_id,start_date,end_date, cost, subscription_type_id) " +
                     "VALUES " + " (DEFAULT, ?, ?, ?, ?, ?, ?);";
     private static final String SELECT_SUBSCRIPTION_BY_ID = "SELECT * FROM subscriptions WHERE id =?;";
+    private static final String SELECT_SUBSCRIPTION_BY_USER_ID = "SELECT * FROM subscriptions WHERE user_id =?;";
     private static final String SELECT_ALL_SUBSCRIPTIONS = "SELECT * FROM subscriptions;";
     private static final String DELETE_SUBSCRIPTION_SQL = "DELETE FROM subscriptions where id = ?;";
     private static final String UPDATE_SUBSCRIPTIONS_SQL =
@@ -115,7 +120,6 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
             LOGGER.error(e.getMessage(), e);
         }
         return subscriptions;
-
     }
 
     @Override
@@ -164,14 +168,14 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
     }
 
     @Override
-    public boolean checkIfUserSubscribed(Long userId, Long magazineId) {
-        LOGGER.info("Checking user " + userId + " is subscribed to periodical " + magazineId);
+    public boolean checkIfUserSubscribed(Long userId, Long periodicalId) {
+        LOGGER.info("Checking user " + userId + " is subscribed to periodical " + periodicalId);
         boolean result = false;
 
         try (Connection connection = ConnectionPool.getInstance().getConnection()) {
             PreparedStatement statement = connection.prepareStatement(CHECK_IF_USER_SUBSCRIBED_QUERY);
             statement.setLong(1, userId);
-            statement.setLong(2, magazineId);
+            statement.setLong(2, periodicalId);
 
             ResultSet res = statement.executeQuery();
 
@@ -186,13 +190,30 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
         return result;
     }
 
+    @Override
+    public List<Subscription> getUserSubscriptions(Long userId) {
+        LOGGER.info("SELECT ALL FROM SUBSCRIPTIONS BY USER ID");
+        List<Subscription> subscriptions = new CopyOnWriteArrayList<>();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_SUBSCRIPTION_BY_USER_ID)) {
+            preparedStatement.setLong(1, userId);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                subscriptions.add(subscriptionInitialize(rs));
+            }
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+        return subscriptions;
+    }
+
     private Subscription subscriptionInitialize(ResultSet rs) {
         LOGGER.info("SUBSCRIPTION INITIALIZE");
         Subscription subscription = new Subscription();
         try {
             subscription.setId(rs.getLong("id"));
             subscription.setUser(userDao.select(rs.getLong("user_id")));
-            subscription.setPeriodical(periodicalDao.select(rs.getLong("periodical_id")));
+            subscription.setPeriodical(periodicalDao.selectPeriodicalById(rs.getLong("periodical_id")));
             subscription.setStartDate(rs.getDate("start_date").toLocalDate());
             subscription.setEndDate(rs.getDate("end_date").toLocalDate());
             subscription.setCost(rs.getFloat("cost"));

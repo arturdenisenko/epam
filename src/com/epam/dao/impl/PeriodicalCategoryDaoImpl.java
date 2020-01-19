@@ -1,3 +1,7 @@
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.dao.impl;
 
 import com.epam.dao.PeriodicalCategoryDao;
@@ -31,7 +35,7 @@ public class PeriodicalCategoryDaoImpl implements PeriodicalCategoryDao {
     }
 
     @Override
-    public void insert(PeriodicalCategory periodicalCategory) {
+    public PeriodicalCategory insert(PeriodicalCategory periodicalCategory) {
         LOGGER.info("INSERT PERIODICAL CATEGORY {} {}", periodicalCategory.getId(), periodicalCategory.getName());
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_PERIODICAL_CATEGORY_SQL)) {
@@ -42,9 +46,17 @@ public class PeriodicalCategoryDaoImpl implements PeriodicalCategoryDao {
             } else {
                 LOGGER.info("PERIODICAL CATEGORY CREATION SUCCESSFUL");
             }
+            try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    periodicalCategory.setId(generatedKeys.getLong(1));
+                } else {
+                    LOGGER.error("Failed to create category, no ID obtained.");
+                }
+            }
         } catch (SQLException e) {
             throw ExceptionUtil.convertException(e);
         }
+        return periodicalCategory;
     }
 
     @Override

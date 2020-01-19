@@ -2,6 +2,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.dao;
 
 import com.epam.model.periodical.Periodical;
@@ -39,7 +43,7 @@ public class PeriodicalDaoTest {
     @Test
     public void select() {
         LOGGER.info("SELECT PERIODICAL DATABASE USER TESTING");
-        Periodical periodicalForSelectTest = PERIODICAL_DAO.select(periodicalListFromDatabase.get(0).getId());
+        Periodical periodicalForSelectTest = PERIODICAL_DAO.selectPeriodicalById(periodicalListFromDatabase.get(0).getId());
         Assert.assertEquals(periodicalForSelectTest, PERIODICAL);
     }
 
@@ -55,7 +59,7 @@ public class PeriodicalDaoTest {
     @Test
     public void delete() {
         LOGGER.info("DELETE PERIODICAL TESTING");
-        PERIODICAL_DAO.delete(periodicalListFromDatabase.get(0).getId());
+        PERIODICAL_DAO.deletePeriodicalById(periodicalListFromDatabase.get(0).getId());
         Assert.assertEquals(2, PERIODICAL_DAO.selectAll().size());
     }
 
@@ -65,7 +69,7 @@ public class PeriodicalDaoTest {
         Periodical periodicalForUpdateTest = periodicalListFromDatabase.get(0);
         periodicalForUpdateTest.setName("TESTING UPDATE NAME");
         PERIODICAL_DAO.update(periodicalForUpdateTest);
-        Assert.assertEquals(periodicalForUpdateTest, PERIODICAL_DAO.select(periodicalForUpdateTest.getId()));
+        Assert.assertEquals(periodicalForUpdateTest, PERIODICAL_DAO.selectPeriodicalById(periodicalForUpdateTest.getId()));
     }
 
     @Test

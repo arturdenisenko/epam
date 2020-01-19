@@ -10,8 +10,22 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
+/*
+ * @Denisenko Artur
+ */
+
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command;
 
+import com.epam.command.admin.periodicalcategories.*;
+import com.epam.command.admin.publishers.AddPublisherAdminCommand;
 import com.epam.util.GetPropertiesUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,10 +59,10 @@ public class CommandManager {
         getCommands.put("/search", new GetSearchPageCommand());
 
         //admin categories
-        //getCommands.put("/admin/categories", new CategoriesAdminPageCommand());
-        //getCommands.put("/admin/categories/add", new AddCategoryAdminPageCommand());
-        //getCommands.put("/admin/categories/delete", new DeleteCategoryAdminCommand());
-        //getCommands.put("/admin/categories/edit", new EditCategoryAdminPageCommand());
+        getCommands.put("/admin/categories", new CategoriesAdminPageCommand());
+        getCommands.put("/admin/categories/add", new AddCategoryAdminPageCommand());
+        getCommands.put("/admin/categories/delete", new DeleteCategoryAdminCommand());
+        getCommands.put("/admin/categories/edit", new EditCategoryAdminPageCommand());
 
         //admin publishers
         //getCommands.put("/admin/publishers", new PublishersAdminPageCommand());
@@ -75,14 +89,16 @@ public class CommandManager {
 
         postCommands.put("/login", new LoginCommand());
         postCommands.put("/register", new RegisterCommand());
-        //postCommands.put("/subscribe", new SubscribeCommand());
+        postCommands.put("/subscribe", new SubscribeCommand());
 
         //admin categories
-        //postCommands.put("/admin/categories/add", new AddCategoryAdminCommand());
-        //postCommands.put("/admin/categories/update", new UpdateCategoryAdminCommand());
+
+        postCommands.put("/admin/categories/add", new AddCategoryAdminCommand());
+        postCommands.put("/admin/categories/update", new UpdateCategoryAdminCommand());
 
         //admin publishers
-        //postCommands.put("/admin/publishers/add", new AddPublisgerAdminCommand());
+
+        postCommands.put("/admin/publishers/add", new AddPublisherAdminCommand());
         //postCommands.put("/admin/publishers/update", new UpdatePublisherAdminCommand());
 
         //admin users

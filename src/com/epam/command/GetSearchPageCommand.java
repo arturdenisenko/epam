@@ -6,6 +6,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command;
 
 import com.epam.dao.impl.PeriodicalCategoryDaoImpl;
@@ -43,7 +47,7 @@ public class GetSearchPageCommand implements ServletCommand {
     }
 
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        LOGGER.info("Executing command");
+        LOGGER.info("EXECUTING SEARCH PAGE COMMAND");
 
         String resultPage = errorPage;
 

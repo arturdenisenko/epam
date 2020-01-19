@@ -6,6 +6,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command;
 
 import com.epam.dao.impl.PeriodicalDaoImpl;
@@ -42,7 +46,7 @@ public class GetSubscribePageCommand implements ServletCommand {
     private static String subscriptionSuccessPage;
 
     public GetSubscribePageCommand() {
-        LOGGER.info("Initializing GetSubscribePageCommand");
+        LOGGER.info("GET SUBSCRIBE PAGE COMMAND INIT");
 
         periodicalService = new PeriodicalServiceImpl(PeriodicalDaoImpl.getInstance());
         subscriptionTypeService = new SubscriptionTypeServiceImpl(SubscriptionTypeDaoImpl.getInstance());
@@ -57,7 +61,7 @@ public class GetSubscribePageCommand implements ServletCommand {
     }
 
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        LOGGER.info("Executing command");
+        LOGGER.info("EXECUTE GET SUBSCRIBE COMMAND");
         String resultPage = mainPage;
 
         if (request.getSession().getAttribute("authenticated") == null &&
@@ -79,7 +83,6 @@ public class GetSubscribePageCommand implements ServletCommand {
                 LOGGER.info("Couldn't parse " + request.getParameter("id") + " to long");
             }
         }
-
         return resultPage;
     }
 }
