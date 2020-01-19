@@ -10,6 +10,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command;
 
 import com.epam.dao.impl.PeriodicalCategoryDaoImpl;
@@ -25,6 +29,9 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * This class is for handle GET request in main page
+ */
 public class GetMainPageCommand implements ServletCommand {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GetMainPageCommand.class);
@@ -48,7 +55,7 @@ public class GetMainPageCommand implements ServletCommand {
         LOGGER.info("EXECUTE MAIN PAGE COMMAND");
 
         request.setAttribute("categories", periodicalCategoryService.getAll());
-        request.setAttribute("latestMagazines", periodicalService.getLatestAdded(6));
+        request.setAttribute("latestPeriodicals", periodicalService.getLastAdded(6));
 
         if (request.getParameter("locale") != null) {
             String locale = request.getParameter("locale");

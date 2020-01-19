@@ -6,6 +6,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command;
 
 import com.epam.util.GetPropertiesUtil;
@@ -15,6 +19,9 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * This class is for handle GET request in Register Page
+ */
 public class GetRegisterPageCommand implements ServletCommand {
     private static final Logger LOGGER = LoggerFactory.getLogger(GetRegisterPageCommand.class);
 
@@ -37,8 +44,7 @@ public class GetRegisterPageCommand implements ServletCommand {
         if (request.getSession().getAttribute("authenticated") != null &&
                 request.getSession().getAttribute("authenticated").equals(true)) {
             resultPage = mainPage;
-            //TODO --- this fname and lname
-        } else if (request.getParameter("fname") == null && request.getParameter("lname") == null &&
+        } else if (request.getParameter("firstName") == null && request.getParameter("lastName") == null &&
                 request.getParameter("email") == null && request.getParameter("password") == null &&
                 request.getParameter("address") == null) {
             LOGGER.info("RETURNING REGISTRATION PAGE");

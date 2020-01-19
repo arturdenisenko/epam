@@ -14,6 +14,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command;
 
 import com.epam.dao.impl.PeriodicalCategoryDaoImpl;
@@ -37,6 +41,9 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * This class is for handle GET request in PeriodicalPage
+ */
 public class GetPeriodicalPageCommand implements ServletCommand {
     private static final Logger LOGGER = LoggerFactory.getLogger(GetPeriodicalPageCommand.class);
 
@@ -49,7 +56,7 @@ public class GetPeriodicalPageCommand implements ServletCommand {
     private static String errorPage;
 
     public GetPeriodicalPageCommand() {
-        LOGGER.info("Get Periodical Page Command Initializing");
+        LOGGER.info("GET PERIODICAL PAGE COMMAND INIT");
 
         periodicalCategoryService = new PeriodicalCategoryServiceImpl(PeriodicalCategoryDaoImpl.getInstance());
         periodicalService = new PeriodicalServiceImpl(PeriodicalDaoImpl.getInstance());

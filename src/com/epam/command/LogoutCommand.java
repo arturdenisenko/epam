@@ -6,6 +6,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command;
 
 import com.epam.dao.impl.PeriodicalCategoryDaoImpl;
@@ -21,6 +25,9 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * This class is for handle GET request in logout
+ */
 public class LogoutCommand implements ServletCommand {
     private static final Logger LOGGER = LoggerFactory.getLogger(LogoutCommand.class);
 
@@ -30,7 +37,7 @@ public class LogoutCommand implements ServletCommand {
     private static String mainPage;
 
     public LogoutCommand() {
-        LOGGER.info("Initializing LogoutCommand");
+        LOGGER.info("LOGOUT COMMAND INIT");
 
         periodicalCategoryService = new PeriodicalCategoryServiceImpl(PeriodicalCategoryDaoImpl.getInstance());
         periodicalService = new PeriodicalServiceImpl(PeriodicalDaoImpl.getInstance());
@@ -39,13 +46,13 @@ public class LogoutCommand implements ServletCommand {
     }
 
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        LOGGER.info("Executing command");
-        LOGGER.info("Logging out user " + request.getSession().getAttribute("email"));
+        LOGGER.info("EXECUTE LOGOUT COMMAND");
+        LOGGER.info("LOGGING OUT USER {}", request.getSession().getAttribute("email"));
 
         request.getSession().invalidate();
 
         request.setAttribute("categories", periodicalCategoryService.getAll());
-        request.setAttribute("periodicals", periodicalService.getAll());
+        request.setAttribute("latestPeriodicals", periodicalService.getLastAdded(6));
 
         return mainPage;
     }

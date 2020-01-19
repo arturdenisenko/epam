@@ -19,6 +19,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.service.impl;
 
 import com.epam.dao.PeriodicalDao;
@@ -26,6 +30,7 @@ import com.epam.filters.ModelFilter;
 import com.epam.filters.PeriodicalSelectByNameFilter;
 import com.epam.model.periodical.Periodical;
 import com.epam.service.PeriodicalService;
+import com.epam.util.Page;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -81,12 +86,39 @@ public class PeriodicalServiceImpl implements PeriodicalService {
     }
 
     @Override
-    public List<Periodical> getLatestAdded(Integer limit) {
+    public List<Periodical> getLastAdded(Integer limit) {
         LOGGER.info("FINDING {} LAST PERIODICALS", limit);
 
         if (limit == null) {
             return null;
         }
         return periodicalDao.selectLastPeriodicals((limit));
+    }
+
+    @Override
+    public List<Periodical> getPageByCategory(Integer page, Integer size, Long categoryId) {
+        LOGGER.info("Getting page number {} of size {} for category id {}", page, size, categoryId);
+
+        if (page == null || size == null || categoryId == null || page < 1 || size < 1) {
+            return null;
+        }
+
+        List<Periodical> items = periodicalDao.selectPageByCategory(categoryId, (page - 1) * size, size);
+        return (List<Periodical>) new Page(items, page, size);
+    }
+
+    @Override
+    public List<Periodical> getPageByPublisher(Long publisherId, Integer offset, Integer size) {
+        return null;
+    }
+
+    @Override
+    public List<Periodical> getPage(Integer offset, Integer size) {
+        return null;
+    }
+
+    @Override
+    public List<Periodical> getPageByNameQuery(String query, Integer offset, Integer size) {
+        return null;
     }
 }

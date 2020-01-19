@@ -6,6 +6,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command;
 
 import com.epam.util.GetPropertiesUtil;
@@ -15,7 +19,11 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * This class is for handle GET request in login page
+ */
 public class GetLoginPageCommand implements ServletCommand {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(GetLoginPageCommand.class);
 
     private static String loginPage;
@@ -30,7 +38,7 @@ public class GetLoginPageCommand implements ServletCommand {
     }
 
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        LOGGER.info("EXECUTING LOGIN COMMAND ");
+        LOGGER.info("EXECUTING LOGIN COMMAND");
 
         String resultPage = loginPage;
 

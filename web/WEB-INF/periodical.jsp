@@ -1,3 +1,8 @@
+<%--
+  ~ @Denisenko Artur
+  --%>
+
+pe
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="navbar" %>
@@ -68,20 +73,20 @@
 
                     <div class="text-right">
                         <%--User logged in--%>
-                        <c:if test="${sessionScope.authenticated != null &&
+                            <c:if test="${sessionScope.authenticated != null &&
                                   sessionScope.authenticated == true &&
                                   sessionScope.role == 'USER' &&
-                                  magazine.enabled == true}">
-                            <c:if test="${!isSubscribed}">
-                                <a class="btn btn-primary"
-                                   href="${pageContext.request.contextPath}/subscribe?id=${[periodical.id]}">
-                                    <fmt:message key="subscribe" bundle="${bundle}"/>
-                                </a>
-                            </c:if>
+                                  periodical.active == true}">
+                                <c:if test="${!isSubscribed}">
+                                    <a class="btn btn-primary"
+                                       href="${pageContext.request.contextPath}/subscribe?id=${[periodical.id]}">
+                                        <fmt:message key="subscribe" bundle="${bundle}"/>
+                                    </a>
+                                </c:if>
 
-                            <c:if test="${isSubscribed}">
-                                <button class="btn btn-success" disabled="disabled">
-                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                <c:if test="${isSubscribed}">
+                                    <button class="btn btn-success" disabled="disabled">
+                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                                     <fmt:message key="subscribed" bundle="${bundle}"/>
                                 </button>
                             </c:if>

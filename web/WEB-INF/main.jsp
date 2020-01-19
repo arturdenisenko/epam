@@ -8,17 +8,13 @@
   ~ @Denisenko Artur
   --%>
 
-<%--
-  ~ @Denisenko Artur
-  --%>
-
 <html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="Denisenko Artur">
 
     <%--Localization--%>
     <c:if test="${sessionScope.locale == null}">
@@ -59,13 +55,17 @@
 
             <div class="row">
 
-                <c:forEach items="${periodicals}" var="periodical">
+                <c:forEach items="${latestPeriodicals}" var="periodical">
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
                             <a href="${pageContext.request.contextPath}/periodical?id=${periodical.id}"
                                class="thumbnail">
-                                <img src="img/${periodical.imageLink}" class="img-fluid" alt="">
-
+                                <c:if test="${periodical.imageLink != null}">
+                                    <img src="img/${periodical.imageLink}" class="img-fluid" alt="">
+                                </c:if>
+                                <c:if test="${periodical.imageLink == null}">
+                                    <img src="https://placeholdit.imgix.net/~text?txtsize=28&txt=300%C3%97400&w=300&h=400"/>
+                                </c:if>
                             </a>
                             <div class="caption">
                                 <h4 class="pull-right"><p:price price="${periodical.costPerMonth}"/></h4>

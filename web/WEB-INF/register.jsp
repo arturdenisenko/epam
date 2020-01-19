@@ -6,6 +6,10 @@
   ~ @Denisenko Artur
   --%>
 
+<%--
+  ~ @Denisenko Artur
+  --%>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -48,13 +52,13 @@
                         <fieldset>
                             <div class="form-group">
                                 <input class="form-control"
-                                       placeholder="<fmt:message key="firstName" bundle="${bundle}"/>" name="fname"
+                                       placeholder="<fmt:message key="firstName" bundle="${bundle}"/>" name="firstName"
                                        type="text" required>
                             </div>
 
                             <div class="form-group">
                                 <input class="form-control"
-                                       placeholder="<fmt:message key="lastName" bundle="${bundle}"/>" name="lname"
+                                       placeholder="<fmt:message key="lastName" bundle="${bundle}"/>" name="lastName"
                                        type="text" required>
                             </div>
 

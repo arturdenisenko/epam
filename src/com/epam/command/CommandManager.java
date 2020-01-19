@@ -22,6 +22,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command;
 
 import com.epam.command.admin.periodicalcategories.*;
@@ -33,9 +37,13 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 
+/**
+ * This class if for working with servlet commands
+ */
 public class CommandManager {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CommandManager.class);
+
     private static String errorPage;
     private HashMap<String, ServletCommand> getCommands;
     private HashMap<String, ServletCommand> postCommands;

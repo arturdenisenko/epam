@@ -7,13 +7,17 @@
   ~ @Denisenko Artur
   --%>
 
+<%--
+  ~ @Denisenko Artur
+  --%>
+
 <html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="Denisenko Artur">
 
     <%--Localization--%>
     <c:if test="${sessionScope.locale == null}">
@@ -59,25 +63,22 @@
                 </c:if>
 
                 <c:forEach items="${page.items}" var="periodical">
-                <div class="col-sm-4 col-lg-4 col-md-4">
-                    <div class="thumbnail">
-                        <c:if test="${periodical.imageId != ""}">
-                        <img src="${pageContext.request.contextPath}/images/${periodical.imageLink}"/>
-
-
-                        </c:if>
-                        <c:if test="${magazine.imageId == 0}">
-                            <img src="https://placeholdit.imgix.net/~text?txtsize=28&txt=300%C3%97400&w=300&h=400"/>
-                        </c:if>
-
-                        <div class="caption">
-                            <h4 class="pull-right"><p:price price="${magazine.price}"/></h4>
-                            <h4>
-                                <a href="${pageContext.request.contextPath}/magazine?id=${magazine.id}">${magazine.title}</a>
-                            </h4>
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <c:if test="${periodical.imageLink != null}">
+                                <img src="img/${periodical.imageLink}" class="img-fluid" alt="">
+                            </c:if>
+                            <c:if test="${periodical.imageLink == null}">
+                                <img src="https://placeholdit.imgix.net/~text?txtsize=28&txt=300%C3%97400&w=300&h=400"/>
+                            </c:if>
+                            <div class="caption">
+                                <h4 class="pull-right"><p:price price="${periodical.costPerMonth}"/></h4>
+                                <h4>
+                                    <a href="${pageContext.request.contextPath}/periodical?id=${periodical.id}">${periodical.name}</a>
+                                </h4>
+                            </div>
                         </div>
                     </div>
-                </div>
                 </c:forEach>
             </div>
 

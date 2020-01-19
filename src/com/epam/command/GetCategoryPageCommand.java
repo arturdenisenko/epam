@@ -6,6 +6,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command;
 
 import com.epam.dao.impl.PeriodicalCategoryDaoImpl;
@@ -24,6 +28,9 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * This class is for handle GET request in CategoryPage(view all periodicals in category)
+ */
 public class GetCategoryPageCommand implements ServletCommand {
     private static final Logger LOGGER = LoggerFactory.getLogger(GetCategoryPageCommand.class);
 
@@ -45,7 +52,7 @@ public class GetCategoryPageCommand implements ServletCommand {
     }
 
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        LOGGER.info("Executing command");
+        LOGGER.info("EXECUTING CATEGORY PAGE COMMAND");
 
         String resultPage = errorPage;
 
@@ -53,12 +60,25 @@ public class GetCategoryPageCommand implements ServletCommand {
                 request.getParameter("s") != null) {
 
             try {
+                /*ong categoryId = Long.parseLong(request.getParameter("catId"));
+                Integer pageNum = Integer.parseInt(request.getParameter("p"));
+                Integer size = Integer.parseInt(request.getParameter("s"));
+
+                Category category = categoryService.findCategoryById(categoryId);
+                Page<Magazine> page = magazineService.getPageByCategoryId(pageNum, size, category.getId());
+
+                request.setAttribute("categories", categoryService.findAll());
+                request.setAttribute("page", page);
+                request.setAttribute("category", category);
+
+                resultPage = categoryPage;*/
+
                 Long categoryId = Long.parseLong(request.getParameter("catId"));
                 Integer pageNum = Integer.parseInt(request.getParameter("p"));
                 Integer size = Integer.parseInt(request.getParameter("s"));
 
                 PeriodicalCategory category = periodicalCategoryService.getById(categoryId);
-                Page<Periodical> page = (Page<Periodical>) periodicalService.getAll();
+                Page<Periodical> page = (Page<Periodical>) periodicalService.getPageByCategory(pageNum, size, category.getId());
 
                 request.setAttribute("categories", periodicalCategoryService.getAll());
                 request.setAttribute("page", page);
