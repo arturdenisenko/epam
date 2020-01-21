@@ -5,6 +5,10 @@
 <%--
   ~ @Denisenko Artur
   --%>
+
+<%--
+  ~ @Denisenko Artur
+  --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="navbar" %>
@@ -78,7 +82,7 @@
                                   periodical.active == true}">
                                 <c:if test="${!isSubscribed}">
                                     <a class="btn btn-primary"
-                                       href="${pageContext.request.contextPath}/subscribe?id=${[periodical.id]}">
+                                       href="${pageContext.request.contextPath}/subscribe?id=${periodical.id}">
                                         <fmt:message key="subscribe" bundle="${bundle}"/>
                                     </a>
                                 </c:if>
@@ -131,24 +135,21 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
         <div class="col-md-3">
             <div class="box_list wow fadeIn">
                 <c:if test="${periodical.imageLink == ''}">
-                    <img src="https://www.dropbox.com/s/6m2zk0gphhxfits/noImagePeriodical.png?dl=0"/>
+                    <img src="${pageContext.request.contextPath}/images/noImagePeriodical.png"/>
 
                 </c:if>
                 <c:if test="${periodical.imageLink != ''}">
-                    <img src="images/${periodical.imageLink}" alt="${periodical.name}">
-
+                    <img src="${pageContext.request.contextPath}/images/${periodical.imageLink}"
+                         alt="${periodical.name}">
                 </c:if>
                 <div class="wrapper">
                 </div>
-
             </div>
-
         </div>
         <!-- /.container -->
 

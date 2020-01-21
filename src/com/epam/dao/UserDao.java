@@ -2,6 +2,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.dao;
 
 import com.epam.model.user.User;
@@ -11,21 +15,24 @@ import java.util.List;
 
 public interface UserDao {
 
-    User insert(User user);
+    User createUser(User user);
 
-    User select(Long id);
+    User getUserById(Long id);
 
-    List<User> selectByName(String name);
+    User getByEmail(String email);
 
-    User selectByEmail(String email);
+    List<User> getUserByName(String name);
 
-    List<User> selectByUsersType(UserType userType);
+    List<User> getAll();
 
-    List<User> selectAll();
+    boolean deleteUser(Long id);
 
-    boolean delete(Long id);
+    boolean updateUser(User user);
 
-    boolean update(User user);
-    //for test only
+    /**
+     * For tests only drop all users from database
+     */
     void clear();
+
+    List<User> findPageByUserType(UserType userType, Integer offset, Integer size);
 }

@@ -6,6 +6,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam;
 
 import com.epam.dao.*;
@@ -87,7 +91,7 @@ public class TestData {
             e.printStackTrace();
         }
         periodicalListFromDatabase = PERIODICAL_DAO.selectAll();
-        userList = USER_DAO.selectAll();
+        userList = USER_DAO.getAll();
         subscriptionListFromDatabase = SUBSCRIPTION_DAO.selectAll();
 
         USER = new User((long) 1201, "Serghei", "Ivanov", "ivanov_s@gmail.com", "ivanov", UserType.MANAGER, "Gagarina street", new BigDecimal(200));

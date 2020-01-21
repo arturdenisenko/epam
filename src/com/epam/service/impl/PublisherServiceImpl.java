@@ -2,11 +2,14 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.service.impl;
 
 import com.epam.dao.PublisherDao;
 import com.epam.exception.DaoException;
-import com.epam.exception.ServiceException;
 import com.epam.model.periodical.Publisher;
 import com.epam.service.PublisherService;
 import org.slf4j.Logger;
@@ -25,54 +28,60 @@ public class PublisherServiceImpl implements PublisherService {
     }
 
     @Override
-    public void insert(Publisher publisher) throws ServiceException {
+    public Publisher createPublisher(Publisher publisher) {
         LOGGER.info("CREATE PUBLISHER {}", publisher.toString());
         try {
-            publisherDao.insert(publisher);
+            return publisherDao.insertPublisher(publisher);
         } catch (DaoException e) {
             LOGGER.warn("CREATE PUBLISHER FAILED {}" + e.getMessage(), e);
-            throw new ServiceException(e);
         }
-
+        return null;
     }
 
     @Override
-    public Publisher select(Long id) throws ServiceException {
+    public Publisher getPublisherById(Long id) {
+        LOGGER.info("GET PUBLISHER WITH ID {}", id);
         try {
             return publisherDao.select(id);
         } catch (DaoException e) {
-            LOGGER.error("SELECT PUBLISHER FAILED {}" + e, e.getMessage());
-            throw new ServiceException(e);
+            LOGGER.warn("GET PUBLISHER WITH ID {} FAILED {}" + e.getMessage(), e);
         }
+        return null;
     }
 
     @Override
-    public List<Publisher> selectAll() throws ServiceException {
+    public List<Publisher> getAll() {
         LOGGER.info("GETTING ALL PUBLISHERS");
         try {
             return publisherDao.selectAll();
         } catch (DaoException e) {
-            throw new ServiceException(e);
+            LOGGER.warn("GET ALL PUBLISHERS  {} FAILED {}" + e.getMessage(), e);
         }
+        return null;
     }
 
     @Override
-    public boolean delete(Long id) throws ServiceException {
+    public boolean deletePublisherById(Long id) {
         LOGGER.info("DELETE PUBLISHER WITH ID {} ", id);
+
         try {
             return id != null && publisherDao.delete(id);
         } catch (DaoException e) {
-            throw new ServiceException(e);
+            LOGGER.warn("DELETE PUBLISHER WITH ID  {} FAILED {} {}", id, e.getMessage(), e);
         }
+        return false;
+
     }
 
     @Override
-    public boolean update(Publisher publisher) throws ServiceException {
+    public boolean update(Publisher publisher) {
         LOGGER.info("UPDATE PUBLISHER WITH ID {}", publisher.getId());
+
         try {
             return publisherDao.update(publisher);
         } catch (DaoException e) {
-            throw new ServiceException(e);
+            LOGGER.warn("UPDATE PUBLISHER WITH ID  {} FAILED {} {}", publisher.getId(), e.getMessage(), e);
         }
+        return false;
     }
 }

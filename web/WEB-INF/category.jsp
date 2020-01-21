@@ -11,6 +11,10 @@
   ~ @Denisenko Artur
   --%>
 
+<%--
+  ~ @Denisenko Artur
+  --%>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -65,15 +69,16 @@
                 <c:forEach items="${page.items}" var="periodical">
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
-                            <c:choose>
-                                <c:when test="${periodical.imageLink == ''}">
-                                    <img src="https://www.dropbox.com/s/6m2zk0gphhxfits/noImagePeriodical.png?dl=0"/>
-                                </c:when>
-                                <c:otherwise>
-                                    <img src="images/${periodical.imageLink}" class="img-fluid"
-                                         alt="${periodical.name}">
-                                </c:otherwise>
-                            </c:choose>
+                            <c:if test="${periodical.imageLink == ''}">
+                                <img class="img-responsive"
+                                     src="${pageContext.request.contextPath}/images/noImagePeriodical.png"/>
+
+                            </c:if>
+                            <c:if test="${periodical.imageLink != ''}">
+                                <img class="img-responsive"
+                                     src="${pageContext.request.contextPath}/images/${periodical.imageLink}"
+                                     alt="${periodical.name}">
+                            </c:if>
                             <div class="caption">
                                 <h4 class="pull-right"><p:price price="${periodical.costPerMonth}"/></h4>
                                 <h4>

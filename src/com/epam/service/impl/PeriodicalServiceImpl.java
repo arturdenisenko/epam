@@ -23,6 +23,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.service.impl;
 
 import com.epam.dao.PeriodicalDao;
@@ -55,7 +59,7 @@ public class PeriodicalServiceImpl implements PeriodicalService {
     }
 
     @Override
-    public Periodical getById(Long id) {
+    public Periodical getPeriodicalById(Long id) {
         LOGGER.info("GET PERIODICAL WITH ID  {}", id);
         return periodicalDao.selectPeriodicalById(id);
     }
@@ -82,7 +86,7 @@ public class PeriodicalServiceImpl implements PeriodicalService {
     @Override
     public boolean update(Periodical periodical) {
         LOGGER.info("UPDATE  PERIODICAL WITH ID {}", periodical.toString());
-        return periodicalDao.update(periodical);
+        return periodicalDao.updatePeriodical(periodical);
     }
 
     @Override
@@ -96,7 +100,7 @@ public class PeriodicalServiceImpl implements PeriodicalService {
     }
 
     @Override
-    public List<Periodical> getPageByCategory(Integer page, Integer size, Long categoryId) {
+    public Page<Periodical> getPageByCategory(Integer page, Integer size, Long categoryId) {
         LOGGER.info("Getting page number {} of size {} for category id {}", page, size, categoryId);
 
         if (page == null || size == null || categoryId == null || page < 1 || size < 1) {
@@ -104,7 +108,7 @@ public class PeriodicalServiceImpl implements PeriodicalService {
         }
 
         List<Periodical> items = periodicalDao.selectPageByCategory(categoryId, (page - 1) * size, size);
-        return (List<Periodical>) new Page(items, page, size);
+        return new Page(items, page, size);
     }
 
     @Override
@@ -113,12 +117,26 @@ public class PeriodicalServiceImpl implements PeriodicalService {
     }
 
     @Override
-    public List<Periodical> getPage(Integer offset, Integer size) {
-        return null;
+    public Page<Periodical> getPage(Integer page, Integer size) {
+        LOGGER.info("Getting page number {} of size {}", page, size);
+
+        if (page == null || size == null || page < 1 || size < 1) {
+            return null;
+        }
+
+        List<Periodical> items = periodicalDao.selectPage((page - 1) * size, size);
+        return new Page(items, page, size);
     }
 
     @Override
-    public List<Periodical> getPageByNameQuery(String query, Integer offset, Integer size) {
-        return null;
+    public Page<Periodical> getPageByNameQuery(String query, Integer page, Integer size) {
+        LOGGER.info("Getting page by query {} number {}, of size {}", query, page, size);
+
+        if (page == null || size == null || query == null || page < 1 || size < 1) {
+            return null;
+        }
+
+        List<Periodical> items = periodicalDao.selectPageByNameQuery(query, (page - 1) * size, size);
+        return new Page(items, page, size);
     }
 }

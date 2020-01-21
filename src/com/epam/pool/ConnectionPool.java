@@ -2,6 +2,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.pool;
 
 import com.epam.Main;
@@ -15,6 +19,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+/**
+ * Connection Pool for Test Dao, need to change it
+ */
 public class ConnectionPool implements ConnectionBuilder {
     private final static Logger LOGGER = LoggerFactory.getLogger(ConnectionPool.class);
 

@@ -6,6 +6,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command;
 
 import com.epam.dao.impl.SubscriptionDaoImpl;
@@ -24,6 +28,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
+/**
+ * This class if used for handle GET request in accountPage
+ */
 public class GetAccountPageCommand implements ServletCommand {
     private static final Logger LOGGER = LoggerFactory.getLogger(GetAccountPageCommand.class);
 

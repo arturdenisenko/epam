@@ -6,6 +6,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.dao;
 
 import com.epam.model.periodical.Periodical;
@@ -52,7 +56,7 @@ public interface PeriodicalDao {
      * @param periodical periodical to update
      * @return true if delete success, false if something wrong
      */
-    boolean update(Periodical periodical);
+    boolean updatePeriodical(Periodical periodical);
 
     /**
      * This method delete all  periodicals from database, for tests only not used in service layer

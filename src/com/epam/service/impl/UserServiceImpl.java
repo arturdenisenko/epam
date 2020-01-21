@@ -6,12 +6,17 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.service.impl;
 
 import com.epam.dao.UserDao;
 import com.epam.model.user.User;
 import com.epam.model.user.UserType;
 import com.epam.service.UserService;
+import com.epam.util.Page;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,7 +28,7 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     public UserServiceImpl(UserDao userDao) {
-        LOGGER.info("Initializing UserServiceImpl");
+        LOGGER.info("USER SERVICE INIT");
 
         this.userDao = userDao;
     }
@@ -36,7 +41,7 @@ public class UserServiceImpl implements UserService {
             return false;
         }
 
-        User user = userDao.selectByEmail(email);
+        User user = userDao.getByEmail(email);
         return user == null;
     }
 
@@ -44,7 +49,7 @@ public class UserServiceImpl implements UserService {
     public boolean create(User user) {
         LOGGER.info("New user registration");
 
-        return user != null && userDao.insert(user).getId() != null;
+        return user != null && userDao.createUser(user).getId() != null;
 
     }
 
@@ -56,7 +61,7 @@ public class UserServiceImpl implements UserService {
             return null;
         }
 
-        return userDao.select(id);
+        return userDao.getUserById(id);
     }
 
     @Override
@@ -72,12 +77,18 @@ public class UserServiceImpl implements UserService {
             return null;
         }
 
-        return userDao.selectByEmail(email);
+        return userDao.getByEmail(email);
     }
 
     @Override
-    public List<User> getAllByUsersType(UserType userType) {
-        return null;
+    public Page<User> getAllByUsersType(Integer page, Integer size, UserType userType) {
+        LOGGER.info("Getting page number {}, of size {} , for user type {}", page, size, userType.name());
+
+        if (page == null || size == null || page < 1 || size < 1) {
+            return null;
+        }
+        List<User> items = userDao.findPageByUserType(userType, (page - 1) * size, size);
+        return new Page(items, page, size);
     }
 
     @Override

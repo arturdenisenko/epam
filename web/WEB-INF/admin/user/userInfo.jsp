@@ -6,6 +6,10 @@
   ~ @Denisenko Artur
   --%>
 
+<%--
+  ~ @Denisenko Artur
+  --%>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -87,8 +91,8 @@
                                     <div class="col-md-12">
                                         <div class="thumbnail">
                                             <div class="caption">
-                                                <h3>${sub.magazine.title}</h3>
-                                                <span class="pull-right"><h3>${sub.price}₴</h3></span>
+                                                <h3>${sub.periodical.name}</h3>
+                                                <span class="pull-right"><h3>${sub.cost}₴</h3></span>
 
                                                 <p><fmt:message key="from" bundle="${bundle}"/>: ${sub.startDate}</p>
                                                 <p><fmt:message key="to" bundle="${bundle}"/>: ${sub.endDate}</p>

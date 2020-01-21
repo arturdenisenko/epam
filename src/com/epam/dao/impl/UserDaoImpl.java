@@ -2,13 +2,16 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.dao.impl;
 
 import com.epam.dao.UserDao;
 import com.epam.exception.NotExistEntityException;
 import com.epam.filters.ModelFilter;
 import com.epam.filters.UserByFirstNameLastNameFilter;
-import com.epam.filters.UserByUserTypeFilter;
 import com.epam.model.user.User;
 import com.epam.model.user.UserType;
 import com.epam.pool.ConnectionPool;
@@ -36,8 +39,12 @@ public class UserDaoImpl implements UserDao {
     private static final String SELECT_USER_BY_EMAIL = "SELECT * FROM users WHERE email =?;";
     private static final String SELECT_ALL_USERS = "SELECT * FROM users ORDER BY id;";
     private static final String DELETE_USER_SQL = "DELETE FROM users where id = ?;";
-    private static final String UPDATE_USER_SQL = "UPDATE users SET first_name = ?, last_name = ?, email = ?, password = ?, address = ?, user_type = ?, balance = ? where id = ?;";
+    private static final String UPDATE_USER_SQL =
+            "UPDATE users SET first_name = ?, last_name = ?, email = ?, password = ?, address = ?, user_type = ?, balance = ? where id = ?;";
     private static final String CLEAR_TABLE_USERS_SQL = "DELETE FROM users";
+    private static final String SELECT_ALL_BY_USER_TYPE =
+            "SELECT * FROM users WHERE user_type = ? ORDER BY id DESC LIMIT ? OFFSET ?";
+
 
     private static class UserDAOImplHolder {
         private static final UserDaoImpl HOLDER_INSTANCE = new UserDaoImpl();
@@ -48,7 +55,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User insert(User user) {
+    public User createUser(User user) {
         LOGGER.info("CREATE NEW USER {}", user.toString());
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USER_SQL)) {
@@ -73,7 +80,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User select(Long id) {
+    public User getUserById(Long id) {
         LOGGER.info("SELECT USER WITH ID = {}", id);
         User user = null;
         try (Connection connection = ConnectionPool.getInstance().getConnection();
@@ -99,7 +106,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User selectByEmail(String email) {
+    public User getByEmail(String email) {
         LOGGER.info("SELECT USER BY EMAIL {}", email);
         User user = null;
         try (Connection connection = ConnectionPool.getInstance().getConnection();
@@ -124,14 +131,14 @@ public class UserDaoImpl implements UserDao {
 
 
     @Override
-    public List<User> selectByName(String name) {
+    public List<User> getUserByName(String name) {
         LOGGER.info("SELECT USER BY NAME {}", name);
         ModelFilter filter = new UserByFirstNameLastNameFilter();
-        return filter.meetCriteria(selectAll(), name);
+        return filter.meetCriteria(getAll(), name);
     }
 
     @Override
-    public List<User> selectAll() {
+    public List<User> getAll() {
         LOGGER.info("SELECT ALL USERS");
         List<User> users = new CopyOnWriteArrayList<>();
         try (Connection connection = ConnectionPool.getInstance().getConnection();
@@ -155,14 +162,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<User> selectByUsersType(UserType userType) {
-        LOGGER.info("SELECT Users by USER_TYPE {}", userType.toString());
-        ModelFilter filter = new UserByUserTypeFilter();
-        return filter.meetCriteria(this.selectAll(), userType);
-    }
-
-    @Override
-    public boolean update(User user) {
+    public boolean updateUser(User user) {
         LOGGER.info("UPDATE USER {}", user.toString());
         boolean rowUpdated = false;
         try (Connection connection = ConnectionPool.getInstance().getConnection();
@@ -186,7 +186,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public boolean delete(Long id) {
+    public boolean deleteUser(Long id) {
         LOGGER.info("DELETE USER WITH ID = {} ", id);
         boolean rowDeleted = false;
         try (Connection connection = ConnectionPool.getInstance().getConnection();
@@ -212,5 +212,35 @@ public class UserDaoImpl implements UserDao {
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
         }
+    }
+
+    @Override
+    public List<User> findPageByUserType(UserType userType, Integer offset, Integer size) {
+        LOGGER.info("Getting page with offset {}, size {} of userType {}", offset, size, userType.name());
+        List<User> users = new CopyOnWriteArrayList();
+
+        try (Connection connection = ConnectionPool.getInstance().getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(SELECT_ALL_BY_USER_TYPE);
+            statement.setString(1, userType.toString());
+            statement.setInt(2, size);
+            statement.setInt(3, offset);
+
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Long id = rs.getLong("id");
+                String firstName = rs.getString("first_name");
+                String lastName = rs.getString("last_name");
+                String password = rs.getString("password");
+                String email = rs.getString("email");
+                String address = rs.getString("address");
+                BigDecimal balance = rs.getBigDecimal("balance");
+                users.add(new User(id, firstName, lastName, email, password, userType, address, balance));
+            }
+
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage());
+        }
+
+        return users;
     }
 }

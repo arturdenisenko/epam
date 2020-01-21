@@ -10,6 +10,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command.admin.periodicalcategories;
 
 import com.epam.command.ServletCommand;
@@ -64,7 +68,7 @@ public class UpdateCategoryAdminCommand implements ServletCommand {
                 request.setAttribute("updateSuccess", true);
                 request.setAttribute("categories", periodicalCategoryService.getAll());
             } catch (NumberFormatException ex) {
-                LOGGER.info("Couldn't parse " + request.getParameter("id") + " to long");
+                LOGGER.warn("Couldn't parse {} to long", request.getParameter("id"));
             }
 
         }

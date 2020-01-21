@@ -2,6 +2,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.dao;
 
 import com.epam.exception.DaoException;
@@ -27,9 +31,9 @@ public class PublisherDaoTest {
         LOGGER.info("SETUP PUBLISHERS TEST");
         try {
             PUBLISHER_DAO.clear();
-            PUBLISHER_DAO.insert(PUBLISHER);
-            PUBLISHER_DAO.insert(PUBLISHER_1);
-            PUBLISHER_DAO.insert(PUBLISHER_2);
+            PUBLISHER_DAO.insertPublisher(PUBLISHER);
+            PUBLISHER_DAO.insertPublisher(PUBLISHER_1);
+            PUBLISHER_DAO.insertPublisher(PUBLISHER_2);
             publisherList = PUBLISHER_DAO.selectAll();
         } catch (DaoException e) {
             e.printStackTrace();
@@ -40,7 +44,7 @@ public class PublisherDaoTest {
     public void insert() {
         try {
             LOGGER.info("INSERT PUBLISHER TESTING");
-            PUBLISHER_DAO.insert(PUBLISHER_3);
+            PUBLISHER_DAO.insertPublisher(PUBLISHER_3);
             Assert.assertEquals(4, PUBLISHER_DAO.selectAll().size());
         } catch (DaoException e) {
             e.printStackTrace();
@@ -101,7 +105,7 @@ public class PublisherDaoTest {
     public void insertExisting() {
         try {
             LOGGER.info("INSERT EXISTING PUBLISHER TESTING");
-            PUBLISHER_DAO.insert(publisherList.get(0));
+            PUBLISHER_DAO.insertPublisher(publisherList.get(0));
         } catch (DaoException e) {
             e.printStackTrace();
         }

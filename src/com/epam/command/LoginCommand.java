@@ -6,6 +6,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command;
 
 import com.epam.dao.impl.PeriodicalCategoryDaoImpl;
@@ -37,7 +41,7 @@ public class LoginCommand implements ServletCommand {
     private static String mainPage;
 
     public LoginCommand() {
-        LOGGER.info("Initializing LoginCommand");
+        LOGGER.info("LOGIN PAGE COMMAND INIT");
 
         userService = new UserServiceImpl(UserDaoImpl.getInstance());
         periodicalCategoryService = new PeriodicalCategoryServiceImpl(PeriodicalCategoryDaoImpl.getInstance());
@@ -48,7 +52,7 @@ public class LoginCommand implements ServletCommand {
     }
 
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        LOGGER.info("Executing command");
+        LOGGER.info("LOGIN PAGE COMMAND EXECUTE");
 
         String resultPage = loginPage;
 

@@ -2,6 +2,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.dao;
 
 import com.epam.exception.DaoException;
@@ -11,7 +15,7 @@ import java.util.List;
 
 public interface PublisherDao {
     //Insert publisher in database
-    void insert(Publisher publisher) throws DaoException;
+    Publisher insertPublisher(Publisher publisher) throws DaoException;
 
     //select publisher from database by id
     Publisher select(Long id) throws DaoException;

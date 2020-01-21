@@ -10,6 +10,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.dao.impl;
 
 import com.epam.dao.PeriodicalDao;
@@ -212,7 +216,7 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
         Subscription subscription = new Subscription();
         try {
             subscription.setId(rs.getLong("id"));
-            subscription.setUser(userDao.select(rs.getLong("user_id")));
+            subscription.setUser(userDao.getUserById(rs.getLong("user_id")));
             subscription.setPeriodical(periodicalDao.selectPeriodicalById(rs.getLong("periodical_id")));
             subscription.setStartDate(rs.getDate("start_date").toLocalDate());
             subscription.setEndDate(rs.getDate("end_date").toLocalDate());

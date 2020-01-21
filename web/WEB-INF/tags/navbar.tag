@@ -7,6 +7,10 @@
   ~ @Denisenko Artur
   --%>
 
+<%--
+  ~ @Denisenko Artur
+  --%>
+
 <%--Localization--%>
 <c:if test="${sessionScope.locale == null}">
     <fmt:setLocale value="ru"/>
@@ -29,7 +33,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="${pageContext.request.contextPath}/">Periodicals</a>
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/">
+                <img src="${pageContext.request.contextPath}/images/periodicals-logo.png" width="30" height="30"
+                     alt="Periodicals"></a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

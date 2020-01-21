@@ -10,6 +10,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command.admin.periodicalcategories;
 
 import com.epam.command.ServletCommand;
@@ -58,7 +62,7 @@ public class DeleteCategoryAdminCommand implements ServletCommand {
                 request.setAttribute("deletionSuccess", categoryService.deleteById(id));
                 request.setAttribute("categories", categoryService.getAll());
             } catch (NumberFormatException ex) {
-                LOGGER.info("Couldn't parse " + request.getParameter("id") + " to long");
+                LOGGER.warn("Couldn't parse {} to long", request.getParameter("id"));
             }
         }
 

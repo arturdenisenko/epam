@@ -6,6 +6,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command;
 
 import com.epam.dao.impl.PeriodicalDaoImpl;
@@ -66,7 +70,7 @@ public class SubscribeCommand implements ServletCommand {
                 Long magazineId = Long.parseLong(request.getParameter("id"));
 
                 SubscriptionType subscriptionType = subscriptionTypeService.getSubscriptionTypeById(subTypeId);
-                Periodical periodical = periodicalService.getById(magazineId);
+                Periodical periodical = periodicalService.getPeriodicalById(magazineId);
                 User user = userService.getByEmail(request.getSession().getAttribute("email").toString());
 
                 if (periodical != null && periodical.isActive() && subscriptionType != null) {

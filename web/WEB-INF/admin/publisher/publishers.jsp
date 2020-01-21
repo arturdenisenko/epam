@@ -6,6 +6,10 @@
   ~ @Denisenko Artur
   --%>
 
+<%--
+  ~ @Denisenko Artur
+  --%>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -25,8 +29,8 @@
     <fmt:setBundle basename="localization" var="bundle"/>
     <%----%>
 
-    <title>Newsstand - <fmt:message key="admin" bundle="${bundle}"/> - <fmt:message key="publishers"
-                                                                                    bundle="${bundle}"/></title>
+    <title>Periodicals - <fmt:message key="admin" bundle="${bundle}"/> - <fmt:message key="publishers"
+                                                                                      bundle="${bundle}"/></title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -73,7 +77,7 @@
             <tbody>
             <c:forEach items="${publishers}" var="publisher">
                 <tr>
-                    <td class="col-md-3">${publisher.title}</td>
+                    <td class="col-md-3">${publisher.name}</td>
                     <td class="col-md-1">
                         <a class='btn btn-info btn-xs'
                            href="${pageContext.request.contextPath}/admin/publishers/edit?id=${publisher.id}">

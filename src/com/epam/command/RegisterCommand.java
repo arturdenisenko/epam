@@ -6,6 +6,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command;
 
 import com.epam.dao.impl.PeriodicalCategoryDaoImpl;
@@ -59,7 +63,7 @@ public class RegisterCommand implements ServletCommand {
                 request.getParameter("address") != null &&
                 userService.checkEmailAvailability(request.getParameter("email"))) {
 
-            LOGGER.info("New user registration");
+            LOGGER.info("NEW USER REGISTRATION");
 
             User user = new User();
             user.setFirstName(request.getParameter("fname"));

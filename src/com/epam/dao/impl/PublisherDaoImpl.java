@@ -2,6 +2,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.dao.impl;
 
 import com.epam.dao.PublisherDao;
@@ -36,7 +40,7 @@ public class PublisherDaoImpl implements PublisherDao {
     }
 
     @Override
-    public void insert(Publisher publisher) throws DaoException {
+    public Publisher insertPublisher(Publisher publisher) throws DaoException {
         LOGGER.info("INSERT PUBLISHER ID  {} NAME  {}", publisher.getId(), publisher.getName());
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_PUBLISHER_SQL)) {
@@ -46,11 +50,19 @@ public class PublisherDaoImpl implements PublisherDao {
                 LOGGER.info("PUBLISHER CREATION FAILED");
             } else {
                 LOGGER.info("PUBLISHER CREATION SUCCESSFUL");
+                try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        publisher.setId(generatedKeys.getLong(1));
+                    } else {
+                        LOGGER.error("Failed to create publisher, no ID obtained.");
+                    }
+                }
             }
 
         } catch (SQLException e) {
             throw new DaoException("PUBLISHER CREATION FAILED" + e.getMessage(), e);
         }
+        return publisher;
     }
 
     @Override
@@ -81,21 +93,24 @@ public class PublisherDaoImpl implements PublisherDao {
     }
 
     @Override
-    public List<Publisher> selectAll() throws DaoException {
+    public List<Publisher> selectAll() {
         LOGGER.info("SELECT ALL PUBLISHERS");
         List<Publisher> publishers = new CopyOnWriteArrayList<>();
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_PUBLISHERS)) {
-            ResultSet rs = preparedStatement.executeQuery();
-            while (rs.next()) {
-                Long id = rs.getLong("id");
-                String name = rs.getString("name");
-                publishers.add(new Publisher(id, name));
+
+        try (Connection connection = ConnectionPool.getInstance().getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(SELECT_ALL_PUBLISHERS);
+            ResultSet result = statement.executeQuery();
+
+            while (result.next()) {
+                Publisher publisher = new Publisher();
+                publisher.setId(result.getLong("id"));
+                publisher.setName(result.getString("name"));
+                publishers.add(publisher);
             }
         } catch (SQLException e) {
-            LOGGER.error(e.getMessage(), e);
-            throw new DaoException("SELECT ALL PUBLISHER IS FAILED" + e, e);
+            LOGGER.error(e.getMessage());
         }
+
         return publishers;
     }
 

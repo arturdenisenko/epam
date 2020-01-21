@@ -2,10 +2,15 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.service;
 
 import com.epam.model.user.User;
 import com.epam.model.user.UserType;
+import com.epam.util.Page;
 
 import java.util.List;
 
@@ -19,7 +24,7 @@ public interface UserService {
 
     User getByEmail(String email);
 
-    List<User> getAllByUsersType(UserType userType);
+    Page<User> getAllByUsersType(Integer page, Integer size, UserType userTyp);
 
     List<User> getAll();
 

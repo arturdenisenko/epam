@@ -10,6 +10,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command;
 
 import com.epam.dao.impl.PeriodicalCategoryDaoImpl;
@@ -60,25 +64,12 @@ public class GetCategoryPageCommand implements ServletCommand {
                 request.getParameter("s") != null) {
 
             try {
-                /*ong categoryId = Long.parseLong(request.getParameter("catId"));
-                Integer pageNum = Integer.parseInt(request.getParameter("p"));
-                Integer size = Integer.parseInt(request.getParameter("s"));
-
-                Category category = categoryService.findCategoryById(categoryId);
-                Page<Magazine> page = magazineService.getPageByCategoryId(pageNum, size, category.getId());
-
-                request.setAttribute("categories", categoryService.findAll());
-                request.setAttribute("page", page);
-                request.setAttribute("category", category);
-
-                resultPage = categoryPage;*/
-
                 Long categoryId = Long.parseLong(request.getParameter("catId"));
                 Integer pageNum = Integer.parseInt(request.getParameter("p"));
                 Integer size = Integer.parseInt(request.getParameter("s"));
 
                 PeriodicalCategory category = periodicalCategoryService.getById(categoryId);
-                Page<Periodical> page = (Page<Periodical>) periodicalService.getPageByCategory(pageNum, size, category.getId());
+                Page<Periodical> page = periodicalService.getPageByCategory(pageNum, size, category.getId());
 
                 request.setAttribute("categories", periodicalCategoryService.getAll());
                 request.setAttribute("page", page);
@@ -86,9 +77,8 @@ public class GetCategoryPageCommand implements ServletCommand {
 
                 resultPage = periodicalCategoryPage;
             } catch (NumberFormatException ex) {
-                LOGGER.info("Couldn't parse " + request.getParameter("catId") + ", "
-                        + request.getParameter("p") + ", "
-                        + request.getParameter("s") + " to long");
+                LOGGER.warn("Couldn't parse {}, {}, {} to long",
+                        request.getParameter("catId"), request.getParameter("p"), request.getParameter("s"));
             }
         }
 

@@ -14,9 +14,14 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.service;
 
 import com.epam.model.periodical.Periodical;
+import com.epam.util.Page;
 
 import java.util.List;
 
@@ -24,7 +29,7 @@ public interface PeriodicalService {
 
     void createPeriodical(Periodical periodical);
 
-    Periodical getById(Long id);
+    Periodical getPeriodicalById(Long id);
 
     List<Periodical> getAllByName(String name);
 
@@ -50,7 +55,7 @@ public interface PeriodicalService {
      * @param size       How much elements to take.
      * @return List of periodicals.
      */
-    List<Periodical> getPageByCategory(Integer page, Integer size, Long categoryId);
+    Page<Periodical> getPageByCategory(Integer page, Integer size, Long categoryId);
 
     /**
      * This method finds a page of periodicals by publisher.
@@ -65,19 +70,18 @@ public interface PeriodicalService {
     /**
      * This methods finds page from all periodicals
      *
-     * @param offset Element to start from.
-     * @param size   How much elements to take.
+     * @param page Number of the page, starts from 1.
+     * @param size How much elements to take.
      * @return List of periodicals.
      */
-    List<Periodical> getPage(Integer offset, Integer size);
+    Page<Periodical> getPage(Integer page, Integer size);
 
     /**
      * This methods finds page from all periodicals by name.
-     *
-     * @param query  Search query.
-     * @param offset Element to start from.
-     * @param size   How much elements to take.
-     * @return List of periodicals.
+     * @param query search query
+     * @param page Number of the page, starts from 1.
+     * @param size how much elements to return by page
+     * @return LIST of periodicals
      */
-    List<Periodical> getPageByNameQuery(String query, Integer offset, Integer size);
+    Page<Periodical> getPageByNameQuery(String query, Integer page, Integer size);
 }

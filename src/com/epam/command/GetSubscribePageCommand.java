@@ -10,6 +10,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command;
 
 import com.epam.dao.impl.PeriodicalDaoImpl;
@@ -32,6 +36,9 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * This class is for handle GET request in subscribePage
+ */
 public class GetSubscribePageCommand implements ServletCommand {
     private static final Logger LOGGER = LoggerFactory.getLogger(GetSubscribePageCommand.class);
 
@@ -70,17 +77,17 @@ public class GetSubscribePageCommand implements ServletCommand {
         } else if (request.getParameter("id") != null) {
             try {
                 Long id = Long.parseLong(request.getParameter("id"));
-                Periodical periodical = periodicalService.getById(id);
+                Periodical periodical = periodicalService.getPeriodicalById(id);
 
                 if (periodical != null) {
                     request.setAttribute("periodical", periodical);
                     request.setAttribute("subscriptionTypes", subscriptionTypeService.getAll());
                     resultPage = subscribePage;
                 } else {
-                    LOGGER.info("Periodical with id " + id + " doesn't exist");
+                    LOGGER.info("Periodical with id {} doesn't exist", id);
                 }
             } catch (NumberFormatException ex) {
-                LOGGER.info("Couldn't parse " + request.getParameter("id") + " to long");
+                LOGGER.warn("Couldn't parse {} to long", request.getParameter("id"));
             }
         }
         return resultPage;

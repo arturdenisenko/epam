@@ -2,23 +2,26 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.service;
 
-import com.epam.exception.ServiceException;
 import com.epam.model.periodical.Publisher;
 
 import java.util.List;
 
 public interface PublisherService {
     //This method insert Publisher
-    void insert(Publisher publisher) throws ServiceException;
+    Publisher createPublisher(Publisher publisher);
 
     //This method select Publisher by ID
-    Publisher select(Long id) throws ServiceException;
+    Publisher getPublisherById(Long id);
 
-    List<Publisher> selectAll() throws ServiceException;
+    List<Publisher> getAll();
 
-    boolean delete(Long id) throws ServiceException;
+    boolean deletePublisherById(Long id);
 
-    boolean update(Publisher publisher) throws ServiceException;
+    boolean update(Publisher publisher);
 }

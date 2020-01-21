@@ -26,10 +26,16 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command;
 
 import com.epam.command.admin.periodicalcategories.*;
-import com.epam.command.admin.publishers.AddPublisherAdminCommand;
+import com.epam.command.admin.periodicals.*;
+import com.epam.command.admin.publishers.*;
+import com.epam.command.admin.users.*;
 import com.epam.util.GetPropertiesUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -54,7 +60,9 @@ public class CommandManager {
         getCommands = new HashMap<>();
         postCommands = new HashMap<>();
 
-        //get commands here
+        /**
+         * GET COMMANDS HERE
+         */
 
         getCommands.put("/", new GetMainPageCommand());
         getCommands.put("/login", new GetLoginPageCommand());
@@ -66,6 +74,10 @@ public class CommandManager {
         getCommands.put("/account", new GetAccountPageCommand());
         getCommands.put("/search", new GetSearchPageCommand());
 
+        /**
+         * GET COMMANDS FOR ADMINS
+         */
+
         //admin categories
         getCommands.put("/admin/categories", new CategoriesAdminPageCommand());
         getCommands.put("/admin/categories/add", new AddCategoryAdminPageCommand());
@@ -73,22 +85,22 @@ public class CommandManager {
         getCommands.put("/admin/categories/edit", new EditCategoryAdminPageCommand());
 
         //admin publishers
-        //getCommands.put("/admin/publishers", new PublishersAdminPageCommand());
-        //getCommands.put("/admin/publishers/edit", new EditPublisherAdminPageCommand());
-        //getCommands.put("/admin/publishers/add", new AddPublisherAdminPageCommand());
-        //getCommands.put("/admin/publishers/delete", new DeletePublisherAdminCommand());
+        getCommands.put("/admin/publishers", new PublishersAdminPageCommand());
+        getCommands.put("/admin/publishers/edit", new EditPublisherAdminPageCommand());
+        getCommands.put("/admin/publishers/add", new AddPublisherAdminPageCommand());
+        getCommands.put("/admin/publishers/delete", new DeletePublisherAdminCommand());
 
         //admin users
-        //getCommands.put("/admin/users", new UsersAdminPageCommand());
-        //getCommands.put("/admin/admins", new AdminsAdminPageCommand());
-        //getCommands.put("/admin/admins/add", new GetAddAdminPageCommand());
-        //getCommands.put("/admin/user", new GetUserInfoAdminCommand());
+        getCommands.put("/admin/users", new UsersAdminPageCommand());
+        getCommands.put("/admin/admins", new AdminsAdminPageCommand());
+        getCommands.put("/admin/admins/add", new GetAddAdminPageCommand());
+        getCommands.put("/admin/user", new GetUserInfoAdminCommand());
 
         //admin periodicals
-        //getCommands.put("/admin/periodicals", new MagazinesAdminPageCommand());
-        //getCommands.put("/admin/periodicals/add", new GetAddMagazineAdminPageCommand());
-        //getCommands.put("/admin/periodicals/edit", new EditMagazineAdminPageCommand());
-        //getCommands.put("/admin/periodicals/delete", new DeleteMagazineAdminCommand());
+        getCommands.put("/admin/periodicals", new PeriodicalsAdminPageCommand());
+        getCommands.put("/admin/periodicals/add", new GetAddPeriodicalAdminPageCommand());
+        getCommands.put("/admin/periodicals/edit", new EditPeriodicalAdminPageCommand());
+        getCommands.put("/admin/periodicals/delete", new DeletePeriodicalAdminCommand());
 
         //admin subscriptions
         //getCommands.put("/admin/subscriptions", new SubscriptionsAdminPageCommand());
@@ -107,14 +119,14 @@ public class CommandManager {
         //admin publishers
 
         postCommands.put("/admin/publishers/add", new AddPublisherAdminCommand());
-        //postCommands.put("/admin/publishers/update", new UpdatePublisherAdminCommand());
+        postCommands.put("/admin/publishers/update", new UpdatePublisherAdminCommand());
 
         //admin users
-        //postCommands.put("/admin/admins/add", new AddAdminAdminCommand());
+        postCommands.put("/admin/admins/add", new AddAdminAdminCommand());
 
         //admin periodicals
-        //postCommands.put("/admin/periodicals/add", new AddMagazineAdminCommand());
-        //postCommands.put("/admin/periodicals/update", new UpdateMagazineAdminCommand());
+        postCommands.put("/admin/periodicals/add", new AddPeriodicalAdminCommand());
+        //postCommands.put("/admin/periodicals/update", new UpdatePeriodicalAdminCommand());
 
 
         GetPropertiesUtil properties = GetPropertiesUtil.getInstance().getInstance();

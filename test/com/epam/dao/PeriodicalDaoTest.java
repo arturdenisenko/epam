@@ -6,6 +6,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.dao;
 
 import com.epam.model.periodical.Periodical;
@@ -68,7 +72,7 @@ public class PeriodicalDaoTest {
         LOGGER.info("UPDATE PERIODICAL TESTING");
         Periodical periodicalForUpdateTest = periodicalListFromDatabase.get(0);
         periodicalForUpdateTest.setName("TESTING UPDATE NAME");
-        PERIODICAL_DAO.update(periodicalForUpdateTest);
+        PERIODICAL_DAO.updatePeriodical(periodicalForUpdateTest);
         Assert.assertEquals(periodicalForUpdateTest, PERIODICAL_DAO.selectPeriodicalById(periodicalForUpdateTest.getId()));
     }
 

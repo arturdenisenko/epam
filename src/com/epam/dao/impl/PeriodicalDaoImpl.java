@@ -2,14 +2,6 @@
  * @Denisenko Artur
  */
 
-/*
- * @Denisenko Artur
- */
-
-/*
- * @Denisenko Artur
- */
-
 package com.epam.dao.impl;
 
 import com.epam.dao.PeriodicalCategoryDao;
@@ -145,7 +137,7 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
     }
 
     @Override
-    public boolean update(Periodical periodical) {
+    public boolean updatePeriodical(Periodical periodical) {
         LOGGER.info("UPDATE PERIODICAL {}", periodical.toString());
         boolean rowUpdated = false;
         try (Connection connection = ConnectionPool.getInstance().getConnection();
@@ -181,35 +173,38 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
 
         try (Connection connection = ConnectionPool.getInstance().getConnection()) {
             PreparedStatement statement = connection.prepareStatement(FIND_LAST_PERIODICALS);
-            statement.setInt(1, limit);
-
-            ResultSet result = statement.executeQuery();
-            while (result.next()) {
-                Periodical periodical = new Periodical();
-                periodical.setId(result.getLong("id"));
-                PeriodicalInit(periodical, result);
-                periodicals.add(periodical);
-            }
+            StatementSet(limit, periodicals, statement);
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
         }
         return periodicals;
     }
 
+    private void StatementSet(Integer limit, List<Periodical> periodicals, PreparedStatement statement) throws SQLException {
+        statement.setInt(1, limit);
+
+        ResultSet result = statement.executeQuery();
+        while (result.next()) {
+            Periodical periodical = new Periodical();
+            periodical.setId(result.getLong("id"));
+            PeriodicalInit(periodical, result);
+            periodicals.add(periodical);
+        }
+    }
+
     @Override
     public List<Periodical> selectPageByCategory(Long categoryId, Integer offset, Integer size) {
-        LOGGER.info("Getting page with offset " + offset + ", size " + size + " of category id " + categoryId);
+        LOGGER.info("GET PAGE WITH OFFSET {} SIZE {} CATEGORY ID  {}  ", offset, size, categoryId);
         List<Periodical> periodicals = new CopyOnWriteArrayList<>();
 
-        return getPeriodicals(categoryId, offset, size, periodicals, SELECT_PAGE_BY_CATEGORY_QUERY);
+        return getPeriodicals(categoryId, size, offset, periodicals, SELECT_PAGE_BY_CATEGORY_QUERY);
     }
 
     @Override
     public List<Periodical> selectPageByPublisher(Long publisherId, Integer offset, Integer size) {
         LOGGER.info("GET PAGE WITH OFFSET {} SIZE {} PUBLISHER ID  {}  ", offset, size, publisherId);
-        LOGGER.info("GET PAGE WITH OFFSET " + offset + ", SIZE " + size + " OF PUBLISHER " + publisherId);
         List<Periodical> periodicals = new CopyOnWriteArrayList();
-        return getPeriodicals(publisherId, offset, size, periodicals, SELECT_PAGE_BY_PUBLISHER_ID);
+        return getPeriodicals(publisherId, size, offset, periodicals, SELECT_PAGE_BY_PUBLISHER_ID);
 
     }
 
@@ -217,7 +212,7 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
         try (Connection connection = ConnectionPool.getInstance().getConnection()) {
             PreparedStatement statement = connection.prepareStatement(selectPageByPublisherId);
             statement.setLong(1, publisherId);
-            StatementSet(offset, size, periodicals, statement);
+            StatementSet(size, offset, periodicals, statement);
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
         }
@@ -236,13 +231,6 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
         }
     }
 
-    /**
-     * This methods finds page from all magazines
-     *
-     * @param offset Element to start from.
-     * @param size   How much elements to take.
-     * @return List of magazines.
-     */
     @Override
     public List<Periodical> selectPage(Integer offset, Integer size) {
         LOGGER.info("GET PAGE WITH OFFSET {} size {} ", offset, size);
@@ -250,16 +238,8 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
 
         try (Connection connection = ConnectionPool.getInstance().getConnection()) {
             PreparedStatement statement = connection.prepareStatement(SELECT_PAGE);
-            statement.setInt(1, offset);
-            statement.setInt(2, size);
-
-            ResultSet result = statement.executeQuery();
-            while (result.next()) {
-                Periodical periodical = new Periodical();
-                periodical.setId(result.getLong("id"));
-                PeriodicalInit(periodical, result);
-                periodicals.add(periodical);
-            }
+            statement.setInt(2, offset);
+            StatementSet(size, periodicals, statement);
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
         }
@@ -267,14 +247,6 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
         return periodicals;
     }
 
-    /**
-     * This methods finds page from all magazines by name.
-     *
-     * @param query  Search query.
-     * @param offset Element to start from.
-     * @param size   How much elements to take.
-     * @return List of magazines.
-     */
     @Override
     public List<Periodical> selectPageByNameQuery(String query, Integer offset, Integer size) {
         LOGGER.info("GET PAGE BY {} QUERY WITH OFFSET {} size {} ", query, offset, size);
@@ -284,7 +256,7 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
         try (Connection connection = ConnectionPool.getInstance().getConnection()) {
             PreparedStatement statement = connection.prepareStatement(SELECT_PAGE_BY_NAME);
             statement.setString(1, "%" + query + "%");
-            StatementSet(offset, size, periodicals, statement);
+            StatementSet(size, offset, periodicals, statement);
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
         }
