@@ -2,6 +2,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.dao.impl;
 
 import com.epam.dao.PeriodicalCategoryDao;
@@ -197,7 +201,7 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
         LOGGER.info("GET PAGE WITH OFFSET {} SIZE {} CATEGORY ID  {}  ", offset, size, categoryId);
         List<Periodical> periodicals = new CopyOnWriteArrayList<>();
 
-        return getPeriodicals(categoryId, size, offset, periodicals, SELECT_PAGE_BY_CATEGORY_QUERY);
+        return getPeriodicals(categoryId, offset, size, periodicals, SELECT_PAGE_BY_CATEGORY_QUERY);
     }
 
     @Override

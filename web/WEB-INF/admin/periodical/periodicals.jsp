@@ -11,6 +11,10 @@
   ~ @Denisenko Artur
   --%>
 
+<%--
+  ~ @Denisenko Artur
+  --%>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -63,12 +67,6 @@
 
         <h1><fmt:message key="periodicals" bundle="${bundle}"/></h1>
 
-        <div class="pull-right">
-            <a class="btn btn-primary" href="${pageContext.request.contextPath}/admin/periodicals/add" role="button">
-                <fmt:message key="add" bundle="${bundle}"/>
-            </a>
-        </div>
-
         <table class="table">
             <thead>
             <tr>
@@ -85,7 +83,7 @@
                 <tr>
                     <td>${periodical.name}</td>
                     <td><p:price price="${periodical.costPerMonth}"/></td>
-                    <td>${periodical.category.name}</td>
+                    <td>${periodical.periodicalCategory.name}</td>
                     <td>${periodical.publisher.name}</td>
                     <td>
                         <a class='btn btn-info btn-xs'
@@ -96,6 +94,12 @@
             </c:forEach>
             </tbody>
         </table>
+
+        <div class="pull-left">
+            <a class="btn btn-primary" href="${pageContext.request.contextPath}/admin/periodicals/add" role="button">
+                <fmt:message key="add" bundle="${bundle}"/>
+            </a>
+        </div>
 
         <div class="row">
             <ul class="pager">

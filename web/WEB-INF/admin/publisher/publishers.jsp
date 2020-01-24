@@ -10,13 +10,17 @@
   ~ @Denisenko Artur
   --%>
 
+<%--
+  ~ @Denisenko Artur
+  --%>
+
 <html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="Denisenko Artur">
 
     <%--Localization--%>
     <c:if test="${sessionScope.locale == null}">
@@ -60,11 +64,6 @@
 
         <h1>Publishers</h1>
 
-        <div class="pull-right">
-            <a class="btn btn-primary" href="${pageContext.request.contextPath}/admin/publishers/add" role="button">
-                <fmt:message key="add" bundle="${bundle}"/>
-            </a>
-        </div>
 
         <table class="table">
             <thead>
@@ -87,6 +86,12 @@
             </c:forEach>
             </tbody>
         </table>
+
+        <div class="pull-left">
+            <a class="btn btn-primary" href="${pageContext.request.contextPath}/admin/publishers/add" role="button">
+                <fmt:message key="add" bundle="${bundle}"/>
+            </a>
+        </div>
     </div>
 
     <div class="col-md-2"></div>
