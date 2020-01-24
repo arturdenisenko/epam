@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="navbar" tagdir="/WEB-INF/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="/WEB-INF/price.tld" prefix="p" %>
 <%--
   ~ @Denisenko Artur
   --%>
@@ -9,6 +10,7 @@
 <%--
   ~ @Denisenko Artur
   --%>
+
 
 <html>
 <head>
@@ -16,7 +18,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="Denisenko Artur">
 
     <%--Localization--%>
     <c:if test="${sessionScope.locale == null}">
@@ -86,16 +88,19 @@
                             </c:if>
 
                             <c:if test="${!isSubscriptionsEmpty}">
-                                <c:forEach items="${subscriptions}" var="sub">
+                                <c:forEach items="${subscriptions}" var="subscription">
 
                                     <div class="col-md-12">
                                         <div class="thumbnail">
                                             <div class="caption">
-                                                <h3>${sub.periodical.name}</h3>
-                                                <span class="pull-right"><h3>${sub.cost}₴</h3></span>
+                                                <h3>${subscription.periodical.name}</h3>
+                                                <span class="pull-right"><h3><p:price
+                                                        price="${subscription.cost}"/></h3></span>
 
-                                                <p><fmt:message key="from" bundle="${bundle}"/>: ${sub.startDate}</p>
-                                                <p><fmt:message key="to" bundle="${bundle}"/>: ${sub.endDate}</p>
+                                                <p><fmt:message key="from"
+                                                                bundle="${bundle}"/>: ${subscription.startDate}</p>
+                                                <p><fmt:message key="to"
+                                                                bundle="${bundle}"/>: ${subscription.endDate}</p>
 
                                             </div>
                                         </div>

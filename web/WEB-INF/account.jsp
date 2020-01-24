@@ -6,6 +6,10 @@
   ~ @Denisenko Artur
   --%>
 
+<%--
+  ~ @Denisenko Artur
+  --%>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -81,16 +85,18 @@
                             </c:if>
 
                             <c:if test="${!isSubscriptionsEmpty}">
-                                <c:forEach items="${subscriptions}" var="sub">
+                                <c:forEach items="${subscriptions}" var="subscription">
 
                                     <div class="col-md-12">
                                         <div class="thumbnail">
                                             <div class="caption">
-                                                <h3>${sub.periodical.name}</h3>
-                                                <span class="pull-right"><h3>${sub.cost}₴</h3></span>
+                                                <h3>${subscription.periodical.name}</h3>
+                                                <span class="pull-right"><h3>${subscription.cost}₴</h3></span>
 
-                                                <p><fmt:message key="from" bundle="${bundle}"/>: ${sub.startDate}</p>
-                                                <p><fmt:message key="to" bundle="${bundle}"/>: ${sub.endDate}</p>
+                                                <p><fmt:message key="from"
+                                                                bundle="${bundle}"/>: ${subscription.startDate}</p>
+                                                <p><fmt:message key="to"
+                                                                bundle="${bundle}"/>: ${subscription.endDate}</p>
 
                                             </div>
                                         </div>
