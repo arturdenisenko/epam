@@ -11,17 +11,13 @@
   ~ @Denisenko Artur
   --%>
 
-<%--
-  ~ @Denisenko Artur
-  --%>
-
 <html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="Denisenko Artur">
 
     <%--Localization--%>
     <c:if test="${sessionScope.locale == null}">
@@ -52,7 +48,7 @@
 
     <div class="col-md-8">
 
-        <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/admin/magazines/add"
+        <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/admin/periodicals/add"
               enctype="multipart/form-data">
             <fieldset>
 
@@ -63,7 +59,8 @@
                         <fmt:message key="title" bundle="${bundle}"/>
                     </label>
                     <div class="col-md-8">
-                        <input id="title" name="title" placeholder="title" class="form-control input-md" type="text"
+                        <input id="title" name="title" placeholder=" <fmt:message key="title" bundle="${bundle}"/>"
+                               class="form-control input-md" type="text"
                                required>
 
                     </div>
@@ -147,7 +144,7 @@
         </form>
 
 
-        <a class='btn btn-default' href="${pageContext.request.contextPath}/admin/magazines?p=1&s=10">
+        <a class='btn btn-default' href="${pageContext.request.contextPath}/admin/periodicals?p=1&s=10">
             <span class="glyphicon glyphicon-chevron-left"></span> <fmt:message key="back" bundle="${bundle}"/></a>
 
     </div>
