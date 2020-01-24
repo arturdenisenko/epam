@@ -6,6 +6,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command.admin.periodicals;
 
 import com.epam.dao.impl.PeriodicalCategoryDaoImpl;
@@ -24,10 +28,8 @@ import com.epam.util.GetPropertiesUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 public class AddPeriodicalAdminCommand implements com.epam.command.ServletCommand {
     private static final Logger LOGGER = LoggerFactory.getLogger(AddPeriodicalAdminCommand.class);
@@ -45,7 +47,6 @@ public class AddPeriodicalAdminCommand implements com.epam.command.ServletComman
         periodicalService = new PeriodicalServiceImpl(PeriodicalDaoImpl.getInstance());
         publisherService = new PublisherServiceImpl(PublisherDaoImpl.getInstance());
         periodicalCategoryService = new PeriodicalCategoryServiceImpl(PeriodicalCategoryDaoImpl.getInstance());
-        imageService = new ImageServiceImpl(MysqlImageDaoImpl.getInstance());
 
         GetPropertiesUtil properties = GetPropertiesUtil.getInstance();
         addPeriodicalPage = properties.getProperty("adminAddMagazinePage");
@@ -60,13 +61,13 @@ public class AddPeriodicalAdminCommand implements com.epam.command.ServletComman
                 request.getParameter("publisher") != null && request.getParameter("category") != null &&
                 request.getParameter("description") != null) {
             try {
-                Part filePart = request.getPart("image");
+               /* Part filePart = request.getPart("image");
                 Long imageId = null;
 
                 if (filePart != null && !Paths.get(filePart.getSubmittedFileName()).getFileName().toString().isEmpty()) {
                     InputStream image = filePart.getInputStream();
                     imageId = imageService.createImage(image);
-                }
+                }*/
 
                 PeriodicalCategory category = new PeriodicalCategory();
                 category.setId(Long.parseLong(request.getParameter("category")));
@@ -80,8 +81,8 @@ public class AddPeriodicalAdminCommand implements com.epam.command.ServletComman
                 periodical.setCostPerMonth(Float.parseFloat(request.getParameter("price")));
                 periodical.setPeriodicalCategory(category);
                 periodical.setPublisher(publisher);
-                periodical.setImageLink(imageId)
-                periodical.setActive(request.getParameter("enabled") != null)
+                // periodical.setImageLink(imageId);
+                periodical.setActive(request.getParameter("enabled") != null);
 
                 periodicalService.createPeriodical(periodical);
 
@@ -90,8 +91,6 @@ public class AddPeriodicalAdminCommand implements com.epam.command.ServletComman
             } catch (NumberFormatException ex) {
                 LOGGER.info("Couldn't parse {}, {}, {} to long",
                         request.getParameter("id"), request.getParameter("category"), request.getParameter("publisher"));
-            } catch (ServletException | IOException e) {
-                LOGGER.warn(e.getMessage());
             }
         }
 

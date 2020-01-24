@@ -6,6 +6,10 @@
   ~ @Denisenko Artur
   --%>
 
+<%--
+  ~ @Denisenko Artur
+  --%>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -25,8 +29,8 @@
     <fmt:setBundle basename="localization" var="bundle"/>
     <%----%>
 
-    <title>Newsstand - <fmt:message key="admin" bundle="${bundle}"/> - <fmt:message key="editMagazine"
-                                                                                    bundle="${bundle}"/></title>
+    <title>Periodicals - <fmt:message key="admin" bundle="${bundle}"/> - <fmt:message key="editPeriodicals"
+                                                                                      bundle="${bundle}"/></title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -44,10 +48,10 @@
     <div class="col-md-7">
 
         <form class="form-horizontal" method="post"
-              action="${pageContext.request.contextPath}/admin/magazines/update?id=${magazine.id}"
+              action="${pageContext.request.contextPath}/admin/periodicals/update?id=${periodical.id}"
               enctype="multipart/form-data">
 
-            <legend><fmt:message key="editMagazine" bundle="${bundle}"/></legend>
+            <legend><fmt:message key="editPeriodicals" bundle="${bundle}"/></legend>
 
             <div class="form-group">
                 <label class="col-md-3 control-label" for="title">
@@ -55,7 +59,7 @@
                 </label>
                 <div class="col-md-8">
                     <input id="title" name="title" placeholder="title" class="form-control input-md" type="text"
-                           value="${magazine.title}" required>
+                           value="${periodical.name}" required>
 
                 </div>
             </div>
@@ -66,7 +70,7 @@
                 </label>
                 <div class="col-md-8">
                     <input id="price" name="price" placeholder="" class="form-control input-md" type="number"
-                           value="${magazine.price}" required>
+                           value="${periodical.price}" required>
                 </div>
             </div>
 
@@ -78,7 +82,7 @@
                     <select id="publisher" name="publisher" class="form-control">
                         <c:forEach items="${publishers}" var="publisher">
                             <option value="${publisher.id}"
-                                ${magazine.publisher.id == publisher.id ? 'selected' : ''}>${publisher.title}</option>
+                                ${periodical.publisher.id == publisher.id ? 'selected' : ''}>${publisher.name}</option>
                         </c:forEach>
                     </select>
                 </div>
@@ -92,7 +96,7 @@
                     <select id="category" name="category" class="form-control">
                         <c:forEach items="${categories}" var="category">
                             <option value="${category.id}"
-                                ${magazine.category.id == category.id ? 'selected' : ''}>${category.name}</option>
+                                ${periodical.category.id == category.id ? 'selected' : ''}>${category.name}</option>
                         </c:forEach>
                     </select>
                 </div>
@@ -104,7 +108,7 @@
                 </label>
                 <div class="col-md-8">
                     <textarea class="form-control" id="description" name="description" maxlength="300"
-                              cols="5">${magazine.description}</textarea>
+                              cols="5">${periodical.name}</textarea>
                 </div>
             </div>
 
@@ -114,7 +118,7 @@
                 </label>
                 <div class="col-md-8 checkbox">
                     <input id="enabled" name="enabled" placeholder="" class="form-control input-md"
-                           type="checkbox" value="true" <c:if test="${magazine.enabled}"><c:out
+                           type="checkbox" value="true" <c:if test="${periodical.active}"><c:out
                             value="checked"/></c:if>/>
                 </div>
             </div>
@@ -137,24 +141,26 @@
                 </div>
                 <div class="col-md-2">
                     <a class='btn btn-danger'
-                       href="${pageContext.request.contextPath}/admin/magazines/delete?id=${magazine.id}">
+                       href="${pageContext.request.contextPath}/admin/periodicals/delete?id=${magazine.id}">
                         <span class="glyphicon glyphicon-remove"></span> <fmt:message key="delete" bundle="${bundle}"/></a>
                 </div>
             </div>
         </form>
 
-        <a class='btn btn-default' href="${pageContext.request.contextPath}/admin/magazines?p=1&s=10">
+        <a class='btn btn-default' href="${pageContext.request.contextPath}/admin/periodicals?p=1&s=10">
             <span class="glyphicon glyphicon-chevron-left"></span> <fmt:message key="back" bundle="${bundle}"/></a>
 
     </div>
 
     <div class="col-md-3">
         <a href="#" class="thumbnail">
-            <c:if test="${magazine.imageId != 0}">
-                <img src="${pageContext.request.contextPath}/image?id=${magazine.imageId}"/>
+            <c:if test="${periodical.imageLink == ''}">
+                <img src="${pageContext.request.contextPath}/images/noImagePeriodical.png"/>
+
             </c:if>
-            <c:if test="${magazine.imageId == 0}">
-                <img src="https://placeholdit.imgix.net/~text?txtsize=28&txt=300%C3%97400&w=300&h=400"/>
+            <c:if test="${periodical.imageLink != ''}">
+                <img src="${pageContext.request.contextPath}/images/${periodical.imageLink}"
+                     alt="${periodical.name}">
             </c:if>
         </a>
     </div>

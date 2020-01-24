@@ -14,6 +14,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.service.impl;
 
 import com.epam.dao.SubscriptionDao;
@@ -22,6 +26,7 @@ import com.epam.model.subscription.Subscription;
 import com.epam.model.subscription.SubscriptionType;
 import com.epam.model.user.User;
 import com.epam.service.SubscriptionService;
+import com.epam.util.Page;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -96,5 +101,17 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     @Override
     public boolean update(Subscription subscription) {
         return false;
+    }
+
+    @Override
+    public Page<Subscription> getPage(Integer page, Integer size) {
+        LOGGER.info("Getting page number {}, of size {}", page, size);
+
+        if (page == null || size == null || page < 1 || size < 1) {
+            return null;
+        }
+
+        List<Subscription> items = subscriptionDao.selectPage((page - 1) * size, size);
+        return new Page(items, page, size);
     }
 }

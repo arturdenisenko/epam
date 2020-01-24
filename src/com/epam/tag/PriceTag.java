@@ -6,6 +6,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.tag;
 
 import javax.servlet.jsp.JspException;
@@ -30,6 +34,7 @@ public class PriceTag extends SimpleTagSupport {
 
     public void doTag() throws JspException, IOException {
         JspWriter out = getJspContext().getOut();
-        out.println(price.toString().replaceAll("\\.?0*$", "") + "BYN");
+        out.println(String.format("%.2f BYN", price));
+        //out.println(price.toString().replaceAll("\\.?0*$", "") + "BYN");
     }
 }

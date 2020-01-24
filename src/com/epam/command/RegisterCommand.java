@@ -10,6 +10,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command;
 
 import com.epam.dao.impl.PeriodicalCategoryDaoImpl;
@@ -29,7 +33,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.math.BigDecimal;
 
 public class RegisterCommand implements ServletCommand {
     private static final Logger LOGGER = LoggerFactory.getLogger(RegisterCommand.class);
@@ -71,7 +74,7 @@ public class RegisterCommand implements ServletCommand {
             user.setEmail(request.getParameter("email"));
             user.setPassword(request.getParameter("password"));
             user.setAddress(request.getParameter("address"));
-            user.setBalance(new BigDecimal(0));
+            user.setBalance((float) 0);
             user.setUserType(UserType.USER);
 
             if (userService.create(user)) {

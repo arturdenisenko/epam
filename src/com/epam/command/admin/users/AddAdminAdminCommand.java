@@ -6,6 +6,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command.admin.users;
 
 import com.epam.dao.impl.UserDaoImpl;
@@ -19,7 +23,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.math.BigDecimal;
 
 public class AddAdminAdminCommand implements com.epam.command.ServletCommand {
     private static final Logger LOGGER = LoggerFactory.getLogger(AddAdminAdminCommand.class);
@@ -51,7 +54,7 @@ public class AddAdminAdminCommand implements com.epam.command.ServletCommand {
             user.setEmail(request.getParameter("email"));
             user.setPassword(request.getParameter("password"));
             user.setAddress(request.getParameter(""));
-            user.setBalance(new BigDecimal(0));
+            user.setBalance(0F);
             user.setUserType(UserType.ADMIN);
 
             request.setAttribute("success", userService.create(user));

@@ -6,12 +6,17 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.service;
 
 import com.epam.model.periodical.Periodical;
 import com.epam.model.subscription.Subscription;
 import com.epam.model.subscription.SubscriptionType;
 import com.epam.model.user.User;
+import com.epam.util.Page;
 
 import java.util.List;
 
@@ -32,4 +37,6 @@ public interface SubscriptionService {
     boolean delete(Long id);
 
     boolean update(Subscription subscription);
+
+    Page<Subscription> getPage(Integer pageNum, Integer size);
 }

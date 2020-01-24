@@ -1,7 +1,10 @@
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.model.user;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Objects;
 
 public class User implements Serializable {
@@ -12,13 +15,13 @@ public class User implements Serializable {
     private String password;
     private UserType userType;
     private String address;
-    private BigDecimal balance;
+    private Float balance;
 
     public User() {
 
     }
 
-    public User(Long id, String firstName, String lastName, String email, String password, UserType userType, String address, BigDecimal balance) {
+    public User(Long id, String firstName, String lastName, String email, String password, UserType userType, String address, Float balance) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -85,11 +88,11 @@ public class User implements Serializable {
         this.address = address;
     }
 
-    public BigDecimal getBalance() {
+    public Float getBalance() {
         return balance;
     }
 
-    public void setBalance(BigDecimal balance) {
+    public void setBalance(Float balance) {
         this.balance = balance;
     }
 

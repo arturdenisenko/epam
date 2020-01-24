@@ -6,6 +6,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.dao;
 
 import com.epam.model.subscription.Subscription;
@@ -33,4 +37,6 @@ public interface SubscriptionDao {
     boolean checkIfUserSubscribed(Long userId, Long periodicalId);
 
     List<Subscription> getUserSubscriptions(Long userId);
+
+    List<Subscription> selectPage(Integer offset, Integer size);
 }

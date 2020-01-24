@@ -6,6 +6,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command.admin.periodicals;
 
 import com.epam.dao.impl.PeriodicalDaoImpl;
@@ -33,7 +37,7 @@ public class PeriodicalsAdminPageCommand implements com.epam.command.ServletComm
         periodicalService = new PeriodicalServiceImpl(PeriodicalDaoImpl.getInstance());
 
         GetPropertiesUtil properties = GetPropertiesUtil.getInstance();
-        page = properties.getProperty("adminPeriodicalPage");
+        page = properties.getProperty("adminPeriodicalsPage");
     }
 
     public String execute(HttpServletRequest request, HttpServletResponse response) {

@@ -30,11 +30,16 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command;
 
 import com.epam.command.admin.periodicalcategories.*;
 import com.epam.command.admin.periodicals.*;
 import com.epam.command.admin.publishers.*;
+import com.epam.command.admin.subscriptions.SubscriptionsAdminPageCommand;
 import com.epam.command.admin.users.*;
 import com.epam.util.GetPropertiesUtil;
 import org.slf4j.Logger;
@@ -103,7 +108,7 @@ public class CommandManager {
         getCommands.put("/admin/periodicals/delete", new DeletePeriodicalAdminCommand());
 
         //admin subscriptions
-        //getCommands.put("/admin/subscriptions", new SubscriptionsAdminPageCommand());
+        getCommands.put("/admin/subscriptions", new SubscriptionsAdminPageCommand());
 
         //===================POST commands===================
 
@@ -126,7 +131,7 @@ public class CommandManager {
 
         //admin periodicals
         postCommands.put("/admin/periodicals/add", new AddPeriodicalAdminCommand());
-        //postCommands.put("/admin/periodicals/update", new UpdatePeriodicalAdminCommand());
+        postCommands.put("/admin/periodicals/update", new UpdatePeriodicalAdminCommand());
 
 
         GetPropertiesUtil properties = GetPropertiesUtil.getInstance().getInstance();

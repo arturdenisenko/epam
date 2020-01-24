@@ -7,6 +7,10 @@
   ~ @Denisenko Artur
   --%>
 
+<%--
+  ~ @Denisenko Artur
+  --%>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -55,7 +59,7 @@
                     <h4><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
                         <fmt:message key="details" bundle="${bundle}"/></h4>
 
-                    <p><fmt:message key="magazine" bundle="${bundle}"/>: ${periodical.name}<label></label></p>
+                    <p><fmt:message key="periodical" bundle="${bundle}"/>: ${periodical.name}<label></label></p>
                     <p><fmt:message key="perMonth" bundle="${bundle}"/>: <label id="basePrice"><p:price
                             price="${periodical.costPerMonth}"/></label></p>
                     <hr>

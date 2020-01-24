@@ -11,6 +11,10 @@
   ~ @Denisenko Artur
   --%>
 
+<%--
+  ~ @Denisenko Artur
+  --%>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -30,7 +34,7 @@
     <fmt:setBundle basename="localization" var="bundle"/>
     <%----%>
 
-    <title>Newsstand - <fmt:message key="admin" bundle="${bundle}"/> - <fmt:message key="addMagazine"
+    <title>Newsstand - <fmt:message key="admin" bundle="${bundle}"/> - <fmt:message key="addPeriodicals"
                                                                                     bundle="${bundle}"/></title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -52,7 +56,7 @@
               enctype="multipart/form-data">
             <fieldset>
 
-                <legend><fmt:message key="addMagazine" bundle="${bundle}"/></legend>
+                <legend><fmt:message key="addPeriodicals" bundle="${bundle}"/></legend>
 
                 <div class="form-group">
                     <label class="col-md-3 control-label" for="title">

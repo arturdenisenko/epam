@@ -7,6 +7,10 @@
   ~ @Denisenko Artur
   --%>
 
+<%--
+  ~ @Denisenko Artur
+  --%>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -26,8 +30,8 @@
     <fmt:setBundle basename="localization" var="bundle"/>
     <%----%>
 
-    <title>Newsstand - <fmt:message key="admin" bundle="${bundle}"/> - <fmt:message key="subscriptions"
-                                                                                    bundle="${bundle}"/></title>
+    <title>Periodical - <fmt:message key="admin" bundle="${bundle}"/> - <fmt:message key="subscriptions"
+                                                                                     bundle="${bundle}"/></title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -49,7 +53,7 @@
         <table class="table">
             <thead>
             <tr>
-                <th><fmt:message key="magazine" bundle="${bundle}"/></th>
+                <th><fmt:message key="periodical" bundle="${bundle}"/></th>
                 <th><fmt:message key="subscriptionType" bundle="${bundle}"/></th>
                 <th><fmt:message key="from" bundle="${bundle}"/></th>
                 <th><fmt:message key="to" bundle="${bundle}"/></th>
@@ -61,12 +65,14 @@
             <tbody>
             <c:forEach items="${page.items}" var="subscription">
                 <tr>
-                    <td>${subscription.magazine.title}</td>
+                    <td>${subscription.periodical.name}</td>
                     <td>${subscription.type.name}</td>
                     <td>${subscription.startDate}</td>
                     <td>${subscription.endDate}</td>
-                    <td><p:price price="${subscription.price}"/></td>
-                    <td>${subscription.user.firstName} ${subscription.user.lastName}</td>
+                    <td><p:price price="${subscription.cost}"/></td>
+                    <td>
+                        <a href="${pageContext.request.contextPath}/admin/user?id=${subscription.user.id}"> ${subscription.user.firstName} ${subscription.user.lastName}</a>
+                    </td>
                 </tr>
             </c:forEach>
             </tbody>

@@ -6,6 +6,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.dao.impl;
 
 import com.epam.dao.UserDao;
@@ -19,7 +23,6 @@ import com.epam.util.ExceptionUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -65,7 +68,7 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setString(4, user.getPassword());
             preparedStatement.setString(5, user.getAddress());
             preparedStatement.setString(6, String.valueOf(user.getUserType()));
-            preparedStatement.setBigDecimal(7, user.getBalance());
+            preparedStatement.setFloat(7, user.getBalance());
             int affectedRows = preparedStatement.executeUpdate();
             if (affectedRows == 0) {
                 LOGGER.info("USER CREATION FAILED");
@@ -96,7 +99,7 @@ public class UserDaoImpl implements UserDao {
                 String email = rs.getString("email");
                 String address = rs.getString("address");
                 String userType = rs.getString("user_type");
-                BigDecimal balance = rs.getBigDecimal("balance");
+                Float balance = rs.getFloat("balance");
                 user = new User(id, firstName, lastName, email, password, UserType.valueOf(userType), address, balance);
             }
         } catch (SQLException e) {
@@ -120,7 +123,7 @@ public class UserDaoImpl implements UserDao {
                 String password = rs.getString("password");
                 String address = rs.getString("address");
                 String userType = rs.getString("user_type");
-                BigDecimal balance = rs.getBigDecimal("balance");
+                Float balance = rs.getFloat("balance");
                 user = new User(id, firstName, lastName, email, password, UserType.valueOf(userType), address, balance);
             }
         } catch (SQLException e) {
@@ -152,7 +155,7 @@ public class UserDaoImpl implements UserDao {
                 String email = rs.getString("email");
                 String address = rs.getString("address");
                 String userType = rs.getString("user_type");
-                BigDecimal balance = rs.getBigDecimal("balance");
+                Float balance = rs.getFloat("balance");
                 users.add(new User(id, firstName, lastName, email, password, UserType.valueOf(userType), address, balance));
             }
         } catch (SQLException e) {
@@ -173,7 +176,7 @@ public class UserDaoImpl implements UserDao {
             statement.setString(4, user.getPassword());
             statement.setString(5, user.getAddress());
             statement.setString(6, user.getUserType().toString());
-            statement.setBigDecimal(7, user.getBalance());
+            statement.setFloat(7, user.getBalance());
             statement.setLong(8, user.getId());
             rowUpdated = statement.executeUpdate() > 0;
             if (!rowUpdated) {
@@ -233,7 +236,7 @@ public class UserDaoImpl implements UserDao {
                 String password = rs.getString("password");
                 String email = rs.getString("email");
                 String address = rs.getString("address");
-                BigDecimal balance = rs.getBigDecimal("balance");
+                Float balance = rs.getFloat("balance");
                 users.add(new User(id, firstName, lastName, email, password, userType, address, balance));
             }
 

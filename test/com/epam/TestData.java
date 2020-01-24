@@ -10,6 +10,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam;
 
 import com.epam.dao.*;
@@ -23,7 +27,6 @@ import com.epam.model.subscription.SubscriptionType;
 import com.epam.model.user.User;
 import com.epam.model.user.UserType;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -94,10 +97,10 @@ public class TestData {
         userList = USER_DAO.getAll();
         subscriptionListFromDatabase = SUBSCRIPTION_DAO.selectAll();
 
-        USER = new User((long) 1201, "Serghei", "Ivanov", "ivanov_s@gmail.com", "ivanov", UserType.MANAGER, "Gagarina street", new BigDecimal(200));
-        USER1 = new User((long) 1202, "Ivan", "Kabanov", "kabanov_a@gmail.com", "kabanov", UserType.USER, "Lenina street", new BigDecimal(200));
-        USER2 = new User((long) 1203, "Петров", "Дмитрий", "petrov_d@gmail.com", "petrov", UserType.ADMIN, "Gagarina street", new BigDecimal(200));
-        USER3 = new User((long) 1204, "Test", "Test", "test@gmail.com", "test", UserType.USER, "Gagarina street", new BigDecimal(200));
+        USER = new User((long) 1201, "Serghei", "Ivanov", "ivanov_s@gmail.com", "ivanov", UserType.MANAGER, "Gagarina street", 200F);
+        USER1 = new User((long) 1202, "Ivan", "Kabanov", "kabanov_a@gmail.com", "kabanov", UserType.USER, "Lenina street", 200F);
+        USER2 = new User((long) 1203, "Петров", "Дмитрий", "petrov_d@gmail.com", "petrov", UserType.ADMIN, "Gagarina street", 200F);
+        USER3 = new User((long) 1204, "Test", "Test", "test@gmail.com", "test", UserType.USER, "Gagarina street", 200F);
 
         SUBSCRIPTION_TYPE = new SubscriptionType((long) 162, "Месячная", 1, 1.0F);
         SUBSCRIPTION_TYPE1 = new SubscriptionType((long) 163, "Квартальная", 3, 3.0F);

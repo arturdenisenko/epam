@@ -11,6 +11,10 @@
   ~ @Denisenko Artur
   --%>
 
+<%--
+  ~ @Denisenko Artur
+  --%>
+
 <%--Localization--%>
 <c:if test="${sessionScope.locale == null}">
     <fmt:setLocale value="ru"/>
@@ -63,8 +67,8 @@
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="${pageContext.request.contextPath}/admin/magazines?p=1&s=10">
-                                    <fmt:message key="magazines" bundle="${bundle}"/>
+                                <a href="${pageContext.request.contextPath}/admin/periodicals?p=1&s=10">
+                                    <fmt:message key="periodicals" bundle="${bundle}"/>
                                 </a>
                             </li>
                             <li>

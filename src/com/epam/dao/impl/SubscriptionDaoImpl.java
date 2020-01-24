@@ -14,6 +14,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.dao.impl;
 
 import com.epam.dao.PeriodicalDao;
@@ -52,7 +56,7 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
     private static final String CHECK_IF_USER_SUBSCRIBED_QUERY =
             "SELECT * FROM subscriptions WHERE user_id = ? AND periodical_id = ? AND CURRENT_DATE BETWEEN start_date " +
                     "AND end_date;";
-
+    private static final String SELECT_PAGE = "SELECT * FROM subscriptions ORDER BY start_date DESC LIMIT ? OFFSET ?";
 
     private UserDao userDao = UserDaoImpl.getInstance();
     private PeriodicalDao periodicalDao = PeriodicalDaoImpl.getInstance();
@@ -208,6 +212,27 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
         }
+        return subscriptions;
+    }
+
+    @Override
+    public List<Subscription> selectPage(Integer offset, Integer size) {
+        LOGGER.info("Getting page with offset {}, size {}", offset, size);
+        List<Subscription> subscriptions = new CopyOnWriteArrayList();
+
+        try (Connection connection = ConnectionPool.getInstance().getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(SELECT_PAGE);
+            statement.setInt(2, offset);
+            statement.setInt(1, size);
+
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                subscriptions.add(subscriptionInitialize(rs));
+            }
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage());
+        }
+
         return subscriptions;
     }
 

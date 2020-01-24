@@ -7,6 +7,10 @@
   ~ @Denisenko Artur
   --%>
 
+<%--
+  ~ @Denisenko Artur
+  --%>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -26,7 +30,7 @@
     <fmt:setBundle basename="localization" var="bundle"/>
     <%----%>
 
-    <title>Newsstand - <fmt:message key="admin" bundle="${bundle}"/> - <fmt:message key="magazines"
+    <title>Newsstand - <fmt:message key="admin" bundle="${bundle}"/> - <fmt:message key="periodicals"
                                                                                     bundle="${bundle}"/></title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -45,20 +49,22 @@
     <div class="col-md-8">
 
         <c:if test="${updateSuccess != null && updateSuccess == true}">
-            <div class="alert alert-success" role="alert"><fmt:message key="magazineUpdated" bundle="${bundle}"/></div>
+            <div class="alert alert-success" role="alert"><fmt:message key="periodicalUpdated"
+                                                                       bundle="${bundle}"/></div>
         </c:if>
         <c:if test="${deletionSuccess != null && deletionSuccess == true}">
-            <div class="alert alert-success" role="alert"><fmt:message key="magazineDeleted" bundle="${bundle}"/></div>
+            <div class="alert alert-success" role="alert"><fmt:message key="periodicalDeleted"
+                                                                       bundle="${bundle}"/></div>
         </c:if>
         <c:if test="${deletionSuccess != null && deletionSuccess == false}">
-            <div class="alert alert-danger" role="alert"><fmt:message key="magazineDeleteFail"
+            <div class="alert alert-danger" role="alert"><fmt:message key="periodicalDeleteFail"
                                                                       bundle="${bundle}"/></div>
         </c:if>
 
-        <h1><fmt:message key="magazines" bundle="${bundle}"/></h1>
+        <h1><fmt:message key="periodicals" bundle="${bundle}"/></h1>
 
         <div class="pull-right">
-            <a class="btn btn-primary" href="${pageContext.request.contextPath}/admin/magazines/add" role="button">
+            <a class="btn btn-primary" href="${pageContext.request.contextPath}/admin/periodicals/add" role="button">
                 <fmt:message key="add" bundle="${bundle}"/>
             </a>
         </div>
@@ -75,15 +81,15 @@
             </thead>
 
             <tbody>
-            <c:forEach items="${page.items}" var="magazine">
+            <c:forEach items="${page.items}" var="periodical">
                 <tr>
-                    <td>${magazine.title}</td>
-                    <td><p:price price="${magazine.price}"/></td>
-                    <td>${magazine.category.name}</td>
-                    <td>${magazine.publisher.title}</td>
+                    <td>${periodical.name}</td>
+                    <td><p:price price="${periodical.costPerMonth}"/></td>
+                    <td>${periodical.category.name}</td>
+                    <td>${periodical.publisher.name}</td>
                     <td>
                         <a class='btn btn-info btn-xs'
-                           href="${pageContext.request.contextPath}/admin/magazines/edit?id=${magazine.id}">
+                           href="${pageContext.request.contextPath}/admin/periodicals/edit?id=${periodical.id}">
                             <span class="glyphicon glyphicon-edit"></span> <fmt:message key="edit" bundle="${bundle}"/></a>
                     </td>
                 </tr>
@@ -95,7 +101,7 @@
             <ul class="pager">
                 <c:if test="${!page.first}">
                     <li>
-                        <a href="${pageContext.request.contextPath}/admin/magazines?p=${page.number-1}&s=${page.size}">
+                        <a href="${pageContext.request.contextPath}/admin/periodicals?p=${page.number-1}&s=${page.size}">
                             <span aria-hidden="true">&larr;</span>
                         </a>
                     </li>
@@ -103,7 +109,7 @@
 
                 <c:if test="${!page.last}">
                     <li>
-                        <a href="${pageContext.request.contextPath}/admin/magazines?p=${page.number+1}&s=${page.size}">
+                        <a href="${pageContext.request.contextPath}/admin/periodicals?p=${page.number+1}&s=${page.size}">
                             <span aria-hidden="true">&rarr;</span>
                         </a>
                     </li>
