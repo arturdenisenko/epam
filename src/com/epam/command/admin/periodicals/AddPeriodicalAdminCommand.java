@@ -10,6 +10,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command.admin.periodicals;
 
 import com.epam.dao.impl.PeriodicalCategoryDaoImpl;
@@ -81,7 +85,7 @@ public class AddPeriodicalAdminCommand implements com.epam.command.ServletComman
                 periodical.setCostPerMonth(Float.parseFloat(request.getParameter("price")));
                 periodical.setPeriodicalCategory(category);
                 periodical.setPublisher(publisher);
-                // periodical.setImageLink(imageId);
+                periodical.setImageLink(request.getParameter("image"));
                 periodical.setActive(request.getParameter("enabled") != null);
 
                 periodicalService.createPeriodical(periodical);
