@@ -6,6 +6,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command.admin.subscriptions;
 
 import com.epam.dao.impl.SubscriptionDaoImpl;
@@ -47,7 +51,7 @@ public class SubscriptionsAdminPageCommand implements com.epam.command.ServletCo
 
             request.setAttribute("page", page);
         } catch (NumberFormatException ex) {
-            LOGGER.info("COULDN'T PARSE {} , {} TO LONG", request.getParameter("p"), request.getParameter("s"));
+            LOGGER.warn("COULDN'T PARSE {} , {} TO LONG", request.getParameter("p"), request.getParameter("s"));
         }
 
         return page;

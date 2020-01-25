@@ -14,6 +14,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command.admin.periodicals;
 
 import com.epam.command.ServletCommand;
@@ -58,14 +62,14 @@ public class UpdatePeriodicalAdminCommand implements ServletCommand {
         if (request.getSession().getAttribute("authenticated") != null &&
                 request.getSession().getAttribute("authenticated").equals(true) &&
                 !request.getSession().getAttribute("role").equals(UserType.ADMIN.name())) {
-            LOGGER.info("User not authorized");
+            LOGGER.info("USER ISN'T AUTHORIZED");
             resultPage = loginPage;
         } else if (request.getParameter("id") != null && request.getParameter("title") != null &&
                 request.getParameter("price") != null && request.getParameter("publisher") != null &&
                 request.getParameter("category") != null && request.getParameter("description") != null) {
             try {
                 Long id = Long.parseLong(request.getParameter("id"));
-                Periodical existsPeriodical = periodicalService.getPeriodicalById(id);
+                Periodical existsPeriodical = periodicalService.getPeriodicalById(id);//For image check only
 
                 //get category
                 PeriodicalCategory category = new PeriodicalCategory();

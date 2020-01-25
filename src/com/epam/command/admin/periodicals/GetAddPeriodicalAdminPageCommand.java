@@ -6,6 +6,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command.admin.periodicals;
 
 import com.epam.dao.impl.PeriodicalCategoryDaoImpl;
@@ -49,7 +53,7 @@ public class GetAddPeriodicalAdminPageCommand implements com.epam.command.Servle
         if (request.getSession().getAttribute("authenticated") != null &&
                 request.getSession().getAttribute("authenticated").equals(true) &&
                 !request.getSession().getAttribute("role").equals(UserType.ADMIN.name())) {
-            LOGGER.info("User not authorized");
+            LOGGER.info("USER ISN'T AUTHORIZED");
             resultPage = loginPage;
         } else {
             request.setAttribute("publishers", publisherService.getAll());

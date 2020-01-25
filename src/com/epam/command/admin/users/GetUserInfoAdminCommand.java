@@ -6,6 +6,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command.admin.users;
 
 import com.epam.dao.impl.SubscriptionDaoImpl;
@@ -63,7 +67,7 @@ public class GetUserInfoAdminCommand implements com.epam.command.ServletCommand 
                     resultPage = userInfoPage;
                 }
             } catch (NumberFormatException ex) {
-                LOGGER.info("Couldn't parse id " + request.getParameter("p") + " to long");
+                LOGGER.warn("COULDN'T PARSE ID {} TO LONG", request.getParameter("p"));
             }
         }
         return resultPage;

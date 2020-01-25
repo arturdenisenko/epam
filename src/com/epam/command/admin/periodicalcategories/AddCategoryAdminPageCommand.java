@@ -10,6 +10,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command.admin.periodicalcategories;
 
 import com.epam.command.ServletCommand;
@@ -36,7 +40,7 @@ public class AddCategoryAdminPageCommand implements ServletCommand {
     }
 
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        LOGGER.info("Executing command");
+        LOGGER.info("ADD CATEGORY ADMIN PAGE COMMAND EXECUTE");
         String resultPage = addCategoryPage;
 
         if (request.getSession().getAttribute("authenticated") != null &&

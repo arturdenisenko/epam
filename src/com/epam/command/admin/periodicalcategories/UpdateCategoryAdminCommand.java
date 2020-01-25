@@ -14,6 +14,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command.admin.periodicalcategories;
 
 import com.epam.command.ServletCommand;
@@ -38,7 +42,7 @@ public class UpdateCategoryAdminCommand implements ServletCommand {
     private static String loginPage;
 
     public UpdateCategoryAdminCommand() {
-        LOGGER.info("Initializing UpdateCategoryAdminPageCommand");
+        LOGGER.info("UPDATE CATEGORY ADMIN COMMAND INIT");
 
         periodicalCategoryService = new PeriodicalCategoryServiceImpl(PeriodicalCategoryDaoImpl.getInstance());
 
@@ -48,13 +52,13 @@ public class UpdateCategoryAdminCommand implements ServletCommand {
     }
 
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        LOGGER.info("Executing command");
+        LOGGER.info("UPDATE CATEGORY ADMIN COMMAND EXECUTE");
         String resultPage = categoriesPage;
 
         if (request.getSession().getAttribute("authenticated") != null &&
                 request.getSession().getAttribute("authenticated").equals(true) &&
                 !request.getSession().getAttribute("role").equals(UserType.ADMIN.name())) {
-            LOGGER.info("User not authorized");
+            LOGGER.info("USER ISN'T AUTHORIZED");
             resultPage = loginPage;
         } else if (request.getParameter("id") != null && request.getParameter("name") != null) {
             try {

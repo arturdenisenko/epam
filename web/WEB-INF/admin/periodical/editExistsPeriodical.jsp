@@ -10,6 +10,10 @@
   ~ @Denisenko Artur
   --%>
 
+<%--
+  ~ @Denisenko Artur
+  --%>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -70,7 +74,7 @@
                 </label>
                 <div class="col-md-8">
                     <input id="price" name="price" placeholder="" class="form-control input-md" type="number"
-                           value="${periodical.price}" required>
+                           value="${periodical.costPerMonth}" required>
                 </div>
             </div>
 
@@ -141,7 +145,7 @@
                 </div>
                 <div class="col-md-2">
                     <a class='btn btn-danger'
-                       href="${pageContext.request.contextPath}/admin/periodicals/delete?id=${magazine.id}">
+                       href="${pageContext.request.contextPath}/admin/periodicals/delete?id=${periodical.id}">
                         <span class="glyphicon glyphicon-remove"></span> <fmt:message key="delete" bundle="${bundle}"/></a>
                 </div>
             </div>

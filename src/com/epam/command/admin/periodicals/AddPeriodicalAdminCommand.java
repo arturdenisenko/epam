@@ -14,8 +14,13 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command.admin.periodicals;
 
+import com.epam.command.ServletCommand;
 import com.epam.dao.impl.PeriodicalCategoryDaoImpl;
 import com.epam.dao.impl.PeriodicalDaoImpl;
 import com.epam.dao.impl.PublisherDaoImpl;
@@ -35,8 +40,17 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class AddPeriodicalAdminCommand implements com.epam.command.ServletCommand {
+
+public class AddPeriodicalAdminCommand implements ServletCommand {
     private static final Logger LOGGER = LoggerFactory.getLogger(AddPeriodicalAdminCommand.class);
+
+    // location to store file uploaded
+    private static final String UPLOAD_DIRECTORY = "images";
+
+    // upload settings
+    private static final int MEMORY_THRESHOLD = 1024 * 1024 * 3;  // 3MB
+    private static final int MAX_FILE_SIZE = 1024 * 1024 * 40; // 40MB
+    private static final int MAX_REQUEST_SIZE = 1024 * 1024 * 50; // 50MB
 
     private static PeriodicalService periodicalService;
     private static PublisherService publisherService;
@@ -65,13 +79,14 @@ public class AddPeriodicalAdminCommand implements com.epam.command.ServletComman
                 request.getParameter("publisher") != null && request.getParameter("category") != null &&
                 request.getParameter("description") != null) {
             try {
-               /* Part filePart = request.getPart("image");
-                Long imageId = null;
+                //request.getPar
+                /*во view, в форму, добавить поле с типом file
+                в контроллере получить этот файл (он будет доступен как аргумент с типом MultipartFile)
+                провалидировать (пустой/не пустой, изображение или нет, может ли пользователь загружать файлы, не слишком ли файл большой и т.д.)
+                получить массив байт (это и есть содержимое файла)
+                записать эти байты в базу данных/на файловую систему/куда-то еще*/
+// configures upload settings
 
-                if (filePart != null && !Paths.get(filePart.getSubmittedFileName()).getFileName().toString().isEmpty()) {
-                    InputStream image = filePart.getInputStream();
-                    imageId = imageService.createImage(image);
-                }*/
 
                 PeriodicalCategory category = new PeriodicalCategory();
                 category.setId(Long.parseLong(request.getParameter("category")));
@@ -97,8 +112,9 @@ public class AddPeriodicalAdminCommand implements com.epam.command.ServletComman
                         request.getParameter("id"), request.getParameter("category"), request.getParameter("publisher"));
             }
         }
-
         return resultPage;
     }
-
 }
+
+
+

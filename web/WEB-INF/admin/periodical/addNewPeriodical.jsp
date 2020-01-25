@@ -11,6 +11,10 @@
   ~ @Denisenko Artur
   --%>
 
+<%--
+  ~ @Denisenko Artur
+  --%>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -127,7 +131,7 @@
                         <fmt:message key="image" bundle="${bundle}"/>
                     </label>
                     <div class="col-md-8">
-                        <input type="file" id="image" name="image"/>
+                        <input type="file" id="image" name="image" value="single"/>
                     </div>
                 </div>
 

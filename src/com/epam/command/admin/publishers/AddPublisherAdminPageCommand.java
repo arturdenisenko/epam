@@ -6,6 +6,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command.admin.publishers;
 
 import com.epam.dao.impl.PublisherDaoImpl;
@@ -44,7 +48,7 @@ public class AddPublisherAdminPageCommand implements com.epam.command.ServletCom
         if (request.getSession().getAttribute("authenticated") != null &&
                 request.getSession().getAttribute("authenticated").equals(true) &&
                 !request.getSession().getAttribute("role").equals(UserType.ADMIN.name())) {
-            LOGGER.info("User not authorized");
+            LOGGER.info("USER ISN'T AUTHORIZED");
             resultPage = loginPage;
         }
 

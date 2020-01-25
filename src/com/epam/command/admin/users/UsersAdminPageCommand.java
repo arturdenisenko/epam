@@ -10,6 +10,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command.admin.users;
 
 import com.epam.dao.impl.UserDaoImpl;
@@ -52,8 +56,7 @@ public class UsersAdminPageCommand implements com.epam.command.ServletCommand {
 
             request.setAttribute("page", page);
         } catch (NumberFormatException ex) {
-            LOGGER.info("Couldn't parse " + request.getParameter("p") + ", "
-                    + request.getParameter("s") + " to long");
+            LOGGER.warn("COULDN'T PARSE {} , {} TO LONG", request.getParameter("p"), request.getParameter("s"));
         }
 
         return page;

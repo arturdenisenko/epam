@@ -11,6 +11,10 @@
   ~ @Denisenko Artur
   --%>
 
+<%--
+  ~ @Denisenko Artur
+  --%>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -30,7 +34,7 @@
     <fmt:setBundle basename="localization" var="bundle"/>
     <%----%>
 
-    <title>Newsstand - <fmt:message key="subscribe" bundle="${bundle}"/></title>
+    <title>Periodical - <fmt:message key="subscribe" bundle="${bundle}"/></title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -114,7 +118,7 @@
         var basePrice = parseFloat(document.getElementById("basePrice").innerHTML);
         var multiplier = parseFloat(select.options[select.selectedIndex].getAttribute("multiplier"));
 
-        label.innerHTML = (basePrice * multiplier).toString();
+        label.innerHTML = (basePrice * multiplier).toFixed(2).toString() + " BYN";
     }
 </script>
 

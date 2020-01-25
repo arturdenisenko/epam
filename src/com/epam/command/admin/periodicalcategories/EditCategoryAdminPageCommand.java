@@ -14,6 +14,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command.admin.periodicalcategories;
 
 import com.epam.command.ServletCommand;
@@ -39,7 +43,7 @@ public class EditCategoryAdminPageCommand implements ServletCommand {
     private static String loginPage;
 
     public EditCategoryAdminPageCommand() {
-        LOGGER.info("Initializing EditCategoryAdminPageCommand");
+        LOGGER.info("EDIT CATEGORY ADMIN PAGE INIT");
 
         periodicalCategoryService = new PeriodicalCategoryServiceImpl(PeriodicalCategoryDaoImpl.getInstance());
 
@@ -50,13 +54,13 @@ public class EditCategoryAdminPageCommand implements ServletCommand {
     }
 
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        LOGGER.info("Executing command");
+        LOGGER.info("EDIT CATEGORY ADMIN PAGE EXECUTE");
         String resultPage = editCategoryPage;
 
         if (request.getSession().getAttribute("authenticated") != null &&
                 request.getSession().getAttribute("authenticated").equals(true) &&
                 !request.getSession().getAttribute("role").equals(UserType.ADMIN.name())) {
-            LOGGER.info("User not authorized");
+            LOGGER.info("USER ISN'T AUTHORIZED");
             resultPage = loginPage;
         } else if (request.getParameter("id") != null) {
             try {
@@ -72,7 +76,6 @@ public class EditCategoryAdminPageCommand implements ServletCommand {
             } catch (NumberFormatException ex) {
                 LOGGER.warn("Couldn't parse {} to long", request.getParameter("id"));
             }
-
         }
 
         return resultPage;

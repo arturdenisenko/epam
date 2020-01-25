@@ -2,6 +2,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="navbar" tagdir="/WEB-INF/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="/WEB-INF/price.tld" prefix="p" %>
+<%--
+  ~ @Denisenko Artur
+  --%>
+
 <%--
   ~ @Denisenko Artur
   --%>
@@ -15,7 +20,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
+    <meta name="description" content="${user.firstName} ${user.lastName}">
     <meta name="author" content="Denisenko Artur">
 
     <%--Localization--%>
@@ -29,7 +34,7 @@
     <fmt:setBundle basename="localization" var="bundle"/>
     <%----%>
 
-    <title>Newsstand - <fmt:message key="account" bundle="${bundle}"/></title>
+    <title>Periodicals - <fmt:message key="account" bundle="${bundle}"/></title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -91,7 +96,8 @@
                                         <div class="thumbnail">
                                             <div class="caption">
                                                 <h3>${subscription.periodical.name}</h3>
-                                                <span class="pull-right"><h3>${subscription.cost}₴</h3></span>
+                                                <span class="pull-right"><h3><p:price
+                                                        price="${subscription.cost}"/></h3></span>
 
                                                 <p><fmt:message key="from"
                                                                 bundle="${bundle}"/>: ${subscription.startDate}</p>
