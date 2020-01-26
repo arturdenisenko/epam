@@ -10,6 +10,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.dao;
 
 import com.epam.model.periodical.Periodical;
@@ -23,9 +27,9 @@ public interface PeriodicalDao {
      * This method insert new periodical in database
      *
      * @param periodical
-     * @return
+     * @return Periodical with id
      */
-    void insert(Periodical periodical);
+    Periodical insert(Periodical periodical);
 
     /**
      * This method select periodical by id

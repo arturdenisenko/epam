@@ -10,6 +10,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command.admin.periodicals;
 
 import com.epam.dao.impl.PeriodicalCategoryDaoImpl;
@@ -26,13 +30,17 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * This class is used to handle GET requests to the admin page, used to add new periodical.
+ */
+
 public class GetAddPeriodicalAdminPageCommand implements com.epam.command.ServletCommand {
     private static final Logger LOGGER = LoggerFactory.getLogger(GetAddPeriodicalAdminPageCommand.class);
 
     private static PublisherService publisherService;
     private static PeriodicalCategoryService periodicalCategoryService;
 
-    private static String addMagazinePage;
+    private static String addPeriodicalPage;
     private static String loginPage;
 
     public GetAddPeriodicalAdminPageCommand() {
@@ -42,13 +50,13 @@ public class GetAddPeriodicalAdminPageCommand implements com.epam.command.Servle
         periodicalCategoryService = new PeriodicalCategoryServiceImpl(PeriodicalCategoryDaoImpl.getInstance());
 
         GetPropertiesUtil properties = GetPropertiesUtil.getInstance();
-        addMagazinePage = properties.getProperty("adminAddPeriodicalPage");
+        addPeriodicalPage = properties.getProperty("adminAddPeriodicalPage");
         loginPage = properties.getProperty("loginPage");
     }
 
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         LOGGER.info("GET ADD PERIODICAL ADMIN COMMAND EXECUTE");
-        String resultPage = addMagazinePage;
+        String resultPage = addPeriodicalPage;
 
         if (request.getSession().getAttribute("authenticated") != null &&
                 request.getSession().getAttribute("authenticated").equals(true) &&

@@ -10,6 +10,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command.admin.periodicals;
 
 import com.epam.dao.impl.PeriodicalCategoryDaoImpl;
@@ -49,7 +53,7 @@ public class EditPeriodicalAdminPageCommand implements com.epam.command.ServletC
         periodicalCategoryService = new PeriodicalCategoryServiceImpl(PeriodicalCategoryDaoImpl.getInstance());
 
         GetPropertiesUtil properties = GetPropertiesUtil.getInstance();
-        editPeriodicalPage = properties.getProperty("adminEditPeriodicalsPage");
+        editPeriodicalPage = properties.getProperty("adminEditPeriodicalPage");
         periodicalPage = properties.getProperty("adminPeriodicalsPage");
         loginPage = properties.getProperty("loginPage");
     }

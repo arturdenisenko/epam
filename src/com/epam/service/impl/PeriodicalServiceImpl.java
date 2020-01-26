@@ -27,6 +27,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.service.impl;
 
 import com.epam.dao.PeriodicalDao;
@@ -53,9 +57,9 @@ public class PeriodicalServiceImpl implements PeriodicalService {
     }
 
     @Override
-    public void createPeriodical(Periodical periodical) {
+    public Periodical createPeriodical(Periodical periodical) {
         LOGGER.info("CREATE PERIODICAL {}", periodical.toString());
-        periodicalDao.insert(periodical);
+        return periodicalDao.insert(periodical);
     }
 
     @Override

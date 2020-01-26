@@ -15,6 +15,10 @@
   ~ @Denisenko Artur
   --%>
 
+<%--
+  ~ @Denisenko Artur
+  --%>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -34,8 +38,8 @@
     <fmt:setBundle basename="localization" var="bundle"/>
     <%----%>
 
-    <title>Newsstand - <fmt:message key="admin" bundle="${bundle}"/> - <fmt:message key="addPeriodicals"
-                                                                                    bundle="${bundle}"/></title>
+    <title>Periodicals - <fmt:message key="admin" bundle="${bundle}"/> - <fmt:message key="addPeriodicals"
+                                                                                      bundle="${bundle}"/></title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -53,7 +57,7 @@
     <div class="col-md-8">
 
         <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/admin/periodicals/add"
-              enctype="multipart/form-data">
+        >
             <fieldset>
 
                 <legend><fmt:message key="addPeriodicals" bundle="${bundle}"/></legend>
@@ -63,7 +67,7 @@
                         <fmt:message key="title" bundle="${bundle}"/>
                     </label>
                     <div class="col-md-8">
-                        <input id="title" name="title" placeholder=" <fmt:message key="title" bundle="${bundle}"/>"
+                        <input id="title" name="title" placeholder="<fmt:message key="title" bundle="${bundle}"/>"
                                class="form-control input-md" type="text"
                                required>
 
@@ -131,7 +135,7 @@
                         <fmt:message key="image" bundle="${bundle}"/>
                     </label>
                     <div class="col-md-8">
-                        <input type="file" id="image" name="image" value="single"/>
+                        <input type="file" id="image" name="image"/>
                     </div>
                 </div>
 

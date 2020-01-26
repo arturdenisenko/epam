@@ -18,6 +18,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command.admin.periodicals;
 
 import com.epam.command.ServletCommand;
@@ -67,19 +71,30 @@ public class AddPeriodicalAdminCommand implements ServletCommand {
         periodicalCategoryService = new PeriodicalCategoryServiceImpl(PeriodicalCategoryDaoImpl.getInstance());
 
         GetPropertiesUtil properties = GetPropertiesUtil.getInstance();
-        addPeriodicalPage = properties.getProperty("adminAddMagazinePage");
+        addPeriodicalPage = properties.getProperty("adminAddPeriodicalPage");
         loginPage = properties.getProperty("loginPage");
     }
 
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         LOGGER.info("ADD MAGAZINE ADMIN COMMAND EXECUTE");
         String resultPage = addPeriodicalPage;
-
+        System.out.println(request.toString());
+        LOGGER.info(request.toString());
         if (request.getParameter("title") != null && request.getParameter("price") != null &&
                 request.getParameter("publisher") != null && request.getParameter("category") != null &&
                 request.getParameter("description") != null) {
             try {
-                //request.getPar
+                /*Part filePart = request.getPart("image");
+                InputStream fileContent = filePart.getInputStream();
+                byte[] buffer = new byte[fileContent.available()];
+                fileContent.read(buffer);
+                File targetFile = new File( request.getParameter("title")+ File.separator + request.getPart("fileName").getSubmittedFileName());
+
+                try (OutputStream outStream = new FileOutputStream(targetFile)) {
+                    outStream.write(buffer);
+                    outStream.flush();
+                }*/
+                //request.getPart
                 /*во view, в форму, добавить поле с типом file
                 в контроллере получить этот файл (он будет доступен как аргумент с типом MultipartFile)
                 провалидировать (пустой/не пустой, изображение или нет, может ли пользователь загружать файлы, не слишком ли файл большой и т.д.)

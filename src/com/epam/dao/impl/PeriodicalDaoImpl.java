@@ -6,6 +6,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.dao.impl;
 
 import com.epam.dao.PeriodicalCategoryDao;
@@ -41,7 +45,7 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
     }
 
     @Override
-    public void insert(Periodical periodical) {
+    public Periodical insert(Periodical periodical) {
         LOGGER.info("CREATE NEW PERIODICAL {}", periodical.toString());
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_PERIODICAL_SQL)) {
@@ -49,13 +53,22 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
 
             int affectedRows = preparedStatement.executeUpdate();
             if (affectedRows == 0) {
-                LOGGER.warn("PERIODICAL CREATION FAILED");
+                LOGGER.info("PERIODICAL CREATE FAILED");
             } else {
-                LOGGER.info("PERIODICAL CREATION SUCCESSFUL");
+                LOGGER.info("PERIODICAL CREATE SUCCESSFUL");
+
+                try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        periodical.setId(generatedKeys.getLong(1));
+                    } else {
+                        LOGGER.error("NO ID OBTAINED, FAILED TO CREATE PERIODICAL");
+                    }
+                }
             }
         } catch (SQLException e) {
             throw ExceptionUtil.convertException(e);
         }
+        return periodical;
     }
 
     private void PeriodicalCreate(Periodical periodical, PreparedStatement preparedStatement) throws SQLException {

@@ -18,6 +18,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.service;
 
 import com.epam.model.periodical.Periodical;
@@ -27,7 +31,7 @@ import java.util.List;
 
 public interface PeriodicalService {
 
-    void createPeriodical(Periodical periodical);
+    Periodical createPeriodical(Periodical periodical);
 
     Periodical getPeriodicalById(Long id);
 
