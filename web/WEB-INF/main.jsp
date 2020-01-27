@@ -12,10 +12,6 @@
   ~ @Denisenko Artur
   --%>
 
-<%--
-  ~ @Denisenko Artur
-  --%>
-
 <html>
 <head>
     <meta charset="utf-8">
@@ -69,6 +65,11 @@
                             <a href="${pageContext.request.contextPath}/periodical?id=${periodical.id}"
                                class="thumbnail">
                                 <c:if test="${periodical.imageLink == ''}">
+                                    <img class="img-responsive"
+                                         src="${pageContext.request.contextPath}/images/noImagePeriodical.png"/>
+
+                                </c:if>
+                                <c:if test="${periodical.imageLink == null}">
                                     <img class="img-responsive"
                                          src="${pageContext.request.contextPath}/images/noImagePeriodical.png"/>
 

@@ -19,6 +19,10 @@
   ~ @Denisenko Artur
   --%>
 
+<%--
+  ~ @Denisenko Artur
+  --%>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -57,7 +61,7 @@
     <div class="col-md-8">
 
         <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/admin/periodicals/add"
-        >
+              enctype="multipart/form-data">
             <fieldset>
 
                 <legend><fmt:message key="addPeriodicals" bundle="${bundle}"/></legend>

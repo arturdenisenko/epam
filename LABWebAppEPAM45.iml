@@ -70,5 +70,6 @@
     <orderEntry type="library" name="bootstrap" level="application" />
     <orderEntry type="library" name="commons-fileupload-1.4" level="project" />
     <orderEntry type="library" name="javax.servlet-api-4.0.1" level="project" />
+    <orderEntry type="library" name="commons-io-2.6" level="project" />
   </component>
 </module>

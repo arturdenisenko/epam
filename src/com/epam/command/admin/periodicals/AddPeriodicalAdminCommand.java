@@ -22,6 +22,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command.admin.periodicals;
 
 import com.epam.command.ServletCommand;
@@ -38,23 +42,22 @@ import com.epam.service.impl.PeriodicalCategoryServiceImpl;
 import com.epam.service.impl.PeriodicalServiceImpl;
 import com.epam.service.impl.PublisherServiceImpl;
 import com.epam.util.GetPropertiesUtil;
+import com.epam.util.ImageWorker;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Iterator;
+import java.util.List;
 
 
 public class AddPeriodicalAdminCommand implements ServletCommand {
     private static final Logger LOGGER = LoggerFactory.getLogger(AddPeriodicalAdminCommand.class);
-
-    // location to store file uploaded
-    private static final String UPLOAD_DIRECTORY = "images";
-
-    // upload settings
-    private static final int MEMORY_THRESHOLD = 1024 * 1024 * 3;  // 3MB
-    private static final int MAX_FILE_SIZE = 1024 * 1024 * 40; // 40MB
-    private static final int MAX_REQUEST_SIZE = 1024 * 1024 * 50; // 50MB
 
     private static PeriodicalService periodicalService;
     private static PublisherService publisherService;
@@ -76,60 +79,78 @@ public class AddPeriodicalAdminCommand implements ServletCommand {
     }
 
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        LOGGER.info("ADD MAGAZINE ADMIN COMMAND EXECUTE");
+        LOGGER.info("ADD PERIODICAL ADMIN COMMAND EXECUTE");
         String resultPage = addPeriodicalPage;
-        System.out.println(request.toString());
-        LOGGER.info(request.toString());
-        if (request.getParameter("title") != null && request.getParameter("price") != null &&
-                request.getParameter("publisher") != null && request.getParameter("category") != null &&
-                request.getParameter("description") != null) {
-            try {
-                /*Part filePart = request.getPart("image");
-                InputStream fileContent = filePart.getInputStream();
-                byte[] buffer = new byte[fileContent.available()];
-                fileContent.read(buffer);
-                File targetFile = new File( request.getParameter("title")+ File.separator + request.getPart("fileName").getSubmittedFileName());
+        DiskFileItemFactory fileFactory = new DiskFileItemFactory();
+        fileFactory.setDefaultCharset("UTF-8");
+        ServletFileUpload uploader = new ServletFileUpload(fileFactory);
+        List<FileItem> fileItemsList = null;
+        try {
+            fileItemsList = uploader.parseRequest(request);
+            /*LOGGER.info("Request size =  {}", fileItemsList.size());
+            LOGGER.info("0 {} {} ", fileItemsList.get(0).getFieldName(), fileItemsList.get(0).getString());
+            LOGGER.info("1 {} {} ", fileItemsList.get(1).getFieldName(), fileItemsList.get(1).getString());
+            LOGGER.info("2 {} {} ", fileItemsList.get(2).getFieldName(), fileItemsList.get(2).getString());
+            LOGGER.info("3 {} {} ", fileItemsList.get(3).getFieldName(), fileItemsList.get(3).getString());
+            LOGGER.info("4 {} {}", fileItemsList.get(4).getFieldName(), fileItemsList.get(4).getString());
+            LOGGER.info("5 {} {}", fileItemsList.get(5).getFieldName(), fileItemsList.get(5).getString());
+            //LOGGER.info("6 {} {}", fileItemsList.get(6).getFieldName(), fileItemsList.get(6).getString());
+            //LOGGER.info("7 {} {}", fileItemsList.get(7).getFieldName(), fileItemsList.get(7).getString());*/
+        } catch (FileUploadException e) {
+            LOGGER.error(e.getMessage(), e);
+        }
 
-                try (OutputStream outStream = new FileOutputStream(targetFile)) {
-                    outStream.write(buffer);
-                    outStream.flush();
-                }*/
+        if (fileItemsList.get(0) != null && fileItemsList.get(1) != null &&
+                fileItemsList.get(2) != null && fileItemsList.get(3) != null &&
+                fileItemsList.get(4) != null) {
+            try {
+
                 //request.getPart
                 /*во view, в форму, добавить поле с типом file
                 в контроллере получить этот файл (он будет доступен как аргумент с типом MultipartFile)
                 провалидировать (пустой/не пустой, изображение или нет, может ли пользователь загружать файлы, не слишком ли файл большой и т.д.)
                 получить массив байт (это и есть содержимое файла)
                 записать эти байты в базу данных/на файловую систему/куда-то еще*/
-// configures upload settings
-
+                // configures upload settings
+                FileItem image = null;
+                Iterator<FileItem> iterator = fileItemsList.iterator();
+                while (iterator.hasNext()) {
+                    FileItem item = iterator.next();
+                    if (!item.isFormField()) {
+                        image = item;
+                        boolean result = ImageWorker.imageSave(item);
+                        LOGGER.info("result  = {} ", result);
+                    }
+                }
 
                 PeriodicalCategory category = new PeriodicalCategory();
-                category.setId(Long.parseLong(request.getParameter("category")));
+                category.setId(Long.parseLong(fileItemsList.get(3).getString()));
 
                 Publisher publisher = new Publisher();
-                publisher.setId(Long.parseLong(request.getParameter("publisher")));
+                publisher.setId(Long.parseLong(fileItemsList.get(3).getString()));
 
                 Periodical periodical = new Periodical();
-                periodical.setName(request.getParameter("title"));
-                periodical.setAbout(request.getParameter("description"));
-                periodical.setCostPerMonth(Float.parseFloat(request.getParameter("price")));
+                periodical.setName(fileItemsList.get(0).getString());
+                periodical.setAbout(fileItemsList.get(4).getString());
+                periodical.setCostPerMonth(Float.parseFloat(fileItemsList.get(1).getString()));
                 periodical.setPeriodicalCategory(category);
                 periodical.setPublisher(publisher);
-                periodical.setImageLink(request.getParameter("image"));
-                periodical.setActive(request.getParameter("enabled") != null);
+                if (image != null) {
+                    periodical.setImageLink(image.getName());
+                } else {
+                    periodical.setImageLink("");
+                }
+                periodical.setActive(fileItemsList.get(5).getString() != null);
 
                 periodicalService.createPeriodical(periodical);
 
                 request.setAttribute("publishers", publisherService.getAll());
                 request.setAttribute("categories", periodicalCategoryService.getAll());
-            } catch (NumberFormatException ex) {
-                LOGGER.info("Couldn't parse {}, {}, {} to long",
-                        request.getParameter("id"), request.getParameter("category"), request.getParameter("publisher"));
+            } catch (Exception e) {
+                LOGGER.error(e.getMessage(), e);
             }
         }
         return resultPage;
     }
 }
-
-
 
