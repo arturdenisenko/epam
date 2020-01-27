@@ -6,6 +6,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.util;
 
 import org.apache.commons.fileupload.FileItem;
@@ -23,7 +27,8 @@ import java.io.IOException;
 
 public class ImageWorker {
     private static final Logger LOGGER = LoggerFactory.getLogger(ImageWorker.class);
-    private static final Dimension boundary = new Dimension(300, 300);
+    private static final Dimension BOUNDARY_DIMENSIONS = new Dimension(300, 300);
+    private static final String PATH_TO_IMAGES = "web/images";
 
     public static boolean imageSave(FileItem imageFileItem) {
         LOGGER.info("TRY TO WRITE FILE");
@@ -31,16 +36,19 @@ public class ImageWorker {
 
         BufferedImage image = null;
         try {
-            image = ImageIO.read(imageFileItem.getInputStream());
-            Dimension dimension = getScaledDimension(new Dimension(image.getWidth(), image.getHeight()), boundary);
-            image = resizeImage(image, image.getType(), dimension.width, dimension.height);
+            if (ImageIO.read(imageFileItem.getInputStream()) != null) {
+                image = ImageIO.read(imageFileItem.getInputStream());
+                Dimension scaledDimension = getScaledDimension(new Dimension(image.getWidth(), image.getHeight()), BOUNDARY_DIMENSIONS);
+                image = resizeImage(image, image.getType(), scaledDimension.width, scaledDimension.height);
+            } else {
+                LOGGER.error("THIS FILE ISN'T IMAGE");
+            }
         } catch (IOException e) {
             LOGGER.error(e.getMessage(), e);
         }
-
-
         try {
-            return ImageIO.write(image, getExtensionByApacheCommonLib(fileName), new File(fileName));
+            return ImageIO.write(image, getExtensionByApacheCommonLib(fileName),
+                    new File(PATH_TO_IMAGES + File.separator + fileName));
         } catch (IOException e) {
             LOGGER.error(e.getMessage(), e);
         }
@@ -84,6 +92,7 @@ public class ImageWorker {
         return FilenameUtils.getExtension(filename);
     }
 
+    //https://stackoverflow.com/questions/10245220/java-image-resize-maintain-aspect-ratio/45902544
 
     public static Dimension getScaledDimension(Dimension imgSize, Dimension boundary) {
 

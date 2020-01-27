@@ -26,6 +26,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command.admin.periodicals;
 
 import com.epam.command.ServletCommand;
@@ -52,7 +56,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Iterator;
 import java.util.List;
 
 
@@ -87,7 +90,7 @@ public class AddPeriodicalAdminCommand implements ServletCommand {
         List<FileItem> fileItemsList = null;
         try {
             fileItemsList = uploader.parseRequest(request);
-            /*LOGGER.info("Request size =  {}", fileItemsList.size());
+            LOGGER.info("Request size =  {}", fileItemsList.size());
             LOGGER.info("0 {} {} ", fileItemsList.get(0).getFieldName(), fileItemsList.get(0).getString());
             LOGGER.info("1 {} {} ", fileItemsList.get(1).getFieldName(), fileItemsList.get(1).getString());
             LOGGER.info("2 {} {} ", fileItemsList.get(2).getFieldName(), fileItemsList.get(2).getString());
@@ -95,7 +98,7 @@ public class AddPeriodicalAdminCommand implements ServletCommand {
             LOGGER.info("4 {} {}", fileItemsList.get(4).getFieldName(), fileItemsList.get(4).getString());
             LOGGER.info("5 {} {}", fileItemsList.get(5).getFieldName(), fileItemsList.get(5).getString());
             //LOGGER.info("6 {} {}", fileItemsList.get(6).getFieldName(), fileItemsList.get(6).getString());
-            //LOGGER.info("7 {} {}", fileItemsList.get(7).getFieldName(), fileItemsList.get(7).getString());*/
+            //LOGGER.info("7 {} {}", fileItemsList.get(7).getFieldName(), fileItemsList.get(7).getString());
         } catch (FileUploadException e) {
             LOGGER.error(e.getMessage(), e);
         }
@@ -113,21 +116,16 @@ public class AddPeriodicalAdminCommand implements ServletCommand {
                 записать эти байты в базу данных/на файловую систему/куда-то еще*/
                 // configures upload settings
                 FileItem image = null;
-                Iterator<FileItem> iterator = fileItemsList.iterator();
-                while (iterator.hasNext()) {
-                    FileItem item = iterator.next();
-                    if (!item.isFormField()) {
-                        image = item;
-                        boolean result = ImageWorker.imageSave(item);
-                        LOGGER.info("result  = {} ", result);
-                    }
+                if (fileItemsList.get(6).getString() != null) {
+                    image = fileItemsList.get(6);
+                    boolean result = ImageWorker.imageSave(image);
+                    LOGGER.info("result  = {} ", result);
                 }
-
                 PeriodicalCategory category = new PeriodicalCategory();
                 category.setId(Long.parseLong(fileItemsList.get(3).getString()));
 
                 Publisher publisher = new Publisher();
-                publisher.setId(Long.parseLong(fileItemsList.get(3).getString()));
+                publisher.setId(Long.parseLong(fileItemsList.get(2).getString()));
 
                 Periodical periodical = new Periodical();
                 periodical.setName(fileItemsList.get(0).getString());
