@@ -18,6 +18,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command.admin.periodicals;
 
 import com.epam.command.ServletCommand;
@@ -28,7 +32,7 @@ import com.epam.model.periodical.Publisher;
 import com.epam.model.user.UserType;
 import com.epam.service.PeriodicalService;
 import com.epam.service.impl.PeriodicalServiceImpl;
-import com.epam.util.GetPropertiesUtil;
+import com.epam.util.GetMappingPropertiesUtil;
 import com.epam.util.Page;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,7 +54,7 @@ public class UpdatePeriodicalAdminCommand implements ServletCommand {
 
         periodicalService = new PeriodicalServiceImpl(PeriodicalDaoImpl.getInstance());
 
-        GetPropertiesUtil properties = GetPropertiesUtil.getInstance();
+        GetMappingPropertiesUtil properties = GetMappingPropertiesUtil.getInstance();
         periodicalsPage = properties.getProperty("adminPeriodicalsPage");
         loginPage = properties.getProperty("loginPage");
     }

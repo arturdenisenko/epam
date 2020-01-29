@@ -22,6 +22,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command;
 
 import com.epam.dao.impl.PeriodicalCategoryDaoImpl;
@@ -38,7 +42,7 @@ import com.epam.service.impl.PeriodicalCategoryServiceImpl;
 import com.epam.service.impl.PeriodicalServiceImpl;
 import com.epam.service.impl.SubscriptionServiceImpl;
 import com.epam.service.impl.UserServiceImpl;
-import com.epam.util.GetPropertiesUtil;
+import com.epam.util.GetMappingPropertiesUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -67,7 +71,7 @@ public class GetPeriodicalPageCommand implements ServletCommand {
         userService = new UserServiceImpl(UserDaoImpl.getInstance());
         subscriptionService = new SubscriptionServiceImpl(SubscriptionDaoImpl.getInstance());
 
-        GetPropertiesUtil properties = GetPropertiesUtil.getInstance();
+        GetMappingPropertiesUtil properties = GetMappingPropertiesUtil.getInstance();
         magazinePage = properties.getProperty("periodicalPage");
         errorPage = properties.getProperty("error404Page");
     }

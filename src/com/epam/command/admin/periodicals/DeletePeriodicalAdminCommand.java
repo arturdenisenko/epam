@@ -10,6 +10,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command.admin.periodicals;
 
 import com.epam.dao.impl.PeriodicalDaoImpl;
@@ -17,7 +21,7 @@ import com.epam.model.periodical.Periodical;
 import com.epam.model.user.UserType;
 import com.epam.service.PeriodicalService;
 import com.epam.service.impl.PeriodicalServiceImpl;
-import com.epam.util.GetPropertiesUtil;
+import com.epam.util.GetMappingPropertiesUtil;
 import com.epam.util.Page;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,7 +42,7 @@ public class DeletePeriodicalAdminCommand implements com.epam.command.ServletCom
 
         periodicalService = new PeriodicalServiceImpl(PeriodicalDaoImpl.getInstance());
 
-        GetPropertiesUtil properties = GetPropertiesUtil.getInstance();
+        GetMappingPropertiesUtil properties = GetMappingPropertiesUtil.getInstance();
         periodicalPage = properties.getProperty("adminPeriodicalsPage");
         loginPage = properties.getProperty("loginPage");
     }

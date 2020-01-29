@@ -6,12 +6,16 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command.admin.publishers;
 
 import com.epam.dao.impl.PublisherDaoImpl;
 import com.epam.service.PublisherService;
 import com.epam.service.impl.PublisherServiceImpl;
-import com.epam.util.GetPropertiesUtil;
+import com.epam.util.GetMappingPropertiesUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,7 +37,7 @@ public class PublishersAdminPageCommand implements com.epam.command.ServletComma
 
         publisherService = new PublisherServiceImpl(PublisherDaoImpl.getInstance());
 
-        GetPropertiesUtil properties = GetPropertiesUtil.getInstance();
+        GetMappingPropertiesUtil properties = GetMappingPropertiesUtil.getInstance();
         page = properties.getProperty("adminPublishersPage");
     }
 

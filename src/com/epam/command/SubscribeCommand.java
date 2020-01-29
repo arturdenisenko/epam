@@ -10,6 +10,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command;
 
 import com.epam.dao.impl.PeriodicalDaoImpl;
@@ -28,7 +32,7 @@ import com.epam.service.impl.PeriodicalServiceImpl;
 import com.epam.service.impl.SubscriptionServiceImpl;
 import com.epam.service.impl.SubscriptionTypeServiceImpl;
 import com.epam.service.impl.UserServiceImpl;
-import com.epam.util.GetPropertiesUtil;
+import com.epam.util.GetMappingPropertiesUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -55,7 +59,7 @@ public class SubscribeCommand implements ServletCommand {
         subscriptionService = new SubscriptionServiceImpl(SubscriptionDaoImpl.getInstance());
         userService = new UserServiceImpl(UserDaoImpl.getInstance());
 
-        GetPropertiesUtil properties = GetPropertiesUtil.getInstance();
+        GetMappingPropertiesUtil properties = GetMappingPropertiesUtil.getInstance();
         mainPage = properties.getProperty("mainPage");
         subscriptionSuccessPage = properties.getProperty("subscriptionSuccessPage");
     }

@@ -6,6 +6,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.util;
 
 import com.epam.command.CommandManager;
@@ -16,15 +20,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class GetPropertiesUtil {
+public class GetMappingPropertiesUtil {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CommandManager.class);
 
-    private static GetPropertiesUtil instance = null;
+    private static GetMappingPropertiesUtil instance = null;
     private static String propertiesFileName = "periodicals_mapping.properties";
     private Properties properties;
 
-    private GetPropertiesUtil() {
+    private GetMappingPropertiesUtil() {
         LOGGER.info("GET PROPERTIES CLASS INITIALIZING");
 
         properties = new Properties();
@@ -34,7 +38,7 @@ public class GetPropertiesUtil {
             if (inputStream != null) {
                 properties.load(inputStream);
             } else {
-                LOGGER.error("Mapping properties file  isn't found on the classpath");
+                LOGGER.error("MAPPING PROPERTIES FILE ISN'T FOUND IN CLASSPATH");
             }
 
         } catch (IOException e) {
@@ -42,9 +46,9 @@ public class GetPropertiesUtil {
         }
     }
 
-    public static synchronized GetPropertiesUtil getInstance() {
+    public static synchronized GetMappingPropertiesUtil getInstance() {
         if (instance == null) {
-            instance = new GetPropertiesUtil();
+            instance = new GetMappingPropertiesUtil();
         }
 
         return instance;

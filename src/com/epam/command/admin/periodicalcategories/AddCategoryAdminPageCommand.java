@@ -14,11 +14,15 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command.admin.periodicalcategories;
 
 import com.epam.command.ServletCommand;
 import com.epam.model.user.UserType;
-import com.epam.util.GetPropertiesUtil;
+import com.epam.util.GetMappingPropertiesUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,7 +38,7 @@ public class AddCategoryAdminPageCommand implements ServletCommand {
     public AddCategoryAdminPageCommand() {
         LOGGER.info("ADD CATEGORY ADMIN PAGE COMMAND INIT");
 
-        GetPropertiesUtil properties = GetPropertiesUtil.getInstance();
+        GetMappingPropertiesUtil properties = GetMappingPropertiesUtil.getInstance();
         addCategoryPage = properties.getProperty("adminAddCategoryPage");
         loginPage = properties.getProperty("loginPage");
     }

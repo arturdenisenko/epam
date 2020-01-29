@@ -10,13 +10,17 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command.admin.subscriptions;
 
 import com.epam.dao.impl.SubscriptionDaoImpl;
 import com.epam.model.subscription.Subscription;
 import com.epam.service.SubscriptionService;
 import com.epam.service.impl.SubscriptionServiceImpl;
-import com.epam.util.GetPropertiesUtil;
+import com.epam.util.GetMappingPropertiesUtil;
 import com.epam.util.Page;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,7 +40,7 @@ public class SubscriptionsAdminPageCommand implements com.epam.command.ServletCo
 
         subscriptionService = new SubscriptionServiceImpl(SubscriptionDaoImpl.getInstance());
 
-        GetPropertiesUtil properties = GetPropertiesUtil.getInstance();
+        GetMappingPropertiesUtil properties = GetMappingPropertiesUtil.getInstance();
         page = properties.getProperty("adminSubscriptionPage");
     }
 

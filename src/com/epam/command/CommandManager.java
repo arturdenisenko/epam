@@ -34,6 +34,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command;
 
 import com.epam.command.admin.periodicalcategories.*;
@@ -41,7 +45,7 @@ import com.epam.command.admin.periodicals.*;
 import com.epam.command.admin.publishers.*;
 import com.epam.command.admin.subscriptions.SubscriptionsAdminPageCommand;
 import com.epam.command.admin.users.*;
-import com.epam.util.GetPropertiesUtil;
+import com.epam.util.GetMappingPropertiesUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -134,7 +138,7 @@ public class CommandManager {
         postCommands.put("/admin/periodicals/update", new UpdatePeriodicalAdminCommand());
 
 
-        GetPropertiesUtil properties = GetPropertiesUtil.getInstance().getInstance();
+        GetMappingPropertiesUtil properties = GetMappingPropertiesUtil.getInstance().getInstance();
         errorPage = properties.getProperty("errorPage");
     }
 

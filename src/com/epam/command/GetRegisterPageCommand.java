@@ -10,9 +10,13 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command;
 
-import com.epam.util.GetPropertiesUtil;
+import com.epam.util.GetMappingPropertiesUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,7 +35,7 @@ public class GetRegisterPageCommand implements ServletCommand {
     public GetRegisterPageCommand() {
         LOGGER.info("GET REGISTER PAGE COMMAND INITIALIZING");
 
-        GetPropertiesUtil properties = GetPropertiesUtil.getInstance();
+        GetMappingPropertiesUtil properties = GetMappingPropertiesUtil.getInstance();
         registerPage = properties.getProperty("registerPage");
         mainPage = properties.getProperty("mainPage");
     }

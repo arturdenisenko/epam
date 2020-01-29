@@ -10,6 +10,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command;
 
 import com.epam.dao.impl.SubscriptionDaoImpl;
@@ -20,7 +24,7 @@ import com.epam.service.SubscriptionService;
 import com.epam.service.UserService;
 import com.epam.service.impl.SubscriptionServiceImpl;
 import com.epam.service.impl.UserServiceImpl;
-import com.epam.util.GetPropertiesUtil;
+import com.epam.util.GetMappingPropertiesUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -46,7 +50,7 @@ public class GetAccountPageCommand implements ServletCommand {
         userService = new UserServiceImpl(UserDaoImpl.getInstance());
         subscriptionService = new SubscriptionServiceImpl(SubscriptionDaoImpl.getInstance());
 
-        GetPropertiesUtil properties = GetPropertiesUtil.getInstance();
+        GetMappingPropertiesUtil properties = GetMappingPropertiesUtil.getInstance();
         mainPage = properties.getProperty("mainPage");
         accountPage = properties.getProperty("accountPage");
     }

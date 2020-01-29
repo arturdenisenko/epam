@@ -10,6 +10,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.util;
 
 import org.apache.commons.fileupload.FileItem;
@@ -25,12 +29,14 @@ import java.awt.image.ImageProducer;
 import java.io.File;
 import java.io.IOException;
 
-public class ImageWorker {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ImageWorker.class);
+public class ImageUtil {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ImageUtil.class);
     private static final Dimension BOUNDARY_DIMENSIONS = new Dimension(300, 300);
-    private static final String PATH_TO_IMAGES = "web/images";
+    private static final String PATH_TO_IMAGES = "C:\\images\\";
 
     public static boolean imageSave(FileItem imageFileItem) {
+        File directory = new File("./");
+        System.out.println(directory.getAbsolutePath());
         LOGGER.info("TRY TO WRITE FILE");
         String fileName = new File(imageFileItem.getName()).getName();
 

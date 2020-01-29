@@ -5,12 +5,20 @@
 /*
  * @Denisenko Artur
  */
+
+/*
+ * @Denisenko Artur
+ */
 /**
  * This class is used to encapsulate information about page of items.
  *
  * @param <T> Type parameter of items
+ * <p>
+ * Helper class to paging
  */
-
+/**
+ * Helper class to paging
+ */
 package com.epam.util;
 
 import java.util.List;

@@ -18,6 +18,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command.admin.periodicalcategories;
 
 import com.epam.command.ServletCommand;
@@ -26,7 +30,7 @@ import com.epam.model.periodical.PeriodicalCategory;
 import com.epam.model.user.UserType;
 import com.epam.service.PeriodicalCategoryService;
 import com.epam.service.impl.PeriodicalCategoryServiceImpl;
-import com.epam.util.GetPropertiesUtil;
+import com.epam.util.GetMappingPropertiesUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -47,7 +51,7 @@ public class EditCategoryAdminPageCommand implements ServletCommand {
 
         periodicalCategoryService = new PeriodicalCategoryServiceImpl(PeriodicalCategoryDaoImpl.getInstance());
 
-        GetPropertiesUtil properties = GetPropertiesUtil.getInstance();
+        GetMappingPropertiesUtil properties = GetMappingPropertiesUtil.getInstance();
         editCategoryPage = properties.getProperty("adminEditCategoryPage");
         categoriesPage = properties.getProperty("adminCategoriesPage");
         loginPage = properties.getProperty("loginPage");

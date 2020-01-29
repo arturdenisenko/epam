@@ -14,6 +14,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command.admin.periodicals;
 
 import com.epam.dao.impl.PeriodicalCategoryDaoImpl;
@@ -27,7 +31,7 @@ import com.epam.service.PublisherService;
 import com.epam.service.impl.PeriodicalCategoryServiceImpl;
 import com.epam.service.impl.PeriodicalServiceImpl;
 import com.epam.service.impl.PublisherServiceImpl;
-import com.epam.util.GetPropertiesUtil;
+import com.epam.util.GetMappingPropertiesUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -52,7 +56,7 @@ public class EditPeriodicalAdminPageCommand implements com.epam.command.ServletC
         publisherService = new PublisherServiceImpl(PublisherDaoImpl.getInstance());
         periodicalCategoryService = new PeriodicalCategoryServiceImpl(PeriodicalCategoryDaoImpl.getInstance());
 
-        GetPropertiesUtil properties = GetPropertiesUtil.getInstance();
+        GetMappingPropertiesUtil properties = GetMappingPropertiesUtil.getInstance();
         editPeriodicalPage = properties.getProperty("adminEditPeriodicalPage");
         periodicalPage = properties.getProperty("adminPeriodicalsPage");
         loginPage = properties.getProperty("loginPage");

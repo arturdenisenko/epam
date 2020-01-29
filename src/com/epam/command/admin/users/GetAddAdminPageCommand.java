@@ -10,10 +10,14 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command.admin.users;
 
 import com.epam.model.user.UserType;
-import com.epam.util.GetPropertiesUtil;
+import com.epam.util.GetMappingPropertiesUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,7 +33,7 @@ public class GetAddAdminPageCommand implements com.epam.command.ServletCommand {
     public GetAddAdminPageCommand() {
         LOGGER.info("GET ADD ADMIN PAGE INIT");
 
-        GetPropertiesUtil properties = GetPropertiesUtil.getInstance();
+        GetMappingPropertiesUtil properties = GetMappingPropertiesUtil.getInstance();
         addAdminPage = properties.getProperty("adminAddAdminPage");
         loginPage = properties.getProperty("loginPage");
     }

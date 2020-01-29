@@ -30,6 +30,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command.admin.periodicals;
 
 import com.epam.command.ServletCommand;
@@ -45,8 +49,8 @@ import com.epam.service.PublisherService;
 import com.epam.service.impl.PeriodicalCategoryServiceImpl;
 import com.epam.service.impl.PeriodicalServiceImpl;
 import com.epam.service.impl.PublisherServiceImpl;
-import com.epam.util.GetPropertiesUtil;
-import com.epam.util.ImageWorker;
+import com.epam.util.GetMappingPropertiesUtil;
+import com.epam.util.ImageUtil;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -76,7 +80,7 @@ public class AddPeriodicalAdminCommand implements ServletCommand {
         publisherService = new PublisherServiceImpl(PublisherDaoImpl.getInstance());
         periodicalCategoryService = new PeriodicalCategoryServiceImpl(PeriodicalCategoryDaoImpl.getInstance());
 
-        GetPropertiesUtil properties = GetPropertiesUtil.getInstance();
+        GetMappingPropertiesUtil properties = GetMappingPropertiesUtil.getInstance();
         addPeriodicalPage = properties.getProperty("adminAddPeriodicalPage");
         loginPage = properties.getProperty("loginPage");
     }
@@ -118,7 +122,7 @@ public class AddPeriodicalAdminCommand implements ServletCommand {
                 FileItem image = null;
                 if (fileItemsList.get(6).getString() != null) {
                     image = fileItemsList.get(6);
-                    boolean result = ImageWorker.imageSave(image);
+                    boolean result = ImageUtil.imageSave(image);
                     LOGGER.info("result  = {} ", result);
                 }
                 PeriodicalCategory category = new PeriodicalCategory();

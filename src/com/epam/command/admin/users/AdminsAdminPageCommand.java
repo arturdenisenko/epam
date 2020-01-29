@@ -10,6 +10,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command.admin.users;
 
 import com.epam.dao.impl.UserDaoImpl;
@@ -17,7 +21,7 @@ import com.epam.model.user.User;
 import com.epam.model.user.UserType;
 import com.epam.service.UserService;
 import com.epam.service.impl.UserServiceImpl;
-import com.epam.util.GetPropertiesUtil;
+import com.epam.util.GetMappingPropertiesUtil;
 import com.epam.util.Page;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,7 +41,7 @@ public class AdminsAdminPageCommand implements com.epam.command.ServletCommand {
 
         userService = new UserServiceImpl(UserDaoImpl.getInstance());
 
-        GetPropertiesUtil properties = GetPropertiesUtil.getInstance();
+        GetMappingPropertiesUtil properties = GetMappingPropertiesUtil.getInstance();
         page = properties.getProperty("adminAdminsPage");
     }
 

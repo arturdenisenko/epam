@@ -10,9 +10,13 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command;
 
-import com.epam.util.GetPropertiesUtil;
+import com.epam.util.GetMappingPropertiesUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,7 +36,7 @@ public class GetLoginPageCommand implements ServletCommand {
     public GetLoginPageCommand() {
         LOGGER.info("GET LOGIN PAGE COMMAND INITIALIZATION");
 
-        GetPropertiesUtil properties = GetPropertiesUtil.getInstance();
+        GetMappingPropertiesUtil properties = GetMappingPropertiesUtil.getInstance();
         loginPage = properties.getProperty("loginPage");
         mainPage = properties.getProperty("mainPage");
     }
