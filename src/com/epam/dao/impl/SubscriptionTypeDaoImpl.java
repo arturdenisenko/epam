@@ -1,3 +1,7 @@
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.dao.impl;
 
 import com.epam.dao.SubscriptionTypeDao;
@@ -15,17 +19,11 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import static com.epam.dao.impl.SQLQueries.*;
+
 public class SubscriptionTypeDaoImpl implements SubscriptionTypeDao {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(SubscriptionTypeDaoImpl.class);
-
-    private static final String INSERT_SUBSCRIPTION_TYPE_CATEGORY_SQL =
-            "INSERT INTO subscription_type" + "  (id, name, duration_by_month, price_multiplier) VALUES " + " (DEFAULT, ?,?,?);";
-    private static final String SELECT_SUBSCRIPTION_TYPE_BY_ID = "SELECT * FROM subscription_type WHERE id =?;";
-    private static final String SELECT_ALL_SUBSCRIPTION_TYPES = "SELECT * FROM subscription_type ORDER BY id;";
-    private static final String DELETE_SUBSCRIPTION_TYPE_SQL = "DELETE FROM subscription_type WHERE id = ?;";
-    private static final String UPDATE_SUBSCRIPTION_TYPE_SQL = "UPDATE subscription_type SET name = ?, duration_by_month = ?, price_multiplier = ? where id = ?;";
-    private static final String CLEAR_TABLE_SUBSCRIPTION_TYPES_SQL = "DELETE FROM subscription_type";
 
     public static SubscriptionTypeDaoImpl getInstance() {
         return SubscriptionTypeDaoImpl.SubscriptionTypeDaoImplHolder.HOLDER_INSTANCE;

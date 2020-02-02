@@ -2,6 +2,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.dao.impl;
 
 import com.epam.dao.PeriodicalCategoryDao;
@@ -19,16 +23,12 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import static com.epam.dao.impl.SQLQueries.*;
+
 public class PeriodicalCategoryDaoImpl implements PeriodicalCategoryDao {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(PeriodicalCategoryDaoImpl.class);
 
-    private static final String INSERT_PERIODICAL_CATEGORY_SQL = "INSERT INTO periodical_category" + "  (id, name) VALUES " + " (DEFAULT, ?);";
-    private static final String SELECT_PERIODICAL_CATEGORY_BY_ID = "SELECT id,name FROM periodical_category WHERE id =?;";
-    private static final String SELECT_ALL_PERIODICAL_CATEGORY = "SELECT * FROM periodical_category ORDER BY id;";
-    private static final String DELETE_PERIODICAL_CATEGORY_SQL = "DELETE FROM periodical_category where id = ?;";
-    private static final String UPDATE_PERIODICAL_CATEGORY_SQL = "UPDATE periodical_category SET name = ? where id = ?;";
-    private static final String CLEAR_TABLE_PERIODICAL_CATEGORY_SQL = "DELETE FROM periodical_category";
 
     public static PeriodicalCategoryDaoImpl getInstance() {
         return PeriodicalCategoryDaoImpl.PeriodicalCategoryDaoImplHolder.HOLDER_INSTANCE;

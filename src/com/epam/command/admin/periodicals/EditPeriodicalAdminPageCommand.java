@@ -18,6 +18,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command.admin.periodicals;
 
 import com.epam.dao.impl.PeriodicalCategoryDaoImpl;
@@ -85,7 +89,7 @@ public class EditPeriodicalAdminPageCommand implements com.epam.command.ServletC
                     resultPage = periodicalPage;
                 }
             } catch (NumberFormatException ex) {
-                LOGGER.warn("Couldn't parse {}} to long", request.getParameter("id"));
+                LOGGER.warn("Couldn't parse {} to long", request.getParameter("id"));
             }
 
         }

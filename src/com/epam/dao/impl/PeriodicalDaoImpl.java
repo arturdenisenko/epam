@@ -10,6 +10,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.dao.impl;
 
 import com.epam.dao.PeriodicalCategoryDao;
@@ -254,7 +258,7 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
         List<Periodical> periodicals = new CopyOnWriteArrayList<>();
 
         try (Connection connection = ConnectionPool.getInstance().getConnection()) {
-            PreparedStatement statement = connection.prepareStatement(SELECT_PAGE);
+            PreparedStatement statement = connection.prepareStatement(SELECT_PERIODICAL_PAGE);
             statement.setInt(2, offset);
             StatementSet(size, periodicals, statement);
         } catch (SQLException e) {

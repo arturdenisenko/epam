@@ -10,6 +10,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.dao.impl;
 
 import com.epam.dao.UserDao;
@@ -30,24 +34,13 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import static com.epam.dao.impl.SQLQueries.*;
+
 public class UserDaoImpl implements UserDao {
 
     //TODO REFACT THIS DAO!!!, AND ADD PWD CRYPT
 
     private final static Logger LOGGER = LoggerFactory.getLogger(UserDaoImpl.class);
-
-    private static final String INSERT_USER_SQL = "INSERT INTO users" + "  " +
-            "(id, first_name, last_name, email, password, address, user_type, balance) VALUES " + " (DEFAULT, ?,?,?,?,?,?,?);";
-    private static final String SELECT_USER_BY_ID = "SELECT * FROM users WHERE id =?;";
-    private static final String SELECT_USER_BY_EMAIL = "SELECT * FROM users WHERE email =?;";
-    private static final String SELECT_ALL_USERS = "SELECT * FROM users ORDER BY id;";
-    private static final String DELETE_USER_SQL = "DELETE FROM users where id = ?;";
-    private static final String UPDATE_USER_SQL =
-            "UPDATE users SET first_name = ?, last_name = ?, email = ?, password = ?, address = ?, user_type = ?, balance = ? where id = ?;";
-    private static final String CLEAR_TABLE_USERS_SQL = "DELETE FROM users";
-    private static final String SELECT_ALL_BY_USER_TYPE =
-            "SELECT * FROM users WHERE user_type = ? ORDER BY id DESC LIMIT ? OFFSET ?";
-
 
     private static class UserDAOImplHolder {
         private static final UserDaoImpl HOLDER_INSTANCE = new UserDaoImpl();

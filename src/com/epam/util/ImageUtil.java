@@ -14,6 +14,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.util;
 
 import org.apache.commons.fileupload.FileItem;
@@ -32,12 +36,10 @@ import java.io.IOException;
 public class ImageUtil {
     private static final Logger LOGGER = LoggerFactory.getLogger(ImageUtil.class);
     private static final Dimension BOUNDARY_DIMENSIONS = new Dimension(300, 300);
-    private static final String PATH_TO_IMAGES = "C:\\images\\";
 
-    public static boolean imageSave(FileItem imageFileItem) {
-        File directory = new File("./");
-        System.out.println(directory.getAbsolutePath());
-        LOGGER.info("TRY TO WRITE FILE");
+    public static boolean imageSave(FileItem imageFileItem, String filePath) {
+
+        LOGGER.info("TRY TO WRITE FILE {} to file path  {}\\images", imageFileItem.getName(), filePath);
         String fileName = new File(imageFileItem.getName()).getName();
 
         BufferedImage image = null;
@@ -54,7 +56,7 @@ public class ImageUtil {
         }
         try {
             return ImageIO.write(image, getExtensionByApacheCommonLib(fileName),
-                    new File(PATH_TO_IMAGES + File.separator + fileName));
+                    new File(filePath + "\\images" + File.separator + fileName));
         } catch (IOException e) {
             LOGGER.error(e.getMessage(), e);
         }

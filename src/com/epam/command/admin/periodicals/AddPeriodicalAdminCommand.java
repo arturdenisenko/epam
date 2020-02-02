@@ -34,6 +34,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command.admin.periodicals;
 
 import com.epam.command.ServletCommand;
@@ -58,6 +62,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -74,7 +79,7 @@ public class AddPeriodicalAdminCommand implements ServletCommand {
     private static String loginPage;
 
     public AddPeriodicalAdminCommand() {
-        LOGGER.info("ADD MAGAZINE ADMIN COMMAND INIT");
+        LOGGER.info("ADD PERIODICAL ADMIN COMMAND INIT");
 
         periodicalService = new PeriodicalServiceImpl(PeriodicalDaoImpl.getInstance());
         publisherService = new PublisherServiceImpl(PublisherDaoImpl.getInstance());
@@ -91,18 +96,11 @@ public class AddPeriodicalAdminCommand implements ServletCommand {
         DiskFileItemFactory fileFactory = new DiskFileItemFactory();
         fileFactory.setDefaultCharset("UTF-8");
         ServletFileUpload uploader = new ServletFileUpload(fileFactory);
+        ServletContext ctx = request.getServletContext();
+        String filePath = ctx.getRealPath("./");
         List<FileItem> fileItemsList = null;
         try {
             fileItemsList = uploader.parseRequest(request);
-            LOGGER.info("Request size =  {}", fileItemsList.size());
-            LOGGER.info("0 {} {} ", fileItemsList.get(0).getFieldName(), fileItemsList.get(0).getString());
-            LOGGER.info("1 {} {} ", fileItemsList.get(1).getFieldName(), fileItemsList.get(1).getString());
-            LOGGER.info("2 {} {} ", fileItemsList.get(2).getFieldName(), fileItemsList.get(2).getString());
-            LOGGER.info("3 {} {} ", fileItemsList.get(3).getFieldName(), fileItemsList.get(3).getString());
-            LOGGER.info("4 {} {}", fileItemsList.get(4).getFieldName(), fileItemsList.get(4).getString());
-            LOGGER.info("5 {} {}", fileItemsList.get(5).getFieldName(), fileItemsList.get(5).getString());
-            //LOGGER.info("6 {} {}", fileItemsList.get(6).getFieldName(), fileItemsList.get(6).getString());
-            //LOGGER.info("7 {} {}", fileItemsList.get(7).getFieldName(), fileItemsList.get(7).getString());
         } catch (FileUploadException e) {
             LOGGER.error(e.getMessage(), e);
         }
@@ -111,18 +109,10 @@ public class AddPeriodicalAdminCommand implements ServletCommand {
                 fileItemsList.get(2) != null && fileItemsList.get(3) != null &&
                 fileItemsList.get(4) != null) {
             try {
-
-                //request.getPart
-                /*во view, в форму, добавить поле с типом file
-                в контроллере получить этот файл (он будет доступен как аргумент с типом MultipartFile)
-                провалидировать (пустой/не пустой, изображение или нет, может ли пользователь загружать файлы, не слишком ли файл большой и т.д.)
-                получить массив байт (это и есть содержимое файла)
-                записать эти байты в базу данных/на файловую систему/куда-то еще*/
-                // configures upload settings
                 FileItem image = null;
                 if (fileItemsList.get(6).getString() != null) {
                     image = fileItemsList.get(6);
-                    boolean result = ImageUtil.imageSave(image);
+                    boolean result = ImageUtil.imageSave(image, filePath);
                     LOGGER.info("result  = {} ", result);
                 }
                 PeriodicalCategory category = new PeriodicalCategory();

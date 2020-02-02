@@ -18,6 +18,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.dao.impl;
 
 import com.epam.dao.PeriodicalDao;
@@ -38,25 +42,11 @@ import java.sql.*;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import static com.epam.dao.impl.SQLQueries.*;
+
 public class SubscriptionDaoImpl implements SubscriptionDao {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(SubscriptionDaoImpl.class);
-
-    private static final String INSERT_SUBSCRIPTION_SQL =
-            "INSERT INTO subscriptions (id, user_id, periodical_id,start_date,end_date, cost, subscription_type_id) " +
-                    "VALUES " + " (DEFAULT, ?, ?, ?, ?, ?, ?);";
-    private static final String SELECT_SUBSCRIPTION_BY_ID = "SELECT * FROM subscriptions WHERE id =?;";
-    private static final String SELECT_SUBSCRIPTION_BY_USER_ID = "SELECT * FROM subscriptions WHERE user_id =?;";
-    private static final String SELECT_ALL_SUBSCRIPTIONS = "SELECT * FROM subscriptions;";
-    private static final String DELETE_SUBSCRIPTION_SQL = "DELETE FROM subscriptions where id = ?;";
-    private static final String UPDATE_SUBSCRIPTIONS_SQL =
-            "UPDATE subscriptions SET user_id = ?, periodical_id = ?,start_date = ?,end_date = ?, cost = ?, " +
-                    "subscription_type_id =? where id = ?;";
-    private static final String CLEAR_TABLE_SUBSCRIPTION_SQL = "DELETE FROM subscriptions";
-    private static final String CHECK_IF_USER_SUBSCRIBED_QUERY =
-            "SELECT * FROM subscriptions WHERE user_id = ? AND periodical_id = ? AND CURRENT_DATE BETWEEN start_date " +
-                    "AND end_date;";
-    private static final String SELECT_PAGE = "SELECT * FROM subscriptions ORDER BY start_date DESC LIMIT ? OFFSET ?";
 
     private UserDao userDao = UserDaoImpl.getInstance();
     private PeriodicalDao periodicalDao = PeriodicalDaoImpl.getInstance();
@@ -221,7 +211,7 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
         List<Subscription> subscriptions = new CopyOnWriteArrayList();
 
         try (Connection connection = ConnectionPool.getInstance().getConnection()) {
-            PreparedStatement statement = connection.prepareStatement(SELECT_PAGE);
+            PreparedStatement statement = connection.prepareStatement(SELECT_SUBSCRIPTION_PAGE);
             statement.setInt(2, offset);
             statement.setInt(1, size);
 

@@ -10,17 +10,13 @@
   ~ @Denisenko Artur
   --%>
 
-<%--
-  ~ @Denisenko Artur
-  --%>
-
 <html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="Denisenko Artur">
 
     <%--Localization--%>
     <c:if test="${sessionScope.locale == null}">
@@ -100,7 +96,7 @@
                     <select id="category" name="category" class="form-control">
                         <c:forEach items="${categories}" var="category">
                             <option value="${category.id}"
-                                ${periodical.category.id == category.id ? 'selected' : ''}>${category.name}</option>
+                                ${periodical.periodicalCategory.id == category.id ? 'selected' : ''}>${category.name}</option>
                         </c:forEach>
                     </select>
                 </div>

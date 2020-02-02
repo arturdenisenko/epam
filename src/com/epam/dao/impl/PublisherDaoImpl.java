@@ -6,6 +6,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.dao.impl;
 
 import com.epam.dao.PublisherDao;
@@ -23,17 +27,11 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import static com.epam.dao.impl.SQLQueries.*;
 
 public class PublisherDaoImpl implements PublisherDao {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(PublisherDaoImpl.class);
-
-    private static final String INSERT_PUBLISHER_SQL = "INSERT INTO publishers (id, name) VALUES " + " (DEFAULT, ?);";
-    private static final String SELECT_PUBLISHER_BY_ID = "SELECT id,name FROM publishers WHERE id =?;";
-    private static final String SELECT_ALL_PUBLISHERS = "SELECT * FROM publishers;";
-    private static final String DELETE_PUBLISHERS_SQL = "DELETE FROM publishers where id = ?;";
-    private static final String UPDATE_PUBLISHER_SQL = "UPDATE publishers SET name = ? where id = ?;";
-    private static final String CLEAR_TABLE_PUBLISHER_SQL = "DELETE FROM publishers";
 
     public static PublisherDaoImpl getInstance() {
         return PublisherDaoImpl.PublisherDaoImplHolder.HOLDER_INSTANCE;
