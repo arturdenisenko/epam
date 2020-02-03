@@ -18,6 +18,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command;
 
 import com.epam.dao.impl.PeriodicalCategoryDaoImpl;
@@ -84,7 +88,7 @@ public class RegisterCommand implements ServletCommand {
             if (userService.create(user)) {
                 request.setAttribute("categories", categoryService.getAll());
                 request.setAttribute("periodicals", periodicalService.getAll());
-
+                //TODO - MAIL SENDER
                 resultPage = mainPage;
             }
         }

@@ -25,14 +25,14 @@ public class GetMappingPropertiesUtil {
     private static final Logger LOGGER = LoggerFactory.getLogger(CommandManager.class);
 
     private static GetMappingPropertiesUtil instance = null;
-    private static String propertiesFileName = "periodicals_mapping.properties";
+    private static String propertiesMappingFileName = "periodicals_mapping.properties";
     private Properties properties;
 
     private GetMappingPropertiesUtil() {
         LOGGER.info("GET PROPERTIES CLASS INITIALIZING");
 
         properties = new Properties();
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propertiesFileName);
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propertiesMappingFileName);
 
         try {
             if (inputStream != null) {

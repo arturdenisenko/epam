@@ -2,6 +2,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 ррpackage com.epam.pool;
 
 import org.apache.log4j.Logger;
@@ -20,7 +24,7 @@ public class ConnectionPool implements ConnectionBuilder{
     private DataSource dataSource = null;
 
     private ConnectionPool() {
-        LOGGER.info("Initializing connectionFactory class");
+        LOGGER.info("Initializing Connection Pool class");
 
         try {
             Context ctx = new InitialContext();
@@ -32,7 +36,7 @@ public class ConnectionPool implements ConnectionBuilder{
     }
 
     public Connection getConnection() throws SQLException {
-        LOGGER.info("Getting connection");
+        LOGGER.info("GETTING CONNECTION");
         return dataSource.getConnection();
     }
 

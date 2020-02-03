@@ -6,66 +6,52 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.pool;
 
-import com.epam.Main;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.io.InputStream;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Properties;
 
 /**
- * Connection Pool for Test Dao, need to change it
+ * Connection Pool
  */
 public class ConnectionPool implements ConnectionBuilder {
     private final static Logger LOGGER = LoggerFactory.getLogger(ConnectionPool.class);
 
-    private static ConnectionPool instance = null;
-    private static final String PROPS = "periodicals.properties";
-    protected static String jdbcURL;
-    protected static String jdbcUsername;
-    protected static String jdbcPassword;
+    private static ConnectionPool connectionPool = null;
+    private DataSource dataSource = null;
 
     private ConnectionPool() {
-        //private constructor
-    }
+        LOGGER.info("Initializing Connection Pool class");
 
-    public static ConnectionPool getInstance() {
-        if (instance == null)
-            instance = new ConnectionPool();
-        return instance;
-    }
-
-    private static void init() {
-        LOGGER.info("Connection properties initialize");
-        ClassLoader loader = Main.class.getClassLoader();
-        try (InputStream is = loader.getResourceAsStream(PROPS)) {
-            Properties props = new Properties();
-            props.load(is);
-            jdbcUsername = props.getProperty("db.user");
-            jdbcPassword = props.getProperty("db.password");
-            jdbcURL = props.getProperty("db.url");
-
-        } catch (IOException e) {
-            LOGGER.error(e.getMessage(), e);
-        }
-    }
-
-    public Connection getConnection() {
-        init();
-        Connection connection = null;
-        LOGGER.info("GET CONNECTION");
         try {
-            Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
-        } catch (SQLException | ClassNotFoundException e) {
-            LOGGER.error(e.getMessage(), e);
+            Context ctx = new InitialContext();
+            dataSource = (DataSource) ctx.lookup("java:comp/env/jdbc/periodicalsRes");
+
+        } catch (NamingException e) {
+            LOGGER.error(e.getMessage());
         }
-        return connection;
+    }
+
+    public static synchronized ConnectionPool getInstance() {
+        if (connectionPool == null) {
+            connectionPool = new ConnectionPool();
+        }
+        return connectionPool;
+    }
+
+    public Connection getConnection() throws SQLException {
+        LOGGER.info("GETTING CONNECTION");
+        return dataSource.getConnection();
     }
 }

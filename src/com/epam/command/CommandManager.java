@@ -42,6 +42,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command;
 
 import com.epam.command.admin.periodicalcategories.*;
@@ -151,7 +155,7 @@ public class CommandManager {
      * This method is used to get a command instance mapped to http get method, based on a request.
      *
      * @param request http request from servlet.
-     * @return A servlet command instance.
+     * @return instanse of servlet command.
      */
     public ServletCommand getGetCommand(HttpServletRequest request) {
         String command = getMapping(request);
@@ -192,7 +196,6 @@ public class CommandManager {
         if (mapping.endsWith("/")) {
             mapping = mapping.substring(0, mapping.length() - 1);
         }
-
         return mapping;
     }
 }

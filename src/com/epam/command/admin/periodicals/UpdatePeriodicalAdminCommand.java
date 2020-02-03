@@ -26,6 +26,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command.admin.periodicals;
 
 import com.epam.command.ServletCommand;
@@ -106,13 +110,14 @@ public class UpdatePeriodicalAdminCommand implements ServletCommand {
                 PeriodicalCategory category = new PeriodicalCategory();
                 category.setId(Long.parseLong(fileItemsList.get(3).getString()));
                 FileItem image = null;
-                //get image
+
+                //Get and delete image
                 try {
                     if (fileItemsList.get(6).getString() != null) {
                         image = fileItemsList.get(6);
+                        ImageUtil.imageDelete(existsPeriodical.getImageLink(), filePath);
                         boolean result = ImageUtil.imageSave(image, filePath);
-                        //TODO DELETE IMAGE IF EXISTS
-                        LOGGER.info("result  = {} ", result);
+                        LOGGER.info("result  of delete = {} ", result);
                     }
                 } catch (Exception e) {
                     LOGGER.warn(e.getMessage(), e);
@@ -137,7 +142,6 @@ public class UpdatePeriodicalAdminCommand implements ServletCommand {
 
                 Page<Periodical> page = periodicalService.getPage(1, 10);
                 request.setAttribute("page", page);
-
 
                 resultPage = periodicalsPage;
             } catch (NumberFormatException ex) {

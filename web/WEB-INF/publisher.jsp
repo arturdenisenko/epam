@@ -11,9 +11,6 @@
   ~ @Denisenko Artur
   --%>
 
-<%--
-  ~ @Denisenko Artur
-  --%>
 
 <html>
 <head>

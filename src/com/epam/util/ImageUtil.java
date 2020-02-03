@@ -18,6 +18,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.util;
 
 import org.apache.commons.fileupload.FileItem;
@@ -28,8 +32,6 @@ import org.slf4j.LoggerFactory;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
 import java.io.File;
 import java.io.IOException;
 
@@ -63,33 +65,16 @@ public class ImageUtil {
         return false;
     }
 
-    public static Image imageRead(String imageLink) {
-        return new Image() {
-            @Override
-            public int getWidth(ImageObserver observer) {
-                return 0;
-            }
-
-            @Override
-            public int getHeight(ImageObserver observer) {
-                return 0;
-            }
-
-            @Override
-            public ImageProducer getSource() {
-                return null;
-            }
-
-            @Override
-            public Graphics getGraphics() {
-                return null;
-            }
-
-            @Override
-            public Object getProperty(String name, ImageObserver observer) {
-                return null;
-            }
-        };
+    public static boolean imageDelete(String imageLink, String filePath) {
+        LOGGER.info("TRY TO DELETE IMAGE {}", imageLink);
+        File file = new File(filePath + "\\images\\" + imageLink);
+        if (file.delete()) {
+            LOGGER.info("DELETE SUCCESS FOR  {}", imageLink);
+            return true;
+        } else {
+            LOGGER.info("DELETE FAILED FOR  {}", imageLink);
+            return false;
+        }
     }
 
     /**
