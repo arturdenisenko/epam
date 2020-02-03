@@ -6,6 +6,10 @@
   ~ @Denisenko Artur
   --%>
 
+<%--
+  ~ @Denisenko Artur
+  --%>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -25,7 +29,7 @@
     <fmt:setBundle basename="localization" var="bundle"/>
     <%----%>
 
-    <title>Newsstand - <fmt:message key="subscribe" bundle="${bundle}"/></title>
+    <title>Periodicals - <fmt:message key="subscribe" bundle="${bundle}"/></title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
