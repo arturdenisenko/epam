@@ -6,6 +6,10 @@
   ~ @Denisenko Artur
   --%>
 
+<%--
+  ~ @Denisenko Artur
+  --%>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="navbar" %>
@@ -64,7 +68,8 @@
                     <h3>${periodical.name}</h3>
 
                     <p>
-                        <b><fmt:message key="publisher" bundle="${bundle}"/>: </b><a>${periodical.publisher.name}</a>
+                        <b><fmt:message key="publisher" bundle="${bundle}"/>: </b><a
+                            href="${pageContext.request.contextPath}/publisher?publisherId=${periodical.publisher.id}&p=1&s=6">${periodical.publisher.name}</a>
                     </p>
                     <p>
                         <b><fmt:message key="category" bundle="${bundle}"/>: </b>
@@ -73,7 +78,7 @@
 
                     <div class="text-right">
                         <%--User logged in--%>
-                            <c:if test="${sessionScope.authenticated != null &&
+                        <c:if test="${sessionScope.authenticated != null &&
                                   sessionScope.authenticated == true &&
                                   sessionScope.role == 'USER' &&
                                   periodical.active == true}">

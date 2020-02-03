@@ -10,6 +10,10 @@
   ~ @Denisenko Artur
   --%>
 
+<%--
+  ~ @Denisenko Artur
+  --%>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -108,7 +112,7 @@
                 </label>
                 <div class="col-md-8">
                     <textarea class="form-control" id="description" name="description" maxlength="300"
-                              cols="5">${periodical.name}</textarea>
+                              cols="5">${periodical.about}</textarea>
                 </div>
             </div>
 

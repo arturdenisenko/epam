@@ -10,6 +10,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.dao.impl;
 
 /**
@@ -26,7 +30,7 @@ public class SQLQueries {
     protected static final String SELECT_ALL_PERIODICALS = "SELECT * FROM periodicals;";
     protected static final String DELETE_PERIODICAL_SQL = "DELETE FROM periodicals where id = ?;";
     protected static final String UPDATE_PERIODICAL_SQL = "UPDATE periodicals SET name = ?, about = ?,publisher_fk= ?" +
-            ", periodical_category = ?, periodicity_in_six_month = ?, min_subscription_period=?, cost_per_month=?, active =?, imagelink =? " +
+            ", periodical_category = ?, periodicity_in_six_month = ?, min_subscription_period=?, cost_per_month=?, active =?, imagelink = ? " +
             "where id = ?;";
     protected static final String CLEAR_TABLE_PERIODICAL_SQL = "DELETE FROM periodicals";
     protected static final String FIND_LAST_PERIODICALS = "SELECT * FROM periodicals ORDER BY id DESC LIMIT ?";

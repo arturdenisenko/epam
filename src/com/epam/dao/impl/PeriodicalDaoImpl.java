@@ -14,6 +14,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.dao.impl;
 
 import com.epam.dao.PeriodicalCategoryDao;
@@ -164,7 +168,7 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_PERIODICAL_SQL)) {
             PeriodicalCreate(periodical, statement);
-            statement.setLong(8, periodical.getId());
+            statement.setLong(10, periodical.getId());
             rowUpdated = statement.executeUpdate() > 0;
             if (!rowUpdated) {
                 throw new NotExistEntityException(periodical.getId());
@@ -216,7 +220,7 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
     @Override
     public List<Periodical> selectPageByCategory(Long categoryId, Integer offset, Integer size) {
         LOGGER.info("GET PAGE WITH OFFSET {} SIZE {} CATEGORY ID  {}  ", offset, size, categoryId);
-        List<Periodical> periodicals = new CopyOnWriteArrayList<>();
+        List<Periodical> periodicals = new CopyOnWriteArrayList();
 
         return getPeriodicals(categoryId, offset, size, periodicals, SELECT_PAGE_BY_CATEGORY_QUERY);
     }
@@ -225,8 +229,7 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
     public List<Periodical> selectPageByPublisher(Long publisherId, Integer offset, Integer size) {
         LOGGER.info("GET PAGE WITH OFFSET {} SIZE {} PUBLISHER ID  {}  ", offset, size, publisherId);
         List<Periodical> periodicals = new CopyOnWriteArrayList();
-        return getPeriodicals(publisherId, size, offset, periodicals, SELECT_PAGE_BY_PUBLISHER_ID);
-
+        return getPeriodicals(publisherId, offset, size, periodicals, SELECT_PAGE_BY_PUBLISHER_ID);
     }
 
     private List<Periodical> getPeriodicals(Long publisherId, Integer offset, Integer size, List<Periodical> periodicals, String selectPageByPublisherId) {

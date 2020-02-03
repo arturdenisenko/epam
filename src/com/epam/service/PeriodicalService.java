@@ -22,6 +22,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.service;
 
 import com.epam.model.periodical.Periodical;
@@ -30,17 +34,39 @@ import com.epam.util.Page;
 import java.util.List;
 
 public interface PeriodicalService {
-
+    /**
+     * @param periodical
+     * @return new periodical
+     */
     Periodical createPeriodical(Periodical periodical);
 
+    /**
+     * @param id of periodical
+     * @return periodicals by id
+     */
     Periodical getPeriodicalById(Long id);
 
+    /**
+     * @param name
+     * @return list of periodicals by name
+     */
     List<Periodical> getAllByName(String name);
 
+    /**
+     * @return list of all periodials
+     */
     List<Periodical> getAll();
 
+    /**
+     * @param id periodical
+     * @return true if delete is ok, false if failed
+     */
     boolean removeById(Long id);
 
+    /**
+     * @param periodical
+     * @return updated periodical
+     */
     boolean update(Periodical periodical);
 
     /**
@@ -52,24 +78,21 @@ public interface PeriodicalService {
     List<Periodical> getLastAdded(Integer limit);
 
     /**
-     * This method finds a page of periodicals by category.
      *
-     * @param categoryId Id of the category of periodicals to find
-     * @param offset     Element to start from.
-     * @param size       How much elements to take.
-     * @return List of periodicals.
+     * @param page Number of the page, starts from 1
+     * @param size How much elements to take.
+     * @param categoryId id of Category
+     * @return list of periodicals
      */
     Page<Periodical> getPageByCategory(Integer page, Integer size, Long categoryId);
 
     /**
-     * This method finds a page of periodicals by publisher.
-     *
-     * @param publisherId Id of the publisher of periodicals to find
-     * @param offset      Element to start from.
+     * @param page        Number of the page, starts from 1
      * @param size        How much elements to take.
-     * @return List of periodicals.
+     * @param publisherId id of Publisher
+     * @return list of periodicals
      */
-    List<Periodical> getPageByPublisher(Long publisherId, Integer offset, Integer size);
+    Page<Periodical> getPageByPublisherId(Integer page, Integer size, Long publisherId);
 
     /**
      * This methods finds page from all periodicals

@@ -6,22 +6,6 @@
  * @Denisenko Artur
  */
 
-/*
- * @Denisenko Artur
- */
-
-/*
- * @Denisenko Artur
- */
-
-/*
- * @Denisenko Artur
- */
-
-/*
- * @Denisenko Artur
- */
-
 package com.epam.command;
 
 import com.epam.dao.impl.PeriodicalCategoryDaoImpl;
@@ -40,10 +24,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * This class is used for handle GET request in searchPeriodicals page
+ * This class is for handle GET request in Publisher Page(view all periodicals in category)
  */
-public class GetSearchPageCommand implements ServletCommand {
-    private static final Logger LOGGER = LoggerFactory.getLogger(GetSearchPageCommand.class);
+
+public class GetPublisherPageCommand implements ServletCommand {
+    private static final Logger LOGGER = LoggerFactory.getLogger(GetPublisherPageCommand.class);
 
     private static PeriodicalCategoryService periodicalCategoryService;
     private static PeriodicalService periodicalService;
@@ -51,35 +36,34 @@ public class GetSearchPageCommand implements ServletCommand {
     private static String periodicalsPage;
     private static String errorPage;
 
-    public GetSearchPageCommand() {
-        LOGGER.info("GET SEARCH PAGE COMMAND INIT");
+    public GetPublisherPageCommand() {
+        LOGGER.info("GET PUBLISHER PAGE COMMAND INIT");
 
         periodicalCategoryService = new PeriodicalCategoryServiceImpl(PeriodicalCategoryDaoImpl.getInstance());
         periodicalService = new PeriodicalServiceImpl(PeriodicalDaoImpl.getInstance());
 
         GetMappingPropertiesUtil properties = GetMappingPropertiesUtil.getInstance();
-        periodicalsPage = properties.getProperty("searchPeriodicalsPage");
+        periodicalsPage = properties.getProperty("publisherPage");
         errorPage = properties.getProperty("error404Page");
     }
 
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        LOGGER.info("EXECUTING SEARCH PAGE COMMAND");
+        LOGGER.info("EXECUTING PUBLISHER PAGE COMMAND");
 
         String resultPage = errorPage;
 
-        if (request.getParameter("q") != null && request.getParameter("p") != null &&
+        if (request.getParameter("publisherId") != null && request.getParameter("p") != null &&
                 request.getParameter("s") != null) {
 
             try {
-                String query = request.getParameter("q");
+                Long publisherId = Long.parseLong(request.getParameter("publisherId"));
                 Integer pageNum = Integer.parseInt(request.getParameter("p"));
                 Integer size = Integer.parseInt(request.getParameter("s"));
 
-                Page<Periodical> page = periodicalService.getPageByNameQuery(query, pageNum, size);
+                Page<Periodical> page = periodicalService.getPageByPublisherId(pageNum, size, publisherId);
 
                 request.setAttribute("categories", periodicalCategoryService.getAll());
                 request.setAttribute("page", page);
-                request.setAttribute("query", query);
 
                 resultPage = periodicalsPage;
             } catch (NumberFormatException ex) {

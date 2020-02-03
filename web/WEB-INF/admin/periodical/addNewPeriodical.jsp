@@ -11,18 +11,6 @@
   ~ @Denisenko Artur
   --%>
 
-<%--
-  ~ @Denisenko Artur
-  --%>
-
-<%--
-  ~ @Denisenko Artur
-  --%>
-
-<%--
-  ~ @Denisenko Artur
-  --%>
-
 <html>
 <head>
     <meta charset="utf-8">
@@ -83,7 +71,8 @@
                         <fmt:message key="price" bundle="${bundle}"/>
                     </label>
                     <div class="col-md-8">
-                        <input id="price" name="price" placeholder="" class="form-control input-md" type="number"
+                        <input id="price" name="price" placeholder="<fmt:message key="price" bundle="${bundle}"/>"
+                               class="form-control input-md" type="number"
                                step="0.01" required>
                     </div>
                 </div>
@@ -119,7 +108,9 @@
                         <fmt:message key="description" bundle="${bundle}"/>
                     </label>
                     <div class="col-md-8">
-                        <textarea class="form-control" id="description" name="description" maxlength="300"
+                        <textarea class="form-control" id="description"
+                                  placeholder="<fmt:message key="description" bundle="${bundle}"/>" name="description"
+                                  maxlength="300"
                                   cols="5"></textarea>
                     </div>
                 </div>

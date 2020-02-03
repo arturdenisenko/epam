@@ -31,6 +31,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.service.impl;
 
 import com.epam.dao.PeriodicalDao;
@@ -116,8 +120,15 @@ public class PeriodicalServiceImpl implements PeriodicalService {
     }
 
     @Override
-    public List<Periodical> getPageByPublisher(Long publisherId, Integer offset, Integer size) {
-        return null;
+    public Page<Periodical> getPageByPublisherId(Integer page, Integer size, Long publisherId) {
+        LOGGER.info("Getting page number {}} of size {} for publisher id {} ", page, size, publisherId);
+
+        if (page == null || size == null || publisherId == null || page < 1 || size < 1) {
+            return null;
+        }
+
+        List<Periodical> items = periodicalDao.selectPageByPublisher(publisherId, (page - 1) * size, size);
+        return new Page(items, page, size);
     }
 
     @Override

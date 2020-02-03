@@ -38,6 +38,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.command;
 
 import com.epam.command.admin.periodicalcategories.*;
@@ -79,6 +83,7 @@ public class CommandManager {
         getCommands.put("/register", new GetRegisterPageCommand());
         getCommands.put("/periodical", new GetPeriodicalPageCommand());
         getCommands.put("/category", new GetCategoryPageCommand());
+        getCommands.put("/publisher", new GetPublisherPageCommand());
         getCommands.put("/subscribe", new GetSubscribePageCommand());
         getCommands.put("/account", new GetAccountPageCommand());
         getCommands.put("/search", new GetSearchPageCommand());
