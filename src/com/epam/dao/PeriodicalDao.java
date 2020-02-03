@@ -14,6 +14,10 @@
  * @Denisenko Artur
  */
 
+/*
+ * @Denisenko Artur
+ */
+
 package com.epam.dao;
 
 import com.epam.model.periodical.Periodical;
@@ -21,7 +25,6 @@ import com.epam.model.periodical.Periodical;
 import java.util.List;
 
 public interface PeriodicalDao {
-    //TODO periodical insert
 
     /**
      * This method insert new periodical in database

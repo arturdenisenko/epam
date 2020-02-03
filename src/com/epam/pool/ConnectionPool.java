@@ -6,9 +6,6 @@
  * @Denisenko Artur
  */
 
-/*
- * @Denisenko Artur
- */
 
 package com.epam.pool;
 
